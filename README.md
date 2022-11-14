@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Farcaster GUI
 
 This is the Farcaster Node web application GUI. It allows to interact with your Farcaster Node through the gRPC daemon service.
