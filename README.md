@@ -14,7 +14,7 @@ port = 50051
 
 ## Getting Started
 
-First, run the development server:
+First install the deps with `npm install`, and then run the development server:
 
 ```bash
 npm run dev
