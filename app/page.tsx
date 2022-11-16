@@ -1,11 +1,12 @@
 'use client'
 
+import { Title } from '../components/ui'
 import RunningList from './RunningList'
 
 export default function Page() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">List</h1>
+      <Title>List</Title>
       <div>
         <RunningList></RunningList>
       </div>

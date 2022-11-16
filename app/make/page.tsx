@@ -1,8 +1,12 @@
 'use client'
 
+import { TbSwitchHorizontal } from 'react-icons/tb'
 import { useState } from 'react'
+import { TradePanel } from '../../components/panels'
+import { Button, Title } from '../../components/ui'
+import { otherSwapRole } from '../../components/utils'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
-import { Blockchain, MakeRequest, Network, SwapRole } from '../../proto/farcaster_pb'
+import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
@@ -60,9 +64,28 @@ const createMakeRequest = (p: Params): MakeRequest => {
 
 export default function Page() {
   const [req, reqSet] = useState(reqDefault)
+
+  const switchNet = () => {
+    reqSet((v) => ({ ...v, makerRole: otherSwapRole(req.makerRole) }))
+  }
+
   return (
     <>
-      <div>make page</div>
+      <Title>Register an new offer</Title>
+      <div className="my-4">
+        <TradePanel
+          arbitratingAmount={req.arbitratingAmount}
+          accordantAmount={req.accordantAmount}
+          arbitratingBlockchain={req.arbitratingBlockchain}
+          accordantBlockchain={req.accordantBlockchain}
+          makerRole={req.makerRole}
+          network={req.network}
+          displayForRole={TradeRole.MAKER}
+        />
+        <Button onClick={() => switchNet()}>
+          <TbSwitchHorizontal />
+        </Button>
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault()

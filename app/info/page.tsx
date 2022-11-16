@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Title } from '../../components/ui'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
-import { InfoRequest, InfoResponse, PeersRequest, PeersResponse } from '../../proto/farcaster_pb'
+import { InfoRequest, InfoResponse } from '../../proto/farcaster_pb'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
@@ -20,7 +21,7 @@ export default function InfoPage() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Farcaster Node Info</h1>
+      <Title>Node Info</Title>
       <div>Uptime: {info?.getUptime()}</div>
       <div>Started at: {info?.getSince() && new Date(info?.getSince() * 1000).toISOString()}</div>
       <div>

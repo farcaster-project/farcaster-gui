@@ -1,18 +1,18 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { cva } from 'class-variance-authority'
 import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
-import { CheckpointsRequest, InfoRequest } from '../proto/farcaster_pb'
+import { CheckpointEntry, CheckpointsRequest, InfoRequest } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { useRefresh } from './hooks'
+import { Button } from '../components/ui'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
 export type RunningItem = {
   id: string
   type: 'swap' | 'offer' | 'checkpoint'
-  data?: any
+  data?: CheckpointEntry.AsObject
 }
 
 export type Filters = {
@@ -71,18 +71,6 @@ const dummyRunningItem: RunningItem[] = [
   },
 ]
 
-const pageButton = cva(['px-4', 'py-1', 'rounded'], {
-  variants: {
-    active: {
-      true: ['bg-gray-500', 'text-gray-100'],
-      false: ['bg-gray-200 ', 'text-gray-800'],
-    },
-  },
-  defaultVariants: {
-    active: false,
-  },
-})
-
 function NavList({ pages, current, pageSet }: { pages: number; current: number; pageSet: (page: number) => void }) {
   return (
     <div className="flex space-x-2 items-center">
@@ -90,9 +78,9 @@ function NavList({ pages, current, pageSet }: { pages: number; current: number; 
       <ul className="flex space-x-2 items-center">
         {Array.from(Array(pages).keys()).map((_, page) => (
           <li key={page}>
-            <button className={pageButton({ active: current === page })} onClick={() => pageSet(page)}>
+            <Button active={current === page} onClick={() => pageSet(page)}>
               {page + 1}
-            </button>
+            </Button>
           </li>
         ))}
       </ul>

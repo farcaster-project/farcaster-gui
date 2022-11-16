@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { OfferPanel } from '../../components/panels'
+import { Title } from '../../components/ui'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import Input from './input'
@@ -37,7 +38,7 @@ export default function TakePage() {
 
   return (
     <div>
-      Take an offer
+      <Title>Take an offer</Title>
       <form
         onSubmit={(e) => {
           // issue the request to take the offer

@@ -1,6 +1,6 @@
 import { Blockchain, Network, OfferInfoResponse, SwapRole, TradeRole } from '../proto/farcaster_pb'
-import { Label } from './Label'
-import { chainToString, isMaker, otherSwapRole } from './utils'
+import { Block, Label } from './labels'
+import { chainToString, isMaker, netToString } from './utils'
 
 export type PanelParams = {
   arbitratingAmount: number
@@ -25,7 +25,8 @@ export function TradePanel(params: PanelParams) {
           for{' '}
           <Label>
             {params.arbitratingAmount} {chainToString(params.arbitratingBlockchain)}
-          </Label>
+          </Label>{' '}
+          on <Label>{netToString(params.network)}</Label>
         </span>
       )
     case SwapRole.BOB:
@@ -38,7 +39,8 @@ export function TradePanel(params: PanelParams) {
           for{' '}
           <Label>
             {params.accordantAmount} {chainToString(params.accordantBlockchain)}
-          </Label>
+          </Label>{' '}
+          on <Label>{netToString(params.network)}</Label>
         </span>
       )
   }
@@ -72,15 +74,13 @@ export function OfferPanel({
         {offer && (
           <>
             <div>Copy this offer and send it to the taker:</div>
-            <div className="text-gray-300 bg-gray-700 p-2 mb-3 rounded">{offer}</div>
+            <Block intent="secondary">{offer}</Block>
           </>
         )}
       </div>
       <div className="mb-3">
         <div>{roleIsMaker ? 'Taker will connect to your peer at:' : 'You will connect to maker peer at:'}</div>
-        <div className="text-gray-100 bg-gray-900 p-2 rounded">
-          {offerInfo && `${offerInfo.getNodeId()}@${offerInfo.getPeerAddress()}`}
-        </div>
+        <Block intent="primary">{offerInfo && `${offerInfo.getNodeId()}@${offerInfo.getPeerAddress()}`}</Block>
       </div>
       <div>
         <div className="mb-2">

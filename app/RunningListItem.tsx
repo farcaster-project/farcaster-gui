@@ -6,12 +6,11 @@ import RunningOffer from './RunningOffer'
 import RunningSwap from './RunningSwap'
 
 export default function RunningListItem({ item }: { item: RunningItem }) {
-  switch (item.type) {
-    case 'offer':
-      return <RunningOffer offer={item.id} />
-    case 'swap':
-      return <RunningSwap id={item.id} />
-    case 'checkpoint':
-      return <CheckpointItem id={item.id} data={item.data} />
-  }
+  return (
+    <div className="p-4 m-8 bg-gray-200 border-2 border-gray-500">
+      {item.type === 'offer' && <RunningOffer offer={item.id} />}
+      {item.type === 'swap' && <RunningSwap id={item.id} />}
+      {item.type === 'checkpoint' && <CheckpointItem id={item.id} data={item.data} />}
+    </div>
+  )
 }

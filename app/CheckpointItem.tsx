@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
 import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
-import { RestoreCheckpointRequest } from '../proto/farcaster_pb'
+import { CheckpointEntry, RestoreCheckpointRequest } from '../proto/farcaster_pb'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
-export default function CheckpointItem({ id, data }: { id: string; data?: any }) {
+export default function CheckpointItem({ id, data }: { id: string; data?: CheckpointEntry.AsObject }) {
   const [restoring, restoringSet] = useState(false)
 
   const handleRestore = useCallback((id: string) => {
@@ -18,11 +18,11 @@ export default function CheckpointItem({ id, data }: { id: string; data?: any })
   }, [])
 
   if (restoring) {
-    return <div className="p-4 m-8 border border-green-500">Restoring checkpoint {id}...</div>
+    return <div>Restoring checkpoint {id}...</div>
   }
 
   return (
-    <div className="p-4 m-8 bg-gray-200 border-2 border-gray-500">
+    <>
       <div className="break-all">
         <div className="mb-2 text-xl bold">checkpoint:</div>
         <div className="text-gray-300 bg-gray-700 p-2 mb-6 rounded">{id}</div>
@@ -36,6 +36,6 @@ export default function CheckpointItem({ id, data }: { id: string; data?: any })
           </li>
         </ul>
       </div>
-    </div>
+    </>
   )
 }
