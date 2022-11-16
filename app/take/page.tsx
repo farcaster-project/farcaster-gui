@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { OfferPanel } from '../../components/panels'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
-import { Network, OfferInfoRequest, OfferInfoResponse, TakeRequest } from '../../proto/farcaster_pb'
+import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import Input from './input'
 
 const fcd = new FarcasterClient('http://localhost:50051')
@@ -81,25 +82,11 @@ export default function TakePage() {
             onChange={(e) => takeSet((v) => ({ ...v, publicOffer: e.target.value.trim() }))}
           />
         </div>
+        <div>{offer && <OfferPanel offerInfo={offer} displayForRole={TradeRole.TAKER} />}</div>
         <div>
-          <input type="submit" value="submit" />
+          <input type="submit" value="take" />
         </div>
       </form>
-      {offer && (
-        <div>
-          <div>
-            {offer.getNetwork()}: {offer.getAccordantBlockchain()} {'<>'} {offer.getArbitratingBlockchain()}
-          </div>
-          <div>{offer.getUuid()}</div>
-          <div>Bitcoin amount: {offer.getArbitratingAmount()}</div>
-          <div>Monero amount: {offer.getAccordantAmount()}</div>
-          <div>Trading peer: {offer.getUuid()}</div>
-          <div>
-            Timelocks: cancel {offer.getCancelTimelock()}, punish {offer.getPunishTimelock()}
-          </div>
-          <div>Fee: {offer.getFeeStrategy()}</div>
-        </div>
-      )}
       {takeRes && <div>You took the offer</div>}
       {takeRes === false && <div>Problem while taking the offer</div>}
     </div>

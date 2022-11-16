@@ -1,9 +1,9 @@
 'use client'
 
-import { use, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { cva } from 'class-variance-authority'
 import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
-import { InfoRequest } from '../proto/farcaster_pb'
+import { CheckpointsRequest, InfoRequest } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { useRefresh } from './hooks'
 
@@ -11,19 +11,33 @@ const fcd = new FarcasterClient('http://localhost:50051')
 
 export type RunningItem = {
   id: string
-  type: 'swap' | 'offer'
+  type: 'swap' | 'offer' | 'checkpoint'
+  data?: any
 }
 
 export type Filters = {
   swaps: boolean
   offers: boolean
+  checkpoints: boolean
 }
 
-// Get the list of swaps and offers and merge them into one standardized array
+// Get the list of swaps, offers, and checkpoints and merge them into one
+// standardized array. Filter out checkpoints present in the list of running
+// swaps.
 async function getDataList(): Promise<RunningItem[]> {
-  const info = await fcd.info(new InfoRequest(), null)
-  const [swaps, offers] = await Promise.all([info.getSwapsList(), info.getOffersList()])
+  const [info, ckpts] = await Promise.all([
+    fcd.info(new InfoRequest(), null),
+    fcd.checkpoints(new CheckpointsRequest(), null),
+  ])
+  const [swaps, offers, checkpoints] = [info.getSwapsList(), info.getOffersList(), ckpts.getCheckpointEntriesList()]
   const typedOffers: RunningItem[] = offers.map((id) => ({ id: id, type: 'offer' }))
+  const typedCheckpoints: RunningItem[] = checkpoints
+    .filter((checkpoint) => !swaps.includes(checkpoint.getSwapId()))
+    .map((checkpoint) => ({
+      id: checkpoint.getSwapId(),
+      type: 'checkpoint',
+      data: checkpoint.toObject(),
+    }))
   return swaps
     .map(
       (id) =>
@@ -33,11 +47,13 @@ async function getDataList(): Promise<RunningItem[]> {
         } as RunningItem)
     )
     .concat(typedOffers)
+    .concat(typedCheckpoints)
 }
 
 const defaultFilters: Filters = {
   swaps: true,
   offers: true,
+  checkpoints: true,
 }
 
 const dummyRunningItem: RunningItem[] = [
@@ -94,13 +110,14 @@ export default function RunningList() {
   const filteredList = list
     .filter((i) => (i.type === 'offer' ? filters.offers : true))
     .filter((i) => (i.type === 'swap' ? filters.swaps : true))
+    .filter((i) => (i.type === 'checkpoint' ? filters.checkpoints : true))
   const nbPages = Math.ceil(filteredList.length / itemPerPage)
 
   useRefresh(
     useCallback(() => {
       getDataList().then(listSet)
     }, []),
-    3000
+    5000
   )
 
   useEffect(() => {
@@ -121,6 +138,12 @@ export default function RunningList() {
           type="checkbox"
           checked={filters.offers}
           onChange={(e) => filtersSet((v) => ({ ...v, offers: e.target.checked }))}
+        />
+        checkpoints{' '}
+        <input
+          type="checkbox"
+          checked={filters.checkpoints}
+          onChange={(e) => filtersSet((v) => ({ ...v, checkpoints: e.target.checked }))}
         />
       </div>
       {filteredList.length === 0 && <p>No items in the list</p>}
