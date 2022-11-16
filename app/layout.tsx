@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import { SettingsProvider } from './settings-provider'
 
 function MenuItem({ href, children }: { href: string; children: ReactNode }) {
   return (
@@ -21,7 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <MenuItem href="/make">Register new offer</MenuItem>
           <MenuItem href="/info">Node info</MenuItem>
         </div>
-        <div className="container">{children}</div>
+        <SettingsProvider>
+          <div className="container">{children}</div>
+        </SettingsProvider>
       </body>
     </html>
   )

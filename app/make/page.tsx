@@ -7,6 +7,7 @@ import { Button, Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
+import { useSettings } from '../hooks'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
@@ -28,7 +29,6 @@ interface Params {
 }
 
 const reqDefault = {
-  network: Network.TESTNET,
   accordantBlockchain: Blockchain.MONERO,
   arbitratingBlockchain: Blockchain.BITCOIN,
   accordantAmount: 42449960000,
@@ -62,10 +62,11 @@ const createMakeRequest = (p: Params): MakeRequest => {
     .setPort(p.port)
 }
 
-export default function Page() {
+export default function MakePage() {
   const [req, reqSet] = useState(reqDefault)
+  const [settings, saveSettings] = useSettings()
 
-  const switchNet = () => {
+  const switchRole = () => {
     reqSet((v) => ({ ...v, makerRole: otherSwapRole(req.makerRole) }))
   }
 
@@ -79,18 +80,17 @@ export default function Page() {
           arbitratingBlockchain={req.arbitratingBlockchain}
           accordantBlockchain={req.accordantBlockchain}
           makerRole={req.makerRole}
-          network={req.network}
+          network={settings.network}
           displayForRole={TradeRole.MAKER}
         />
-        <Button onClick={() => switchNet()}>
+        <Button onClick={() => switchRole()}>
           <TbSwitchHorizontal />
         </Button>
       </div>
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          const makeReq = createMakeRequest(req)
-          console.log(makeReq.getAccordantAmount())
+          const makeReq = createMakeRequest({ ...req, network: settings.network })
           fcd.make(makeReq, null).then(console.log)
         }}
         className="flex flex-col"
@@ -99,8 +99,8 @@ export default function Page() {
           <select
             name="network"
             id="make-network"
-            value={req.network}
-            onChange={(e) => reqSet((v) => ({ ...v, network: parseInt(e.target.value) }))}
+            value={settings.network}
+            onChange={(e) => saveSettings({ ...settings, network: parseInt(e.target.value) })}
           >
             <option value={Network.MAINNET} disabled>
               mainnet
