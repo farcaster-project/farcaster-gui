@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority'
-import React, { ChangeEvent, ComponentProps, useId } from 'react'
+import React, { ChangeEvent, ComponentProps, ReactNode, useId } from 'react'
 
 // an input row is a div containing one label element and one input or textarea
 // displayed on the same line
@@ -15,21 +15,20 @@ const inputRow = cva(['my-4', 'grid', 'grid-cols-3', 'gap-4'], {
   },
 })
 
+const baseInput = ['col-span-2', 'p-2', 'border-4', 'bg-gray-100', 'border-gray-200']
+
 // either an input or a textarea
-const input = cva(
-  ['col-span-2', 'p-2', 'border-4', 'bg-gray-100', 'border-gray-200', 'invalid:border-red-200', 'invalid:bg-red-100'],
-  {
-    variants: {
-      type: {
-        input: ['h-fit'],
-        text: ['h-32 resize-none'],
-      },
+const input = cva(baseInput, {
+  variants: {
+    type: {
+      input: ['h-fit'],
+      text: ['h-32 resize-none'],
     },
-    defaultVariants: {
-      type: 'input',
-    },
-  }
-)
+  },
+  defaultVariants: {
+    type: 'input',
+  },
+})
 
 export function Input({
   label,
@@ -55,6 +54,29 @@ export function Input({
         <input className={input({ type })} type="text" id={id} value={value} onChange={onChange} {...args} />
       )}
       {type === 'text' && <textarea value={value} className={input({ type })} id={id} onChange={onChange} {...args} />}
+    </div>
+  )
+}
+
+const select = cva(baseInput)
+
+export function Select({
+  label,
+  children,
+  ...args
+}: {
+  label: string
+  children: ReactNode
+} & ComponentProps<'select'>) {
+  const id = useId()
+  return (
+    <div className={inputRow({ type: 'input' })}>
+      <label className="text-gray-700 font-medium" htmlFor={id}>
+        {label}
+      </label>
+      <select className={select()} id={id} {...args}>
+        {children}
+      </select>
     </div>
   )
 }

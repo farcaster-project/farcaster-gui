@@ -19,6 +19,10 @@ export interface Settings {
   grpcHost: string
   // port to use to connect to the gRPC service
   grpcPort: string
+  // default Bitcoin address
+  btcAddr: string
+  // default Monero address
+  xmrAddr: string
 }
 
 // Defaults to use when no settings are registered
@@ -26,6 +30,8 @@ const defaultSettings: Settings = {
   network: Network.TESTNET,
   grpcHost: 'localhost',
   grpcPort: '50051',
+  btcAddr: '',
+  xmrAddr: '',
 }
 
 // Create the context with the saved/default settings and an empty setter
