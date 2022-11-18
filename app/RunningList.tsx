@@ -4,10 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
 import { CheckpointEntry, CheckpointsRequest, InfoRequest } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
-import { useRefresh } from './hooks'
+import { useRefresh, useRpcService } from './hooks'
 import { Button } from '../components/input'
-
-const fcd = new FarcasterClient('http://localhost:50051')
 
 export type RunningItem = {
   id: string
@@ -24,7 +22,7 @@ export type Filters = {
 // Get the list of swaps, offers, and checkpoints and merge them into one
 // standardized array. Filter out checkpoints present in the list of running
 // swaps.
-async function getDataList(): Promise<RunningItem[]> {
+async function getDataList(fcd: FarcasterClient): Promise<RunningItem[]> {
   const [info, ckpts] = await Promise.all([
     fcd.info(new InfoRequest(), null),
     fcd.checkpoints(new CheckpointsRequest(), null),
@@ -94,6 +92,7 @@ export default function RunningList() {
   const [filters, filtersSet] = useState<Filters>(defaultFilters)
   const [list, listSet] = useState<RunningItem[]>([])
   const [currentPage, currentPageSet] = useState(0)
+  const fcd = useRpcService()
 
   const filteredList = list
     .filter((i) => (i.type === 'offer' ? filters.offers : true))
@@ -103,8 +102,8 @@ export default function RunningList() {
 
   useRefresh(
     useCallback(() => {
-      getDataList().then(listSet)
-    }, []),
+      getDataList(fcd).then(listSet)
+    }, [fcd]),
     5000
   )
 

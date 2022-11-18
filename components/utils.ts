@@ -1,3 +1,4 @@
+import { Settings } from "../app/settings-provider"
 import { Blockchain, Network, SwapRole, TradeRole } from "../proto/farcaster_pb"
 
 // Utility function to convert a Blockchain enum into a string (generated enums
@@ -55,3 +56,6 @@ export function isMaker(role: TradeRole): boolean {
   }
 }
 
+export function getRpcEndpoint(settings: Settings): string {
+  return `http://${settings.grpcHost}:${settings.grpcPort}`
+}

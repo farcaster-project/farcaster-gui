@@ -1,21 +1,23 @@
 import { useCallback, useState } from 'react'
-import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
 import { CheckpointEntry, RestoreCheckpointRequest } from '../proto/farcaster_pb'
-
-const fcd = new FarcasterClient('http://localhost:50051')
+import { useRpcService } from './hooks'
 
 export default function CheckpointItem({ id, data }: { id: string; data?: CheckpointEntry.AsObject }) {
   const [restoring, restoringSet] = useState(false)
+  const fcd = useRpcService()
 
-  const handleRestore = useCallback((id: string) => {
-    console.log('restore', id)
-    fcd.restoreCheckpoint(new RestoreCheckpointRequest().setSwapId(id), null).then(
-      () => restoringSet(true),
-      (e) => {
-        alert(`failed to restore checkpoint ${id}: ${e.message}`)
-      }
-    )
-  }, [])
+  const handleRestore = useCallback(
+    (id: string) => {
+      console.log('restore', id)
+      fcd.restoreCheckpoint(new RestoreCheckpointRequest().setSwapId(id), null).then(
+        () => restoringSet(true),
+        (e) => {
+          alert(`failed to restore checkpoint ${id}: ${e.message}`)
+        }
+      )
+    },
+    [fcd]
+  )
 
   if (restoring) {
     return <div>Restoring checkpoint {id}...</div>

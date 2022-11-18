@@ -3,11 +3,9 @@
 import { useEffect, useState } from 'react'
 import { OfferPanel } from '../../components/panels'
 import { Title } from '../../components/ui'
-import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import Input, { Button, Submit } from '../../components/input'
-
-const fcd = new FarcasterClient('http://localhost:50051')
+import { useRpcService } from '../hooks'
 
 const takeReq = {
   bitcoinAddress: 'tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56',
@@ -26,6 +24,7 @@ export default function TakePage() {
   const [take, takeSet] = useState(takeReq)
   const [offer, offerSet] = useState<OfferInfoResponse | null>(null)
   const [takeRes, takeResSet] = useState<null | boolean>(null)
+  const fcd = useRpcService()
 
   // this effect decode the offer to be displayed to user
   useEffect(() => {
@@ -36,7 +35,7 @@ export default function TakePage() {
     } else {
       offerSet(null)
     }
-  }, [take.publicOffer])
+  }, [fcd, take.publicOffer])
 
   return (
     <div>

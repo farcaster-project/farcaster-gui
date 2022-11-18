@@ -1,23 +1,28 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { FormEvent, useCallback, useState } from 'react'
+import Input, { Submit } from '../../components/input'
 import { Title } from '../../components/ui'
-import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { InfoRequest, InfoResponse } from '../../proto/farcaster_pb'
-
-const fcd = new FarcasterClient('http://localhost:50051')
+import { useRefresh, useRpcService, useSettings } from '../hooks'
 
 export default function InfoPage() {
   const [info, infoSet] = useState<InfoResponse | null>(null)
+  const [settings, settingsSet] = useSettings()
+  const [formSettings, formSettingsSet] = useState(settings)
+  const fcd = useRpcService()
 
-  useEffect(() => {
-    const handle = setInterval(() => {
+  useRefresh(
+    useCallback(() => {
       fcd.info(new InfoRequest(), null).then(infoSet)
-    }, 1000)
-    return () => {
-      clearInterval(handle)
-    }
-  }, [])
+    }, [fcd]),
+    1000
+  )
+
+  const saveSettings = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    settingsSet(formSettings)
+  }
 
   return (
     <>
@@ -52,7 +57,25 @@ export default function InfoPage() {
         </ul>
       </div>
       <Title>Settings</Title>
-      <form onSubmit={() => console.log('call save fn')}></form>
+      <form onSubmit={saveSettings}>
+        <div>
+          <Input
+            label="gRPC host"
+            value={formSettings.grpcHost}
+            onChange={(e) => formSettingsSet({ ...formSettings, grpcHost: e.target.value })}
+            type="input"
+          />
+          <Input
+            label="gRPC port"
+            value={formSettings.grpcPort}
+            onChange={(e) => formSettingsSet({ ...formSettings, grpcPort: e.target.value })}
+            type="input"
+          />
+        </div>
+        <div>
+          <Submit value="save" />
+        </div>
+      </form>
     </>
   )
 }

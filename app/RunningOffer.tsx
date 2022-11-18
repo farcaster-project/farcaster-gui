@@ -3,28 +3,30 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Button } from '../components/input'
 import { OfferPanel } from '../components/panels'
-import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
 import { OfferInfoRequest, OfferInfoResponse, RevokeOfferRequest, TradeRole } from '../proto/farcaster_pb'
-
-const fcd = new FarcasterClient('http://localhost:50051')
+import { useRpcService } from './hooks'
 
 export default function RunningOffer({ offer }: { offer: string }) {
   const [offerInfo, offerSet] = useState<OfferInfoResponse | null>(null)
   const [revoking, revokingSet] = useState(false)
+  const fcd = useRpcService()
 
   useEffect(() => {
     fcd.offerInfo(new OfferInfoRequest().setPublicOffer(offer), null).then(
       (res) => offerSet(res),
       () => offerSet(null)
     )
-  }, [offer])
+  }, [fcd, offer])
 
-  const handleRevoke = useCallback((offer: string) => {
-    fcd.revokeOffer(new RevokeOfferRequest().setPublicOffer(offer), null).then(
-      () => revokingSet(true),
-      (e) => alert(`failed to revoke offer ${offer}: ${e.message}`)
-    )
-  }, [])
+  const handleRevoke = useCallback(
+    (offer: string) => {
+      fcd.revokeOffer(new RevokeOfferRequest().setPublicOffer(offer), null).then(
+        () => revokingSet(true),
+        (e) => alert(`failed to revoke offer ${offer}: ${e.message}`)
+      )
+    },
+    [fcd]
+  )
 
   if (revoking) {
     return <div>Revoking offer...</div>

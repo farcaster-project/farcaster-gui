@@ -13,12 +13,19 @@ interface SettingsProvider {
 
 // Our type for the application settings
 export interface Settings {
+  // the default network to use
   network: Network
+  // host to use to connect to the gRPC service
+  grpcHost: string
+  // port to use to connect to the gRPC service
+  grpcPort: string
 }
 
 // Defaults to use when no settings are registered
 const defaultSettings: Settings = {
   network: Network.TESTNET,
+  grpcHost: 'localhost',
+  grpcPort: '50051',
 }
 
 // Create the context with the saved/default settings and an empty setter

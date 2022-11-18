@@ -5,12 +5,9 @@ import { useState } from 'react'
 import { TradePanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
-import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
-import { useSettings } from '../hooks'
+import { useRpcService, useSettings } from '../hooks'
 import { Button } from '../../components/input'
-
-const fcd = new FarcasterClient('http://localhost:50051')
 
 interface Params {
   network: Network
@@ -66,6 +63,7 @@ const createMakeRequest = (p: Params): MakeRequest => {
 export default function MakePage() {
   const [req, reqSet] = useState(reqDefault)
   const [settings, saveSettings] = useSettings()
+  const fcd = useRpcService()
 
   const switchRole = () => {
     reqSet((v) => ({ ...v, makerRole: otherSwapRole(req.makerRole) }))
