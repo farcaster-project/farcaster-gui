@@ -31,7 +31,7 @@ const input = cva(
   }
 )
 
-export default function Input({
+export function Input({
   label,
   value,
   onChange,

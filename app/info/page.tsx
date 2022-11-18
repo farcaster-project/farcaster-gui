@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useCallback, useState } from 'react'
-import Input, { Submit } from '../../components/input'
+import { Input, Submit } from '../../components/input'
 import { Title } from '../../components/ui'
 import { InfoRequest, InfoResponse } from '../../proto/farcaster_pb'
 import { useRefresh, useRpcService, useSettings } from '../hooks'

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { OfferPanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
-import Input, { Button, Submit } from '../../components/input'
+import { Input, Button, Submit } from '../../components/input'
 import { useRpcService } from '../hooks'
 
 const takeReq = {
