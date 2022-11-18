@@ -5,7 +5,7 @@ import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
 import { CheckpointEntry, CheckpointsRequest, InfoRequest } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { useRefresh } from './hooks'
-import { Button } from '../components/ui'
+import { Button } from '../components/input'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 

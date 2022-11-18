@@ -51,6 +51,8 @@ export default function InfoPage() {
           ))}
         </ul>
       </div>
+      <Title>Settings</Title>
+      <form onSubmit={() => console.log('call save fn')}></form>
     </>
   )
 }

@@ -5,7 +5,7 @@ import { OfferPanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
-import Input from './input'
+import Input, { Button, Submit } from '../../components/input'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
@@ -33,6 +33,8 @@ export default function TakePage() {
       fcd.offerInfo(new OfferInfoRequest().setPublicOffer(take.publicOffer), null).then((offerInfo) => {
         offerSet(offerInfo)
       })
+    } else {
+      offerSet(null)
     }
   }, [take.publicOffer])
 
@@ -67,25 +69,45 @@ export default function TakePage() {
         <div>
           <Input
             value={take.bitcoinAddress}
-            label="Your Bitcoin address"
+            label="Your Bitcoin address for this swap"
             onChange={(e) => takeSet((v) => ({ ...v, bitcoinAddress: e.target.value }))}
           />
           <Input
             value={take.moneroAddress}
-            label="Your Monero address"
+            label="Your Monero address for this swap"
             onChange={(e) => takeSet((v) => ({ ...v, moneroAddress: e.target.value }))}
           />
         </div>
         <div>
           <Input
             value={take.publicOffer}
-            label="The public offer"
+            label="The public offer you want take"
+            type="text"
+            placeholder="Offer:..."
+            required
             onChange={(e) => takeSet((v) => ({ ...v, publicOffer: e.target.value.trim() }))}
           />
         </div>
         <div>{offer && <OfferPanel offerInfo={offer} displayForRole={TradeRole.TAKER} />}</div>
         <div>
-          <input type="submit" value="take" />
+          <Button
+            onClick={(e) => {
+              e.preventDefault()
+              takeSet(takeReq)
+            }}
+          >
+            reset to defaults
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault()
+              takeSet((v) => ({ ...v, publicOffer: '' }))
+            }}
+            disabled={offer === null}
+          >
+            clear
+          </Button>
+          <Submit value="take" disabled={offer === null} />
         </div>
       </form>
       {takeRes && <div>You took the offer</div>}

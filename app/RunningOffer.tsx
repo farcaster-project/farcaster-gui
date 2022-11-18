@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { Button } from '../components/input'
 import { OfferPanel } from '../components/panels'
-import { Button } from '../components/ui'
 import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
 import { OfferInfoRequest, OfferInfoResponse, RevokeOfferRequest, TradeRole } from '../proto/farcaster_pb'
 

@@ -10,6 +10,7 @@
     "gen": "protoc -I=./proto proto/farcaster.proto --js_out=import_style=commonjs:./proto --grpc-web_out=import_style=typescript,mode=grpcwebtext:./proto"
   },
   "dependencies": {
+    "@next/font": "^13.0.4",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",

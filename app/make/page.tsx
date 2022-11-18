@@ -3,11 +3,12 @@
 import { TbSwitchHorizontal } from 'react-icons/tb'
 import { useState } from 'react'
 import { TradePanel } from '../../components/panels'
-import { Button, Title } from '../../components/ui'
+import { Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
 import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useSettings } from '../hooks'
+import { Button } from '../../components/input'
 
 const fcd = new FarcasterClient('http://localhost:50051')
 
