@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { FormEvent, useCallback, useState } from 'react'
 import { Input, Select, Submit } from '../../components/input'
 import { Subtitle, Title } from '../../components/ui'
@@ -11,6 +12,9 @@ export default function InfoPage() {
   const [settings, settingsSet] = useSettings()
   const [formSettings, formSettingsSet] = useState(settings)
   const fcd = useRpcService()
+
+  // this reloads the form settings when settings are updated from local storage
+  useEffect(() => formSettingsSet(settings), [settings])
 
   useRefresh(
     useCallback(() => {
