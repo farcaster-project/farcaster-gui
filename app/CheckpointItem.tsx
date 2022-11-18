@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useState } from 'react'
 import { CheckpointEntry, RestoreCheckpointRequest } from '../proto/farcaster_pb'
 import { useRpcService } from './hooks'
