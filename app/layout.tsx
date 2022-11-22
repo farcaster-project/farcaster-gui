@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { SettingsProvider } from './settings-provider'
 import { Inter } from '@next/font/google'
+import SettingsLoader from './SettingsLoader'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <MenuItem href="/info">Node info/Settings</MenuItem>
         </div>
         <SettingsProvider>
-          <div className="container">{children}</div>
+          <SettingsLoader>
+            <div className="container">{children}</div>
+          </SettingsLoader>
         </SettingsProvider>
       </body>
     </html>

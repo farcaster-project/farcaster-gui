@@ -5,9 +5,11 @@ import { Network } from '../proto/farcaster_pb'
 
 // Meta interface for the provider. Contains the application settings and the
 // save settings function used to update the application settings and save them
-// on local storage.
+// on local storage. Contains a loading state used at application boot on the
+// client side to indicate when settings have finished loading from local storage.
 interface SettingsProvider {
   settings: Settings
+  loading: boolean
   saveSettings: (value: Settings) => void
 }
 
@@ -35,8 +37,12 @@ const defaultSettings: Settings = {
 }
 
 // Create the context with the saved/default settings and an empty setter
-// function
-const SettingsContext = createContext<SettingsProvider>({ settings: defaultSettings, saveSettings: () => {} })
+// function. Loading is set to true until local storage has been retreived.
+const SettingsContext = createContext<SettingsProvider>({
+  settings: defaultSettings,
+  loading: true,
+  saveSettings: () => {},
+})
 
 // Create the settings provider that passes the settings value and the
 // saveSettings function to consumer. This function is run on the server
@@ -44,6 +50,7 @@ const SettingsContext = createContext<SettingsProvider>({ settings: defaultSetti
 // load saved settings, if any, on local storage.
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, settingsSet] = useState<Settings>(defaultSettings)
+  const [loading, loadingSet] = useState(true)
 
   useEffect(() => {
     if (typeof window !== 'undefined' && localStorage) {
@@ -56,6 +63,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         // save them in local storage
         localStorage.setItem('settings', JSON.stringify(defaultSettings))
       }
+      loadingSet(false)
     }
   }, [])
 
@@ -65,7 +73,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     settingsSet(settings)
   }
 
-  return <SettingsContext.Provider value={{ settings, saveSettings }}>{children}</SettingsContext.Provider>
+  return <SettingsContext.Provider value={{ settings, loading, saveSettings }}>{children}</SettingsContext.Provider>
 }
 
 // Export the consumer for the settings context, use to create the useSettings
