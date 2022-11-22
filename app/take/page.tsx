@@ -5,7 +5,7 @@ import { OfferPanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import { Input, Button, Submit } from '../../components/input'
-import { useRpcService } from '../hooks'
+import { useRpc } from '../hooks'
 
 const takeReq = {
   bitcoinAddress: 'tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56',
@@ -24,18 +24,16 @@ export default function TakePage() {
   const [take, takeSet] = useState(takeReq)
   const [offer, offerSet] = useState<OfferInfoResponse | null>(null)
   const [takeRes, takeResSet] = useState<null | boolean>(null)
-  const fcd = useRpcService()
+  const [fcd, res] = useRpc()
 
   // this effect decode the offer to be displayed to user
   useEffect(() => {
     if (take.publicOffer !== '') {
-      fcd.offerInfo(new OfferInfoRequest().setPublicOffer(take.publicOffer), null).then((offerInfo) => {
-        offerSet(offerInfo)
-      })
+      fcd.offerInfo(new OfferInfoRequest().setPublicOffer(take.publicOffer), null, res(offerSet))
     } else {
       offerSet(null)
     }
-  }, [fcd, take.publicOffer])
+  }, [fcd, take.publicOffer, res])
 
   return (
     <div>
@@ -45,23 +43,17 @@ export default function TakePage() {
           // issue the request to take the offer
           e.preventDefault()
           if (confirm('Are you sure you want to take this offer?')) {
-            fcd
-              .take(
-                new TakeRequest()
-                  .setBitcoinAddress(take.bitcoinAddress)
-                  .setMoneroAddress(take.moneroAddress)
-                  .setPublicOffer(take.publicOffer),
-                null
+            fcd.take(
+              new TakeRequest()
+                .setBitcoinAddress(take.bitcoinAddress)
+                .setMoneroAddress(take.moneroAddress)
+                .setPublicOffer(take.publicOffer),
+              null,
+              res(
+                () => takeResSet(true),
+                () => takeResSet(false)
               )
-              .then(
-                // take is ok
-                (res) => takeResSet(true),
-                // take failed
-                (err) => {
-                  console.log(err)
-                  takeResSet(false)
-                }
-              )
+            )
           }
         }}
       >

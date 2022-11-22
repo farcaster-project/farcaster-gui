@@ -3,34 +3,38 @@
 import { useCallback, useState } from 'react'
 import { Block, Label } from '../components/labels'
 import { AbortSwapRequest, ProgressRequest, ProgressResponse } from '../proto/farcaster_pb'
-import { useRefresh, useRpcService } from './hooks'
+import { useRefresh, useRpc } from './hooks'
 
 export default function RunningSwap({ id }: { id: string }) {
   const [prog, progSet] = useState<ProgressResponse | null>(null)
   const [aborting, abortingSet] = useState(false)
-  const fcd = useRpcService()
+  const [fcd, res] = useRpc()
 
   useRefresh(
     useCallback(() => {
-      fcd.progress(new ProgressRequest().setSwapId(id), null).then(
-        (res) => progSet(res),
-        () => progSet(null)
+      fcd.progress(
+        new ProgressRequest().setSwapId(id),
+        null,
+        res(progSet, () => progSet(null))
       )
-    }, [fcd, id]),
+    }, [fcd, res, id]),
     3000
   )
 
   const handleAbort = useCallback(
     (id: string) => {
-      console.log('abort', id)
-      fcd.abortSwap(new AbortSwapRequest().setSwapId(id), null).then(
-        () => abortingSet(true),
-        (e) => {
-          alert(`failed to abort swap ${id}: ${e.message}`)
-        }
+      fcd.abortSwap(
+        new AbortSwapRequest().setSwapId(id),
+        null,
+        res(
+          () => abortingSet(true),
+          (e) => {
+            alert(`failed to abort swap ${id}: ${e.message}`)
+          }
+        )
       )
     },
-    [fcd]
+    [fcd, res]
   )
 
   if (aborting) {

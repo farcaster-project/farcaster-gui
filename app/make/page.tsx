@@ -6,7 +6,7 @@ import { TradePanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
-import { useRpcService, useSettings } from '../hooks'
+import { useRpc, useSettings } from '../hooks'
 import { Button } from '../../components/input'
 
 interface Params {
@@ -63,7 +63,7 @@ const createMakeRequest = (p: Params): MakeRequest => {
 export default function MakePage() {
   const [req, reqSet] = useState(reqDefault)
   const [settings, saveSettings] = useSettings()
-  const fcd = useRpcService()
+  const [fcd, res] = useRpc()
 
   const switchRole = () => {
     reqSet((v) => ({ ...v, makerRole: otherSwapRole(req.makerRole) }))
@@ -90,7 +90,7 @@ export default function MakePage() {
         onSubmit={(e) => {
           e.preventDefault()
           const makeReq = createMakeRequest({ ...req, network: settings.network })
-          fcd.make(makeReq, null).then(console.log)
+          fcd.make(makeReq, null, res())
         }}
         className="flex flex-col"
       >

@@ -5,21 +5,21 @@ import { FormEvent, useCallback, useState } from 'react'
 import { Input, Select, Submit } from '../../components/input'
 import { Subtitle, Title } from '../../components/ui'
 import { InfoRequest, InfoResponse, Network } from '../../proto/farcaster_pb'
-import { useRefresh, useRpcService, useSettings } from '../hooks'
+import { useRefresh, useRpc, useSettings } from '../hooks'
 
 export default function InfoPage() {
   const [info, infoSet] = useState<InfoResponse | null>(null)
   const [settings, settingsSet] = useSettings()
   const [formSettings, formSettingsSet] = useState(settings)
-  const fcd = useRpcService()
+  const [fcd, res] = useRpc()
 
   // this reloads the form settings when settings are updated from local storage
   useEffect(() => formSettingsSet(settings), [settings])
 
   useRefresh(
     useCallback(() => {
-      fcd.info(new InfoRequest(), null).then(infoSet)
-    }, [fcd]),
+      fcd.info(new InfoRequest(), null, res(infoSet))
+    }, [fcd, res]),
     1000
   )
 
