@@ -7,9 +7,10 @@ This is the Farcaster Node web application GUI. It allows to interact with your 
 Make sure you have the gRPC service enabled in your `farcasterd.toml` config file
 
 ```toml
-[farcasterd.grpc]
-use_grpc = true
-port = 50051
+[grpc]
+enable = true
+bind_port = 50051
+bind_ip = "127.0.0.1"
 ```
 
 ## Getting Started
