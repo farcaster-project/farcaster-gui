@@ -108,6 +108,9 @@ export class SwapInfoResponse extends jspb.Message {
   getPublicOffer(): string;
   setPublicOffer(value: string): SwapInfoResponse;
 
+  getConnected(): boolean;
+  setConnected(value: boolean): SwapInfoResponse;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SwapInfoResponse.AsObject;
   static toObject(includeInstance: boolean, msg: SwapInfoResponse): SwapInfoResponse.AsObject;
@@ -123,6 +126,7 @@ export namespace SwapInfoResponse {
     uptime: number,
     since: number,
     publicOffer: string,
+    connected: boolean,
   }
 }
 
@@ -253,6 +257,52 @@ export namespace PeersResponse {
   export type AsObject = {
     id: number,
     peersList: Array<string>,
+  }
+}
+
+export class ListOffersRequest extends jspb.Message {
+  getId(): number;
+  setId(value: number): ListOffersRequest;
+
+  getSelector(): OfferSelector;
+  setSelector(value: OfferSelector): ListOffersRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOffersRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOffersRequest): ListOffersRequest.AsObject;
+  static serializeBinaryToWriter(message: ListOffersRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOffersRequest;
+  static deserializeBinaryFromReader(message: ListOffersRequest, reader: jspb.BinaryReader): ListOffersRequest;
+}
+
+export namespace ListOffersRequest {
+  export type AsObject = {
+    id: number,
+    selector: OfferSelector,
+  }
+}
+
+export class ListOffersResponse extends jspb.Message {
+  getId(): number;
+  setId(value: number): ListOffersResponse;
+
+  getPublicOffersList(): Array<string>;
+  setPublicOffersList(value: Array<string>): ListOffersResponse;
+  clearPublicOffersList(): ListOffersResponse;
+  addPublicOffers(value: string, index?: number): ListOffersResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListOffersResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListOffersResponse): ListOffersResponse.AsObject;
+  static serializeBinaryToWriter(message: ListOffersResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListOffersResponse;
+  static deserializeBinaryFromReader(message: ListOffersResponse, reader: jspb.BinaryReader): ListOffersResponse;
+}
+
+export namespace ListOffersResponse {
+  export type AsObject = {
+    id: number,
+    publicOffersList: Array<string>,
   }
 }
 
@@ -638,6 +688,46 @@ export namespace ProgressResponse {
   }
 }
 
+export class ConnectSwapRequest extends jspb.Message {
+  getId(): number;
+  setId(value: number): ConnectSwapRequest;
+
+  getSwapId(): string;
+  setSwapId(value: string): ConnectSwapRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConnectSwapRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ConnectSwapRequest): ConnectSwapRequest.AsObject;
+  static serializeBinaryToWriter(message: ConnectSwapRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConnectSwapRequest;
+  static deserializeBinaryFromReader(message: ConnectSwapRequest, reader: jspb.BinaryReader): ConnectSwapRequest;
+}
+
+export namespace ConnectSwapRequest {
+  export type AsObject = {
+    id: number,
+    swapId: string,
+  }
+}
+
+export class ConnectSwapResponse extends jspb.Message {
+  getId(): number;
+  setId(value: number): ConnectSwapResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ConnectSwapResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ConnectSwapResponse): ConnectSwapResponse.AsObject;
+  static serializeBinaryToWriter(message: ConnectSwapResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ConnectSwapResponse;
+  static deserializeBinaryFromReader(message: ConnectSwapResponse, reader: jspb.BinaryReader): ConnectSwapResponse;
+}
+
+export namespace ConnectSwapResponse {
+  export type AsObject = {
+    id: number,
+  }
+}
+
 export class NeedsFundingRequest extends jspb.Message {
   getId(): number;
   setId(value: number): NeedsFundingRequest;
@@ -664,8 +754,10 @@ export class NeedsFundingResponse extends jspb.Message {
   getId(): number;
   setId(value: number): NeedsFundingResponse;
 
-  getFundingInfos(): string;
-  setFundingInfos(value: string): NeedsFundingResponse;
+  getFundingInfosList(): Array<FundingInfo>;
+  setFundingInfosList(value: Array<FundingInfo>): NeedsFundingResponse;
+  clearFundingInfosList(): NeedsFundingResponse;
+  addFundingInfos(value?: FundingInfo, index?: number): FundingInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NeedsFundingResponse.AsObject;
@@ -678,7 +770,33 @@ export class NeedsFundingResponse extends jspb.Message {
 export namespace NeedsFundingResponse {
   export type AsObject = {
     id: number,
-    fundingInfos: string,
+    fundingInfosList: Array<FundingInfo.AsObject>,
+  }
+}
+
+export class FundingInfo extends jspb.Message {
+  getSwapId(): string;
+  setSwapId(value: string): FundingInfo;
+
+  getAddress(): string;
+  setAddress(value: string): FundingInfo;
+
+  getAmount(): number;
+  setAmount(value: number): FundingInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FundingInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: FundingInfo): FundingInfo.AsObject;
+  static serializeBinaryToWriter(message: FundingInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FundingInfo;
+  static deserializeBinaryFromReader(message: FundingInfo, reader: jspb.BinaryReader): FundingInfo;
+}
+
+export namespace FundingInfo {
+  export type AsObject = {
+    swapId: string,
+    address: string,
+    amount: number,
   }
 }
 
@@ -730,6 +848,12 @@ export namespace SweepAddressResponse {
   }
 }
 
+export enum OfferSelector { 
+  OPEN = 0,
+  IN_PROGRESS = 1,
+  ENDED = 2,
+  ALL = 3,
+}
 export enum TradeRole { 
   MAKER = 0,
   TAKER = 1,

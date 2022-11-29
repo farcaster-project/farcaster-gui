@@ -8,6 +8,9 @@ import {
   CheckpointsResponse,
   InfoRequest,
   InfoResponse,
+  ListOffersRequest,
+  ListOffersResponse,
+  OfferSelector,
 } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { ResultCallbackHandler, useRefresh, useRpc } from './hooks'
@@ -19,6 +22,10 @@ export type RunningItem = {
   data?: CheckpointEntry.AsObject
 }
 
+export type QueryFilters = {
+  offers: OfferSelector
+}
+
 export type Filters = {
   swaps: boolean
   offers: boolean
@@ -27,15 +34,26 @@ export type Filters = {
 
 // Get the list of swaps, offers, and checkpoints and merge them into one
 // standardized array. Filter out checkpoints present in the list of running
-// swaps.
-async function getDataList(fcd: FarcasterClient, res: ResultCallbackHandler): Promise<RunningItem[]> {
+// swaps and only query the selected offers.
+async function getDataList(
+  filters: QueryFilters,
+  fcd: FarcasterClient,
+  res: ResultCallbackHandler
+): Promise<RunningItem[]> {
   // build an array of promises that call all the data we need
   // hook the res handler in all calls to catch errors and save them in the global state
   // await all the array and get the results
-  const [info, ckpts] = await Promise.all([
+  const [info, offers, ckpts] = await Promise.all([
     new Promise<InfoResponse>((resolve, reject) => {
       fcd.info(
         new InfoRequest(),
+        null,
+        res(resolve, () => reject())
+      )
+    }),
+    new Promise<ListOffersResponse>((resolve, reject) => {
+      fcd.listOffers(
+        new ListOffersRequest().setSelector(filters.offers),
         null,
         res(resolve, () => reject())
       )
@@ -49,9 +67,9 @@ async function getDataList(fcd: FarcasterClient, res: ResultCallbackHandler): Pr
     }),
   ])
 
-  const [swaps, offers, checkpoints] = [info.getSwapsList(), info.getOffersList(), ckpts.getCheckpointEntriesList()]
+  const [swaps, checkpoints] = [info.getSwapsList(), ckpts.getCheckpointEntriesList()]
   const typedSwaps: RunningItem[] = swaps.map((id) => ({ id: id, type: 'swap' }))
-  const typedOffers: RunningItem[] = offers.map((id) => ({ id: id, type: 'offer' }))
+  const typedOffers: RunningItem[] = offers.getPublicOffersList().map((id) => ({ id: id, type: 'offer' }))
   const typedCheckpoints: RunningItem[] = checkpoints
     .filter((checkpoint) => !swaps.includes(checkpoint.getSwapId()))
     .map((checkpoint) => ({
@@ -60,6 +78,10 @@ async function getDataList(fcd: FarcasterClient, res: ResultCallbackHandler): Pr
       data: checkpoint.toObject(),
     }))
   return typedSwaps.concat(typedOffers).concat(typedCheckpoints)
+}
+
+const defaultQueryFilters: QueryFilters = {
+  offers: OfferSelector.OPEN,
 }
 
 const defaultFilters: Filters = {
@@ -103,6 +125,7 @@ function NavList({ pages, current, pageSet }: { pages: number; current: number; 
 const itemPerPage = 2
 
 export default function RunningList() {
+  const [queryFilters, queryFiltersSet] = useState<QueryFilters>(defaultQueryFilters)
   const [filters, filtersSet] = useState<Filters>(defaultFilters)
   const [list, listSet] = useState<RunningItem[]>([])
   const [currentPage, currentPageSet] = useState(0)
@@ -116,8 +139,8 @@ export default function RunningList() {
 
   useRefresh(
     useCallback(() => {
-      getDataList(fcd, res).then(listSet)
-    }, [fcd, res]),
+      getDataList(queryFilters, fcd, res).then(listSet)
+    }, [queryFilters, fcd, res]),
     5000
   )
 
@@ -134,11 +157,39 @@ export default function RunningList() {
           checked={filters.swaps}
           onChange={(e) => filtersSet((v) => ({ ...v, swaps: e.target.checked }))}
         />{' '}
-        offers{' '}
+        offers:{' '}
         <input
           type="checkbox"
           checked={filters.offers}
           onChange={(e) => filtersSet((v) => ({ ...v, offers: e.target.checked }))}
+        />{' '}
+        open{' '}
+        <input
+          type="radio"
+          name="offer-selector"
+          checked={queryFilters.offers === OfferSelector.OPEN}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.OPEN }))}
+        />
+        in progress{' '}
+        <input
+          type="radio"
+          name="offer-selector"
+          checked={queryFilters.offers === OfferSelector.IN_PROGRESS}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.IN_PROGRESS }))}
+        />
+        ended{' '}
+        <input
+          type="radio"
+          name="offer-selector"
+          checked={queryFilters.offers === OfferSelector.ENDED}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.ENDED }))}
+        />
+        all{' '}
+        <input
+          type="radio"
+          name="offer-selector"
+          checked={queryFilters.offers === OfferSelector.ALL}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.ALL }))}
         />
         checkpoints{' '}
         <input
