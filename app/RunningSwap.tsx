@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react'
 import { Block, Label } from '../components/labels'
-import { AbortSwapRequest, ProgressRequest, ProgressResponse } from '../proto/farcaster_pb'
+import { AbortSwapRequest, ProgressRequest, ProgressResponse, Progress } from '../proto/farcaster_pb'
 import { useRefresh, useRpc } from './hooks'
 
 export default function RunningSwap({ id }: { id: string }) {
@@ -51,9 +51,25 @@ export default function RunningSwap({ id }: { id: string }) {
       {prog && (
         <>
           <Block intent="secondary">
-            {prog.getProgressList().map((i) => (
-              <p key={JSON.stringify(i)}>{JSON.stringify(i)}</p>
-            ))}
+            {
+              prog.getProgressList().map((i) => {
+              let message = "";
+                switch (i.getProgressCase()) {
+                  case Progress.ProgressCase.PROGRESS_NOT_SET:
+                    message = "No progress yet";
+                  case Progress.ProgressCase.MESSAGE:
+                    message = i.getMessage();
+                  case Progress.ProgressCase.FAILURE:
+                    message = i.getFailure();
+                  case Progress.ProgressCase.SUCCESS:
+                    message = i.getSuccess();
+                  case Progress.ProgressCase.STATE_UPDATE:
+                    message = i.getStateUpdate()?.getStateCase().toString()?? "unknown state";
+                  case Progress.ProgressCase.STATE_TRANSITION:
+                    message = i.getStateTransition()?.getOldState()?.getStateCase().toString()?? "unknown old state";
+                }
+              return (<p key={JSON.stringify(i)}>{message}</p>)
+            })}
           </Block>
           <div>
             <ul className="flex flex-row-reverse mt-6">
