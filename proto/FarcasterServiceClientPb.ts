@@ -297,6 +297,49 @@ export class FarcasterClient {
     this.methodDescriptorRestoreCheckpoint);
   }
 
+  methodDescriptorFundingAddresses = new grpcWeb.MethodDescriptor(
+    '/farcaster.Farcaster/FundingAddresses',
+    grpcWeb.MethodType.UNARY,
+    farcaster_pb.FundingAddressesRequest,
+    farcaster_pb.FundingAddressesResponse,
+    (request: farcaster_pb.FundingAddressesRequest) => {
+      return request.serializeBinary();
+    },
+    farcaster_pb.FundingAddressesResponse.deserializeBinary
+  );
+
+  fundingAddresses(
+    request: farcaster_pb.FundingAddressesRequest,
+    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.FundingAddressesResponse>;
+
+  fundingAddresses(
+    request: farcaster_pb.FundingAddressesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: farcaster_pb.FundingAddressesResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.FundingAddressesResponse>;
+
+  fundingAddresses(
+    request: farcaster_pb.FundingAddressesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: farcaster_pb.FundingAddressesResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/farcaster.Farcaster/FundingAddresses',
+        request,
+        metadata || {},
+        this.methodDescriptorFundingAddresses,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/farcaster.Farcaster/FundingAddresses',
+    request,
+    metadata || {},
+    this.methodDescriptorFundingAddresses);
+  }
+
   methodDescriptorMake = new grpcWeb.MethodDescriptor(
     '/farcaster.Farcaster/Make',
     grpcWeb.MethodType.UNARY,
@@ -682,6 +725,49 @@ export class FarcasterClient {
     request,
     metadata || {},
     this.methodDescriptorListOffers);
+  }
+
+  methodDescriptorHealthCheck = new grpcWeb.MethodDescriptor(
+    '/farcaster.Farcaster/HealthCheck',
+    grpcWeb.MethodType.UNARY,
+    farcaster_pb.HealthCheckRequest,
+    farcaster_pb.HealthCheckResponse,
+    (request: farcaster_pb.HealthCheckRequest) => {
+      return request.serializeBinary();
+    },
+    farcaster_pb.HealthCheckResponse.deserializeBinary
+  );
+
+  healthCheck(
+    request: farcaster_pb.HealthCheckRequest,
+    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.HealthCheckResponse>;
+
+  healthCheck(
+    request: farcaster_pb.HealthCheckRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: farcaster_pb.HealthCheckResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.HealthCheckResponse>;
+
+  healthCheck(
+    request: farcaster_pb.HealthCheckRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: farcaster_pb.HealthCheckResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/farcaster.Farcaster/HealthCheck',
+        request,
+        metadata || {},
+        this.methodDescriptorHealthCheck,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/farcaster.Farcaster/HealthCheck',
+    request,
+    metadata || {},
+    this.methodDescriptorHealthCheck);
   }
 
 }
