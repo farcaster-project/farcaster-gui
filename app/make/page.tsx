@@ -39,7 +39,7 @@ const reqDefault = {
   makerRole: SwapRole.BOB,
   publicIpAddr: '127.0.0.1',
   bindIpAddr: '0.0.0.0',
-  port: 9735,
+  port: 7067,
 }
 
 const createMakeRequest = (p: Params): MakeRequest => {
