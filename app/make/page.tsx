@@ -56,8 +56,7 @@ const createMakeRequest = (p: Params): MakeRequest => {
     .setFeeStrategy(p.feeStrategy)
     .setMakerRole(p.makerRole)
     .setPublicIpAddr(p.publicIpAddr)
-    .setBindIpAddr(p.bindIpAddr)
-    .setPort(p.port)
+    .setPublicPort(p.port)
 }
 
 export default function MakePage() {
