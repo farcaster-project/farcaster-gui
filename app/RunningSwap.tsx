@@ -52,7 +52,7 @@ export default function RunningSwap({ id }: { id: string }) {
         <>
           <Block intent="secondary">
             {prog.getProgressList().map((i) => (
-              <p key={i}>{i}</p>
+              <p key={JSON.stringify(i)}>{JSON.stringify(i)}</p>
             ))}
           </Block>
           <div>
