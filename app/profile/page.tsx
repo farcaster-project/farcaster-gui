@@ -1,22 +1,33 @@
 'use client'
 
-import { useEffect } from 'react'
-import { FormEvent, useState } from 'react'
+import { NIL, v4 as Uuid } from 'uuid'
+import { FormEvent, useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Input, Select, Submit } from '../../components/input'
 import { Subtitle, Title } from '../../components/ui'
 import { Network } from '../../proto/farcaster_pb'
-import { useProfile, useSettings } from '../hooks'
-import { getProfile } from '../settings-provider'
+import { useProfile } from '../hooks'
+import { newProfile } from '../settings-provider'
 
 export default function ProfilePage() {
   const [profile, profileSet] = useProfile()
   const [formProfile, formProfileSet] = useState(profile)
+  const searchParams = useSearchParams()
 
-  // this reloads the form settings when settings are updated from local storage
-  useEffect(() => formProfileSet(profile), [profile])
+  const isNewProfile = searchParams.get('new')
+
+  useEffect(() => {
+    if (isNewProfile !== null) {
+      // we create a new profile, reset the form
+      formProfileSet(newProfile)
+    }
+  }, [isNewProfile])
 
   const saveSettings = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (formProfile.uuid === NIL) {
+      formProfile.uuid = Uuid()
+    }
     profileSet(formProfile)
   }
 
@@ -24,6 +35,14 @@ export default function ProfilePage() {
     <>
       <Title>Profile</Title>
       <form onSubmit={saveSettings}>
+        <div>
+          <Input
+            label="Name"
+            value={formProfile.name}
+            onChange={(e) => formProfileSet({ ...formProfile, name: e.target.value })}
+            type="input"
+          />
+        </div>
         <div>
           <Subtitle>gRPC</Subtitle>
           <Input

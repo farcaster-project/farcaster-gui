@@ -1,5 +1,6 @@
 'use client'
 
+import { NIL } from 'uuid'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { Network } from '../proto/farcaster_pb'
 
@@ -25,6 +26,8 @@ export interface Settings {
 export interface Profile {
   // unique identifier for the profile
   uuid: string
+  // User defined name
+  name: string
   // the default network to use
   network: Network
   // host to use to connect to the gRPC service
@@ -42,6 +45,7 @@ const defaultSettings: Settings = {
   profiles: [
     {
       uuid: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
+      name: 'Default',
       network: Network.TESTNET,
       grpcHost: 'localhost',
       grpcPort: '50051',
@@ -50,6 +54,17 @@ const defaultSettings: Settings = {
     },
   ],
   current: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
+}
+
+// A new profile with some defaults
+export const newProfile: Profile = {
+  uuid: NIL,
+  name: '',
+  network: Network.TESTNET,
+  grpcHost: 'localhost',
+  grpcPort: '50051',
+  btcAddr: '',
+  xmrAddr: '',
 }
 
 // Create the context with the saved/default settings and an empty setter
@@ -86,14 +101,17 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const saveSettings = (settings: Settings) => {
     // persist new settings on local storage and update state
     localStorage.setItem('settings', JSON.stringify(settings))
+    loadingSet(true)
     settingsSet(settings)
+    // used to force re-render :(
+    setTimeout(() => loadingSet(false), 300)
   }
 
   return <SettingsContext.Provider value={{ settings, loading, saveSettings }}>{children}</SettingsContext.Provider>
 }
 
 // Extract the current profile from settings
-export function getProfile(settings: Settings): Profile {
+export function getCurrentProfile(settings: Settings): Profile {
   return settings.profiles.filter((profile) => profile.uuid == settings.current)[0]
 }
 

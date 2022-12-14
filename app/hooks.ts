@@ -1,9 +1,8 @@
-import { parse as uuidParse } from 'uuid';
 import { RpcError } from "grpc-web"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { FarcasterClient } from "../proto/FarcasterServiceClientPb"
 import ConnectionContext from "./connection-provider"
-import SettingsContext, { getProfile, Profile, Settings } from "./settings-provider"
+import SettingsContext, { getCurrentProfile, Profile, Settings } from "./settings-provider"
 
 // Custom hook to fire a callback at a certain rate.
 // Note: The callback probably needs to be wrapped into a useCallback
@@ -26,8 +25,8 @@ export function useSettings(): [Settings, (settings: Settings) => void] {
 // Custom hook to access the current profile and set a new current profile.
 // If the saved profile exists it is updated, if not it is added to the list of
 // available profiles.
-export function useProfile(): [Profile, (profile: Profile) => void] {
-  const [settings, settingsSet] = useSettings()
+export function useProfile(): [Profile, (profile: Profile) => void, Profile[]] {
+  const { settings, saveSettings } = useContext(SettingsContext)
   const profileSaveAndSetCurrent = (profile: Profile) => {
     // check if received profile already exists, we keep only the other profiles
     // and push the new profile
@@ -35,10 +34,10 @@ export function useProfile(): [Profile, (profile: Profile) => void] {
     settings.profiles = others
     settings.profiles.push(profile)
     settings.current = profile.uuid
-    settingsSet(settings)
+    saveSettings(settings)
   }
-  const profile = getProfile(settings)
-  return [profile, profileSaveAndSetCurrent]
+  const profile = getCurrentProfile(settings)
+  return [profile, profileSaveAndSetCurrent, settings.profiles]
 }
 
 // Custom hook to access the global connection state of the application
