@@ -13,14 +13,7 @@ const takeReq = {
   publicOffer: '',
 }
 
-const createTakeRequest = (p: { bitcoinAddress: string; moneroAddress: string; publicOffer: string }): TakeRequest => {
-  return new TakeRequest()
-    .setPublicOffer(p.publicOffer)
-    .setBitcoinAddress(p.bitcoinAddress)
-    .setMoneroAddress(p.moneroAddress)
-}
-
-export default function TakePage() {
+export function TakeForm() {
   const [take, takeSet] = useState(takeReq)
   const [offer, offerSet] = useState<OfferInfoResponse | null>(null)
   const [takeRes, takeResSet] = useState<null | boolean>(null)

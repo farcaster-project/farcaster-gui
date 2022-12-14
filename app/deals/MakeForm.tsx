@@ -6,8 +6,8 @@ import { TradePanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
-import { useRpc, useSettings } from '../hooks'
-import { Button } from '../../components/input'
+import { useProfile, useRpc } from '../hooks'
+import { Button, Submit } from '../../components/input'
 
 interface Params {
   network: Network
@@ -22,8 +22,7 @@ interface Params {
   feeStrategy: string
   makerRole: SwapRole
   publicIpAddr: string
-  bindIpAddr: string
-  port: number
+  publicPort: number
 }
 
 const reqDefault = {
@@ -38,8 +37,7 @@ const reqDefault = {
   feeStrategy: '1 sat/vByte',
   makerRole: SwapRole.BOB,
   publicIpAddr: '127.0.0.1',
-  bindIpAddr: '0.0.0.0',
-  port: 7067,
+  publicPort: 7067,
 }
 
 const createMakeRequest = (p: Params): MakeRequest => {
@@ -56,12 +54,12 @@ const createMakeRequest = (p: Params): MakeRequest => {
     .setFeeStrategy(p.feeStrategy)
     .setMakerRole(p.makerRole)
     .setPublicIpAddr(p.publicIpAddr)
-    .setPublicPort(p.port)
+    .setPublicPort(p.publicPort)
 }
 
-export default function MakePage() {
+export function MakeForm() {
   const [req, reqSet] = useState(reqDefault)
-  const [settings, saveSettings] = useSettings()
+  const [profile] = useProfile()
   const [fcd, res] = useRpc()
 
   const switchRole = () => {
@@ -78,7 +76,7 @@ export default function MakePage() {
           arbitratingBlockchain={req.arbitratingBlockchain}
           accordantBlockchain={req.accordantBlockchain}
           makerRole={req.makerRole}
-          network={settings.network}
+          network={profile.network}
           displayForRole={TradeRole.MAKER}
         />
         <Button onClick={() => switchRole()}>
@@ -88,24 +86,12 @@ export default function MakePage() {
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          const makeReq = createMakeRequest({ ...req, network: settings.network })
+          const makeReq = createMakeRequest({ ...req, network: profile.network })
           fcd.make(makeReq, null, res())
         }}
         className="flex flex-col"
       >
         <div>
-          <select
-            name="network"
-            id="make-network"
-            value={settings.network}
-            onChange={(e) => saveSettings({ ...settings, network: parseInt(e.target.value) })}
-          >
-            <option value={Network.MAINNET} disabled>
-              mainnet
-            </option>
-            <option value={Network.TESTNET}>testnet</option>
-            <option value={Network.LOCAL}>local</option>
-          </select>
           <select
             name="arb-chain"
             id="arb-chain"
@@ -121,15 +107,6 @@ export default function MakePage() {
             onChange={(e) => reqSet((v) => ({ ...v, accordantBlockchain: parseInt(e.target.value) }))}
           >
             <option value={Blockchain.MONERO}>monero</option>
-          </select>
-          <select
-            name="maker-role"
-            id="maker-role"
-            value={req.makerRole}
-            onChange={(e) => reqSet((v) => ({ ...v, makerRole: parseInt(e.target.value) }))}
-          >
-            <option value={SwapRole.ALICE}>alice</option>
-            <option value={SwapRole.BOB}>bob</option>
           </select>
         </div>
         <div>
@@ -196,23 +173,16 @@ export default function MakePage() {
             value={req.publicIpAddr}
             onChange={(e) => reqSet((v) => ({ ...v, publicIpAddr: e.target.value }))}
           />
-          <label htmlFor="bind-ip">Bind IP</label>
+          <label htmlFor="public-port">Bind port</label>
           <input
             type="text"
-            id="bind-ip"
-            value={req.bindIpAddr}
-            onChange={(e) => reqSet((v) => ({ ...v, bindIpAddr: e.target.value }))}
-          />
-          <label htmlFor="bind-port">Bind port</label>
-          <input
-            type="text"
-            id="bind-port"
-            value={req.port}
+            id="public-port"
+            value={req.publicPort}
             onChange={(e) => reqSet((v) => ({ ...v, port: parseInt(e.target.value) }))}
           />
         </div>
         <div>
-          <input type="submit" value={'make'} />
+          <Submit value="make" />
         </div>
       </form>
     </>

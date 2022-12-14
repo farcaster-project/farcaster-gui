@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 function MenuItem({ href, children }: { href: string; children: ReactNode }) {
   return (
     <div className="">
-      <Link className="block h-20 w-20 bg-gray-300 rounded-xl hover:underline" href={href}>
+      <Link className="block h-24 w-24 bg-slate-300 rounded-xl" href={href}>
         {children}
       </Link>
     </div>
@@ -29,18 +29,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SettingsProvider>
           <SettingsLoader>
             <ConnectionProvider>
-              <div className="flex bg-slate-100">
+              <div className="relative flex bg-slate-100 min-h-screen">
                 <Sidebar>
                   <Profiles />
-                  <div className="flex flex-col space-y-4">
-                    <MenuItem href="/">List</MenuItem>
-                    <MenuItem href="/take">Take an offer</MenuItem>
-                    <MenuItem href="/make">Register new offer</MenuItem>
-                    <MenuItem href="/info">Node info/Settings</MenuItem>
+                  <div className="flex flex-col space-y-4 items-center">
+                    <MenuItem href="/">Swaps</MenuItem>
+                    <MenuItem href="/deals">Deals</MenuItem>
+                    <MenuItem href="/info">Node</MenuItem>
                   </div>
                   <ConnectHeader />
                 </Sidebar>
-                <div className="container mx-auto">{children}</div>
+                <div className="w-full ml-48">
+                  <div className="container mx-auto">{children}</div>
+                </div>
               </div>
             </ConnectionProvider>
           </SettingsLoader>

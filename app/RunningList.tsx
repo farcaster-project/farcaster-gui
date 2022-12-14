@@ -122,7 +122,7 @@ function NavList({ pages, current, pageSet }: { pages: number; current: number; 
   )
 }
 
-const itemPerPage = 2
+const itemPerPage = 10
 
 export default function RunningList() {
   const [queryFilters, queryFiltersSet] = useState<QueryFilters>(defaultQueryFilters)
