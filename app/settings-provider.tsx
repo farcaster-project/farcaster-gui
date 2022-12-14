@@ -15,6 +15,16 @@ interface SettingsProvider {
 
 // Our type for the application settings
 export interface Settings {
+  // a list of available profiles
+  profiles: Profile[]
+  // the selected profile
+  current: string
+}
+
+// Our type for storing an application profile
+export interface Profile {
+  // unique identifier for the profile
+  uuid: string
   // the default network to use
   network: Network
   // host to use to connect to the gRPC service
@@ -29,11 +39,17 @@ export interface Settings {
 
 // Defaults to use when no settings are registered
 const defaultSettings: Settings = {
-  network: Network.TESTNET,
-  grpcHost: 'localhost',
-  grpcPort: '50051',
-  btcAddr: '',
-  xmrAddr: '',
+  profiles: [
+    {
+      uuid: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
+      network: Network.TESTNET,
+      grpcHost: 'localhost',
+      grpcPort: '50051',
+      btcAddr: '',
+      xmrAddr: '',
+    },
+  ],
+  current: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
 }
 
 // Create the context with the saved/default settings and an empty setter
@@ -74,6 +90,11 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   }
 
   return <SettingsContext.Provider value={{ settings, loading, saveSettings }}>{children}</SettingsContext.Provider>
+}
+
+// Extract the current profile from settings
+export function getProfile(settings: Settings): Profile {
+  return settings.profiles.filter((profile) => profile.uuid == settings.current)[0]
 }
 
 // Export the consumer for the settings context, use to create the useSettings

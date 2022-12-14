@@ -1,8 +1,9 @@
+import { parse as uuidParse } from 'uuid';
 import { RpcError } from "grpc-web"
 import { useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { FarcasterClient } from "../proto/FarcasterServiceClientPb"
 import ConnectionContext from "./connection-provider"
-import SettingsContext, { Settings } from "./settings-provider"
+import SettingsContext, { getProfile, Profile, Settings } from "./settings-provider"
 
 // Custom hook to fire a callback at a certain rate.
 // Note: The callback probably needs to be wrapped into a useCallback
@@ -22,6 +23,24 @@ export function useSettings(): [Settings, (settings: Settings) => void] {
   return [settings, saveSettings]
 }
 
+// Custom hook to access the current profile and set a new current profile.
+// If the saved profile exists it is updated, if not it is added to the list of
+// available profiles.
+export function useProfile(): [Profile, (profile: Profile) => void] {
+  const [settings, settingsSet] = useSettings()
+  const profileSaveAndSetCurrent = (profile: Profile) => {
+    // check if received profile already exists, we keep only the other profiles
+    // and push the new profile
+    const others = settings.profiles.filter((p) => p.uuid !== profile.uuid)
+    settings.profiles = others
+    settings.profiles.push(profile)
+    settings.current = profile.uuid
+    settingsSet(settings)
+  }
+  const profile = getProfile(settings)
+  return [profile, profileSaveAndSetCurrent]
+}
+
 // Custom hook to access the global connection state of the application
 export function useConnected(): [boolean | null,  RpcError?] {
   const { connected, error } = useContext(ConnectionContext)
@@ -36,11 +55,11 @@ export function useOnConnection(): [() => void, (err?: RpcError) => void] {
 
 // Custom hook that creates an gRPC Farcaster Client based on settings
 export function useRpcService(): FarcasterClient {
-  const [settings] = useSettings()
+  const [profile] = useProfile()
   return useMemo(() => {
-    const endpoint = getRpcEndpoint(settings.grpcHost, settings.grpcPort)
+    const endpoint = getRpcEndpoint(profile.grpcHost, profile.grpcPort)
     return new FarcasterClient(endpoint)
-  }, [settings.grpcHost, settings.grpcPort])
+  }, [profile.grpcHost, profile.grpcPort])
 }
 
 // Return the RPC URL based on host and port
@@ -55,13 +74,13 @@ export type ResultCallbackHandler = <T>(success?: (res: T) => void, error?: (err
 // return an array containing the client, the state of the connection (connected
 // or not), and a result callback handler to intercept client errors.
 export function useRpc(): [FarcasterClient, ResultCallbackHandler] {
-  const [settings] = useSettings()
+  const [profile] = useProfile()
   const [onConnect, onError] = useOnConnection()
 
   const fcd = useMemo(() => {
-    const endpoint = getRpcEndpoint(settings.grpcHost, settings.grpcPort)
+    const endpoint = getRpcEndpoint(profile.grpcHost, profile.grpcPort)
     return new FarcasterClient(endpoint)
-  }, [settings.grpcHost, settings.grpcPort])
+  }, [profile.grpcHost, profile.grpcPort])
 
   const res = useCallback<ResultCallbackHandler>((success, error) => {
     return (err, res) => {
