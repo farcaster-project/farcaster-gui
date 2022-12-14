@@ -17,8 +17,13 @@ export default function Profiles() {
   return (
     <div className="relative">
       <Menu>
-        <Menu.Button>{`${current.name} ${netToString(current.network)}`}</Menu.Button>
-        <Menu.Items className="absolute w-fit bg-slate-200 border border-slate-300 shadow-md p-2 rounded-md">
+        <Menu.Button className="w-full">
+          <div className="shadow border border-slate-400 bg-slate-300 rounded-xl p-4 text-left">
+            <div className="font-medium text-gray-800">{current.name}</div>
+            <div className="text-sm text-gray-700">{netToString(current.network)}</div>
+          </div>
+        </Menu.Button>
+        <Menu.Items className="absolute mt-1 w-fit bg-slate-200 border border-slate-300 shadow-md p-2 rounded-md">
           {profiles
             .sort((a, b) => a.name.localeCompare(b.name))
             .map((profileItem) => (
