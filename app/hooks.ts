@@ -25,7 +25,7 @@ export function useSettings(): [Settings, (settings: Settings) => void] {
 // Custom hook to access the current profile and set a new current profile.
 // If the saved profile exists it is updated, if not it is added to the list of
 // available profiles.
-export function useProfile(): [Profile, (profile: Profile) => void, Profile[]] {
+export function useProfile(): [Profile, (profile: Profile) => void, Profile[], (profile: Profile) => void] {
   const { settings, saveSettings } = useContext(SettingsContext)
   const profileSaveAndSetCurrent = (profile: Profile) => {
     // check if received profile already exists, we keep only the other profiles
@@ -36,8 +36,15 @@ export function useProfile(): [Profile, (profile: Profile) => void, Profile[]] {
     settings.current = profile.uuid
     saveSettings(settings)
   }
+  const deleteProfile = (profile: Profile) => {
+    const others = settings.profiles.filter((p) => p.uuid !== profile.uuid)
+    if (others.length === 0) return
+    settings.profiles = others
+    if (settings.current === profile.uuid) settings.current = others[0].uuid
+    saveSettings(settings)
+  }
   const profile = getCurrentProfile(settings)
-  return [profile, profileSaveAndSetCurrent, settings.profiles]
+  return [profile, profileSaveAndSetCurrent, settings.profiles, deleteProfile]
 }
 
 // Custom hook to access the global connection state of the application

@@ -2,15 +2,14 @@
 
 import { Menu } from '@headlessui/react'
 import Link from 'next/link'
-import { useRouter, useSelectedLayoutSegment } from 'next/navigation'
+import { useSelectedLayoutSegment } from 'next/navigation'
 import { Fragment } from 'react'
-import { TbEdit, TbPlus } from 'react-icons/tb'
+import { TbEdit, TbPlus, TbX } from 'react-icons/tb'
 import { netToString } from '../components/utils'
 import { useProfile } from './hooks'
 
 export default function Profiles() {
-  const [current, profileSet, profiles] = useProfile()
-  const router = useRouter()
+  const [current, profileSet, profiles, delProfile] = useProfile()
   const segment = useSelectedLayoutSegment()
 
   const isOnProfilePage = segment === 'profile'
@@ -42,15 +41,28 @@ export default function Profiles() {
                       <div className="text-sm text-gray-700">{netToString(profileItem.network)}</div>
                     </div>
 
-                    <Link
-                      href="/profile"
-                      onClick={() => {
-                        profileSet(profileItem)
-                      }}
-                      className="block p-4 text-xl"
-                    >
-                      <TbEdit className="stroke-gray-500 hover:stroke-gray-900" />
-                    </Link>
+                    <div className="flex pr-2 items-center">
+                      <Link
+                        href="/profile"
+                        onClick={() => {
+                          profileSet(profileItem)
+                        }}
+                        className="block py-4 px-1 text-xl"
+                      >
+                        <TbEdit className="stroke-gray-500 hover:stroke-gray-900" />
+                      </Link>
+
+                      {profiles.length > 1 && (
+                        <div
+                          className="inline py-4 px-1 text-xl"
+                          onClick={() => {
+                            if (confirm('Do you want to delete this profile?')) delProfile(profileItem)
+                          }}
+                        >
+                          <TbX className="stroke-gray-500 cursor-pointer hover:stroke-gray-900" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </Menu.Item>
