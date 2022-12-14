@@ -6,6 +6,9 @@ export class HealthCheckRequest extends jspb.Message {
   getId(): number;
   setId(value: number): HealthCheckRequest;
 
+  getSelector(): HealthCheckSelector;
+  setSelector(value: HealthCheckSelector): HealthCheckRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HealthCheckRequest.AsObject;
   static toObject(includeInstance: boolean, msg: HealthCheckRequest): HealthCheckRequest.AsObject;
@@ -17,6 +20,7 @@ export class HealthCheckRequest extends jspb.Message {
 export namespace HealthCheckRequest {
   export type AsObject = {
     id: number,
+    selector: HealthCheckSelector,
   }
 }
 
@@ -24,23 +28,17 @@ export class HealthCheckResponse extends jspb.Message {
   getId(): number;
   setId(value: number): HealthCheckResponse;
 
-  getBitcoinMainnetHealth(): string;
-  setBitcoinMainnetHealth(value: string): HealthCheckResponse;
+  getCompleteHealthReport(): CompleteHealthReport | undefined;
+  setCompleteHealthReport(value?: CompleteHealthReport): HealthCheckResponse;
+  hasCompleteHealthReport(): boolean;
+  clearCompleteHealthReport(): HealthCheckResponse;
 
-  getBitcoinTestnetHealth(): string;
-  setBitcoinTestnetHealth(value: string): HealthCheckResponse;
+  getReducedHealthReport(): ReducedHealthReport | undefined;
+  setReducedHealthReport(value?: ReducedHealthReport): HealthCheckResponse;
+  hasReducedHealthReport(): boolean;
+  clearReducedHealthReport(): HealthCheckResponse;
 
-  getBitcoinLocalHealth(): string;
-  setBitcoinLocalHealth(value: string): HealthCheckResponse;
-
-  getMoneroMainnetHealth(): string;
-  setMoneroMainnetHealth(value: string): HealthCheckResponse;
-
-  getMoneroTestnetHealth(): string;
-  setMoneroTestnetHealth(value: string): HealthCheckResponse;
-
-  getMoneroLocalHealth(): string;
-  setMoneroLocalHealth(value: string): HealthCheckResponse;
+  getHealthReportCase(): HealthCheckResponse.HealthReportCase;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HealthCheckResponse.AsObject;
@@ -53,12 +51,74 @@ export class HealthCheckResponse extends jspb.Message {
 export namespace HealthCheckResponse {
   export type AsObject = {
     id: number,
+    completeHealthReport?: CompleteHealthReport.AsObject,
+    reducedHealthReport?: ReducedHealthReport.AsObject,
+  }
+
+  export enum HealthReportCase { 
+    HEALTH_REPORT_NOT_SET = 0,
+    COMPLETE_HEALTH_REPORT = 2,
+    REDUCED_HEALTH_REPORT = 3,
+  }
+}
+
+export class CompleteHealthReport extends jspb.Message {
+  getBitcoinMainnetHealth(): string;
+  setBitcoinMainnetHealth(value: string): CompleteHealthReport;
+
+  getBitcoinTestnetHealth(): string;
+  setBitcoinTestnetHealth(value: string): CompleteHealthReport;
+
+  getBitcoinLocalHealth(): string;
+  setBitcoinLocalHealth(value: string): CompleteHealthReport;
+
+  getMoneroMainnetHealth(): string;
+  setMoneroMainnetHealth(value: string): CompleteHealthReport;
+
+  getMoneroTestnetHealth(): string;
+  setMoneroTestnetHealth(value: string): CompleteHealthReport;
+
+  getMoneroLocalHealth(): string;
+  setMoneroLocalHealth(value: string): CompleteHealthReport;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CompleteHealthReport.AsObject;
+  static toObject(includeInstance: boolean, msg: CompleteHealthReport): CompleteHealthReport.AsObject;
+  static serializeBinaryToWriter(message: CompleteHealthReport, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CompleteHealthReport;
+  static deserializeBinaryFromReader(message: CompleteHealthReport, reader: jspb.BinaryReader): CompleteHealthReport;
+}
+
+export namespace CompleteHealthReport {
+  export type AsObject = {
     bitcoinMainnetHealth: string,
     bitcoinTestnetHealth: string,
     bitcoinLocalHealth: string,
     moneroMainnetHealth: string,
     moneroTestnetHealth: string,
     moneroLocalHealth: string,
+  }
+}
+
+export class ReducedHealthReport extends jspb.Message {
+  getBitcoinHealth(): string;
+  setBitcoinHealth(value: string): ReducedHealthReport;
+
+  getMoneroHealth(): string;
+  setMoneroHealth(value: string): ReducedHealthReport;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ReducedHealthReport.AsObject;
+  static toObject(includeInstance: boolean, msg: ReducedHealthReport): ReducedHealthReport.AsObject;
+  static serializeBinaryToWriter(message: ReducedHealthReport, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReducedHealthReport;
+  static deserializeBinaryFromReader(message: ReducedHealthReport, reader: jspb.BinaryReader): ReducedHealthReport;
+}
+
+export namespace ReducedHealthReport {
+  export type AsObject = {
+    bitcoinHealth: string,
+    moneroHealth: string,
   }
 }
 
@@ -1610,6 +1670,12 @@ export namespace SweepAddressResponse {
   }
 }
 
+export enum HealthCheckSelector { 
+  CHECK_ALL = 0,
+  CHECK_MAINNET = 1,
+  CHECK_TESTNET = 2,
+  CHECK_LOCAL = 3,
+}
 export enum OfferSelector { 
   OPEN = 0,
   IN_PROGRESS = 1,
