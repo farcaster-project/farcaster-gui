@@ -1,7 +1,7 @@
 'use client'
 
 import { TbSwitchHorizontal } from 'react-icons/tb'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TradePanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
@@ -30,8 +30,8 @@ const reqDefault = {
   arbitratingBlockchain: Blockchain.BITCOIN,
   accordantAmount: 42449960000,
   arbitratingAmount: 1000,
-  arbitratingAddr: 'tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56',
-  accordantAddr: '59xUsmr8HiF4n92RxjJZbo2GiMiUbaevoMgYnw1jda97cRQ77FgAAYviHyFvcCLxh2DenAacFpVMbVLBt7LmC7Ah6bbv1kM',
+  arbitratingAddr: '',
+  accordantAddr: '',
   cancelTimelock: 4,
   punishTimelock: 6,
   feeStrategy: '1 sat/vByte',
@@ -65,6 +65,11 @@ export function MakeForm() {
   const switchRole = () => {
     reqSet((v) => ({ ...v, makerRole: otherSwapRole(req.makerRole) }))
   }
+
+  useEffect(() => {
+    reqSet((v) => ({ ...v, arbitratingAddr: profile.btcAddr }))
+    reqSet((v) => ({ ...v, accordantAddr: profile.xmrAddr }))
+  }, [profile.btcAddr, profile.xmrAddr])
 
   return (
     <>
@@ -178,7 +183,7 @@ export function MakeForm() {
             type="text"
             id="public-port"
             value={req.publicPort}
-            onChange={(e) => reqSet((v) => ({ ...v, port: parseInt(e.target.value) }))}
+            onChange={(e) => reqSet((v) => ({ ...v, publicPort: parseInt(e.target.value) }))}
           />
         </div>
         <div>

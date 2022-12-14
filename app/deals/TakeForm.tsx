@@ -5,19 +5,25 @@ import { OfferPanel } from '../../components/panels'
 import { Title } from '../../components/ui'
 import { OfferInfoRequest, OfferInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import { Input, Button, Submit } from '../../components/input'
-import { useRpc } from '../hooks'
+import { useProfile, useRpc } from '../hooks'
 
 const takeReq = {
-  bitcoinAddress: 'tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56',
-  moneroAddress: '59xUsmr8HiF4n92RxjJZbo2GiMiUbaevoMgYnw1jda97cRQ77FgAAYviHyFvcCLxh2DenAacFpVMbVLBt7LmC7Ah6bbv1kM',
+  bitcoinAddress: '',
+  moneroAddress: '',
   publicOffer: '',
 }
 
 export function TakeForm() {
+  const [profile] = useProfile()
   const [take, takeSet] = useState(takeReq)
   const [offer, offerSet] = useState<OfferInfoResponse | null>(null)
   const [takeRes, takeResSet] = useState<null | boolean>(null)
   const [fcd, res] = useRpc()
+
+  useEffect(() => {
+    takeSet((v) => ({ ...v, bitcoinAddress: profile.btcAddr }))
+    takeSet((v) => ({ ...v, moneroAddress: profile.xmrAddr }))
+  }, [profile.btcAddr, profile.xmrAddr])
 
   // this effect decode the offer to be displayed to user
   useEffect(() => {
