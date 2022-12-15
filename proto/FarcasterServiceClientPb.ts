@@ -168,47 +168,47 @@ export class FarcasterClient {
     this.methodDescriptorSwapInfo);
   }
 
-  methodDescriptorOfferInfo = new grpcWeb.MethodDescriptor(
-    '/farcaster.Farcaster/OfferInfo',
+  methodDescriptorDealInfo = new grpcWeb.MethodDescriptor(
+    '/farcaster.Farcaster/DealInfo',
     grpcWeb.MethodType.UNARY,
-    farcaster_pb.OfferInfoRequest,
-    farcaster_pb.OfferInfoResponse,
-    (request: farcaster_pb.OfferInfoRequest) => {
+    farcaster_pb.DealInfoRequest,
+    farcaster_pb.DealInfoResponse,
+    (request: farcaster_pb.DealInfoRequest) => {
       return request.serializeBinary();
     },
-    farcaster_pb.OfferInfoResponse.deserializeBinary
+    farcaster_pb.DealInfoResponse.deserializeBinary
   );
 
-  offerInfo(
-    request: farcaster_pb.OfferInfoRequest,
-    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.OfferInfoResponse>;
+  dealInfo(
+    request: farcaster_pb.DealInfoRequest,
+    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.DealInfoResponse>;
 
-  offerInfo(
-    request: farcaster_pb.OfferInfoRequest,
+  dealInfo(
+    request: farcaster_pb.DealInfoRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: farcaster_pb.OfferInfoResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.OfferInfoResponse>;
+               response: farcaster_pb.DealInfoResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.DealInfoResponse>;
 
-  offerInfo(
-    request: farcaster_pb.OfferInfoRequest,
+  dealInfo(
+    request: farcaster_pb.DealInfoRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: farcaster_pb.OfferInfoResponse) => void) {
+               response: farcaster_pb.DealInfoResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/farcaster.Farcaster/OfferInfo',
+          '/farcaster.Farcaster/DealInfo',
         request,
         metadata || {},
-        this.methodDescriptorOfferInfo,
+        this.methodDescriptorDealInfo,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/farcaster.Farcaster/OfferInfo',
+      '/farcaster.Farcaster/DealInfo',
     request,
     metadata || {},
-    this.methodDescriptorOfferInfo);
+    this.methodDescriptorDealInfo);
   }
 
   methodDescriptorCheckpoints = new grpcWeb.MethodDescriptor(
@@ -426,47 +426,47 @@ export class FarcasterClient {
     this.methodDescriptorTake);
   }
 
-  methodDescriptorRevokeOffer = new grpcWeb.MethodDescriptor(
-    '/farcaster.Farcaster/RevokeOffer',
+  methodDescriptorRevokeDeal = new grpcWeb.MethodDescriptor(
+    '/farcaster.Farcaster/RevokeDeal',
     grpcWeb.MethodType.UNARY,
-    farcaster_pb.RevokeOfferRequest,
-    farcaster_pb.RevokeOfferResponse,
-    (request: farcaster_pb.RevokeOfferRequest) => {
+    farcaster_pb.RevokeDealRequest,
+    farcaster_pb.RevokeDealResponse,
+    (request: farcaster_pb.RevokeDealRequest) => {
       return request.serializeBinary();
     },
-    farcaster_pb.RevokeOfferResponse.deserializeBinary
+    farcaster_pb.RevokeDealResponse.deserializeBinary
   );
 
-  revokeOffer(
-    request: farcaster_pb.RevokeOfferRequest,
-    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.RevokeOfferResponse>;
+  revokeDeal(
+    request: farcaster_pb.RevokeDealRequest,
+    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.RevokeDealResponse>;
 
-  revokeOffer(
-    request: farcaster_pb.RevokeOfferRequest,
+  revokeDeal(
+    request: farcaster_pb.RevokeDealRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: farcaster_pb.RevokeOfferResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.RevokeOfferResponse>;
+               response: farcaster_pb.RevokeDealResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.RevokeDealResponse>;
 
-  revokeOffer(
-    request: farcaster_pb.RevokeOfferRequest,
+  revokeDeal(
+    request: farcaster_pb.RevokeDealRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: farcaster_pb.RevokeOfferResponse) => void) {
+               response: farcaster_pb.RevokeDealResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/farcaster.Farcaster/RevokeOffer',
+          '/farcaster.Farcaster/RevokeDeal',
         request,
         metadata || {},
-        this.methodDescriptorRevokeOffer,
+        this.methodDescriptorRevokeDeal,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/farcaster.Farcaster/RevokeOffer',
+      '/farcaster.Farcaster/RevokeDeal',
     request,
     metadata || {},
-    this.methodDescriptorRevokeOffer);
+    this.methodDescriptorRevokeDeal);
   }
 
   methodDescriptorAbortSwap = new grpcWeb.MethodDescriptor(
@@ -684,47 +684,47 @@ export class FarcasterClient {
     this.methodDescriptorConnectSwap);
   }
 
-  methodDescriptorListOffers = new grpcWeb.MethodDescriptor(
-    '/farcaster.Farcaster/ListOffers',
+  methodDescriptorListDeals = new grpcWeb.MethodDescriptor(
+    '/farcaster.Farcaster/ListDeals',
     grpcWeb.MethodType.UNARY,
-    farcaster_pb.ListOffersRequest,
-    farcaster_pb.ListOffersResponse,
-    (request: farcaster_pb.ListOffersRequest) => {
+    farcaster_pb.ListDealsRequest,
+    farcaster_pb.ListDealsResponse,
+    (request: farcaster_pb.ListDealsRequest) => {
       return request.serializeBinary();
     },
-    farcaster_pb.ListOffersResponse.deserializeBinary
+    farcaster_pb.ListDealsResponse.deserializeBinary
   );
 
-  listOffers(
-    request: farcaster_pb.ListOffersRequest,
-    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.ListOffersResponse>;
+  listDeals(
+    request: farcaster_pb.ListDealsRequest,
+    metadata: grpcWeb.Metadata | null): Promise<farcaster_pb.ListDealsResponse>;
 
-  listOffers(
-    request: farcaster_pb.ListOffersRequest,
+  listDeals(
+    request: farcaster_pb.ListDealsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: farcaster_pb.ListOffersResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.ListOffersResponse>;
+               response: farcaster_pb.ListDealsResponse) => void): grpcWeb.ClientReadableStream<farcaster_pb.ListDealsResponse>;
 
-  listOffers(
-    request: farcaster_pb.ListOffersRequest,
+  listDeals(
+    request: farcaster_pb.ListDealsRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: farcaster_pb.ListOffersResponse) => void) {
+               response: farcaster_pb.ListDealsResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/farcaster.Farcaster/ListOffers',
+          '/farcaster.Farcaster/ListDeals',
         request,
         metadata || {},
-        this.methodDescriptorListOffers,
+        this.methodDescriptorListDeals,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/farcaster.Farcaster/ListOffers',
+      '/farcaster.Farcaster/ListDeals',
     request,
     metadata || {},
-    this.methodDescriptorListOffers);
+    this.methodDescriptorListDeals);
   }
 
   methodDescriptorHealthCheck = new grpcWeb.MethodDescriptor(

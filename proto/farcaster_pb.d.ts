@@ -6,8 +6,8 @@ export class HealthCheckRequest extends jspb.Message {
   getId(): number;
   setId(value: number): HealthCheckRequest;
 
-  getSelector(): HealthCheckSelector;
-  setSelector(value: HealthCheckSelector): HealthCheckRequest;
+  getSelector(): NetworkSelector;
+  setSelector(value: NetworkSelector): HealthCheckRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): HealthCheckRequest.AsObject;
@@ -20,7 +20,7 @@ export class HealthCheckRequest extends jspb.Message {
 export namespace HealthCheckRequest {
   export type AsObject = {
     id: number,
-    selector: HealthCheckSelector,
+    selector: NetworkSelector,
   }
 }
 
@@ -165,10 +165,10 @@ export class InfoResponse extends jspb.Message {
   clearSwapsList(): InfoResponse;
   addSwaps(value: string, index?: number): InfoResponse;
 
-  getOffersList(): Array<string>;
-  setOffersList(value: Array<string>): InfoResponse;
-  clearOffersList(): InfoResponse;
-  addOffers(value: string, index?: number): InfoResponse;
+  getDealsList(): Array<string>;
+  setDealsList(value: Array<string>): InfoResponse;
+  clearDealsList(): InfoResponse;
+  addDeals(value: string, index?: number): InfoResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): InfoResponse.AsObject;
@@ -186,7 +186,7 @@ export namespace InfoResponse {
     since: number,
     peersList: Array<string>,
     swapsList: Array<string>,
-    offersList: Array<string>,
+    dealsList: Array<string>,
   }
 }
 
@@ -225,8 +225,10 @@ export class SwapInfoResponse extends jspb.Message {
   getSince(): number;
   setSince(value: number): SwapInfoResponse;
 
-  getPublicOffer(): string;
-  setPublicOffer(value: string): SwapInfoResponse;
+  getDeal(): DealInfo | undefined;
+  setDeal(value?: DealInfo): SwapInfoResponse;
+  hasDeal(): boolean;
+  clearDeal(): SwapInfoResponse;
 
   getConnected(): boolean;
   setConnected(value: boolean): SwapInfoResponse;
@@ -257,7 +259,7 @@ export namespace SwapInfoResponse {
     connection: string,
     uptime: number,
     since: number,
-    publicOffer: string,
+    deal?: DealInfo.AsObject,
     connected: boolean,
     tradeRole: TradeRole,
     swapRole: SwapRole,
@@ -266,79 +268,102 @@ export namespace SwapInfoResponse {
   }
 }
 
-export class OfferInfoRequest extends jspb.Message {
+export class DealInfoRequest extends jspb.Message {
   getId(): number;
-  setId(value: number): OfferInfoRequest;
+  setId(value: number): DealInfoRequest;
 
-  getPublicOffer(): string;
-  setPublicOffer(value: string): OfferInfoRequest;
+  getDeal(): string;
+  setDeal(value: string): DealInfoRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): OfferInfoRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: OfferInfoRequest): OfferInfoRequest.AsObject;
-  static serializeBinaryToWriter(message: OfferInfoRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): OfferInfoRequest;
-  static deserializeBinaryFromReader(message: OfferInfoRequest, reader: jspb.BinaryReader): OfferInfoRequest;
+  toObject(includeInstance?: boolean): DealInfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DealInfoRequest): DealInfoRequest.AsObject;
+  static serializeBinaryToWriter(message: DealInfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DealInfoRequest;
+  static deserializeBinaryFromReader(message: DealInfoRequest, reader: jspb.BinaryReader): DealInfoRequest;
 }
 
-export namespace OfferInfoRequest {
+export namespace DealInfoRequest {
   export type AsObject = {
     id: number,
-    publicOffer: string,
+    deal: string,
   }
 }
 
-export class OfferInfoResponse extends jspb.Message {
+export class DealInfoResponse extends jspb.Message {
   getId(): number;
-  setId(value: number): OfferInfoResponse;
+  setId(value: number): DealInfoResponse;
 
-  getArbitratingAmount(): number;
-  setArbitratingAmount(value: number): OfferInfoResponse;
-
-  getAccordantAmount(): number;
-  setAccordantAmount(value: number): OfferInfoResponse;
-
-  getCancelTimelock(): number;
-  setCancelTimelock(value: number): OfferInfoResponse;
-
-  getPunishTimelock(): number;
-  setPunishTimelock(value: number): OfferInfoResponse;
-
-  getFeeStrategy(): string;
-  setFeeStrategy(value: string): OfferInfoResponse;
-
-  getMakerRole(): SwapRole;
-  setMakerRole(value: SwapRole): OfferInfoResponse;
-
-  getUuid(): string;
-  setUuid(value: string): OfferInfoResponse;
-
-  getNetwork(): Network;
-  setNetwork(value: Network): OfferInfoResponse;
-
-  getArbitratingBlockchain(): Blockchain;
-  setArbitratingBlockchain(value: Blockchain): OfferInfoResponse;
-
-  getAccordantBlockchain(): Blockchain;
-  setAccordantBlockchain(value: Blockchain): OfferInfoResponse;
-
-  getNodeId(): string;
-  setNodeId(value: string): OfferInfoResponse;
-
-  getPeerAddress(): string;
-  setPeerAddress(value: string): OfferInfoResponse;
+  getDealInfo(): DealInfo | undefined;
+  setDealInfo(value?: DealInfo): DealInfoResponse;
+  hasDealInfo(): boolean;
+  clearDealInfo(): DealInfoResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): OfferInfoResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: OfferInfoResponse): OfferInfoResponse.AsObject;
-  static serializeBinaryToWriter(message: OfferInfoResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): OfferInfoResponse;
-  static deserializeBinaryFromReader(message: OfferInfoResponse, reader: jspb.BinaryReader): OfferInfoResponse;
+  toObject(includeInstance?: boolean): DealInfoResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: DealInfoResponse): DealInfoResponse.AsObject;
+  static serializeBinaryToWriter(message: DealInfoResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DealInfoResponse;
+  static deserializeBinaryFromReader(message: DealInfoResponse, reader: jspb.BinaryReader): DealInfoResponse;
 }
 
-export namespace OfferInfoResponse {
+export namespace DealInfoResponse {
   export type AsObject = {
     id: number,
+    dealInfo?: DealInfo.AsObject,
+  }
+}
+
+export class DealInfo extends jspb.Message {
+  getArbitratingAmount(): number;
+  setArbitratingAmount(value: number): DealInfo;
+
+  getAccordantAmount(): number;
+  setAccordantAmount(value: number): DealInfo;
+
+  getCancelTimelock(): number;
+  setCancelTimelock(value: number): DealInfo;
+
+  getPunishTimelock(): number;
+  setPunishTimelock(value: number): DealInfo;
+
+  getFeeStrategy(): string;
+  setFeeStrategy(value: string): DealInfo;
+
+  getMakerRole(): SwapRole;
+  setMakerRole(value: SwapRole): DealInfo;
+
+  getUuid(): string;
+  setUuid(value: string): DealInfo;
+
+  getNetwork(): Network;
+  setNetwork(value: Network): DealInfo;
+
+  getArbitratingBlockchain(): Blockchain;
+  setArbitratingBlockchain(value: Blockchain): DealInfo;
+
+  getAccordantBlockchain(): Blockchain;
+  setAccordantBlockchain(value: Blockchain): DealInfo;
+
+  getNodeId(): string;
+  setNodeId(value: string): DealInfo;
+
+  getPeerAddress(): string;
+  setPeerAddress(value: string): DealInfo;
+
+  getEncodedDeal(): string;
+  setEncodedDeal(value: string): DealInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DealInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: DealInfo): DealInfo.AsObject;
+  static serializeBinaryToWriter(message: DealInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DealInfo;
+  static deserializeBinaryFromReader(message: DealInfo, reader: jspb.BinaryReader): DealInfo;
+}
+
+export namespace DealInfo {
+  export type AsObject = {
     arbitratingAmount: number,
     accordantAmount: number,
     cancelTimelock: number,
@@ -351,6 +376,7 @@ export namespace OfferInfoResponse {
     accordantBlockchain: Blockchain,
     nodeId: string,
     peerAddress: string,
+    encodedDeal: string,
   }
 }
 
@@ -396,49 +422,53 @@ export namespace PeersResponse {
   }
 }
 
-export class ListOffersRequest extends jspb.Message {
+export class ListDealsRequest extends jspb.Message {
   getId(): number;
-  setId(value: number): ListOffersRequest;
+  setId(value: number): ListDealsRequest;
 
-  getSelector(): OfferSelector;
-  setSelector(value: OfferSelector): ListOffersRequest;
+  getDealSelector(): DealSelector;
+  setDealSelector(value: DealSelector): ListDealsRequest;
+
+  getNetworkSelector(): NetworkSelector;
+  setNetworkSelector(value: NetworkSelector): ListDealsRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListOffersRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ListOffersRequest): ListOffersRequest.AsObject;
-  static serializeBinaryToWriter(message: ListOffersRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListOffersRequest;
-  static deserializeBinaryFromReader(message: ListOffersRequest, reader: jspb.BinaryReader): ListOffersRequest;
+  toObject(includeInstance?: boolean): ListDealsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDealsRequest): ListDealsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListDealsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDealsRequest;
+  static deserializeBinaryFromReader(message: ListDealsRequest, reader: jspb.BinaryReader): ListDealsRequest;
 }
 
-export namespace ListOffersRequest {
+export namespace ListDealsRequest {
   export type AsObject = {
     id: number,
-    selector: OfferSelector,
+    dealSelector: DealSelector,
+    networkSelector: NetworkSelector,
   }
 }
 
-export class ListOffersResponse extends jspb.Message {
+export class ListDealsResponse extends jspb.Message {
   getId(): number;
-  setId(value: number): ListOffersResponse;
+  setId(value: number): ListDealsResponse;
 
-  getPublicOffersList(): Array<string>;
-  setPublicOffersList(value: Array<string>): ListOffersResponse;
-  clearPublicOffersList(): ListOffersResponse;
-  addPublicOffers(value: string, index?: number): ListOffersResponse;
+  getDealsList(): Array<DealInfo>;
+  setDealsList(value: Array<DealInfo>): ListDealsResponse;
+  clearDealsList(): ListDealsResponse;
+  addDeals(value?: DealInfo, index?: number): DealInfo;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListOffersResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: ListOffersResponse): ListOffersResponse.AsObject;
-  static serializeBinaryToWriter(message: ListOffersResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListOffersResponse;
-  static deserializeBinaryFromReader(message: ListOffersResponse, reader: jspb.BinaryReader): ListOffersResponse;
+  toObject(includeInstance?: boolean): ListDealsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDealsResponse): ListDealsResponse.AsObject;
+  static serializeBinaryToWriter(message: ListDealsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDealsResponse;
+  static deserializeBinaryFromReader(message: ListDealsResponse, reader: jspb.BinaryReader): ListDealsResponse;
 }
 
-export namespace ListOffersResponse {
+export namespace ListDealsResponse {
   export type AsObject = {
     id: number,
-    publicOffersList: Array<string>,
+    dealsList: Array<DealInfo.AsObject>,
   }
 }
 
@@ -446,8 +476,11 @@ export class CheckpointsRequest extends jspb.Message {
   getId(): number;
   setId(value: number): CheckpointsRequest;
 
-  getSelector(): CheckpointSelector;
-  setSelector(value: CheckpointSelector): CheckpointsRequest;
+  getCheckpointSelector(): CheckpointSelector;
+  setCheckpointSelector(value: CheckpointSelector): CheckpointsRequest;
+
+  getNetworkSelector(): NetworkSelector;
+  setNetworkSelector(value: NetworkSelector): CheckpointsRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CheckpointsRequest.AsObject;
@@ -460,7 +493,8 @@ export class CheckpointsRequest extends jspb.Message {
 export namespace CheckpointsRequest {
   export type AsObject = {
     id: number,
-    selector: CheckpointSelector,
+    checkpointSelector: CheckpointSelector,
+    networkSelector: NetworkSelector,
   }
 }
 
@@ -492,8 +526,10 @@ export class CheckpointEntry extends jspb.Message {
   getSwapId(): string;
   setSwapId(value: string): CheckpointEntry;
 
-  getPublicOffer(): string;
-  setPublicOffer(value: string): CheckpointEntry;
+  getDeal(): DealInfo | undefined;
+  setDeal(value?: DealInfo): CheckpointEntry;
+  hasDeal(): boolean;
+  clearDeal(): CheckpointEntry;
 
   getTradeRole(): TradeRole;
   setTradeRole(value: TradeRole): CheckpointEntry;
@@ -509,7 +545,7 @@ export class CheckpointEntry extends jspb.Message {
 export namespace CheckpointEntry {
   export type AsObject = {
     swapId: string,
-    publicOffer: string,
+    deal?: DealInfo.AsObject,
     tradeRole: TradeRole,
   }
 }
@@ -565,6 +601,9 @@ export class FundingAddressesRequest extends jspb.Message {
   getBlockchain(): Blockchain;
   setBlockchain(value: Blockchain): FundingAddressesRequest;
 
+  getNetworkSelector(): NetworkSelector;
+  setNetworkSelector(value: NetworkSelector): FundingAddressesRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): FundingAddressesRequest.AsObject;
   static toObject(includeInstance: boolean, msg: FundingAddressesRequest): FundingAddressesRequest.AsObject;
@@ -577,6 +616,7 @@ export namespace FundingAddressesRequest {
   export type AsObject = {
     id: number,
     blockchain: Blockchain,
+    networkSelector: NetworkSelector,
   }
 }
 
@@ -707,8 +747,10 @@ export class MakeResponse extends jspb.Message {
   getId(): number;
   setId(value: number): MakeResponse;
 
-  getOffer(): string;
-  setOffer(value: string): MakeResponse;
+  getDeal(): DealInfo | undefined;
+  setDeal(value?: DealInfo): MakeResponse;
+  hasDeal(): boolean;
+  clearDeal(): MakeResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MakeResponse.AsObject;
@@ -721,7 +763,7 @@ export class MakeResponse extends jspb.Message {
 export namespace MakeResponse {
   export type AsObject = {
     id: number,
-    offer: string,
+    deal?: DealInfo.AsObject,
   }
 }
 
@@ -729,8 +771,8 @@ export class TakeRequest extends jspb.Message {
   getId(): number;
   setId(value: number): TakeRequest;
 
-  getPublicOffer(): string;
-  setPublicOffer(value: string): TakeRequest;
+  getDeal(): string;
+  setDeal(value: string): TakeRequest;
 
   getBitcoinAddress(): string;
   setBitcoinAddress(value: string): TakeRequest;
@@ -749,7 +791,7 @@ export class TakeRequest extends jspb.Message {
 export namespace TakeRequest {
   export type AsObject = {
     id: number,
-    publicOffer: string,
+    deal: string,
     bitcoinAddress: string,
     moneroAddress: string,
   }
@@ -773,41 +815,41 @@ export namespace TakeResponse {
   }
 }
 
-export class RevokeOfferRequest extends jspb.Message {
+export class RevokeDealRequest extends jspb.Message {
   getId(): number;
-  setId(value: number): RevokeOfferRequest;
+  setId(value: number): RevokeDealRequest;
 
-  getPublicOffer(): string;
-  setPublicOffer(value: string): RevokeOfferRequest;
+  getDeal(): string;
+  setDeal(value: string): RevokeDealRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RevokeOfferRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: RevokeOfferRequest): RevokeOfferRequest.AsObject;
-  static serializeBinaryToWriter(message: RevokeOfferRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RevokeOfferRequest;
-  static deserializeBinaryFromReader(message: RevokeOfferRequest, reader: jspb.BinaryReader): RevokeOfferRequest;
+  toObject(includeInstance?: boolean): RevokeDealRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RevokeDealRequest): RevokeDealRequest.AsObject;
+  static serializeBinaryToWriter(message: RevokeDealRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RevokeDealRequest;
+  static deserializeBinaryFromReader(message: RevokeDealRequest, reader: jspb.BinaryReader): RevokeDealRequest;
 }
 
-export namespace RevokeOfferRequest {
+export namespace RevokeDealRequest {
   export type AsObject = {
     id: number,
-    publicOffer: string,
+    deal: string,
   }
 }
 
-export class RevokeOfferResponse extends jspb.Message {
+export class RevokeDealResponse extends jspb.Message {
   getId(): number;
-  setId(value: number): RevokeOfferResponse;
+  setId(value: number): RevokeDealResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RevokeOfferResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: RevokeOfferResponse): RevokeOfferResponse.AsObject;
-  static serializeBinaryToWriter(message: RevokeOfferResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RevokeOfferResponse;
-  static deserializeBinaryFromReader(message: RevokeOfferResponse, reader: jspb.BinaryReader): RevokeOfferResponse;
+  toObject(includeInstance?: boolean): RevokeDealResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RevokeDealResponse): RevokeDealResponse.AsObject;
+  static serializeBinaryToWriter(message: RevokeDealResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RevokeDealResponse;
+  static deserializeBinaryFromReader(message: RevokeDealResponse, reader: jspb.BinaryReader): RevokeDealResponse;
 }
 
-export namespace RevokeOfferResponse {
+export namespace RevokeDealResponse {
   export type AsObject = {
     id: number,
   }
@@ -975,62 +1017,67 @@ export namespace StateTransition {
 }
 
 export class State extends jspb.Message {
-  getStartA(): StartA | undefined;
-  setStartA(value?: StartA): State;
-  hasStartA(): boolean;
-  clearStartA(): State;
+  getState(): string;
+  setState(value: string): State;
 
-  getCommitA(): CommitA | undefined;
-  setCommitA(value?: CommitA): State;
-  hasCommitA(): boolean;
-  clearCommitA(): State;
+  getArbBlockHeight(): number;
+  setArbBlockHeight(value: number): State;
 
-  getRevealA(): RevealA | undefined;
-  setRevealA(value?: RevealA): State;
-  hasRevealA(): boolean;
-  clearRevealA(): State;
+  getAccBlockHeight(): number;
+  setAccBlockHeight(value: number): State;
 
-  getRefundSigA(): RefundSigA | undefined;
-  setRefundSigA(value?: RefundSigA): State;
-  hasRefundSigA(): boolean;
-  clearRefundSigA(): State;
+  getArbLocked(): boolean;
+  setArbLocked(value: boolean): State;
 
-  getFinishA(): FinishA | undefined;
-  setFinishA(value?: FinishA): State;
-  hasFinishA(): boolean;
-  clearFinishA(): State;
+  getAccLocked(): boolean;
+  setAccLocked(value: boolean): State;
 
-  getStartB(): StartB | undefined;
-  setStartB(value?: StartB): State;
-  hasStartB(): boolean;
-  clearStartB(): State;
+  getCanceled(): boolean;
+  setCanceled(value: boolean): State;
 
-  getCommitB(): CommitB | undefined;
-  setCommitB(value?: CommitB): State;
-  hasCommitB(): boolean;
-  clearCommitB(): State;
+  getBuySeen(): boolean;
+  setBuySeen(value: boolean): State;
 
-  getRevealB(): RevealB | undefined;
-  setRevealB(value?: RevealB): State;
-  hasRevealB(): boolean;
-  clearRevealB(): State;
+  getRefundSeen(): boolean;
+  setRefundSeen(value: boolean): State;
 
-  getCoreArbB(): CoreArbB | undefined;
-  setCoreArbB(value?: CoreArbB): State;
-  hasCoreArbB(): boolean;
-  clearCoreArbB(): State;
+  getOverfunded(): boolean;
+  setOverfunded(value: boolean): State;
 
-  getBuySigB(): BuySigB | undefined;
-  setBuySigB(value?: BuySigB): State;
-  hasBuySigB(): boolean;
-  clearBuySigB(): State;
+  getArbConfs(): number;
+  setArbConfs(value: number): State;
 
-  getFinishB(): FinishB | undefined;
-  setFinishB(value?: FinishB): State;
-  hasFinishB(): boolean;
-  clearFinishB(): State;
+  getAccConfs(): number;
+  setAccConfs(value: number): State;
 
-  getStateCase(): State.StateCase;
+  getCancelConfs(): number;
+  setCancelConfs(value: number): State;
+
+  getCancelBlocks(): number;
+  setCancelBlocks(value: number): State;
+
+  getPunishBlocks(): number;
+  setPunishBlocks(value: number): State;
+
+  getBuyBlocks(): number;
+  setBuyBlocks(value: number): State;
+
+  getBuyMoneroBlocks(): number;
+  setBuyMoneroBlocks(value: number): State;
+
+  getArbLockConfirmationsCase(): State.ArbLockConfirmationsCase;
+
+  getAccLockConfirmationsCase(): State.AccLockConfirmationsCase;
+
+  getCancelConfirmationsCase(): State.CancelConfirmationsCase;
+
+  getBlocksUntilCancelPossibleCase(): State.BlocksUntilCancelPossibleCase;
+
+  getBlocksUntilPunishPossibleCase(): State.BlocksUntilPunishPossibleCase;
+
+  getBlocksUntilSafeBuyCase(): State.BlocksUntilSafeBuyCase;
+
+  getBlocksUntilSafeMoneroBuySweepCase(): State.BlocksUntilSafeMoneroBuySweepCase;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): State.AsObject;
@@ -1042,249 +1089,32 @@ export class State extends jspb.Message {
 
 export namespace State {
   export type AsObject = {
-    startA?: StartA.AsObject,
-    commitA?: CommitA.AsObject,
-    revealA?: RevealA.AsObject,
-    refundSigA?: RefundSigA.AsObject,
-    finishA?: FinishA.AsObject,
-    startB?: StartB.AsObject,
-    commitB?: CommitB.AsObject,
-    revealB?: RevealB.AsObject,
-    coreArbB?: CoreArbB.AsObject,
-    buySigB?: BuySigB.AsObject,
-    finishB?: FinishB.AsObject,
-  }
-
-  export enum StateCase { 
-    STATE_NOT_SET = 0,
-    START_A = 1,
-    COMMIT_A = 2,
-    REVEAL_A = 3,
-    REFUND_SIG_A = 4,
-    FINISH_A = 5,
-    START_B = 6,
-    COMMIT_B = 7,
-    REVEAL_B = 8,
-    CORE_ARB_B = 9,
-    BUY_SIG_B = 10,
-    FINISH_B = 11,
-  }
-}
-
-export class StartA extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StartA.AsObject;
-  static toObject(includeInstance: boolean, msg: StartA): StartA.AsObject;
-  static serializeBinaryToWriter(message: StartA, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StartA;
-  static deserializeBinaryFromReader(message: StartA, reader: jspb.BinaryReader): StartA;
-}
-
-export namespace StartA {
-  export type AsObject = {
-  }
-}
-
-export class CommitA extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CommitA.AsObject;
-  static toObject(includeInstance: boolean, msg: CommitA): CommitA.AsObject;
-  static serializeBinaryToWriter(message: CommitA, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CommitA;
-  static deserializeBinaryFromReader(message: CommitA, reader: jspb.BinaryReader): CommitA;
-}
-
-export namespace CommitA {
-  export type AsObject = {
-  }
-}
-
-export class RevealA extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RevealA.AsObject;
-  static toObject(includeInstance: boolean, msg: RevealA): RevealA.AsObject;
-  static serializeBinaryToWriter(message: RevealA, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RevealA;
-  static deserializeBinaryFromReader(message: RevealA, reader: jspb.BinaryReader): RevealA;
-}
-
-export namespace RevealA {
-  export type AsObject = {
-  }
-}
-
-export class FinishA extends jspb.Message {
-  getOutcome(): Outcome;
-  setOutcome(value: Outcome): FinishA;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FinishA.AsObject;
-  static toObject(includeInstance: boolean, msg: FinishA): FinishA.AsObject;
-  static serializeBinaryToWriter(message: FinishA, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FinishA;
-  static deserializeBinaryFromReader(message: FinishA, reader: jspb.BinaryReader): FinishA;
-}
-
-export namespace FinishA {
-  export type AsObject = {
-    outcome: Outcome,
-  }
-}
-
-export class StartB extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): StartB.AsObject;
-  static toObject(includeInstance: boolean, msg: StartB): StartB.AsObject;
-  static serializeBinaryToWriter(message: StartB, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): StartB;
-  static deserializeBinaryFromReader(message: StartB, reader: jspb.BinaryReader): StartB;
-}
-
-export namespace StartB {
-  export type AsObject = {
-  }
-}
-
-export class CommitB extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CommitB.AsObject;
-  static toObject(includeInstance: boolean, msg: CommitB): CommitB.AsObject;
-  static serializeBinaryToWriter(message: CommitB, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CommitB;
-  static deserializeBinaryFromReader(message: CommitB, reader: jspb.BinaryReader): CommitB;
-}
-
-export namespace CommitB {
-  export type AsObject = {
-  }
-}
-
-export class RevealB extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RevealB.AsObject;
-  static toObject(includeInstance: boolean, msg: RevealB): RevealB.AsObject;
-  static serializeBinaryToWriter(message: RevealB, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RevealB;
-  static deserializeBinaryFromReader(message: RevealB, reader: jspb.BinaryReader): RevealB;
-}
-
-export namespace RevealB {
-  export type AsObject = {
-  }
-}
-
-export class FinishB extends jspb.Message {
-  getOutcome(): Outcome;
-  setOutcome(value: Outcome): FinishB;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FinishB.AsObject;
-  static toObject(includeInstance: boolean, msg: FinishB): FinishB.AsObject;
-  static serializeBinaryToWriter(message: FinishB, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FinishB;
-  static deserializeBinaryFromReader(message: FinishB, reader: jspb.BinaryReader): FinishB;
-}
-
-export namespace FinishB {
-  export type AsObject = {
-    outcome: Outcome,
-  }
-}
-
-export class RefundSigA extends jspb.Message {
-  getArbBlockHeight(): number;
-  setArbBlockHeight(value: number): RefundSigA;
-
-  getAccBlockHeight(): number;
-  setAccBlockHeight(value: number): RefundSigA;
-
-  getArbLocked(): boolean;
-  setArbLocked(value: boolean): RefundSigA;
-
-  getAccLocked(): boolean;
-  setAccLocked(value: boolean): RefundSigA;
-
-  getBuyPublished(): boolean;
-  setBuyPublished(value: boolean): RefundSigA;
-
-  getCancelSeen(): boolean;
-  setCancelSeen(value: boolean): RefundSigA;
-
-  getRefundSeen(): boolean;
-  setRefundSeen(value: boolean): RefundSigA;
-
-  getOverfunded(): boolean;
-  setOverfunded(value: boolean): RefundSigA;
-
-  getArbConfs(): number;
-  setArbConfs(value: number): RefundSigA;
-
-  getAccConfs(): number;
-  setAccConfs(value: number): RefundSigA;
-
-  getCancelBlocks(): number;
-  setCancelBlocks(value: number): RefundSigA;
-
-  getCancelConfs(): number;
-  setCancelConfs(value: number): RefundSigA;
-
-  getPunishBlocks(): number;
-  setPunishBlocks(value: number): RefundSigA;
-
-  getBuyBlocks(): number;
-  setBuyBlocks(value: number): RefundSigA;
-
-  getArbLockConfirmationsCase(): RefundSigA.ArbLockConfirmationsCase;
-
-  getAccLockConfirmationsCase(): RefundSigA.AccLockConfirmationsCase;
-
-  getBlocksUntilCancelPossibleCase(): RefundSigA.BlocksUntilCancelPossibleCase;
-
-  getCancelConfirmationsCase(): RefundSigA.CancelConfirmationsCase;
-
-  getBlocksUntilPunishPossibleCase(): RefundSigA.BlocksUntilPunishPossibleCase;
-
-  getBlocksUntilSafeBuyCase(): RefundSigA.BlocksUntilSafeBuyCase;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): RefundSigA.AsObject;
-  static toObject(includeInstance: boolean, msg: RefundSigA): RefundSigA.AsObject;
-  static serializeBinaryToWriter(message: RefundSigA, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): RefundSigA;
-  static deserializeBinaryFromReader(message: RefundSigA, reader: jspb.BinaryReader): RefundSigA;
-}
-
-export namespace RefundSigA {
-  export type AsObject = {
+    state: string,
     arbBlockHeight: number,
     accBlockHeight: number,
     arbLocked: boolean,
     accLocked: boolean,
-    buyPublished: boolean,
-    cancelSeen: boolean,
+    canceled: boolean,
+    buySeen: boolean,
     refundSeen: boolean,
     overfunded: boolean,
     arbConfs: number,
     accConfs: number,
-    cancelBlocks: number,
     cancelConfs: number,
+    cancelBlocks: number,
     punishBlocks: number,
     buyBlocks: number,
+    buyMoneroBlocks: number,
   }
 
   export enum ArbLockConfirmationsCase { 
     ARB_LOCK_CONFIRMATIONS_NOT_SET = 0,
-    ARB_CONFS = 9,
+    ARB_CONFS = 10,
   }
 
   export enum AccLockConfirmationsCase { 
     ACC_LOCK_CONFIRMATIONS_NOT_SET = 0,
-    ACC_CONFS = 10,
-  }
-
-  export enum BlocksUntilCancelPossibleCase { 
-    BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET = 0,
-    CANCEL_BLOCKS = 11,
+    ACC_CONFS = 11,
   }
 
   export enum CancelConfirmationsCase { 
@@ -1292,221 +1122,24 @@ export namespace RefundSigA {
     CANCEL_CONFS = 12,
   }
 
-  export enum BlocksUntilPunishPossibleCase { 
-    BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET = 0,
-    PUNISH_BLOCKS = 13,
-  }
-
-  export enum BlocksUntilSafeBuyCase { 
-    BLOCKS_UNTIL_SAFE_BUY_NOT_SET = 0,
-    BUY_BLOCKS = 14,
-  }
-}
-
-export class CoreArbB extends jspb.Message {
-  getArbBlockHeight(): number;
-  setArbBlockHeight(value: number): CoreArbB;
-
-  getAccBlockHeight(): number;
-  setAccBlockHeight(value: number): CoreArbB;
-
-  getArbLocked(): boolean;
-  setArbLocked(value: boolean): CoreArbB;
-
-  getAccLocked(): boolean;
-  setAccLocked(value: boolean): CoreArbB;
-
-  getBuyPublished(): boolean;
-  setBuyPublished(value: boolean): CoreArbB;
-
-  getRefundSeen(): boolean;
-  setRefundSeen(value: boolean): CoreArbB;
-
-  getArbConfs(): number;
-  setArbConfs(value: number): CoreArbB;
-
-  getAccConfs(): number;
-  setAccConfs(value: number): CoreArbB;
-
-  getCancelBlocks(): number;
-  setCancelBlocks(value: number): CoreArbB;
-
-  getCancelConfs(): number;
-  setCancelConfs(value: number): CoreArbB;
-
-  getRefundBlocks(): number;
-  setRefundBlocks(value: number): CoreArbB;
-
-  getPunishBlocks(): number;
-  setPunishBlocks(value: number): CoreArbB;
-
-  getArbLockConfirmationsCase(): CoreArbB.ArbLockConfirmationsCase;
-
-  getAccLockConfirmationsCase(): CoreArbB.AccLockConfirmationsCase;
-
-  getBlocksUntilCancelPossibleCase(): CoreArbB.BlocksUntilCancelPossibleCase;
-
-  getCancelConfirmationsCase(): CoreArbB.CancelConfirmationsCase;
-
-  getBlocksUntilRefundCase(): CoreArbB.BlocksUntilRefundCase;
-
-  getBlocksUntilPunishPossibleCase(): CoreArbB.BlocksUntilPunishPossibleCase;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CoreArbB.AsObject;
-  static toObject(includeInstance: boolean, msg: CoreArbB): CoreArbB.AsObject;
-  static serializeBinaryToWriter(message: CoreArbB, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CoreArbB;
-  static deserializeBinaryFromReader(message: CoreArbB, reader: jspb.BinaryReader): CoreArbB;
-}
-
-export namespace CoreArbB {
-  export type AsObject = {
-    arbBlockHeight: number,
-    accBlockHeight: number,
-    arbLocked: boolean,
-    accLocked: boolean,
-    buyPublished: boolean,
-    refundSeen: boolean,
-    arbConfs: number,
-    accConfs: number,
-    cancelBlocks: number,
-    cancelConfs: number,
-    refundBlocks: number,
-    punishBlocks: number,
-  }
-
-  export enum ArbLockConfirmationsCase { 
-    ARB_LOCK_CONFIRMATIONS_NOT_SET = 0,
-    ARB_CONFS = 9,
-  }
-
-  export enum AccLockConfirmationsCase { 
-    ACC_LOCK_CONFIRMATIONS_NOT_SET = 0,
-    ACC_CONFS = 10,
-  }
-
   export enum BlocksUntilCancelPossibleCase { 
     BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET = 0,
-    CANCEL_BLOCKS = 11,
-  }
-
-  export enum CancelConfirmationsCase { 
-    CANCEL_CONFIRMATIONS_NOT_SET = 0,
-    CANCEL_CONFS = 12,
-  }
-
-  export enum BlocksUntilRefundCase { 
-    BLOCKS_UNTIL_REFUND_NOT_SET = 0,
-    REFUND_BLOCKS = 13,
+    CANCEL_BLOCKS = 13,
   }
 
   export enum BlocksUntilPunishPossibleCase { 
     BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET = 0,
     PUNISH_BLOCKS = 14,
   }
-}
 
-export class BuySigB extends jspb.Message {
-  getArbBlockHeight(): number;
-  setArbBlockHeight(value: number): BuySigB;
-
-  getAccBlockHeight(): number;
-  setAccBlockHeight(value: number): BuySigB;
-
-  getBuyTxSeen(): boolean;
-  setBuyTxSeen(value: boolean): BuySigB;
-
-  getArbConfs(): number;
-  setArbConfs(value: number): BuySigB;
-
-  getAccConfs(): number;
-  setAccConfs(value: number): BuySigB;
-
-  getCancelBlocks(): number;
-  setCancelBlocks(value: number): BuySigB;
-
-  getCancelConfs(): number;
-  setCancelConfs(value: number): BuySigB;
-
-  getRefundBlocks(): number;
-  setRefundBlocks(value: number): BuySigB;
-
-  getPunishBlocks(): number;
-  setPunishBlocks(value: number): BuySigB;
-
-  getBuyMoneroBlocks(): number;
-  setBuyMoneroBlocks(value: number): BuySigB;
-
-  getArbLockConfirmationsCase(): BuySigB.ArbLockConfirmationsCase;
-
-  getAccLockConfirmationsCase(): BuySigB.AccLockConfirmationsCase;
-
-  getBlocksUntilCancelPossibleCase(): BuySigB.BlocksUntilCancelPossibleCase;
-
-  getCancelConfirmationsCase(): BuySigB.CancelConfirmationsCase;
-
-  getBlocksUntilRefundCase(): BuySigB.BlocksUntilRefundCase;
-
-  getBlocksUntilPunishPossibleCase(): BuySigB.BlocksUntilPunishPossibleCase;
-
-  getBlocksUntilSafeMoneroBuySweepCase(): BuySigB.BlocksUntilSafeMoneroBuySweepCase;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BuySigB.AsObject;
-  static toObject(includeInstance: boolean, msg: BuySigB): BuySigB.AsObject;
-  static serializeBinaryToWriter(message: BuySigB, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BuySigB;
-  static deserializeBinaryFromReader(message: BuySigB, reader: jspb.BinaryReader): BuySigB;
-}
-
-export namespace BuySigB {
-  export type AsObject = {
-    arbBlockHeight: number,
-    accBlockHeight: number,
-    buyTxSeen: boolean,
-    arbConfs: number,
-    accConfs: number,
-    cancelBlocks: number,
-    cancelConfs: number,
-    refundBlocks: number,
-    punishBlocks: number,
-    buyMoneroBlocks: number,
-  }
-
-  export enum ArbLockConfirmationsCase { 
-    ARB_LOCK_CONFIRMATIONS_NOT_SET = 0,
-    ARB_CONFS = 4,
-  }
-
-  export enum AccLockConfirmationsCase { 
-    ACC_LOCK_CONFIRMATIONS_NOT_SET = 0,
-    ACC_CONFS = 5,
-  }
-
-  export enum BlocksUntilCancelPossibleCase { 
-    BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET = 0,
-    CANCEL_BLOCKS = 6,
-  }
-
-  export enum CancelConfirmationsCase { 
-    CANCEL_CONFIRMATIONS_NOT_SET = 0,
-    CANCEL_CONFS = 7,
-  }
-
-  export enum BlocksUntilRefundCase { 
-    BLOCKS_UNTIL_REFUND_NOT_SET = 0,
-    REFUND_BLOCKS = 8,
-  }
-
-  export enum BlocksUntilPunishPossibleCase { 
-    BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET = 0,
-    PUNISH_BLOCKS = 9,
+  export enum BlocksUntilSafeBuyCase { 
+    BLOCKS_UNTIL_SAFE_BUY_NOT_SET = 0,
+    BUY_BLOCKS = 15,
   }
 
   export enum BlocksUntilSafeMoneroBuySweepCase { 
     BLOCKS_UNTIL_SAFE_MONERO_BUY_SWEEP_NOT_SET = 0,
-    BUY_MONERO_BLOCKS = 10,
+    BUY_MONERO_BLOCKS = 16,
   }
 }
 
@@ -1557,6 +1190,9 @@ export class NeedsFundingRequest extends jspb.Message {
   getBlockchain(): Blockchain;
   setBlockchain(value: Blockchain): NeedsFundingRequest;
 
+  getNetworkSelector(): NetworkSelector;
+  setNetworkSelector(value: NetworkSelector): NeedsFundingRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NeedsFundingRequest.AsObject;
   static toObject(includeInstance: boolean, msg: NeedsFundingRequest): NeedsFundingRequest.AsObject;
@@ -1569,6 +1205,7 @@ export namespace NeedsFundingRequest {
   export type AsObject = {
     id: number,
     blockchain: Blockchain,
+    networkSelector: NetworkSelector,
   }
 }
 
@@ -1670,13 +1307,13 @@ export namespace SweepAddressResponse {
   }
 }
 
-export enum HealthCheckSelector { 
-  CHECK_ALL = 0,
-  CHECK_MAINNET = 1,
-  CHECK_TESTNET = 2,
-  CHECK_LOCAL = 3,
+export enum NetworkSelector { 
+  ALL_NETWORKS = 0,
+  MAINNET_NETWORKS = 1,
+  TESTNET_NETWORKS = 2,
+  LOCAL_NETWORKS = 3,
 }
-export enum OfferSelector { 
+export enum DealSelector { 
   OPEN = 0,
   IN_PROGRESS = 1,
   ENDED = 2,

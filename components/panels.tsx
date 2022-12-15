@@ -1,4 +1,4 @@
-import { Blockchain, Network, OfferInfoResponse, SwapRole, TradeRole } from '../proto/farcaster_pb'
+import { Blockchain, Network, SwapRole, TradeRole, DealInfoResponse } from '../proto/farcaster_pb'
 import { Block, Label } from './labels'
 import { chainToString, isMaker, netToString } from './utils'
 
@@ -46,14 +46,14 @@ export function TradePanel(params: PanelParams) {
   }
 }
 
-export function OfferPanel({
-  offerInfo,
+export function DealPanel({
+  dealInfo,
   displayForRole,
-  offer,
+  deal,
 }: {
-  offerInfo: OfferInfoResponse
+  dealInfo: DealInfoResponse
   displayForRole: TradeRole
-  offer?: String
+  deal?: String
 }) {
   const roleIsMaker = isMaker(displayForRole)
   return (
@@ -61,34 +61,36 @@ export function OfferPanel({
       <div className="break-all">
         <div className="mb-3 text-xl">
           <TradePanel
-            arbitratingAmount={offerInfo.getArbitratingAmount()}
-            accordantAmount={offerInfo.getAccordantAmount()}
-            arbitratingBlockchain={offerInfo.getArbitratingBlockchain()}
-            accordantBlockchain={offerInfo.getAccordantBlockchain()}
-            makerRole={offerInfo.getMakerRole()}
-            network={offerInfo.getNetwork()}
+            arbitratingAmount={dealInfo.getDealInfo()!.getArbitratingAmount()}
+            accordantAmount={dealInfo.getDealInfo()!.getAccordantAmount()}
+            arbitratingBlockchain={dealInfo.getDealInfo()!.getArbitratingBlockchain()}
+            accordantBlockchain={dealInfo.getDealInfo()!.getAccordantBlockchain()}
+            makerRole={dealInfo.getDealInfo()!.getMakerRole()}
+            network={dealInfo.getDealInfo()!.getNetwork()}
             displayForRole={displayForRole}
           />{' '}
-          in offer <Label>{offerInfo.getUuid()}</Label>
+          in deal <Label>{dealInfo.getDealInfo()!.getUuid()}</Label>
         </div>
-        {offer && (
+        {deal && (
           <>
-            <div>Copy this offer and send it to the taker:</div>
-            <Block intent="secondary">{offer}</Block>
+            <div>Copy this deal and send it to the taker:</div>
+            <Block intent="secondary">{deal}</Block>
           </>
         )}
       </div>
       <div className="mb-3">
         <div>{roleIsMaker ? 'Taker will connect to your peer at:' : 'You will connect to maker peer at:'}</div>
-        <Block intent="primary">{offerInfo && `${offerInfo.getNodeId()}@${offerInfo.getPeerAddress()}`}</Block>
+        <Block intent="primary">
+          {dealInfo && `${dealInfo.getDealInfo()!.getNodeId()}@${dealInfo.getDealInfo()!.getPeerAddress()}`}
+        </Block>
       </div>
       <div>
         <div className="mb-2">
-          Timelocks: cancel <Label>{offerInfo.getCancelTimelock()} blocks</Label>
-          punish <Label>{offerInfo.getPunishTimelock()} blocks</Label>
+          Timelocks: cancel <Label>{dealInfo.getDealInfo()!.getCancelTimelock()} blocks</Label>
+          punish <Label>{dealInfo.getDealInfo()!.getPunishTimelock()} blocks</Label>
         </div>
         <div>
-          Fee: <Label>{offerInfo.getFeeStrategy()}</Label>
+          Fee: <Label>{dealInfo.getDealInfo()!.getFeeStrategy()}</Label>
         </div>
       </div>
     </>

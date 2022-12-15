@@ -8,9 +8,9 @@ import {
   CheckpointsResponse,
   InfoRequest,
   InfoResponse,
-  ListOffersRequest,
-  ListOffersResponse,
-  OfferSelector,
+  ListDealsRequest,
+  ListDealsResponse,
+  DealSelector,
 } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { ResultCallbackHandler, useRefresh, useRpc } from './hooks'
@@ -18,23 +18,23 @@ import { Button } from '../components/input'
 
 export type RunningItem = {
   id: string
-  type: 'swap' | 'offer' | 'checkpoint'
+  type: 'swap' | 'deal' | 'checkpoint'
   data?: CheckpointEntry.AsObject
 }
 
 export type QueryFilters = {
-  offers: OfferSelector
+  deals: DealSelector
 }
 
 export type Filters = {
   swaps: boolean
-  offers: boolean
+  deals: boolean
   checkpoints: boolean
 }
 
-// Get the list of swaps, offers, and checkpoints and merge them into one
+// Get the list of swaps, deals, and checkpoints and merge them into one
 // standardized array. Filter out checkpoints present in the list of running
-// swaps and only query the selected offers.
+// swaps and only query the selected deals.
 async function getDataList(
   filters: QueryFilters,
   fcd: FarcasterClient,
@@ -43,7 +43,7 @@ async function getDataList(
   // build an array of promises that call all the data we need
   // hook the res handler in all calls to catch errors and save them in the global state
   // await all the array and get the results
-  const [info, offers, ckpts] = await Promise.all([
+  const [info, deals, ckpts] = await Promise.all([
     new Promise<InfoResponse>((resolve, reject) => {
       fcd.info(
         new InfoRequest(),
@@ -51,9 +51,9 @@ async function getDataList(
         res(resolve, () => reject())
       )
     }),
-    new Promise<ListOffersResponse>((resolve, reject) => {
-      fcd.listOffers(
-        new ListOffersRequest().setSelector(filters.offers),
+    new Promise<ListDealsResponse>((resolve, reject) => {
+      fcd.listDeals(
+        new ListDealsRequest().setDealSelector(filters.deals),
         null,
         res(resolve, () => reject())
       )
@@ -69,7 +69,8 @@ async function getDataList(
 
   const [swaps, checkpoints] = [info.getSwapsList(), ckpts.getCheckpointEntriesList()]
   const typedSwaps: RunningItem[] = swaps.map((id) => ({ id: id, type: 'swap' }))
-  const typedOffers: RunningItem[] = offers.getPublicOffersList().map((id) => ({ id: id, type: 'offer' }))
+  // fixme, pass the deal to avoid second call to decode
+  const typedDeals: RunningItem[] = deals.getDealsList().map((id) => ({ id: id.getEncodedDeal(), type: 'deal' }))
   const typedCheckpoints: RunningItem[] = checkpoints
     .filter((checkpoint) => !swaps.includes(checkpoint.getSwapId()))
     .map((checkpoint) => ({
@@ -77,33 +78,18 @@ async function getDataList(
       type: 'checkpoint',
       data: checkpoint.toObject(),
     }))
-  return typedSwaps.concat(typedOffers).concat(typedCheckpoints)
+  return typedSwaps.concat(typedDeals).concat(typedCheckpoints)
 }
 
 const defaultQueryFilters: QueryFilters = {
-  offers: OfferSelector.OPEN,
+  deals: DealSelector.OPEN,
 }
 
 const defaultFilters: Filters = {
   swaps: true,
-  offers: true,
+  deals: true,
   checkpoints: true,
 }
-
-const dummyRunningItem: RunningItem[] = [
-  {
-    id: ' Offer:Cke4ftrP5A7ikcMpynJqBEPrjS5nXuMHp1LQM2fvVdFMNR4h5TrWhRR11111uMp6P6KQQNttS4eSR11111TBPSF1113GTvtvqfD1111114A4TUcqRMKpcSttoC2RGdaKmhaxcBufKUapvpCcKVpVgCzp4H111111111111111111111111111111111111111115ymH83buC1xn4F35',
-    type: 'offer',
-  },
-  {
-    id: ' Offer:Cke4ftrP5A7H2bxn65kkwhPoZrPib5rpw1LQM2fvVdFMNR4h5TrWhRR11111uMMAegWn8KKebRunV11111TBPSF1113GTvtvqfD1111114A4TUcqRMKpcSttoC2RGdaKmhaxcBufKUapvpCcKVpVgCzp4H111111111111111111111111111111111111111115ymH83buC2kfug5P',
-    type: 'offer',
-  },
-  {
-    id: '0x84688dc610ccfbda678f934793c8432f726ee9ea27b85fbfdf293e363044f5bd',
-    type: 'swap',
-  },
-]
 
 function NavList({ pages, current, pageSet }: { pages: number; current: number; pageSet: (page: number) => void }) {
   return (
@@ -132,7 +118,7 @@ export default function RunningList() {
   const [fcd, res] = useRpc()
 
   const filteredList = list
-    .filter((i) => (i.type === 'offer' ? filters.offers : true))
+    .filter((i) => (i.type === 'deal' ? filters.deals : true))
     .filter((i) => (i.type === 'swap' ? filters.swaps : true))
     .filter((i) => (i.type === 'checkpoint' ? filters.checkpoints : true))
   const nbPages = Math.ceil(filteredList.length / itemPerPage)
@@ -157,39 +143,39 @@ export default function RunningList() {
           checked={filters.swaps}
           onChange={(e) => filtersSet((v) => ({ ...v, swaps: e.target.checked }))}
         />{' '}
-        offers:{' '}
+        deals:{' '}
         <input
           type="checkbox"
-          checked={filters.offers}
-          onChange={(e) => filtersSet((v) => ({ ...v, offers: e.target.checked }))}
+          checked={filters.deals}
+          onChange={(e) => filtersSet((v) => ({ ...v, deals: e.target.checked }))}
         />{' '}
         open{' '}
         <input
           type="radio"
-          name="offer-selector"
-          checked={queryFilters.offers === OfferSelector.OPEN}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.OPEN }))}
+          name="deal-selector"
+          checked={queryFilters.deals === DealSelector.OPEN}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.OPEN }))}
         />
         in progress{' '}
         <input
           type="radio"
-          name="offer-selector"
-          checked={queryFilters.offers === OfferSelector.IN_PROGRESS}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.IN_PROGRESS }))}
+          name="deal-selector"
+          checked={queryFilters.deals === DealSelector.IN_PROGRESS}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.IN_PROGRESS }))}
         />
         ended{' '}
         <input
           type="radio"
-          name="offer-selector"
-          checked={queryFilters.offers === OfferSelector.ENDED}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.ENDED }))}
+          name="deal-selector"
+          checked={queryFilters.deals === DealSelector.ENDED}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.ENDED }))}
         />
         all{' '}
         <input
           type="radio"
-          name="offer-selector"
-          checked={queryFilters.offers === OfferSelector.ALL}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, offers: OfferSelector.ALL }))}
+          name="deal-selector"
+          checked={queryFilters.deals === DealSelector.ALL}
+          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.ALL }))}
         />
         checkpoints{' '}
         <input

@@ -51,24 +51,23 @@ export default function RunningSwap({ id }: { id: string }) {
       {prog && (
         <>
           <Block intent="secondary">
-            {
-              prog.getProgressList().map((i) => {
-              let message = "";
-                switch (i.getProgressCase()) {
-                  case Progress.ProgressCase.PROGRESS_NOT_SET:
-                    message = "No progress yet";
-                  case Progress.ProgressCase.MESSAGE:
-                    message = i.getMessage();
-                  case Progress.ProgressCase.FAILURE:
-                    message = i.getFailure();
-                  case Progress.ProgressCase.SUCCESS:
-                    message = i.getSuccess();
-                  case Progress.ProgressCase.STATE_UPDATE:
-                    message = i.getStateUpdate()?.getStateCase().toString()?? "unknown state";
-                  case Progress.ProgressCase.STATE_TRANSITION:
-                    message = i.getStateTransition()?.getOldState()?.getStateCase().toString()?? "unknown old state";
-                }
-              return (<p key={JSON.stringify(i)}>{message}</p>)
+            {prog.getProgressList().map((i) => {
+              let message = ''
+              switch (i.getProgressCase()) {
+                case Progress.ProgressCase.PROGRESS_NOT_SET:
+                  message = 'No progress yet'
+                case Progress.ProgressCase.MESSAGE:
+                  message = i.getMessage()
+                case Progress.ProgressCase.STATE_UPDATE:
+                  message = i.getStateUpdate()?.getState().toString() ?? 'unknown state'
+                case Progress.ProgressCase.STATE_TRANSITION:
+                  message = i.getStateTransition()?.getOldState()?.getState().toString() ?? 'unknown old state'
+                case Progress.ProgressCase.FAILURE:
+                  message = i.getFailure()
+                case Progress.ProgressCase.SUCCESS:
+                  message = i.getSuccess()
+              }
+              return <p key={JSON.stringify(i)}>{message}</p>
             })}
           </Block>
           <div>

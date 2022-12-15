@@ -26,51 +26,33 @@ goog.exportSymbol('proto.farcaster.AbortSwapResponse', null, global);
 goog.exportSymbol('proto.farcaster.AddressSwapIdPair', null, global);
 goog.exportSymbol('proto.farcaster.AddressSwapIdPair.AddressSwapIdCase', null, global);
 goog.exportSymbol('proto.farcaster.Blockchain', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.AccLockConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.ArbLockConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.BlocksUntilCancelPossibleCase', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.BlocksUntilPunishPossibleCase', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.BlocksUntilRefundCase', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.BlocksUntilSafeMoneroBuySweepCase', null, global);
-goog.exportSymbol('proto.farcaster.BuySigB.CancelConfirmationsCase', null, global);
 goog.exportSymbol('proto.farcaster.CheckpointEntry', null, global);
 goog.exportSymbol('proto.farcaster.CheckpointSelector', null, global);
 goog.exportSymbol('proto.farcaster.CheckpointsRequest', null, global);
 goog.exportSymbol('proto.farcaster.CheckpointsResponse', null, global);
-goog.exportSymbol('proto.farcaster.CommitA', null, global);
-goog.exportSymbol('proto.farcaster.CommitB', null, global);
 goog.exportSymbol('proto.farcaster.CompleteHealthReport', null, global);
 goog.exportSymbol('proto.farcaster.ConnectSwapRequest', null, global);
 goog.exportSymbol('proto.farcaster.ConnectSwapResponse', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB.AccLockConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB.ArbLockConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB.BlocksUntilCancelPossibleCase', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB.BlocksUntilPunishPossibleCase', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB.BlocksUntilRefundCase', null, global);
-goog.exportSymbol('proto.farcaster.CoreArbB.CancelConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.FinishA', null, global);
-goog.exportSymbol('proto.farcaster.FinishB', null, global);
+goog.exportSymbol('proto.farcaster.DealInfo', null, global);
+goog.exportSymbol('proto.farcaster.DealInfoRequest', null, global);
+goog.exportSymbol('proto.farcaster.DealInfoResponse', null, global);
+goog.exportSymbol('proto.farcaster.DealSelector', null, global);
 goog.exportSymbol('proto.farcaster.FundingAddressesRequest', null, global);
 goog.exportSymbol('proto.farcaster.FundingAddressesResponse', null, global);
 goog.exportSymbol('proto.farcaster.FundingInfo', null, global);
 goog.exportSymbol('proto.farcaster.HealthCheckRequest', null, global);
 goog.exportSymbol('proto.farcaster.HealthCheckResponse', null, global);
 goog.exportSymbol('proto.farcaster.HealthCheckResponse.HealthReportCase', null, global);
-goog.exportSymbol('proto.farcaster.HealthCheckSelector', null, global);
 goog.exportSymbol('proto.farcaster.InfoRequest', null, global);
 goog.exportSymbol('proto.farcaster.InfoResponse', null, global);
-goog.exportSymbol('proto.farcaster.ListOffersRequest', null, global);
-goog.exportSymbol('proto.farcaster.ListOffersResponse', null, global);
+goog.exportSymbol('proto.farcaster.ListDealsRequest', null, global);
+goog.exportSymbol('proto.farcaster.ListDealsResponse', null, global);
 goog.exportSymbol('proto.farcaster.MakeRequest', null, global);
 goog.exportSymbol('proto.farcaster.MakeResponse', null, global);
 goog.exportSymbol('proto.farcaster.NeedsFundingRequest', null, global);
 goog.exportSymbol('proto.farcaster.NeedsFundingResponse', null, global);
 goog.exportSymbol('proto.farcaster.Network', null, global);
-goog.exportSymbol('proto.farcaster.OfferInfoRequest', null, global);
-goog.exportSymbol('proto.farcaster.OfferInfoResponse', null, global);
-goog.exportSymbol('proto.farcaster.OfferSelector', null, global);
+goog.exportSymbol('proto.farcaster.NetworkSelector', null, global);
 goog.exportSymbol('proto.farcaster.Outcome', null, global);
 goog.exportSymbol('proto.farcaster.PeersRequest', null, global);
 goog.exportSymbol('proto.farcaster.PeersResponse', null, global);
@@ -79,23 +61,18 @@ goog.exportSymbol('proto.farcaster.Progress.ProgressCase', null, global);
 goog.exportSymbol('proto.farcaster.ProgressRequest', null, global);
 goog.exportSymbol('proto.farcaster.ProgressResponse', null, global);
 goog.exportSymbol('proto.farcaster.ReducedHealthReport', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA.AccLockConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA.ArbLockConfirmationsCase', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA.BlocksUntilCancelPossibleCase', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA.BlocksUntilPunishPossibleCase', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA.BlocksUntilSafeBuyCase', null, global);
-goog.exportSymbol('proto.farcaster.RefundSigA.CancelConfirmationsCase', null, global);
 goog.exportSymbol('proto.farcaster.RestoreCheckpointRequest', null, global);
 goog.exportSymbol('proto.farcaster.RestoreCheckpointResponse', null, global);
-goog.exportSymbol('proto.farcaster.RevealA', null, global);
-goog.exportSymbol('proto.farcaster.RevealB', null, global);
-goog.exportSymbol('proto.farcaster.RevokeOfferRequest', null, global);
-goog.exportSymbol('proto.farcaster.RevokeOfferResponse', null, global);
-goog.exportSymbol('proto.farcaster.StartA', null, global);
-goog.exportSymbol('proto.farcaster.StartB', null, global);
+goog.exportSymbol('proto.farcaster.RevokeDealRequest', null, global);
+goog.exportSymbol('proto.farcaster.RevokeDealResponse', null, global);
 goog.exportSymbol('proto.farcaster.State', null, global);
-goog.exportSymbol('proto.farcaster.State.StateCase', null, global);
+goog.exportSymbol('proto.farcaster.State.AccLockConfirmationsCase', null, global);
+goog.exportSymbol('proto.farcaster.State.ArbLockConfirmationsCase', null, global);
+goog.exportSymbol('proto.farcaster.State.BlocksUntilCancelPossibleCase', null, global);
+goog.exportSymbol('proto.farcaster.State.BlocksUntilPunishPossibleCase', null, global);
+goog.exportSymbol('proto.farcaster.State.BlocksUntilSafeBuyCase', null, global);
+goog.exportSymbol('proto.farcaster.State.BlocksUntilSafeMoneroBuySweepCase', null, global);
+goog.exportSymbol('proto.farcaster.State.CancelConfirmationsCase', null, global);
 goog.exportSymbol('proto.farcaster.StateTransition', null, global);
 goog.exportSymbol('proto.farcaster.SwapInfoRequest', null, global);
 goog.exportSymbol('proto.farcaster.SwapInfoResponse', null, global);
@@ -283,16 +260,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.farcaster.OfferInfoRequest = function(opt_data) {
+proto.farcaster.DealInfoRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.farcaster.OfferInfoRequest, jspb.Message);
+goog.inherits(proto.farcaster.DealInfoRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.farcaster.OfferInfoRequest.displayName = 'proto.farcaster.OfferInfoRequest';
+  proto.farcaster.DealInfoRequest.displayName = 'proto.farcaster.DealInfoRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -304,16 +281,37 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.farcaster.OfferInfoResponse = function(opt_data) {
+proto.farcaster.DealInfoResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.farcaster.OfferInfoResponse, jspb.Message);
+goog.inherits(proto.farcaster.DealInfoResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.farcaster.OfferInfoResponse.displayName = 'proto.farcaster.OfferInfoResponse';
+  proto.farcaster.DealInfoResponse.displayName = 'proto.farcaster.DealInfoResponse';
+}
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.farcaster.DealInfo = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.farcaster.DealInfo, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  /**
+   * @public
+   * @override
+   */
+  proto.farcaster.DealInfo.displayName = 'proto.farcaster.DealInfo';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -367,16 +365,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.farcaster.ListOffersRequest = function(opt_data) {
+proto.farcaster.ListDealsRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.farcaster.ListOffersRequest, jspb.Message);
+goog.inherits(proto.farcaster.ListDealsRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.farcaster.ListOffersRequest.displayName = 'proto.farcaster.ListOffersRequest';
+  proto.farcaster.ListDealsRequest.displayName = 'proto.farcaster.ListDealsRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -388,16 +386,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.farcaster.ListOffersResponse = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.farcaster.ListOffersResponse.repeatedFields_, null);
+proto.farcaster.ListDealsResponse = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.farcaster.ListDealsResponse.repeatedFields_, null);
 };
-goog.inherits(proto.farcaster.ListOffersResponse, jspb.Message);
+goog.inherits(proto.farcaster.ListDealsResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.farcaster.ListOffersResponse.displayName = 'proto.farcaster.ListOffersResponse';
+  proto.farcaster.ListDealsResponse.displayName = 'proto.farcaster.ListDealsResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -661,16 +659,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.farcaster.RevokeOfferRequest = function(opt_data) {
+proto.farcaster.RevokeDealRequest = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.farcaster.RevokeOfferRequest, jspb.Message);
+goog.inherits(proto.farcaster.RevokeDealRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.farcaster.RevokeOfferRequest.displayName = 'proto.farcaster.RevokeOfferRequest';
+  proto.farcaster.RevokeDealRequest.displayName = 'proto.farcaster.RevokeDealRequest';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -682,16 +680,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.farcaster.RevokeOfferResponse = function(opt_data) {
+proto.farcaster.RevokeDealResponse = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.farcaster.RevokeOfferResponse, jspb.Message);
+goog.inherits(proto.farcaster.RevokeDealResponse, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.farcaster.RevokeOfferResponse.displayName = 'proto.farcaster.RevokeOfferResponse';
+  proto.farcaster.RevokeDealResponse.displayName = 'proto.farcaster.RevokeDealResponse';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -839,237 +837,6 @@ if (goog.DEBUG && !COMPILED) {
    * @override
    */
   proto.farcaster.State.displayName = 'proto.farcaster.State';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.StartA = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.StartA, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.StartA.displayName = 'proto.farcaster.StartA';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.CommitA = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.CommitA, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.CommitA.displayName = 'proto.farcaster.CommitA';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.RevealA = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.RevealA, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.RevealA.displayName = 'proto.farcaster.RevealA';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.FinishA = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.FinishA, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.FinishA.displayName = 'proto.farcaster.FinishA';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.StartB = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.StartB, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.StartB.displayName = 'proto.farcaster.StartB';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.CommitB = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.CommitB, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.CommitB.displayName = 'proto.farcaster.CommitB';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.RevealB = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.RevealB, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.RevealB.displayName = 'proto.farcaster.RevealB';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.FinishB = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
-};
-goog.inherits(proto.farcaster.FinishB, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.FinishB.displayName = 'proto.farcaster.FinishB';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.RefundSigA = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.farcaster.RefundSigA.oneofGroups_);
-};
-goog.inherits(proto.farcaster.RefundSigA, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.RefundSigA.displayName = 'proto.farcaster.RefundSigA';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.CoreArbB = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.farcaster.CoreArbB.oneofGroups_);
-};
-goog.inherits(proto.farcaster.CoreArbB, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.CoreArbB.displayName = 'proto.farcaster.CoreArbB';
-}
-/**
- * Generated by JsPbCodeGenerator.
- * @param {Array=} opt_data Optional initial data array, typically from a
- * server response, or constructed directly in Javascript. The array is used
- * in place and becomes part of the constructed object. It is not cloned.
- * If no data is provided, the constructed object will be empty, but still
- * valid.
- * @extends {jspb.Message}
- * @constructor
- */
-proto.farcaster.BuySigB = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, proto.farcaster.BuySigB.oneofGroups_);
-};
-goog.inherits(proto.farcaster.BuySigB, jspb.Message);
-if (goog.DEBUG && !COMPILED) {
-  /**
-   * @public
-   * @override
-   */
-  proto.farcaster.BuySigB.displayName = 'proto.farcaster.BuySigB';
 }
 /**
  * Generated by JsPbCodeGenerator.
@@ -1293,7 +1060,7 @@ proto.farcaster.HealthCheckRequest.deserializeBinaryFromReader = function(msg, r
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {!proto.farcaster.HealthCheckSelector} */ (reader.readEnum());
+      var value = /** @type {!proto.farcaster.NetworkSelector} */ (reader.readEnum());
       msg.setSelector(value);
       break;
     default:
@@ -1361,16 +1128,16 @@ proto.farcaster.HealthCheckRequest.prototype.setId = function(value) {
 
 
 /**
- * optional HealthCheckSelector selector = 2;
- * @return {!proto.farcaster.HealthCheckSelector}
+ * optional NetworkSelector selector = 2;
+ * @return {!proto.farcaster.NetworkSelector}
  */
 proto.farcaster.HealthCheckRequest.prototype.getSelector = function() {
-  return /** @type {!proto.farcaster.HealthCheckSelector} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+  return /** @type {!proto.farcaster.NetworkSelector} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.farcaster.HealthCheckSelector} value
+ * @param {!proto.farcaster.NetworkSelector} value
  * @return {!proto.farcaster.HealthCheckRequest} returns this
  */
 proto.farcaster.HealthCheckRequest.prototype.setSelector = function(value) {
@@ -2251,7 +2018,7 @@ proto.farcaster.InfoResponse.toObject = function(includeInstance, msg) {
     since: jspb.Message.getFieldWithDefault(msg, 5, 0),
     peersList: (f = jspb.Message.getRepeatedField(msg, 6)) == null ? undefined : f,
     swapsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
-    offersList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
+    dealsList: (f = jspb.Message.getRepeatedField(msg, 8)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -2314,7 +2081,7 @@ proto.farcaster.InfoResponse.deserializeBinaryFromReader = function(msg, reader)
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.addOffers(value);
+      msg.addDeals(value);
       break;
     default:
       reader.skipField();
@@ -2387,7 +2154,7 @@ proto.farcaster.InfoResponse.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
-  f = message.getOffersList();
+  f = message.getDealsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       8,
@@ -2563,10 +2330,10 @@ proto.farcaster.InfoResponse.prototype.clearSwapsList = function() {
 
 
 /**
- * repeated string offers = 8;
+ * repeated string deals = 8;
  * @return {!Array<string>}
  */
-proto.farcaster.InfoResponse.prototype.getOffersList = function() {
+proto.farcaster.InfoResponse.prototype.getDealsList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 8));
 };
 
@@ -2575,7 +2342,7 @@ proto.farcaster.InfoResponse.prototype.getOffersList = function() {
  * @param {!Array<string>} value
  * @return {!proto.farcaster.InfoResponse} returns this
  */
-proto.farcaster.InfoResponse.prototype.setOffersList = function(value) {
+proto.farcaster.InfoResponse.prototype.setDealsList = function(value) {
   return jspb.Message.setField(this, 8, value || []);
 };
 
@@ -2585,7 +2352,7 @@ proto.farcaster.InfoResponse.prototype.setOffersList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.farcaster.InfoResponse} returns this
  */
-proto.farcaster.InfoResponse.prototype.addOffers = function(value, opt_index) {
+proto.farcaster.InfoResponse.prototype.addDeals = function(value, opt_index) {
   return jspb.Message.addToRepeatedField(this, 8, value, opt_index);
 };
 
@@ -2594,8 +2361,8 @@ proto.farcaster.InfoResponse.prototype.addOffers = function(value, opt_index) {
  * Clears the list making it empty but non-null.
  * @return {!proto.farcaster.InfoResponse} returns this
  */
-proto.farcaster.InfoResponse.prototype.clearOffersList = function() {
-  return this.setOffersList([]);
+proto.farcaster.InfoResponse.prototype.clearDealsList = function() {
+  return this.setDealsList([]);
 };
 
 
@@ -2795,7 +2562,7 @@ proto.farcaster.SwapInfoResponse.toObject = function(includeInstance, msg) {
     connection: jspb.Message.getFieldWithDefault(msg, 2, ""),
     uptime: jspb.Message.getFieldWithDefault(msg, 3, 0),
     since: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    publicOffer: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    deal: (f = msg.getDeal()) && proto.farcaster.DealInfo.toObject(includeInstance, f),
     connected: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     tradeRole: jspb.Message.getFieldWithDefault(msg, 7, 0),
     swapRole: jspb.Message.getFieldWithDefault(msg, 8, 0),
@@ -2854,8 +2621,9 @@ proto.farcaster.SwapInfoResponse.deserializeBinaryFromReader = function(msg, rea
       msg.setSince(value);
       break;
     case 5:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPublicOffer(value);
+      var value = new proto.farcaster.DealInfo;
+      reader.readMessage(value,proto.farcaster.DealInfo.deserializeBinaryFromReader);
+      msg.setDeal(value);
       break;
     case 6:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -2934,11 +2702,12 @@ proto.farcaster.SwapInfoResponse.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getPublicOffer();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getDeal();
+  if (f != null) {
+    writer.writeMessage(
       5,
-      f
+      f,
+      proto.farcaster.DealInfo.serializeBinaryToWriter
     );
   }
   f = message.getConnected();
@@ -3052,20 +2821,39 @@ proto.farcaster.SwapInfoResponse.prototype.setSince = function(value) {
 
 
 /**
- * optional string public_offer = 5;
- * @return {string}
+ * optional DealInfo deal = 5;
+ * @return {?proto.farcaster.DealInfo}
  */
-proto.farcaster.SwapInfoResponse.prototype.getPublicOffer = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+proto.farcaster.SwapInfoResponse.prototype.getDeal = function() {
+  return /** @type{?proto.farcaster.DealInfo} */ (
+    jspb.Message.getWrapperField(this, proto.farcaster.DealInfo, 5));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.farcaster.DealInfo|undefined} value
+ * @return {!proto.farcaster.SwapInfoResponse} returns this
+*/
+proto.farcaster.SwapInfoResponse.prototype.setDeal = function(value) {
+  return jspb.Message.setWrapperField(this, 5, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.farcaster.SwapInfoResponse} returns this
  */
-proto.farcaster.SwapInfoResponse.prototype.setPublicOffer = function(value) {
-  return jspb.Message.setProto3StringField(this, 5, value);
+proto.farcaster.SwapInfoResponse.prototype.clearDeal = function() {
+  return this.setDeal(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.farcaster.SwapInfoResponse.prototype.hasDeal = function() {
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
@@ -3175,8 +2963,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.farcaster.OfferInfoRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.OfferInfoRequest.toObject(opt_includeInstance, this);
+proto.farcaster.DealInfoRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.DealInfoRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -3185,14 +2973,14 @@ proto.farcaster.OfferInfoRequest.prototype.toObject = function(opt_includeInstan
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.farcaster.OfferInfoRequest} msg The msg instance to transform.
+ * @param {!proto.farcaster.DealInfoRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.OfferInfoRequest.toObject = function(includeInstance, msg) {
+proto.farcaster.DealInfoRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    publicOffer: jspb.Message.getFieldWithDefault(msg, 2, "")
+    deal: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -3206,23 +2994,23 @@ proto.farcaster.OfferInfoRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.OfferInfoRequest}
+ * @return {!proto.farcaster.DealInfoRequest}
  */
-proto.farcaster.OfferInfoRequest.deserializeBinary = function(bytes) {
+proto.farcaster.DealInfoRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.OfferInfoRequest;
-  return proto.farcaster.OfferInfoRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.farcaster.DealInfoRequest;
+  return proto.farcaster.DealInfoRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.farcaster.OfferInfoRequest} msg The message object to deserialize into.
+ * @param {!proto.farcaster.DealInfoRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.OfferInfoRequest}
+ * @return {!proto.farcaster.DealInfoRequest}
  */
-proto.farcaster.OfferInfoRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.farcaster.DealInfoRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3235,7 +3023,7 @@ proto.farcaster.OfferInfoRequest.deserializeBinaryFromReader = function(msg, rea
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPublicOffer(value);
+      msg.setDeal(value);
       break;
     default:
       reader.skipField();
@@ -3250,9 +3038,9 @@ proto.farcaster.OfferInfoRequest.deserializeBinaryFromReader = function(msg, rea
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.farcaster.OfferInfoRequest.prototype.serializeBinary = function() {
+proto.farcaster.DealInfoRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.farcaster.OfferInfoRequest.serializeBinaryToWriter(this, writer);
+  proto.farcaster.DealInfoRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3260,11 +3048,11 @@ proto.farcaster.OfferInfoRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.OfferInfoRequest} message
+ * @param {!proto.farcaster.DealInfoRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.OfferInfoRequest.serializeBinaryToWriter = function(message, writer) {
+proto.farcaster.DealInfoRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
@@ -3273,7 +3061,7 @@ proto.farcaster.OfferInfoRequest.serializeBinaryToWriter = function(message, wri
       f
     );
   }
-  f = message.getPublicOffer();
+  f = message.getDeal();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -3287,34 +3075,34 @@ proto.farcaster.OfferInfoRequest.serializeBinaryToWriter = function(message, wri
  * optional uint32 id = 1;
  * @return {number}
  */
-proto.farcaster.OfferInfoRequest.prototype.getId = function() {
+proto.farcaster.DealInfoRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.OfferInfoRequest} returns this
+ * @return {!proto.farcaster.DealInfoRequest} returns this
  */
-proto.farcaster.OfferInfoRequest.prototype.setId = function(value) {
+proto.farcaster.DealInfoRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string public_offer = 2;
+ * optional string deal = 2;
  * @return {string}
  */
-proto.farcaster.OfferInfoRequest.prototype.getPublicOffer = function() {
+proto.farcaster.DealInfoRequest.prototype.getDeal = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.farcaster.OfferInfoRequest} returns this
+ * @return {!proto.farcaster.DealInfoRequest} returns this
  */
-proto.farcaster.OfferInfoRequest.prototype.setPublicOffer = function(value) {
+proto.farcaster.DealInfoRequest.prototype.setDeal = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -3335,8 +3123,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.farcaster.OfferInfoResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.OfferInfoResponse.toObject(opt_includeInstance, this);
+proto.farcaster.DealInfoResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.DealInfoResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -3345,25 +3133,14 @@ proto.farcaster.OfferInfoResponse.prototype.toObject = function(opt_includeInsta
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.farcaster.OfferInfoResponse} msg The msg instance to transform.
+ * @param {!proto.farcaster.DealInfoResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.OfferInfoResponse.toObject = function(includeInstance, msg) {
+proto.farcaster.DealInfoResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    arbitratingAmount: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    accordantAmount: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    cancelTimelock: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    punishTimelock: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    feeStrategy: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    makerRole: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    uuid: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    network: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    arbitratingBlockchain: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    accordantBlockchain: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    nodeId: jspb.Message.getFieldWithDefault(msg, 12, ""),
-    peerAddress: jspb.Message.getFieldWithDefault(msg, 13, "")
+    dealInfo: (f = msg.getDealInfo()) && proto.farcaster.DealInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -3377,23 +3154,23 @@ proto.farcaster.OfferInfoResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.OfferInfoResponse}
+ * @return {!proto.farcaster.DealInfoResponse}
  */
-proto.farcaster.OfferInfoResponse.deserializeBinary = function(bytes) {
+proto.farcaster.DealInfoResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.OfferInfoResponse;
-  return proto.farcaster.OfferInfoResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.farcaster.DealInfoResponse;
+  return proto.farcaster.DealInfoResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.farcaster.OfferInfoResponse} msg The message object to deserialize into.
+ * @param {!proto.farcaster.DealInfoResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.OfferInfoResponse}
+ * @return {!proto.farcaster.DealInfoResponse}
  */
-proto.farcaster.OfferInfoResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.farcaster.DealInfoResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3405,52 +3182,9 @@ proto.farcaster.OfferInfoResponse.deserializeBinaryFromReader = function(msg, re
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setArbitratingAmount(value);
-      break;
-    case 3:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAccordantAmount(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setCancelTimelock(value);
-      break;
-    case 5:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setPunishTimelock(value);
-      break;
-    case 6:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setFeeStrategy(value);
-      break;
-    case 7:
-      var value = /** @type {!proto.farcaster.SwapRole} */ (reader.readEnum());
-      msg.setMakerRole(value);
-      break;
-    case 8:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setUuid(value);
-      break;
-    case 9:
-      var value = /** @type {!proto.farcaster.Network} */ (reader.readEnum());
-      msg.setNetwork(value);
-      break;
-    case 10:
-      var value = /** @type {!proto.farcaster.Blockchain} */ (reader.readEnum());
-      msg.setArbitratingBlockchain(value);
-      break;
-    case 11:
-      var value = /** @type {!proto.farcaster.Blockchain} */ (reader.readEnum());
-      msg.setAccordantBlockchain(value);
-      break;
-    case 12:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setNodeId(value);
-      break;
-    case 13:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPeerAddress(value);
+      var value = new proto.farcaster.DealInfo;
+      reader.readMessage(value,proto.farcaster.DealInfo.deserializeBinaryFromReader);
+      msg.setDealInfo(value);
       break;
     default:
       reader.skipField();
@@ -3465,9 +3199,9 @@ proto.farcaster.OfferInfoResponse.deserializeBinaryFromReader = function(msg, re
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.farcaster.OfferInfoResponse.prototype.serializeBinary = function() {
+proto.farcaster.DealInfoResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.farcaster.OfferInfoResponse.serializeBinaryToWriter(this, writer);
+  proto.farcaster.DealInfoResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3475,11 +3209,11 @@ proto.farcaster.OfferInfoResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.OfferInfoResponse} message
+ * @param {!proto.farcaster.DealInfoResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.OfferInfoResponse.serializeBinaryToWriter = function(message, writer) {
+proto.farcaster.DealInfoResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
@@ -3488,84 +3222,319 @@ proto.farcaster.OfferInfoResponse.serializeBinaryToWriter = function(message, wr
       f
     );
   }
+  f = message.getDealInfo();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      proto.farcaster.DealInfo.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional uint32 id = 1;
+ * @return {number}
+ */
+proto.farcaster.DealInfoResponse.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.farcaster.DealInfoResponse} returns this
+ */
+proto.farcaster.DealInfoResponse.prototype.setId = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional DealInfo deal_info = 2;
+ * @return {?proto.farcaster.DealInfo}
+ */
+proto.farcaster.DealInfoResponse.prototype.getDealInfo = function() {
+  return /** @type{?proto.farcaster.DealInfo} */ (
+    jspb.Message.getWrapperField(this, proto.farcaster.DealInfo, 2));
+};
+
+
+/**
+ * @param {?proto.farcaster.DealInfo|undefined} value
+ * @return {!proto.farcaster.DealInfoResponse} returns this
+*/
+proto.farcaster.DealInfoResponse.prototype.setDealInfo = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.farcaster.DealInfoResponse} returns this
+ */
+proto.farcaster.DealInfoResponse.prototype.clearDealInfo = function() {
+  return this.setDealInfo(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.farcaster.DealInfoResponse.prototype.hasDealInfo = function() {
+  return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.farcaster.DealInfo.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.DealInfo.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.farcaster.DealInfo} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.farcaster.DealInfo.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    arbitratingAmount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    accordantAmount: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    cancelTimelock: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    punishTimelock: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    feeStrategy: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    makerRole: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    uuid: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    network: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    arbitratingBlockchain: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    accordantBlockchain: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    nodeId: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    peerAddress: jspb.Message.getFieldWithDefault(msg, 12, ""),
+    encodedDeal: jspb.Message.getFieldWithDefault(msg, 13, "")
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.farcaster.DealInfo}
+ */
+proto.farcaster.DealInfo.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.farcaster.DealInfo;
+  return proto.farcaster.DealInfo.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.farcaster.DealInfo} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.farcaster.DealInfo}
+ */
+proto.farcaster.DealInfo.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setArbitratingAmount(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAccordantAmount(value);
+      break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCancelTimelock(value);
+      break;
+    case 4:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setPunishTimelock(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setFeeStrategy(value);
+      break;
+    case 6:
+      var value = /** @type {!proto.farcaster.SwapRole} */ (reader.readEnum());
+      msg.setMakerRole(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setUuid(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.farcaster.Network} */ (reader.readEnum());
+      msg.setNetwork(value);
+      break;
+    case 9:
+      var value = /** @type {!proto.farcaster.Blockchain} */ (reader.readEnum());
+      msg.setArbitratingBlockchain(value);
+      break;
+    case 10:
+      var value = /** @type {!proto.farcaster.Blockchain} */ (reader.readEnum());
+      msg.setAccordantBlockchain(value);
+      break;
+    case 11:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNodeId(value);
+      break;
+    case 12:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPeerAddress(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setEncodedDeal(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.farcaster.DealInfo.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.farcaster.DealInfo.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.farcaster.DealInfo} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.farcaster.DealInfo.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
   f = message.getArbitratingAmount();
   if (f !== 0) {
     writer.writeUint64(
-      2,
+      1,
       f
     );
   }
   f = message.getAccordantAmount();
   if (f !== 0) {
     writer.writeUint64(
-      3,
+      2,
       f
     );
   }
   f = message.getCancelTimelock();
   if (f !== 0) {
     writer.writeUint32(
-      4,
+      3,
       f
     );
   }
   f = message.getPunishTimelock();
   if (f !== 0) {
     writer.writeUint32(
-      5,
+      4,
       f
     );
   }
   f = message.getFeeStrategy();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      5,
       f
     );
   }
   f = message.getMakerRole();
   if (f !== 0.0) {
     writer.writeEnum(
-      7,
+      6,
       f
     );
   }
   f = message.getUuid();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      7,
       f
     );
   }
   f = message.getNetwork();
   if (f !== 0.0) {
     writer.writeEnum(
-      9,
+      8,
       f
     );
   }
   f = message.getArbitratingBlockchain();
   if (f !== 0.0) {
     writer.writeEnum(
-      10,
+      9,
       f
     );
   }
   f = message.getAccordantBlockchain();
   if (f !== 0.0) {
     writer.writeEnum(
-      11,
+      10,
       f
     );
   }
   f = message.getNodeId();
   if (f.length > 0) {
     writer.writeString(
-      12,
+      11,
       f
     );
   }
   f = message.getPeerAddress();
+  if (f.length > 0) {
+    writer.writeString(
+      12,
+      f
+    );
+  }
+  f = message.getEncodedDeal();
   if (f.length > 0) {
     writer.writeString(
       13,
@@ -3576,235 +3545,235 @@ proto.farcaster.OfferInfoResponse.serializeBinaryToWriter = function(message, wr
 
 
 /**
- * optional uint32 id = 1;
+ * optional uint64 arbitrating_amount = 1;
  * @return {number}
  */
-proto.farcaster.OfferInfoResponse.prototype.getId = function() {
+proto.farcaster.DealInfo.prototype.getArbitratingAmount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setId = function(value) {
+proto.farcaster.DealInfo.prototype.setArbitratingAmount = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional uint64 arbitrating_amount = 2;
+ * optional uint64 accordant_amount = 2;
  * @return {number}
  */
-proto.farcaster.OfferInfoResponse.prototype.getArbitratingAmount = function() {
+proto.farcaster.DealInfo.prototype.getAccordantAmount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setArbitratingAmount = function(value) {
+proto.farcaster.DealInfo.prototype.setAccordantAmount = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional uint64 accordant_amount = 3;
+ * optional uint32 cancel_timelock = 3;
  * @return {number}
  */
-proto.farcaster.OfferInfoResponse.prototype.getAccordantAmount = function() {
+proto.farcaster.DealInfo.prototype.getCancelTimelock = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setAccordantAmount = function(value) {
+proto.farcaster.DealInfo.prototype.setCancelTimelock = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional uint32 cancel_timelock = 4;
+ * optional uint32 punish_timelock = 4;
  * @return {number}
  */
-proto.farcaster.OfferInfoResponse.prototype.getCancelTimelock = function() {
+proto.farcaster.DealInfo.prototype.getPunishTimelock = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setCancelTimelock = function(value) {
+proto.farcaster.DealInfo.prototype.setPunishTimelock = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional uint32 punish_timelock = 5;
- * @return {number}
- */
-proto.farcaster.OfferInfoResponse.prototype.getPunishTimelock = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
- */
-proto.farcaster.OfferInfoResponse.prototype.setPunishTimelock = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
-};
-
-
-/**
- * optional string fee_strategy = 6;
+ * optional string fee_strategy = 5;
  * @return {string}
  */
-proto.farcaster.OfferInfoResponse.prototype.getFeeStrategy = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+proto.farcaster.DealInfo.prototype.getFeeStrategy = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setFeeStrategy = function(value) {
-  return jspb.Message.setProto3StringField(this, 6, value);
+proto.farcaster.DealInfo.prototype.setFeeStrategy = function(value) {
+  return jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional SwapRole maker_role = 7;
+ * optional SwapRole maker_role = 6;
  * @return {!proto.farcaster.SwapRole}
  */
-proto.farcaster.OfferInfoResponse.prototype.getMakerRole = function() {
-  return /** @type {!proto.farcaster.SwapRole} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+proto.farcaster.DealInfo.prototype.getMakerRole = function() {
+  return /** @type {!proto.farcaster.SwapRole} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
 };
 
 
 /**
  * @param {!proto.farcaster.SwapRole} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setMakerRole = function(value) {
-  return jspb.Message.setProto3EnumField(this, 7, value);
+proto.farcaster.DealInfo.prototype.setMakerRole = function(value) {
+  return jspb.Message.setProto3EnumField(this, 6, value);
 };
 
 
 /**
- * optional string uuid = 8;
+ * optional string uuid = 7;
  * @return {string}
  */
-proto.farcaster.OfferInfoResponse.prototype.getUuid = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+proto.farcaster.DealInfo.prototype.getUuid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setUuid = function(value) {
-  return jspb.Message.setProto3StringField(this, 8, value);
+proto.farcaster.DealInfo.prototype.setUuid = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional Network network = 9;
+ * optional Network network = 8;
  * @return {!proto.farcaster.Network}
  */
-proto.farcaster.OfferInfoResponse.prototype.getNetwork = function() {
-  return /** @type {!proto.farcaster.Network} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+proto.farcaster.DealInfo.prototype.getNetwork = function() {
+  return /** @type {!proto.farcaster.Network} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
 };
 
 
 /**
  * @param {!proto.farcaster.Network} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setNetwork = function(value) {
+proto.farcaster.DealInfo.prototype.setNetwork = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
+};
+
+
+/**
+ * optional Blockchain arbitrating_blockchain = 9;
+ * @return {!proto.farcaster.Blockchain}
+ */
+proto.farcaster.DealInfo.prototype.getArbitratingBlockchain = function() {
+  return /** @type {!proto.farcaster.Blockchain} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
+};
+
+
+/**
+ * @param {!proto.farcaster.Blockchain} value
+ * @return {!proto.farcaster.DealInfo} returns this
+ */
+proto.farcaster.DealInfo.prototype.setArbitratingBlockchain = function(value) {
   return jspb.Message.setProto3EnumField(this, 9, value);
 };
 
 
 /**
- * optional Blockchain arbitrating_blockchain = 10;
+ * optional Blockchain accordant_blockchain = 10;
  * @return {!proto.farcaster.Blockchain}
  */
-proto.farcaster.OfferInfoResponse.prototype.getArbitratingBlockchain = function() {
+proto.farcaster.DealInfo.prototype.getAccordantBlockchain = function() {
   return /** @type {!proto.farcaster.Blockchain} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
 
 /**
  * @param {!proto.farcaster.Blockchain} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setArbitratingBlockchain = function(value) {
+proto.farcaster.DealInfo.prototype.setAccordantBlockchain = function(value) {
   return jspb.Message.setProto3EnumField(this, 10, value);
 };
 
 
 /**
- * optional Blockchain accordant_blockchain = 11;
- * @return {!proto.farcaster.Blockchain}
- */
-proto.farcaster.OfferInfoResponse.prototype.getAccordantBlockchain = function() {
-  return /** @type {!proto.farcaster.Blockchain} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
-};
-
-
-/**
- * @param {!proto.farcaster.Blockchain} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
- */
-proto.farcaster.OfferInfoResponse.prototype.setAccordantBlockchain = function(value) {
-  return jspb.Message.setProto3EnumField(this, 11, value);
-};
-
-
-/**
- * optional string node_id = 12;
+ * optional string node_id = 11;
  * @return {string}
  */
-proto.farcaster.OfferInfoResponse.prototype.getNodeId = function() {
+proto.farcaster.DealInfo.prototype.getNodeId = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.farcaster.DealInfo} returns this
+ */
+proto.farcaster.DealInfo.prototype.setNodeId = function(value) {
+  return jspb.Message.setProto3StringField(this, 11, value);
+};
+
+
+/**
+ * optional string peer_address = 12;
+ * @return {string}
+ */
+proto.farcaster.DealInfo.prototype.getPeerAddress = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 12, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setNodeId = function(value) {
+proto.farcaster.DealInfo.prototype.setPeerAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 12, value);
 };
 
 
 /**
- * optional string peer_address = 13;
+ * optional string encoded_deal = 13;
  * @return {string}
  */
-proto.farcaster.OfferInfoResponse.prototype.getPeerAddress = function() {
+proto.farcaster.DealInfo.prototype.getEncodedDeal = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.farcaster.OfferInfoResponse} returns this
+ * @return {!proto.farcaster.DealInfo} returns this
  */
-proto.farcaster.OfferInfoResponse.prototype.setPeerAddress = function(value) {
+proto.farcaster.DealInfo.prototype.setEncodedDeal = function(value) {
   return jspb.Message.setProto3StringField(this, 13, value);
 };
 
@@ -4141,8 +4110,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.farcaster.ListOffersRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.ListOffersRequest.toObject(opt_includeInstance, this);
+proto.farcaster.ListDealsRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.ListDealsRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -4151,14 +4120,15 @@ proto.farcaster.ListOffersRequest.prototype.toObject = function(opt_includeInsta
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.farcaster.ListOffersRequest} msg The msg instance to transform.
+ * @param {!proto.farcaster.ListDealsRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.ListOffersRequest.toObject = function(includeInstance, msg) {
+proto.farcaster.ListDealsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    selector: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    dealSelector: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    networkSelector: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -4172,23 +4142,23 @@ proto.farcaster.ListOffersRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.ListOffersRequest}
+ * @return {!proto.farcaster.ListDealsRequest}
  */
-proto.farcaster.ListOffersRequest.deserializeBinary = function(bytes) {
+proto.farcaster.ListDealsRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.ListOffersRequest;
-  return proto.farcaster.ListOffersRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.farcaster.ListDealsRequest;
+  return proto.farcaster.ListDealsRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.farcaster.ListOffersRequest} msg The message object to deserialize into.
+ * @param {!proto.farcaster.ListDealsRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.ListOffersRequest}
+ * @return {!proto.farcaster.ListDealsRequest}
  */
-proto.farcaster.ListOffersRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.farcaster.ListDealsRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4200,8 +4170,12 @@ proto.farcaster.ListOffersRequest.deserializeBinaryFromReader = function(msg, re
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {!proto.farcaster.OfferSelector} */ (reader.readEnum());
-      msg.setSelector(value);
+      var value = /** @type {!proto.farcaster.DealSelector} */ (reader.readEnum());
+      msg.setDealSelector(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.farcaster.NetworkSelector} */ (reader.readEnum());
+      msg.setNetworkSelector(value);
       break;
     default:
       reader.skipField();
@@ -4216,9 +4190,9 @@ proto.farcaster.ListOffersRequest.deserializeBinaryFromReader = function(msg, re
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.farcaster.ListOffersRequest.prototype.serializeBinary = function() {
+proto.farcaster.ListDealsRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.farcaster.ListOffersRequest.serializeBinaryToWriter(this, writer);
+  proto.farcaster.ListDealsRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4226,11 +4200,11 @@ proto.farcaster.ListOffersRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.ListOffersRequest} message
+ * @param {!proto.farcaster.ListDealsRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.ListOffersRequest.serializeBinaryToWriter = function(message, writer) {
+proto.farcaster.ListDealsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
@@ -4239,10 +4213,17 @@ proto.farcaster.ListOffersRequest.serializeBinaryToWriter = function(message, wr
       f
     );
   }
-  f = message.getSelector();
+  f = message.getDealSelector();
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = message.getNetworkSelector();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
       f
     );
   }
@@ -4253,35 +4234,53 @@ proto.farcaster.ListOffersRequest.serializeBinaryToWriter = function(message, wr
  * optional uint32 id = 1;
  * @return {number}
  */
-proto.farcaster.ListOffersRequest.prototype.getId = function() {
+proto.farcaster.ListDealsRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.ListOffersRequest} returns this
+ * @return {!proto.farcaster.ListDealsRequest} returns this
  */
-proto.farcaster.ListOffersRequest.prototype.setId = function(value) {
+proto.farcaster.ListDealsRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional OfferSelector selector = 2;
- * @return {!proto.farcaster.OfferSelector}
+ * optional DealSelector deal_selector = 2;
+ * @return {!proto.farcaster.DealSelector}
  */
-proto.farcaster.ListOffersRequest.prototype.getSelector = function() {
-  return /** @type {!proto.farcaster.OfferSelector} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.farcaster.ListDealsRequest.prototype.getDealSelector = function() {
+  return /** @type {!proto.farcaster.DealSelector} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.farcaster.OfferSelector} value
- * @return {!proto.farcaster.ListOffersRequest} returns this
+ * @param {!proto.farcaster.DealSelector} value
+ * @return {!proto.farcaster.ListDealsRequest} returns this
  */
-proto.farcaster.ListOffersRequest.prototype.setSelector = function(value) {
+proto.farcaster.ListDealsRequest.prototype.setDealSelector = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional NetworkSelector network_selector = 3;
+ * @return {!proto.farcaster.NetworkSelector}
+ */
+proto.farcaster.ListDealsRequest.prototype.getNetworkSelector = function() {
+  return /** @type {!proto.farcaster.NetworkSelector} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.farcaster.NetworkSelector} value
+ * @return {!proto.farcaster.ListDealsRequest} returns this
+ */
+proto.farcaster.ListDealsRequest.prototype.setNetworkSelector = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -4291,7 +4290,7 @@ proto.farcaster.ListOffersRequest.prototype.setSelector = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.farcaster.ListOffersResponse.repeatedFields_ = [2];
+proto.farcaster.ListDealsResponse.repeatedFields_ = [2];
 
 
 
@@ -4308,8 +4307,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.farcaster.ListOffersResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.ListOffersResponse.toObject(opt_includeInstance, this);
+proto.farcaster.ListDealsResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.ListDealsResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -4318,14 +4317,15 @@ proto.farcaster.ListOffersResponse.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.farcaster.ListOffersResponse} msg The msg instance to transform.
+ * @param {!proto.farcaster.ListDealsResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.ListOffersResponse.toObject = function(includeInstance, msg) {
+proto.farcaster.ListDealsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    publicOffersList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    dealsList: jspb.Message.toObjectList(msg.getDealsList(),
+    proto.farcaster.DealInfo.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -4339,23 +4339,23 @@ proto.farcaster.ListOffersResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.ListOffersResponse}
+ * @return {!proto.farcaster.ListDealsResponse}
  */
-proto.farcaster.ListOffersResponse.deserializeBinary = function(bytes) {
+proto.farcaster.ListDealsResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.ListOffersResponse;
-  return proto.farcaster.ListOffersResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.farcaster.ListDealsResponse;
+  return proto.farcaster.ListDealsResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.farcaster.ListOffersResponse} msg The message object to deserialize into.
+ * @param {!proto.farcaster.ListDealsResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.ListOffersResponse}
+ * @return {!proto.farcaster.ListDealsResponse}
  */
-proto.farcaster.ListOffersResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.farcaster.ListDealsResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -4367,8 +4367,9 @@ proto.farcaster.ListOffersResponse.deserializeBinaryFromReader = function(msg, r
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.addPublicOffers(value);
+      var value = new proto.farcaster.DealInfo;
+      reader.readMessage(value,proto.farcaster.DealInfo.deserializeBinaryFromReader);
+      msg.addDeals(value);
       break;
     default:
       reader.skipField();
@@ -4383,9 +4384,9 @@ proto.farcaster.ListOffersResponse.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.farcaster.ListOffersResponse.prototype.serializeBinary = function() {
+proto.farcaster.ListDealsResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.farcaster.ListOffersResponse.serializeBinaryToWriter(this, writer);
+  proto.farcaster.ListDealsResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -4393,11 +4394,11 @@ proto.farcaster.ListOffersResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.ListOffersResponse} message
+ * @param {!proto.farcaster.ListDealsResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.ListOffersResponse.serializeBinaryToWriter = function(message, writer) {
+proto.farcaster.ListDealsResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
@@ -4406,11 +4407,12 @@ proto.farcaster.ListOffersResponse.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getPublicOffersList();
+  f = message.getDealsList();
   if (f.length > 0) {
-    writer.writeRepeatedString(
+    writer.writeRepeatedMessage(
       2,
-      f
+      f,
+      proto.farcaster.DealInfo.serializeBinaryToWriter
     );
   }
 };
@@ -4420,54 +4422,55 @@ proto.farcaster.ListOffersResponse.serializeBinaryToWriter = function(message, w
  * optional uint32 id = 1;
  * @return {number}
  */
-proto.farcaster.ListOffersResponse.prototype.getId = function() {
+proto.farcaster.ListDealsResponse.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.ListOffersResponse} returns this
+ * @return {!proto.farcaster.ListDealsResponse} returns this
  */
-proto.farcaster.ListOffersResponse.prototype.setId = function(value) {
+proto.farcaster.ListDealsResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * repeated string public_offers = 2;
- * @return {!Array<string>}
+ * repeated DealInfo deals = 2;
+ * @return {!Array<!proto.farcaster.DealInfo>}
  */
-proto.farcaster.ListOffersResponse.prototype.getPublicOffersList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
+proto.farcaster.ListDealsResponse.prototype.getDealsList = function() {
+  return /** @type{!Array<!proto.farcaster.DealInfo>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.farcaster.DealInfo, 2));
 };
 
 
 /**
- * @param {!Array<string>} value
- * @return {!proto.farcaster.ListOffersResponse} returns this
- */
-proto.farcaster.ListOffersResponse.prototype.setPublicOffersList = function(value) {
-  return jspb.Message.setField(this, 2, value || []);
+ * @param {!Array<!proto.farcaster.DealInfo>} value
+ * @return {!proto.farcaster.ListDealsResponse} returns this
+*/
+proto.farcaster.ListDealsResponse.prototype.setDealsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 2, value);
 };
 
 
 /**
- * @param {string} value
+ * @param {!proto.farcaster.DealInfo=} opt_value
  * @param {number=} opt_index
- * @return {!proto.farcaster.ListOffersResponse} returns this
+ * @return {!proto.farcaster.DealInfo}
  */
-proto.farcaster.ListOffersResponse.prototype.addPublicOffers = function(value, opt_index) {
-  return jspb.Message.addToRepeatedField(this, 2, value, opt_index);
+proto.farcaster.ListDealsResponse.prototype.addDeals = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.farcaster.DealInfo, opt_index);
 };
 
 
 /**
  * Clears the list making it empty but non-null.
- * @return {!proto.farcaster.ListOffersResponse} returns this
+ * @return {!proto.farcaster.ListDealsResponse} returns this
  */
-proto.farcaster.ListOffersResponse.prototype.clearPublicOffersList = function() {
-  return this.setPublicOffersList([]);
+proto.farcaster.ListDealsResponse.prototype.clearDealsList = function() {
+  return this.setDealsList([]);
 };
 
 
@@ -4504,7 +4507,8 @@ proto.farcaster.CheckpointsRequest.prototype.toObject = function(opt_includeInst
 proto.farcaster.CheckpointsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    selector: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    checkpointSelector: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    networkSelector: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -4547,7 +4551,11 @@ proto.farcaster.CheckpointsRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 2:
       var value = /** @type {!proto.farcaster.CheckpointSelector} */ (reader.readEnum());
-      msg.setSelector(value);
+      msg.setCheckpointSelector(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.farcaster.NetworkSelector} */ (reader.readEnum());
+      msg.setNetworkSelector(value);
       break;
     default:
       reader.skipField();
@@ -4585,10 +4593,17 @@ proto.farcaster.CheckpointsRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getSelector();
+  f = message.getCheckpointSelector();
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = message.getNetworkSelector();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
       f
     );
   }
@@ -4614,10 +4629,10 @@ proto.farcaster.CheckpointsRequest.prototype.setId = function(value) {
 
 
 /**
- * optional CheckpointSelector selector = 2;
+ * optional CheckpointSelector checkpoint_selector = 2;
  * @return {!proto.farcaster.CheckpointSelector}
  */
-proto.farcaster.CheckpointsRequest.prototype.getSelector = function() {
+proto.farcaster.CheckpointsRequest.prototype.getCheckpointSelector = function() {
   return /** @type {!proto.farcaster.CheckpointSelector} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -4626,8 +4641,26 @@ proto.farcaster.CheckpointsRequest.prototype.getSelector = function() {
  * @param {!proto.farcaster.CheckpointSelector} value
  * @return {!proto.farcaster.CheckpointsRequest} returns this
  */
-proto.farcaster.CheckpointsRequest.prototype.setSelector = function(value) {
+proto.farcaster.CheckpointsRequest.prototype.setCheckpointSelector = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional NetworkSelector network_selector = 3;
+ * @return {!proto.farcaster.NetworkSelector}
+ */
+proto.farcaster.CheckpointsRequest.prototype.getNetworkSelector = function() {
+  return /** @type {!proto.farcaster.NetworkSelector} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.farcaster.NetworkSelector} value
+ * @return {!proto.farcaster.CheckpointsRequest} returns this
+ */
+proto.farcaster.CheckpointsRequest.prototype.setNetworkSelector = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -4854,7 +4887,7 @@ proto.farcaster.CheckpointEntry.prototype.toObject = function(opt_includeInstanc
 proto.farcaster.CheckpointEntry.toObject = function(includeInstance, msg) {
   var f, obj = {
     swapId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    publicOffer: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    deal: (f = msg.getDeal()) && proto.farcaster.DealInfo.toObject(includeInstance, f),
     tradeRole: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
@@ -4897,8 +4930,9 @@ proto.farcaster.CheckpointEntry.deserializeBinaryFromReader = function(msg, read
       msg.setSwapId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPublicOffer(value);
+      var value = new proto.farcaster.DealInfo;
+      reader.readMessage(value,proto.farcaster.DealInfo.deserializeBinaryFromReader);
+      msg.setDeal(value);
       break;
     case 3:
       var value = /** @type {!proto.farcaster.TradeRole} */ (reader.readEnum());
@@ -4940,11 +4974,12 @@ proto.farcaster.CheckpointEntry.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getPublicOffer();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getDeal();
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      proto.farcaster.DealInfo.serializeBinaryToWriter
     );
   }
   f = message.getTradeRole();
@@ -4976,20 +5011,39 @@ proto.farcaster.CheckpointEntry.prototype.setSwapId = function(value) {
 
 
 /**
- * optional string public_offer = 2;
- * @return {string}
+ * optional DealInfo deal = 2;
+ * @return {?proto.farcaster.DealInfo}
  */
-proto.farcaster.CheckpointEntry.prototype.getPublicOffer = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.farcaster.CheckpointEntry.prototype.getDeal = function() {
+  return /** @type{?proto.farcaster.DealInfo} */ (
+    jspb.Message.getWrapperField(this, proto.farcaster.DealInfo, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.farcaster.DealInfo|undefined} value
+ * @return {!proto.farcaster.CheckpointEntry} returns this
+*/
+proto.farcaster.CheckpointEntry.prototype.setDeal = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.farcaster.CheckpointEntry} returns this
  */
-proto.farcaster.CheckpointEntry.prototype.setPublicOffer = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.farcaster.CheckpointEntry.prototype.clearDeal = function() {
+  return this.setDeal(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.farcaster.CheckpointEntry.prototype.hasDeal = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -5364,7 +5418,8 @@ proto.farcaster.FundingAddressesRequest.prototype.toObject = function(opt_includ
 proto.farcaster.FundingAddressesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    blockchain: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    blockchain: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    networkSelector: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -5409,6 +5464,10 @@ proto.farcaster.FundingAddressesRequest.deserializeBinaryFromReader = function(m
       var value = /** @type {!proto.farcaster.Blockchain} */ (reader.readEnum());
       msg.setBlockchain(value);
       break;
+    case 3:
+      var value = /** @type {!proto.farcaster.NetworkSelector} */ (reader.readEnum());
+      msg.setNetworkSelector(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -5452,6 +5511,13 @@ proto.farcaster.FundingAddressesRequest.serializeBinaryToWriter = function(messa
       f
     );
   }
+  f = message.getNetworkSelector();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -5488,6 +5554,24 @@ proto.farcaster.FundingAddressesRequest.prototype.getBlockchain = function() {
  */
 proto.farcaster.FundingAddressesRequest.prototype.setBlockchain = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional NetworkSelector network_selector = 3;
+ * @return {!proto.farcaster.NetworkSelector}
+ */
+proto.farcaster.FundingAddressesRequest.prototype.getNetworkSelector = function() {
+  return /** @type {!proto.farcaster.NetworkSelector} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.farcaster.NetworkSelector} value
+ * @return {!proto.farcaster.FundingAddressesRequest} returns this
+ */
+proto.farcaster.FundingAddressesRequest.prototype.setNetworkSelector = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -6437,7 +6521,7 @@ proto.farcaster.MakeResponse.prototype.toObject = function(opt_includeInstance) 
 proto.farcaster.MakeResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    offer: jspb.Message.getFieldWithDefault(msg, 2, "")
+    deal: (f = msg.getDeal()) && proto.farcaster.DealInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -6479,8 +6563,9 @@ proto.farcaster.MakeResponse.deserializeBinaryFromReader = function(msg, reader)
       msg.setId(value);
       break;
     case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setOffer(value);
+      var value = new proto.farcaster.DealInfo;
+      reader.readMessage(value,proto.farcaster.DealInfo.deserializeBinaryFromReader);
+      msg.setDeal(value);
       break;
     default:
       reader.skipField();
@@ -6518,11 +6603,12 @@ proto.farcaster.MakeResponse.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
-  f = message.getOffer();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getDeal();
+  if (f != null) {
+    writer.writeMessage(
       2,
-      f
+      f,
+      proto.farcaster.DealInfo.serializeBinaryToWriter
     );
   }
 };
@@ -6547,20 +6633,39 @@ proto.farcaster.MakeResponse.prototype.setId = function(value) {
 
 
 /**
- * optional string offer = 2;
- * @return {string}
+ * optional DealInfo deal = 2;
+ * @return {?proto.farcaster.DealInfo}
  */
-proto.farcaster.MakeResponse.prototype.getOffer = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+proto.farcaster.MakeResponse.prototype.getDeal = function() {
+  return /** @type{?proto.farcaster.DealInfo} */ (
+    jspb.Message.getWrapperField(this, proto.farcaster.DealInfo, 2));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.farcaster.DealInfo|undefined} value
+ * @return {!proto.farcaster.MakeResponse} returns this
+*/
+proto.farcaster.MakeResponse.prototype.setDeal = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.farcaster.MakeResponse} returns this
  */
-proto.farcaster.MakeResponse.prototype.setOffer = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.farcaster.MakeResponse.prototype.clearDeal = function() {
+  return this.setDeal(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.farcaster.MakeResponse.prototype.hasDeal = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
@@ -6597,7 +6702,7 @@ proto.farcaster.TakeRequest.prototype.toObject = function(opt_includeInstance) {
 proto.farcaster.TakeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    publicOffer: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    deal: jspb.Message.getFieldWithDefault(msg, 2, ""),
     bitcoinAddress: jspb.Message.getFieldWithDefault(msg, 3, ""),
     moneroAddress: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
@@ -6642,7 +6747,7 @@ proto.farcaster.TakeRequest.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPublicOffer(value);
+      msg.setDeal(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -6688,7 +6793,7 @@ proto.farcaster.TakeRequest.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getPublicOffer();
+  f = message.getDeal();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -6731,10 +6836,10 @@ proto.farcaster.TakeRequest.prototype.setId = function(value) {
 
 
 /**
- * optional string public_offer = 2;
+ * optional string deal = 2;
  * @return {string}
  */
-proto.farcaster.TakeRequest.prototype.getPublicOffer = function() {
+proto.farcaster.TakeRequest.prototype.getDeal = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -6743,7 +6848,7 @@ proto.farcaster.TakeRequest.prototype.getPublicOffer = function() {
  * @param {string} value
  * @return {!proto.farcaster.TakeRequest} returns this
  */
-proto.farcaster.TakeRequest.prototype.setPublicOffer = function(value) {
+proto.farcaster.TakeRequest.prototype.setDeal = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -6930,8 +7035,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.farcaster.RevokeOfferRequest.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.RevokeOfferRequest.toObject(opt_includeInstance, this);
+proto.farcaster.RevokeDealRequest.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.RevokeDealRequest.toObject(opt_includeInstance, this);
 };
 
 
@@ -6940,14 +7045,14 @@ proto.farcaster.RevokeOfferRequest.prototype.toObject = function(opt_includeInst
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.farcaster.RevokeOfferRequest} msg The msg instance to transform.
+ * @param {!proto.farcaster.RevokeDealRequest} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.RevokeOfferRequest.toObject = function(includeInstance, msg) {
+proto.farcaster.RevokeDealRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    publicOffer: jspb.Message.getFieldWithDefault(msg, 2, "")
+    deal: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -6961,23 +7066,23 @@ proto.farcaster.RevokeOfferRequest.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.RevokeOfferRequest}
+ * @return {!proto.farcaster.RevokeDealRequest}
  */
-proto.farcaster.RevokeOfferRequest.deserializeBinary = function(bytes) {
+proto.farcaster.RevokeDealRequest.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.RevokeOfferRequest;
-  return proto.farcaster.RevokeOfferRequest.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.farcaster.RevokeDealRequest;
+  return proto.farcaster.RevokeDealRequest.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.farcaster.RevokeOfferRequest} msg The message object to deserialize into.
+ * @param {!proto.farcaster.RevokeDealRequest} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.RevokeOfferRequest}
+ * @return {!proto.farcaster.RevokeDealRequest}
  */
-proto.farcaster.RevokeOfferRequest.deserializeBinaryFromReader = function(msg, reader) {
+proto.farcaster.RevokeDealRequest.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -6990,7 +7095,7 @@ proto.farcaster.RevokeOfferRequest.deserializeBinaryFromReader = function(msg, r
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setPublicOffer(value);
+      msg.setDeal(value);
       break;
     default:
       reader.skipField();
@@ -7005,9 +7110,9 @@ proto.farcaster.RevokeOfferRequest.deserializeBinaryFromReader = function(msg, r
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.farcaster.RevokeOfferRequest.prototype.serializeBinary = function() {
+proto.farcaster.RevokeDealRequest.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.farcaster.RevokeOfferRequest.serializeBinaryToWriter(this, writer);
+  proto.farcaster.RevokeDealRequest.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7015,11 +7120,11 @@ proto.farcaster.RevokeOfferRequest.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.RevokeOfferRequest} message
+ * @param {!proto.farcaster.RevokeDealRequest} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.RevokeOfferRequest.serializeBinaryToWriter = function(message, writer) {
+proto.farcaster.RevokeDealRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
@@ -7028,7 +7133,7 @@ proto.farcaster.RevokeOfferRequest.serializeBinaryToWriter = function(message, w
       f
     );
   }
-  f = message.getPublicOffer();
+  f = message.getDeal();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -7042,34 +7147,34 @@ proto.farcaster.RevokeOfferRequest.serializeBinaryToWriter = function(message, w
  * optional uint32 id = 1;
  * @return {number}
  */
-proto.farcaster.RevokeOfferRequest.prototype.getId = function() {
+proto.farcaster.RevokeDealRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RevokeOfferRequest} returns this
+ * @return {!proto.farcaster.RevokeDealRequest} returns this
  */
-proto.farcaster.RevokeOfferRequest.prototype.setId = function(value) {
+proto.farcaster.RevokeDealRequest.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional string public_offer = 2;
+ * optional string deal = 2;
  * @return {string}
  */
-proto.farcaster.RevokeOfferRequest.prototype.getPublicOffer = function() {
+proto.farcaster.RevokeDealRequest.prototype.getDeal = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.farcaster.RevokeOfferRequest} returns this
+ * @return {!proto.farcaster.RevokeDealRequest} returns this
  */
-proto.farcaster.RevokeOfferRequest.prototype.setPublicOffer = function(value) {
+proto.farcaster.RevokeDealRequest.prototype.setDeal = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -7090,8 +7195,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.farcaster.RevokeOfferResponse.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.RevokeOfferResponse.toObject(opt_includeInstance, this);
+proto.farcaster.RevokeDealResponse.prototype.toObject = function(opt_includeInstance) {
+  return proto.farcaster.RevokeDealResponse.toObject(opt_includeInstance, this);
 };
 
 
@@ -7100,11 +7205,11 @@ proto.farcaster.RevokeOfferResponse.prototype.toObject = function(opt_includeIns
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.farcaster.RevokeOfferResponse} msg The msg instance to transform.
+ * @param {!proto.farcaster.RevokeDealResponse} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.RevokeOfferResponse.toObject = function(includeInstance, msg) {
+proto.farcaster.RevokeDealResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
@@ -7120,23 +7225,23 @@ proto.farcaster.RevokeOfferResponse.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.RevokeOfferResponse}
+ * @return {!proto.farcaster.RevokeDealResponse}
  */
-proto.farcaster.RevokeOfferResponse.deserializeBinary = function(bytes) {
+proto.farcaster.RevokeDealResponse.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.RevokeOfferResponse;
-  return proto.farcaster.RevokeOfferResponse.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.farcaster.RevokeDealResponse;
+  return proto.farcaster.RevokeDealResponse.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.farcaster.RevokeOfferResponse} msg The message object to deserialize into.
+ * @param {!proto.farcaster.RevokeDealResponse} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.RevokeOfferResponse}
+ * @return {!proto.farcaster.RevokeDealResponse}
  */
-proto.farcaster.RevokeOfferResponse.deserializeBinaryFromReader = function(msg, reader) {
+proto.farcaster.RevokeDealResponse.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -7160,9 +7265,9 @@ proto.farcaster.RevokeOfferResponse.deserializeBinaryFromReader = function(msg, 
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.farcaster.RevokeOfferResponse.prototype.serializeBinary = function() {
+proto.farcaster.RevokeDealResponse.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.farcaster.RevokeOfferResponse.serializeBinaryToWriter(this, writer);
+  proto.farcaster.RevokeDealResponse.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -7170,11 +7275,11 @@ proto.farcaster.RevokeOfferResponse.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.RevokeOfferResponse} message
+ * @param {!proto.farcaster.RevokeDealResponse} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.farcaster.RevokeOfferResponse.serializeBinaryToWriter = function(message, writer) {
+proto.farcaster.RevokeDealResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getId();
   if (f !== 0) {
@@ -7190,16 +7295,16 @@ proto.farcaster.RevokeOfferResponse.serializeBinaryToWriter = function(message, 
  * optional uint32 id = 1;
  * @return {number}
  */
-proto.farcaster.RevokeOfferResponse.prototype.getId = function() {
+proto.farcaster.RevokeDealResponse.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RevokeOfferResponse} returns this
+ * @return {!proto.farcaster.RevokeDealResponse} returns this
  */
-proto.farcaster.RevokeOfferResponse.prototype.setId = function(value) {
+proto.farcaster.RevokeDealResponse.prototype.setId = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
@@ -8430,31 +8535,111 @@ proto.farcaster.StateTransition.prototype.hasNewState = function() {
  * @private {!Array<!Array<number>>}
  * @const
  */
-proto.farcaster.State.oneofGroups_ = [[1,2,3,4,5,6,7,8,9,10,11]];
+proto.farcaster.State.oneofGroups_ = [[10],[11],[12],[13],[14],[15],[16]];
 
 /**
  * @enum {number}
  */
-proto.farcaster.State.StateCase = {
-  STATE_NOT_SET: 0,
-  START_A: 1,
-  COMMIT_A: 2,
-  REVEAL_A: 3,
-  REFUND_SIG_A: 4,
-  FINISH_A: 5,
-  START_B: 6,
-  COMMIT_B: 7,
-  REVEAL_B: 8,
-  CORE_ARB_B: 9,
-  BUY_SIG_B: 10,
-  FINISH_B: 11
+proto.farcaster.State.ArbLockConfirmationsCase = {
+  ARB_LOCK_CONFIRMATIONS_NOT_SET: 0,
+  ARB_CONFS: 10
 };
 
 /**
- * @return {proto.farcaster.State.StateCase}
+ * @return {proto.farcaster.State.ArbLockConfirmationsCase}
  */
-proto.farcaster.State.prototype.getStateCase = function() {
-  return /** @type {proto.farcaster.State.StateCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[0]));
+proto.farcaster.State.prototype.getArbLockConfirmationsCase = function() {
+  return /** @type {proto.farcaster.State.ArbLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[0]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.farcaster.State.AccLockConfirmationsCase = {
+  ACC_LOCK_CONFIRMATIONS_NOT_SET: 0,
+  ACC_CONFS: 11
+};
+
+/**
+ * @return {proto.farcaster.State.AccLockConfirmationsCase}
+ */
+proto.farcaster.State.prototype.getAccLockConfirmationsCase = function() {
+  return /** @type {proto.farcaster.State.AccLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[1]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.farcaster.State.CancelConfirmationsCase = {
+  CANCEL_CONFIRMATIONS_NOT_SET: 0,
+  CANCEL_CONFS: 12
+};
+
+/**
+ * @return {proto.farcaster.State.CancelConfirmationsCase}
+ */
+proto.farcaster.State.prototype.getCancelConfirmationsCase = function() {
+  return /** @type {proto.farcaster.State.CancelConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[2]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.farcaster.State.BlocksUntilCancelPossibleCase = {
+  BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET: 0,
+  CANCEL_BLOCKS: 13
+};
+
+/**
+ * @return {proto.farcaster.State.BlocksUntilCancelPossibleCase}
+ */
+proto.farcaster.State.prototype.getBlocksUntilCancelPossibleCase = function() {
+  return /** @type {proto.farcaster.State.BlocksUntilCancelPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[3]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.farcaster.State.BlocksUntilPunishPossibleCase = {
+  BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET: 0,
+  PUNISH_BLOCKS: 14
+};
+
+/**
+ * @return {proto.farcaster.State.BlocksUntilPunishPossibleCase}
+ */
+proto.farcaster.State.prototype.getBlocksUntilPunishPossibleCase = function() {
+  return /** @type {proto.farcaster.State.BlocksUntilPunishPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[4]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.farcaster.State.BlocksUntilSafeBuyCase = {
+  BLOCKS_UNTIL_SAFE_BUY_NOT_SET: 0,
+  BUY_BLOCKS: 15
+};
+
+/**
+ * @return {proto.farcaster.State.BlocksUntilSafeBuyCase}
+ */
+proto.farcaster.State.prototype.getBlocksUntilSafeBuyCase = function() {
+  return /** @type {proto.farcaster.State.BlocksUntilSafeBuyCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[5]));
+};
+
+/**
+ * @enum {number}
+ */
+proto.farcaster.State.BlocksUntilSafeMoneroBuySweepCase = {
+  BLOCKS_UNTIL_SAFE_MONERO_BUY_SWEEP_NOT_SET: 0,
+  BUY_MONERO_BLOCKS: 16
+};
+
+/**
+ * @return {proto.farcaster.State.BlocksUntilSafeMoneroBuySweepCase}
+ */
+proto.farcaster.State.prototype.getBlocksUntilSafeMoneroBuySweepCase = function() {
+  return /** @type {proto.farcaster.State.BlocksUntilSafeMoneroBuySweepCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.State.oneofGroups_[6]));
 };
 
 
@@ -8488,17 +8673,22 @@ proto.farcaster.State.prototype.toObject = function(opt_includeInstance) {
  */
 proto.farcaster.State.toObject = function(includeInstance, msg) {
   var f, obj = {
-    startA: (f = msg.getStartA()) && proto.farcaster.StartA.toObject(includeInstance, f),
-    commitA: (f = msg.getCommitA()) && proto.farcaster.CommitA.toObject(includeInstance, f),
-    revealA: (f = msg.getRevealA()) && proto.farcaster.RevealA.toObject(includeInstance, f),
-    refundSigA: (f = msg.getRefundSigA()) && proto.farcaster.RefundSigA.toObject(includeInstance, f),
-    finishA: (f = msg.getFinishA()) && proto.farcaster.FinishA.toObject(includeInstance, f),
-    startB: (f = msg.getStartB()) && proto.farcaster.StartB.toObject(includeInstance, f),
-    commitB: (f = msg.getCommitB()) && proto.farcaster.CommitB.toObject(includeInstance, f),
-    revealB: (f = msg.getRevealB()) && proto.farcaster.RevealB.toObject(includeInstance, f),
-    coreArbB: (f = msg.getCoreArbB()) && proto.farcaster.CoreArbB.toObject(includeInstance, f),
-    buySigB: (f = msg.getBuySigB()) && proto.farcaster.BuySigB.toObject(includeInstance, f),
-    finishB: (f = msg.getFinishB()) && proto.farcaster.FinishB.toObject(includeInstance, f)
+    state: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    arbBlockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    accBlockHeight: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    arbLocked: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
+    accLocked: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
+    canceled: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    buySeen: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
+    refundSeen: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
+    overfunded: jspb.Message.getBooleanFieldWithDefault(msg, 9, false),
+    arbConfs: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    accConfs: jspb.Message.getFieldWithDefault(msg, 11, 0),
+    cancelConfs: jspb.Message.getFieldWithDefault(msg, 12, 0),
+    cancelBlocks: jspb.Message.getFieldWithDefault(msg, 13, 0),
+    punishBlocks: jspb.Message.getFieldWithDefault(msg, 14, 0),
+    buyBlocks: jspb.Message.getFieldWithDefault(msg, 15, 0),
+    buyMoneroBlocks: jspb.Message.getFieldWithDefault(msg, 16, 0)
   };
 
   if (includeInstance) {
@@ -8536,59 +8726,68 @@ proto.farcaster.State.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.farcaster.StartA;
-      reader.readMessage(value,proto.farcaster.StartA.deserializeBinaryFromReader);
-      msg.setStartA(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setState(value);
       break;
     case 2:
-      var value = new proto.farcaster.CommitA;
-      reader.readMessage(value,proto.farcaster.CommitA.deserializeBinaryFromReader);
-      msg.setCommitA(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setArbBlockHeight(value);
       break;
     case 3:
-      var value = new proto.farcaster.RevealA;
-      reader.readMessage(value,proto.farcaster.RevealA.deserializeBinaryFromReader);
-      msg.setRevealA(value);
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAccBlockHeight(value);
       break;
     case 4:
-      var value = new proto.farcaster.RefundSigA;
-      reader.readMessage(value,proto.farcaster.RefundSigA.deserializeBinaryFromReader);
-      msg.setRefundSigA(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setArbLocked(value);
       break;
     case 5:
-      var value = new proto.farcaster.FinishA;
-      reader.readMessage(value,proto.farcaster.FinishA.deserializeBinaryFromReader);
-      msg.setFinishA(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setAccLocked(value);
       break;
     case 6:
-      var value = new proto.farcaster.StartB;
-      reader.readMessage(value,proto.farcaster.StartB.deserializeBinaryFromReader);
-      msg.setStartB(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setCanceled(value);
       break;
     case 7:
-      var value = new proto.farcaster.CommitB;
-      reader.readMessage(value,proto.farcaster.CommitB.deserializeBinaryFromReader);
-      msg.setCommitB(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setBuySeen(value);
       break;
     case 8:
-      var value = new proto.farcaster.RevealB;
-      reader.readMessage(value,proto.farcaster.RevealB.deserializeBinaryFromReader);
-      msg.setRevealB(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setRefundSeen(value);
       break;
     case 9:
-      var value = new proto.farcaster.CoreArbB;
-      reader.readMessage(value,proto.farcaster.CoreArbB.deserializeBinaryFromReader);
-      msg.setCoreArbB(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setOverfunded(value);
       break;
     case 10:
-      var value = new proto.farcaster.BuySigB;
-      reader.readMessage(value,proto.farcaster.BuySigB.deserializeBinaryFromReader);
-      msg.setBuySigB(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setArbConfs(value);
       break;
     case 11:
-      var value = new proto.farcaster.FinishB;
-      reader.readMessage(value,proto.farcaster.FinishB.deserializeBinaryFromReader);
-      msg.setFinishB(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAccConfs(value);
+      break;
+    case 12:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setCancelConfs(value);
+      break;
+    case 13:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setCancelBlocks(value);
+      break;
+    case 14:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setPunishBlocks(value);
+      break;
+    case 15:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setBuyBlocks(value);
+      break;
+    case 16:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setBuyMoneroBlocks(value);
       break;
     default:
       reader.skipField();
@@ -8619,1696 +8818,65 @@ proto.farcaster.State.prototype.serializeBinary = function() {
  */
 proto.farcaster.State.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getStartA();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.farcaster.StartA.serializeBinaryToWriter
-    );
-  }
-  f = message.getCommitA();
-  if (f != null) {
-    writer.writeMessage(
-      2,
-      f,
-      proto.farcaster.CommitA.serializeBinaryToWriter
-    );
-  }
-  f = message.getRevealA();
-  if (f != null) {
-    writer.writeMessage(
-      3,
-      f,
-      proto.farcaster.RevealA.serializeBinaryToWriter
-    );
-  }
-  f = message.getRefundSigA();
-  if (f != null) {
-    writer.writeMessage(
-      4,
-      f,
-      proto.farcaster.RefundSigA.serializeBinaryToWriter
-    );
-  }
-  f = message.getFinishA();
-  if (f != null) {
-    writer.writeMessage(
-      5,
-      f,
-      proto.farcaster.FinishA.serializeBinaryToWriter
-    );
-  }
-  f = message.getStartB();
-  if (f != null) {
-    writer.writeMessage(
-      6,
-      f,
-      proto.farcaster.StartB.serializeBinaryToWriter
-    );
-  }
-  f = message.getCommitB();
-  if (f != null) {
-    writer.writeMessage(
-      7,
-      f,
-      proto.farcaster.CommitB.serializeBinaryToWriter
-    );
-  }
-  f = message.getRevealB();
-  if (f != null) {
-    writer.writeMessage(
-      8,
-      f,
-      proto.farcaster.RevealB.serializeBinaryToWriter
-    );
-  }
-  f = message.getCoreArbB();
-  if (f != null) {
-    writer.writeMessage(
-      9,
-      f,
-      proto.farcaster.CoreArbB.serializeBinaryToWriter
-    );
-  }
-  f = message.getBuySigB();
-  if (f != null) {
-    writer.writeMessage(
-      10,
-      f,
-      proto.farcaster.BuySigB.serializeBinaryToWriter
-    );
-  }
-  f = message.getFinishB();
-  if (f != null) {
-    writer.writeMessage(
-      11,
-      f,
-      proto.farcaster.FinishB.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * optional StartA start_a = 1;
- * @return {?proto.farcaster.StartA}
- */
-proto.farcaster.State.prototype.getStartA = function() {
-  return /** @type{?proto.farcaster.StartA} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.StartA, 1));
-};
-
-
-/**
- * @param {?proto.farcaster.StartA|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setStartA = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 1, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearStartA = function() {
-  return this.setStartA(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasStartA = function() {
-  return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional CommitA commit_a = 2;
- * @return {?proto.farcaster.CommitA}
- */
-proto.farcaster.State.prototype.getCommitA = function() {
-  return /** @type{?proto.farcaster.CommitA} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.CommitA, 2));
-};
-
-
-/**
- * @param {?proto.farcaster.CommitA|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setCommitA = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 2, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearCommitA = function() {
-  return this.setCommitA(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasCommitA = function() {
-  return jspb.Message.getField(this, 2) != null;
-};
-
-
-/**
- * optional RevealA reveal_a = 3;
- * @return {?proto.farcaster.RevealA}
- */
-proto.farcaster.State.prototype.getRevealA = function() {
-  return /** @type{?proto.farcaster.RevealA} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.RevealA, 3));
-};
-
-
-/**
- * @param {?proto.farcaster.RevealA|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setRevealA = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 3, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearRevealA = function() {
-  return this.setRevealA(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasRevealA = function() {
-  return jspb.Message.getField(this, 3) != null;
-};
-
-
-/**
- * optional RefundSigA refund_sig_a = 4;
- * @return {?proto.farcaster.RefundSigA}
- */
-proto.farcaster.State.prototype.getRefundSigA = function() {
-  return /** @type{?proto.farcaster.RefundSigA} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.RefundSigA, 4));
-};
-
-
-/**
- * @param {?proto.farcaster.RefundSigA|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setRefundSigA = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 4, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearRefundSigA = function() {
-  return this.setRefundSigA(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasRefundSigA = function() {
-  return jspb.Message.getField(this, 4) != null;
-};
-
-
-/**
- * optional FinishA finish_a = 5;
- * @return {?proto.farcaster.FinishA}
- */
-proto.farcaster.State.prototype.getFinishA = function() {
-  return /** @type{?proto.farcaster.FinishA} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.FinishA, 5));
-};
-
-
-/**
- * @param {?proto.farcaster.FinishA|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setFinishA = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 5, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearFinishA = function() {
-  return this.setFinishA(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasFinishA = function() {
-  return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional StartB start_b = 6;
- * @return {?proto.farcaster.StartB}
- */
-proto.farcaster.State.prototype.getStartB = function() {
-  return /** @type{?proto.farcaster.StartB} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.StartB, 6));
-};
-
-
-/**
- * @param {?proto.farcaster.StartB|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setStartB = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 6, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearStartB = function() {
-  return this.setStartB(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasStartB = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional CommitB commit_b = 7;
- * @return {?proto.farcaster.CommitB}
- */
-proto.farcaster.State.prototype.getCommitB = function() {
-  return /** @type{?proto.farcaster.CommitB} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.CommitB, 7));
-};
-
-
-/**
- * @param {?proto.farcaster.CommitB|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setCommitB = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 7, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearCommitB = function() {
-  return this.setCommitB(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasCommitB = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional RevealB reveal_b = 8;
- * @return {?proto.farcaster.RevealB}
- */
-proto.farcaster.State.prototype.getRevealB = function() {
-  return /** @type{?proto.farcaster.RevealB} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.RevealB, 8));
-};
-
-
-/**
- * @param {?proto.farcaster.RevealB|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setRevealB = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 8, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearRevealB = function() {
-  return this.setRevealB(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasRevealB = function() {
-  return jspb.Message.getField(this, 8) != null;
-};
-
-
-/**
- * optional CoreArbB core_arb_b = 9;
- * @return {?proto.farcaster.CoreArbB}
- */
-proto.farcaster.State.prototype.getCoreArbB = function() {
-  return /** @type{?proto.farcaster.CoreArbB} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.CoreArbB, 9));
-};
-
-
-/**
- * @param {?proto.farcaster.CoreArbB|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setCoreArbB = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 9, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearCoreArbB = function() {
-  return this.setCoreArbB(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasCoreArbB = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional BuySigB buy_sig_b = 10;
- * @return {?proto.farcaster.BuySigB}
- */
-proto.farcaster.State.prototype.getBuySigB = function() {
-  return /** @type{?proto.farcaster.BuySigB} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.BuySigB, 10));
-};
-
-
-/**
- * @param {?proto.farcaster.BuySigB|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setBuySigB = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 10, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearBuySigB = function() {
-  return this.setBuySigB(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasBuySigB = function() {
-  return jspb.Message.getField(this, 10) != null;
-};
-
-
-/**
- * optional FinishB finish_b = 11;
- * @return {?proto.farcaster.FinishB}
- */
-proto.farcaster.State.prototype.getFinishB = function() {
-  return /** @type{?proto.farcaster.FinishB} */ (
-    jspb.Message.getWrapperField(this, proto.farcaster.FinishB, 11));
-};
-
-
-/**
- * @param {?proto.farcaster.FinishB|undefined} value
- * @return {!proto.farcaster.State} returns this
-*/
-proto.farcaster.State.prototype.setFinishB = function(value) {
-  return jspb.Message.setOneofWrapperField(this, 11, proto.farcaster.State.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- * @return {!proto.farcaster.State} returns this
- */
-proto.farcaster.State.prototype.clearFinishB = function() {
-  return this.setFinishB(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.State.prototype.hasFinishB = function() {
-  return jspb.Message.getField(this, 11) != null;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.StartA.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.StartA.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.StartA} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.StartA.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.StartA}
- */
-proto.farcaster.StartA.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.StartA;
-  return proto.farcaster.StartA.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.StartA} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.StartA}
- */
-proto.farcaster.StartA.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.StartA.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.StartA.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.StartA} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.StartA.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.CommitA.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.CommitA.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.CommitA} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.CommitA.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.CommitA}
- */
-proto.farcaster.CommitA.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.CommitA;
-  return proto.farcaster.CommitA.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.CommitA} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.CommitA}
- */
-proto.farcaster.CommitA.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.CommitA.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.CommitA.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.CommitA} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.CommitA.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.RevealA.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.RevealA.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.RevealA} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.RevealA.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.RevealA}
- */
-proto.farcaster.RevealA.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.RevealA;
-  return proto.farcaster.RevealA.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.RevealA} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.RevealA}
- */
-proto.farcaster.RevealA.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.RevealA.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.RevealA.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.RevealA} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.RevealA.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.FinishA.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.FinishA.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.FinishA} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.FinishA.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    outcome: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.FinishA}
- */
-proto.farcaster.FinishA.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.FinishA;
-  return proto.farcaster.FinishA.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.FinishA} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.FinishA}
- */
-proto.farcaster.FinishA.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!proto.farcaster.Outcome} */ (reader.readEnum());
-      msg.setOutcome(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.FinishA.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.FinishA.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.FinishA} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.FinishA.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getOutcome();
-  if (f !== 0.0) {
-    writer.writeEnum(
+  f = message.getState();
+  if (f.length > 0) {
+    writer.writeString(
       1,
       f
     );
   }
-};
-
-
-/**
- * optional Outcome outcome = 1;
- * @return {!proto.farcaster.Outcome}
- */
-proto.farcaster.FinishA.prototype.getOutcome = function() {
-  return /** @type {!proto.farcaster.Outcome} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {!proto.farcaster.Outcome} value
- * @return {!proto.farcaster.FinishA} returns this
- */
-proto.farcaster.FinishA.prototype.setOutcome = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.StartB.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.StartB.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.StartB} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.StartB.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.StartB}
- */
-proto.farcaster.StartB.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.StartB;
-  return proto.farcaster.StartB.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.StartB} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.StartB}
- */
-proto.farcaster.StartB.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.StartB.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.StartB.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.StartB} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.StartB.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.CommitB.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.CommitB.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.CommitB} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.CommitB.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.CommitB}
- */
-proto.farcaster.CommitB.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.CommitB;
-  return proto.farcaster.CommitB.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.CommitB} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.CommitB}
- */
-proto.farcaster.CommitB.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.CommitB.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.CommitB.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.CommitB} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.CommitB.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.RevealB.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.RevealB.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.RevealB} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.RevealB.toObject = function(includeInstance, msg) {
-  var f, obj = {
-
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.RevealB}
- */
-proto.farcaster.RevealB.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.RevealB;
-  return proto.farcaster.RevealB.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.RevealB} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.RevealB}
- */
-proto.farcaster.RevealB.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.RevealB.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.RevealB.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.RevealB} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.RevealB.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-};
-
-
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.FinishB.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.FinishB.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.FinishB} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.FinishB.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    outcome: jspb.Message.getFieldWithDefault(msg, 1, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.FinishB}
- */
-proto.farcaster.FinishB.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.FinishB;
-  return proto.farcaster.FinishB.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.FinishB} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.FinishB}
- */
-proto.farcaster.FinishB.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {!proto.farcaster.Outcome} */ (reader.readEnum());
-      msg.setOutcome(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.FinishB.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.FinishB.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.FinishB} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.FinishB.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getOutcome();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional Outcome outcome = 1;
- * @return {!proto.farcaster.Outcome}
- */
-proto.farcaster.FinishB.prototype.getOutcome = function() {
-  return /** @type {!proto.farcaster.Outcome} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {!proto.farcaster.Outcome} value
- * @return {!proto.farcaster.FinishB} returns this
- */
-proto.farcaster.FinishB.prototype.setOutcome = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-
-/**
- * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
- * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
- * @private {!Array<!Array<number>>}
- * @const
- */
-proto.farcaster.RefundSigA.oneofGroups_ = [[9],[10],[11],[12],[13],[14]];
-
-/**
- * @enum {number}
- */
-proto.farcaster.RefundSigA.ArbLockConfirmationsCase = {
-  ARB_LOCK_CONFIRMATIONS_NOT_SET: 0,
-  ARB_CONFS: 9
-};
-
-/**
- * @return {proto.farcaster.RefundSigA.ArbLockConfirmationsCase}
- */
-proto.farcaster.RefundSigA.prototype.getArbLockConfirmationsCase = function() {
-  return /** @type {proto.farcaster.RefundSigA.ArbLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.RefundSigA.oneofGroups_[0]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.RefundSigA.AccLockConfirmationsCase = {
-  ACC_LOCK_CONFIRMATIONS_NOT_SET: 0,
-  ACC_CONFS: 10
-};
-
-/**
- * @return {proto.farcaster.RefundSigA.AccLockConfirmationsCase}
- */
-proto.farcaster.RefundSigA.prototype.getAccLockConfirmationsCase = function() {
-  return /** @type {proto.farcaster.RefundSigA.AccLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.RefundSigA.oneofGroups_[1]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.RefundSigA.BlocksUntilCancelPossibleCase = {
-  BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET: 0,
-  CANCEL_BLOCKS: 11
-};
-
-/**
- * @return {proto.farcaster.RefundSigA.BlocksUntilCancelPossibleCase}
- */
-proto.farcaster.RefundSigA.prototype.getBlocksUntilCancelPossibleCase = function() {
-  return /** @type {proto.farcaster.RefundSigA.BlocksUntilCancelPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.RefundSigA.oneofGroups_[2]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.RefundSigA.CancelConfirmationsCase = {
-  CANCEL_CONFIRMATIONS_NOT_SET: 0,
-  CANCEL_CONFS: 12
-};
-
-/**
- * @return {proto.farcaster.RefundSigA.CancelConfirmationsCase}
- */
-proto.farcaster.RefundSigA.prototype.getCancelConfirmationsCase = function() {
-  return /** @type {proto.farcaster.RefundSigA.CancelConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.RefundSigA.oneofGroups_[3]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.RefundSigA.BlocksUntilPunishPossibleCase = {
-  BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET: 0,
-  PUNISH_BLOCKS: 13
-};
-
-/**
- * @return {proto.farcaster.RefundSigA.BlocksUntilPunishPossibleCase}
- */
-proto.farcaster.RefundSigA.prototype.getBlocksUntilPunishPossibleCase = function() {
-  return /** @type {proto.farcaster.RefundSigA.BlocksUntilPunishPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.RefundSigA.oneofGroups_[4]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.RefundSigA.BlocksUntilSafeBuyCase = {
-  BLOCKS_UNTIL_SAFE_BUY_NOT_SET: 0,
-  BUY_BLOCKS: 14
-};
-
-/**
- * @return {proto.farcaster.RefundSigA.BlocksUntilSafeBuyCase}
- */
-proto.farcaster.RefundSigA.prototype.getBlocksUntilSafeBuyCase = function() {
-  return /** @type {proto.farcaster.RefundSigA.BlocksUntilSafeBuyCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.RefundSigA.oneofGroups_[5]));
-};
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.RefundSigA.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.RefundSigA.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.RefundSigA} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.RefundSigA.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    arbBlockHeight: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    accBlockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    arbLocked: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    accLocked: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    buyPublished: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    cancelSeen: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
-    refundSeen: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    overfunded: jspb.Message.getBooleanFieldWithDefault(msg, 8, false),
-    arbConfs: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    accConfs: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    cancelBlocks: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    cancelConfs: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    punishBlocks: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    buyBlocks: jspb.Message.getFieldWithDefault(msg, 14, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.RefundSigA}
- */
-proto.farcaster.RefundSigA.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.RefundSigA;
-  return proto.farcaster.RefundSigA.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.RefundSigA} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.RefundSigA}
- */
-proto.farcaster.RefundSigA.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setArbBlockHeight(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAccBlockHeight(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setArbLocked(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAccLocked(value);
-      break;
-    case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setBuyPublished(value);
-      break;
-    case 6:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setCancelSeen(value);
-      break;
-    case 7:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setRefundSeen(value);
-      break;
-    case 8:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setOverfunded(value);
-      break;
-    case 9:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setArbConfs(value);
-      break;
-    case 10:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setAccConfs(value);
-      break;
-    case 11:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setCancelBlocks(value);
-      break;
-    case 12:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setCancelConfs(value);
-      break;
-    case 13:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setPunishBlocks(value);
-      break;
-    case 14:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setBuyBlocks(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.RefundSigA.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.RefundSigA.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.RefundSigA} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.RefundSigA.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
   f = message.getArbBlockHeight();
   if (f !== 0) {
     writer.writeUint64(
-      1,
+      2,
       f
     );
   }
   f = message.getAccBlockHeight();
   if (f !== 0) {
     writer.writeUint64(
-      2,
+      3,
       f
     );
   }
   f = message.getArbLocked();
   if (f) {
     writer.writeBool(
-      3,
+      4,
       f
     );
   }
   f = message.getAccLocked();
   if (f) {
     writer.writeBool(
-      4,
-      f
-    );
-  }
-  f = message.getBuyPublished();
-  if (f) {
-    writer.writeBool(
       5,
       f
     );
   }
-  f = message.getCancelSeen();
+  f = message.getCanceled();
   if (f) {
     writer.writeBool(
       6,
       f
     );
   }
-  f = message.getRefundSeen();
+  f = message.getBuySeen();
   if (f) {
     writer.writeBool(
       7,
+      f
+    );
+  }
+  f = message.getRefundSeen();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
   f = message.getOverfunded();
   if (f) {
     writer.writeBool(
-      8,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 9));
-  if (f != null) {
-    writer.writeUint32(
       9,
       f
     );
@@ -10322,7 +8890,7 @@ proto.farcaster.RefundSigA.serializeBinaryToWriter = function(message, writer) {
   }
   f = /** @type {number} */ (jspb.Message.getField(message, 11));
   if (f != null) {
-    writer.writeInt64(
+    writer.writeUint32(
       11,
       f
     );
@@ -10343,8 +8911,22 @@ proto.farcaster.RefundSigA.serializeBinaryToWriter = function(message, writer) {
   }
   f = /** @type {number} */ (jspb.Message.getField(message, 14));
   if (f != null) {
-    writer.writeUint32(
+    writer.writeInt64(
       14,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 15));
+  if (f != null) {
+    writer.writeUint32(
+      15,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 16));
+  if (f != null) {
+    writer.writeUint32(
+      16,
       f
     );
   }
@@ -10352,209 +8934,191 @@ proto.farcaster.RefundSigA.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional uint64 arb_block_height = 1;
- * @return {number}
+ * optional string state = 1;
+ * @return {string}
  */
-proto.farcaster.RefundSigA.prototype.getArbBlockHeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.farcaster.State.prototype.getState = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
- * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @param {string} value
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setArbBlockHeight = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
+proto.farcaster.State.prototype.setState = function(value) {
+  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional uint64 acc_block_height = 2;
+ * optional uint64 arb_block_height = 2;
  * @return {number}
  */
-proto.farcaster.RefundSigA.prototype.getAccBlockHeight = function() {
+proto.farcaster.State.prototype.getArbBlockHeight = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setAccBlockHeight = function(value) {
+proto.farcaster.State.prototype.setArbBlockHeight = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
 /**
- * optional bool arb_locked = 3;
- * @return {boolean}
+ * optional uint64 acc_block_height = 3;
+ * @return {number}
  */
-proto.farcaster.RefundSigA.prototype.getArbLocked = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
+proto.farcaster.State.prototype.getAccBlockHeight = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
 /**
- * @param {boolean} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @param {number} value
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setArbLocked = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
+proto.farcaster.State.prototype.setAccBlockHeight = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional bool acc_locked = 4;
+ * optional bool arb_locked = 4;
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.getAccLocked = function() {
+proto.farcaster.State.prototype.getArbLocked = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setAccLocked = function(value) {
+proto.farcaster.State.prototype.setArbLocked = function(value) {
   return jspb.Message.setProto3BooleanField(this, 4, value);
 };
 
 
 /**
- * optional bool buy_published = 5;
+ * optional bool acc_locked = 5;
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.getBuyPublished = function() {
+proto.farcaster.State.prototype.getAccLocked = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setBuyPublished = function(value) {
+proto.farcaster.State.prototype.setAccLocked = function(value) {
   return jspb.Message.setProto3BooleanField(this, 5, value);
 };
 
 
 /**
- * optional bool cancel_seen = 6;
+ * optional bool canceled = 6;
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.getCancelSeen = function() {
+proto.farcaster.State.prototype.getCanceled = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setCancelSeen = function(value) {
+proto.farcaster.State.prototype.setCanceled = function(value) {
   return jspb.Message.setProto3BooleanField(this, 6, value);
 };
 
 
 /**
- * optional bool refund_seen = 7;
+ * optional bool buy_seen = 7;
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.getRefundSeen = function() {
+proto.farcaster.State.prototype.getBuySeen = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setRefundSeen = function(value) {
+proto.farcaster.State.prototype.setBuySeen = function(value) {
   return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
 /**
- * optional bool overfunded = 8;
+ * optional bool refund_seen = 8;
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.getOverfunded = function() {
+proto.farcaster.State.prototype.getRefundSeen = function() {
   return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
 };
 
 
 /**
  * @param {boolean} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setOverfunded = function(value) {
+proto.farcaster.State.prototype.setRefundSeen = function(value) {
   return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
 /**
- * optional uint32 arb_confs = 9;
- * @return {number}
- */
-proto.farcaster.RefundSigA.prototype.getArbConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
- */
-proto.farcaster.RefundSigA.prototype.setArbConfs = function(value) {
-  return jspb.Message.setOneofField(this, 9, proto.farcaster.RefundSigA.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.RefundSigA} returns this
- */
-proto.farcaster.RefundSigA.prototype.clearArbConfs = function() {
-  return jspb.Message.setOneofField(this, 9, proto.farcaster.RefundSigA.oneofGroups_[0], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
+ * optional bool overfunded = 9;
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.hasArbConfs = function() {
-  return jspb.Message.getField(this, 9) != null;
+proto.farcaster.State.prototype.getOverfunded = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 9, false));
 };
 
 
 /**
- * optional uint32 acc_confs = 10;
+ * @param {boolean} value
+ * @return {!proto.farcaster.State} returns this
+ */
+proto.farcaster.State.prototype.setOverfunded = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 9, value);
+};
+
+
+/**
+ * optional uint32 arb_confs = 10;
  * @return {number}
  */
-proto.farcaster.RefundSigA.prototype.getAccConfs = function() {
+proto.farcaster.State.prototype.getArbConfs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setAccConfs = function(value) {
-  return jspb.Message.setOneofField(this, 10, proto.farcaster.RefundSigA.oneofGroups_[1], value);
+proto.farcaster.State.prototype.setArbConfs = function(value) {
+  return jspb.Message.setOneofField(this, 10, proto.farcaster.State.oneofGroups_[0], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.clearAccConfs = function() {
-  return jspb.Message.setOneofField(this, 10, proto.farcaster.RefundSigA.oneofGroups_[1], undefined);
+proto.farcaster.State.prototype.clearArbConfs = function() {
+  return jspb.Message.setOneofField(this, 10, proto.farcaster.State.oneofGroups_[0], undefined);
 };
 
 
@@ -10562,35 +9126,35 @@ proto.farcaster.RefundSigA.prototype.clearAccConfs = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.hasAccConfs = function() {
+proto.farcaster.State.prototype.hasArbConfs = function() {
   return jspb.Message.getField(this, 10) != null;
 };
 
 
 /**
- * optional int64 cancel_blocks = 11;
+ * optional uint32 acc_confs = 11;
  * @return {number}
  */
-proto.farcaster.RefundSigA.prototype.getCancelBlocks = function() {
+proto.farcaster.State.prototype.getAccConfs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setCancelBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 11, proto.farcaster.RefundSigA.oneofGroups_[2], value);
+proto.farcaster.State.prototype.setAccConfs = function(value) {
+  return jspb.Message.setOneofField(this, 11, proto.farcaster.State.oneofGroups_[1], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.clearCancelBlocks = function() {
-  return jspb.Message.setOneofField(this, 11, proto.farcaster.RefundSigA.oneofGroups_[2], undefined);
+proto.farcaster.State.prototype.clearAccConfs = function() {
+  return jspb.Message.setOneofField(this, 11, proto.farcaster.State.oneofGroups_[1], undefined);
 };
 
 
@@ -10598,7 +9162,7 @@ proto.farcaster.RefundSigA.prototype.clearCancelBlocks = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.hasCancelBlocks = function() {
+proto.farcaster.State.prototype.hasAccConfs = function() {
   return jspb.Message.getField(this, 11) != null;
 };
 
@@ -10607,26 +9171,26 @@ proto.farcaster.RefundSigA.prototype.hasCancelBlocks = function() {
  * optional uint32 cancel_confs = 12;
  * @return {number}
  */
-proto.farcaster.RefundSigA.prototype.getCancelConfs = function() {
+proto.farcaster.State.prototype.getCancelConfs = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setCancelConfs = function(value) {
-  return jspb.Message.setOneofField(this, 12, proto.farcaster.RefundSigA.oneofGroups_[3], value);
+proto.farcaster.State.prototype.setCancelConfs = function(value) {
+  return jspb.Message.setOneofField(this, 12, proto.farcaster.State.oneofGroups_[2], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.clearCancelConfs = function() {
-  return jspb.Message.setOneofField(this, 12, proto.farcaster.RefundSigA.oneofGroups_[3], undefined);
+proto.farcaster.State.prototype.clearCancelConfs = function() {
+  return jspb.Message.setOneofField(this, 12, proto.farcaster.State.oneofGroups_[2], undefined);
 };
 
 
@@ -10634,35 +9198,35 @@ proto.farcaster.RefundSigA.prototype.clearCancelConfs = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.hasCancelConfs = function() {
+proto.farcaster.State.prototype.hasCancelConfs = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 
 
 /**
- * optional int64 punish_blocks = 13;
+ * optional int64 cancel_blocks = 13;
  * @return {number}
  */
-proto.farcaster.RefundSigA.prototype.getPunishBlocks = function() {
+proto.farcaster.State.prototype.getCancelBlocks = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.setPunishBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 13, proto.farcaster.RefundSigA.oneofGroups_[4], value);
+proto.farcaster.State.prototype.setCancelBlocks = function(value) {
+  return jspb.Message.setOneofField(this, 13, proto.farcaster.State.oneofGroups_[3], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.RefundSigA} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.RefundSigA.prototype.clearPunishBlocks = function() {
-  return jspb.Message.setOneofField(this, 13, proto.farcaster.RefundSigA.oneofGroups_[4], undefined);
+proto.farcaster.State.prototype.clearCancelBlocks = function() {
+  return jspb.Message.setOneofField(this, 13, proto.farcaster.State.oneofGroups_[3], undefined);
 };
 
 
@@ -10670,675 +9234,7 @@ proto.farcaster.RefundSigA.prototype.clearPunishBlocks = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.RefundSigA.prototype.hasPunishBlocks = function() {
-  return jspb.Message.getField(this, 13) != null;
-};
-
-
-/**
- * optional uint32 buy_blocks = 14;
- * @return {number}
- */
-proto.farcaster.RefundSigA.prototype.getBuyBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.RefundSigA} returns this
- */
-proto.farcaster.RefundSigA.prototype.setBuyBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 14, proto.farcaster.RefundSigA.oneofGroups_[5], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.RefundSigA} returns this
- */
-proto.farcaster.RefundSigA.prototype.clearBuyBlocks = function() {
-  return jspb.Message.setOneofField(this, 14, proto.farcaster.RefundSigA.oneofGroups_[5], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.RefundSigA.prototype.hasBuyBlocks = function() {
-  return jspb.Message.getField(this, 14) != null;
-};
-
-
-
-/**
- * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
- * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
- * @private {!Array<!Array<number>>}
- * @const
- */
-proto.farcaster.CoreArbB.oneofGroups_ = [[9],[10],[11],[12],[13],[14]];
-
-/**
- * @enum {number}
- */
-proto.farcaster.CoreArbB.ArbLockConfirmationsCase = {
-  ARB_LOCK_CONFIRMATIONS_NOT_SET: 0,
-  ARB_CONFS: 9
-};
-
-/**
- * @return {proto.farcaster.CoreArbB.ArbLockConfirmationsCase}
- */
-proto.farcaster.CoreArbB.prototype.getArbLockConfirmationsCase = function() {
-  return /** @type {proto.farcaster.CoreArbB.ArbLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.CoreArbB.oneofGroups_[0]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.CoreArbB.AccLockConfirmationsCase = {
-  ACC_LOCK_CONFIRMATIONS_NOT_SET: 0,
-  ACC_CONFS: 10
-};
-
-/**
- * @return {proto.farcaster.CoreArbB.AccLockConfirmationsCase}
- */
-proto.farcaster.CoreArbB.prototype.getAccLockConfirmationsCase = function() {
-  return /** @type {proto.farcaster.CoreArbB.AccLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.CoreArbB.oneofGroups_[1]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.CoreArbB.BlocksUntilCancelPossibleCase = {
-  BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET: 0,
-  CANCEL_BLOCKS: 11
-};
-
-/**
- * @return {proto.farcaster.CoreArbB.BlocksUntilCancelPossibleCase}
- */
-proto.farcaster.CoreArbB.prototype.getBlocksUntilCancelPossibleCase = function() {
-  return /** @type {proto.farcaster.CoreArbB.BlocksUntilCancelPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.CoreArbB.oneofGroups_[2]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.CoreArbB.CancelConfirmationsCase = {
-  CANCEL_CONFIRMATIONS_NOT_SET: 0,
-  CANCEL_CONFS: 12
-};
-
-/**
- * @return {proto.farcaster.CoreArbB.CancelConfirmationsCase}
- */
-proto.farcaster.CoreArbB.prototype.getCancelConfirmationsCase = function() {
-  return /** @type {proto.farcaster.CoreArbB.CancelConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.CoreArbB.oneofGroups_[3]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.CoreArbB.BlocksUntilRefundCase = {
-  BLOCKS_UNTIL_REFUND_NOT_SET: 0,
-  REFUND_BLOCKS: 13
-};
-
-/**
- * @return {proto.farcaster.CoreArbB.BlocksUntilRefundCase}
- */
-proto.farcaster.CoreArbB.prototype.getBlocksUntilRefundCase = function() {
-  return /** @type {proto.farcaster.CoreArbB.BlocksUntilRefundCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.CoreArbB.oneofGroups_[4]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.CoreArbB.BlocksUntilPunishPossibleCase = {
-  BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET: 0,
-  PUNISH_BLOCKS: 14
-};
-
-/**
- * @return {proto.farcaster.CoreArbB.BlocksUntilPunishPossibleCase}
- */
-proto.farcaster.CoreArbB.prototype.getBlocksUntilPunishPossibleCase = function() {
-  return /** @type {proto.farcaster.CoreArbB.BlocksUntilPunishPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.CoreArbB.oneofGroups_[5]));
-};
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.CoreArbB.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.CoreArbB.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.CoreArbB} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.CoreArbB.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    arbBlockHeight: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    accBlockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    arbLocked: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    accLocked: jspb.Message.getBooleanFieldWithDefault(msg, 4, false),
-    buyPublished: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
-    refundSeen: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
-    arbConfs: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    accConfs: jspb.Message.getFieldWithDefault(msg, 10, 0),
-    cancelBlocks: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    cancelConfs: jspb.Message.getFieldWithDefault(msg, 12, 0),
-    refundBlocks: jspb.Message.getFieldWithDefault(msg, 13, 0),
-    punishBlocks: jspb.Message.getFieldWithDefault(msg, 14, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.CoreArbB}
- */
-proto.farcaster.CoreArbB.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.CoreArbB;
-  return proto.farcaster.CoreArbB.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.CoreArbB} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.CoreArbB}
- */
-proto.farcaster.CoreArbB.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setArbBlockHeight(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAccBlockHeight(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setArbLocked(value);
-      break;
-    case 4:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setAccLocked(value);
-      break;
-    case 5:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setBuyPublished(value);
-      break;
-    case 7:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setRefundSeen(value);
-      break;
-    case 9:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setArbConfs(value);
-      break;
-    case 10:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setAccConfs(value);
-      break;
-    case 11:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setCancelBlocks(value);
-      break;
-    case 12:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setCancelConfs(value);
-      break;
-    case 13:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setRefundBlocks(value);
-      break;
-    case 14:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setPunishBlocks(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.CoreArbB.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.CoreArbB.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.CoreArbB} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.CoreArbB.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getArbBlockHeight();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-  f = message.getAccBlockHeight();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getArbLocked();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
-  f = message.getAccLocked();
-  if (f) {
-    writer.writeBool(
-      4,
-      f
-    );
-  }
-  f = message.getBuyPublished();
-  if (f) {
-    writer.writeBool(
-      5,
-      f
-    );
-  }
-  f = message.getRefundSeen();
-  if (f) {
-    writer.writeBool(
-      7,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 9));
-  if (f != null) {
-    writer.writeUint32(
-      9,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 10));
-  if (f != null) {
-    writer.writeUint32(
-      10,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 11));
-  if (f != null) {
-    writer.writeInt64(
-      11,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 12));
-  if (f != null) {
-    writer.writeUint32(
-      12,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 13));
-  if (f != null) {
-    writer.writeInt64(
-      13,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 14));
-  if (f != null) {
-    writer.writeInt64(
-      14,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint64 arb_block_height = 1;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getArbBlockHeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setArbBlockHeight = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint64 acc_block_height = 2;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getAccBlockHeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setAccBlockHeight = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional bool arb_locked = 3;
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.getArbLocked = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setArbLocked = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
-};
-
-
-/**
- * optional bool acc_locked = 4;
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.getAccLocked = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 4, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setAccLocked = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 4, value);
-};
-
-
-/**
- * optional bool buy_published = 5;
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.getBuyPublished = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 5, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setBuyPublished = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 5, value);
-};
-
-
-/**
- * optional bool refund_seen = 7;
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.getRefundSeen = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setRefundSeen = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 7, value);
-};
-
-
-/**
- * optional uint32 arb_confs = 9;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getArbConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setArbConfs = function(value) {
-  return jspb.Message.setOneofField(this, 9, proto.farcaster.CoreArbB.oneofGroups_[0], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.clearArbConfs = function() {
-  return jspb.Message.setOneofField(this, 9, proto.farcaster.CoreArbB.oneofGroups_[0], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.hasArbConfs = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional uint32 acc_confs = 10;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getAccConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setAccConfs = function(value) {
-  return jspb.Message.setOneofField(this, 10, proto.farcaster.CoreArbB.oneofGroups_[1], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.clearAccConfs = function() {
-  return jspb.Message.setOneofField(this, 10, proto.farcaster.CoreArbB.oneofGroups_[1], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.hasAccConfs = function() {
-  return jspb.Message.getField(this, 10) != null;
-};
-
-
-/**
- * optional int64 cancel_blocks = 11;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getCancelBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 11, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setCancelBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 11, proto.farcaster.CoreArbB.oneofGroups_[2], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.clearCancelBlocks = function() {
-  return jspb.Message.setOneofField(this, 11, proto.farcaster.CoreArbB.oneofGroups_[2], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.hasCancelBlocks = function() {
-  return jspb.Message.getField(this, 11) != null;
-};
-
-
-/**
- * optional uint32 cancel_confs = 12;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getCancelConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 12, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setCancelConfs = function(value) {
-  return jspb.Message.setOneofField(this, 12, proto.farcaster.CoreArbB.oneofGroups_[3], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.clearCancelConfs = function() {
-  return jspb.Message.setOneofField(this, 12, proto.farcaster.CoreArbB.oneofGroups_[3], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.hasCancelConfs = function() {
-  return jspb.Message.getField(this, 12) != null;
-};
-
-
-/**
- * optional int64 refund_blocks = 13;
- * @return {number}
- */
-proto.farcaster.CoreArbB.prototype.getRefundBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 13, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.setRefundBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 13, proto.farcaster.CoreArbB.oneofGroups_[4], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.CoreArbB} returns this
- */
-proto.farcaster.CoreArbB.prototype.clearRefundBlocks = function() {
-  return jspb.Message.setOneofField(this, 13, proto.farcaster.CoreArbB.oneofGroups_[4], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.CoreArbB.prototype.hasRefundBlocks = function() {
+proto.farcaster.State.prototype.hasCancelBlocks = function() {
   return jspb.Message.getField(this, 13) != null;
 };
 
@@ -11347,26 +9243,26 @@ proto.farcaster.CoreArbB.prototype.hasRefundBlocks = function() {
  * optional int64 punish_blocks = 14;
  * @return {number}
  */
-proto.farcaster.CoreArbB.prototype.getPunishBlocks = function() {
+proto.farcaster.State.prototype.getPunishBlocks = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 14, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.CoreArbB} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.CoreArbB.prototype.setPunishBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 14, proto.farcaster.CoreArbB.oneofGroups_[5], value);
+proto.farcaster.State.prototype.setPunishBlocks = function(value) {
+  return jspb.Message.setOneofField(this, 14, proto.farcaster.State.oneofGroups_[4], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.CoreArbB} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.CoreArbB.prototype.clearPunishBlocks = function() {
-  return jspb.Message.setOneofField(this, 14, proto.farcaster.CoreArbB.oneofGroups_[5], undefined);
+proto.farcaster.State.prototype.clearPunishBlocks = function() {
+  return jspb.Message.setOneofField(this, 14, proto.farcaster.State.oneofGroups_[4], undefined);
 };
 
 
@@ -11374,424 +9270,35 @@ proto.farcaster.CoreArbB.prototype.clearPunishBlocks = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.CoreArbB.prototype.hasPunishBlocks = function() {
+proto.farcaster.State.prototype.hasPunishBlocks = function() {
   return jspb.Message.getField(this, 14) != null;
 };
 
 
-
 /**
- * Oneof group definitions for this message. Each group defines the field
- * numbers belonging to that group. When of these fields' value is set, all
- * other fields in the group are cleared. During deserialization, if multiple
- * fields are encountered for a group, only the last value seen will be kept.
- * @private {!Array<!Array<number>>}
- * @const
- */
-proto.farcaster.BuySigB.oneofGroups_ = [[4],[5],[6],[7],[8],[9],[10]];
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.ArbLockConfirmationsCase = {
-  ARB_LOCK_CONFIRMATIONS_NOT_SET: 0,
-  ARB_CONFS: 4
-};
-
-/**
- * @return {proto.farcaster.BuySigB.ArbLockConfirmationsCase}
- */
-proto.farcaster.BuySigB.prototype.getArbLockConfirmationsCase = function() {
-  return /** @type {proto.farcaster.BuySigB.ArbLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[0]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.AccLockConfirmationsCase = {
-  ACC_LOCK_CONFIRMATIONS_NOT_SET: 0,
-  ACC_CONFS: 5
-};
-
-/**
- * @return {proto.farcaster.BuySigB.AccLockConfirmationsCase}
- */
-proto.farcaster.BuySigB.prototype.getAccLockConfirmationsCase = function() {
-  return /** @type {proto.farcaster.BuySigB.AccLockConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[1]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.BlocksUntilCancelPossibleCase = {
-  BLOCKS_UNTIL_CANCEL_POSSIBLE_NOT_SET: 0,
-  CANCEL_BLOCKS: 6
-};
-
-/**
- * @return {proto.farcaster.BuySigB.BlocksUntilCancelPossibleCase}
- */
-proto.farcaster.BuySigB.prototype.getBlocksUntilCancelPossibleCase = function() {
-  return /** @type {proto.farcaster.BuySigB.BlocksUntilCancelPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[2]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.CancelConfirmationsCase = {
-  CANCEL_CONFIRMATIONS_NOT_SET: 0,
-  CANCEL_CONFS: 7
-};
-
-/**
- * @return {proto.farcaster.BuySigB.CancelConfirmationsCase}
- */
-proto.farcaster.BuySigB.prototype.getCancelConfirmationsCase = function() {
-  return /** @type {proto.farcaster.BuySigB.CancelConfirmationsCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[3]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.BlocksUntilRefundCase = {
-  BLOCKS_UNTIL_REFUND_NOT_SET: 0,
-  REFUND_BLOCKS: 8
-};
-
-/**
- * @return {proto.farcaster.BuySigB.BlocksUntilRefundCase}
- */
-proto.farcaster.BuySigB.prototype.getBlocksUntilRefundCase = function() {
-  return /** @type {proto.farcaster.BuySigB.BlocksUntilRefundCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[4]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.BlocksUntilPunishPossibleCase = {
-  BLOCKS_UNTIL_PUNISH_POSSIBLE_NOT_SET: 0,
-  PUNISH_BLOCKS: 9
-};
-
-/**
- * @return {proto.farcaster.BuySigB.BlocksUntilPunishPossibleCase}
- */
-proto.farcaster.BuySigB.prototype.getBlocksUntilPunishPossibleCase = function() {
-  return /** @type {proto.farcaster.BuySigB.BlocksUntilPunishPossibleCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[5]));
-};
-
-/**
- * @enum {number}
- */
-proto.farcaster.BuySigB.BlocksUntilSafeMoneroBuySweepCase = {
-  BLOCKS_UNTIL_SAFE_MONERO_BUY_SWEEP_NOT_SET: 0,
-  BUY_MONERO_BLOCKS: 10
-};
-
-/**
- * @return {proto.farcaster.BuySigB.BlocksUntilSafeMoneroBuySweepCase}
- */
-proto.farcaster.BuySigB.prototype.getBlocksUntilSafeMoneroBuySweepCase = function() {
-  return /** @type {proto.farcaster.BuySigB.BlocksUntilSafeMoneroBuySweepCase} */(jspb.Message.computeOneofCase(this, proto.farcaster.BuySigB.oneofGroups_[6]));
-};
-
-
-
-if (jspb.Message.GENERATE_TO_OBJECT) {
-/**
- * Creates an object representation of this proto.
- * Field names that are reserved in JavaScript and will be renamed to pb_name.
- * Optional fields that are not set will be set to undefined.
- * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
- * For the list of reserved names please see:
- *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
- * @param {boolean=} opt_includeInstance Deprecated. whether to include the
- *     JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @return {!Object}
- */
-proto.farcaster.BuySigB.prototype.toObject = function(opt_includeInstance) {
-  return proto.farcaster.BuySigB.toObject(opt_includeInstance, this);
-};
-
-
-/**
- * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Deprecated. Whether to include
- *     the JSPB instance for transitional soy proto support:
- *     http://goto/soy-param-migration
- * @param {!proto.farcaster.BuySigB} msg The msg instance to transform.
- * @return {!Object}
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.BuySigB.toObject = function(includeInstance, msg) {
-  var f, obj = {
-    arbBlockHeight: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    accBlockHeight: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    buyTxSeen: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    arbConfs: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    accConfs: jspb.Message.getFieldWithDefault(msg, 5, 0),
-    cancelBlocks: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    cancelConfs: jspb.Message.getFieldWithDefault(msg, 7, 0),
-    refundBlocks: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    punishBlocks: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    buyMoneroBlocks: jspb.Message.getFieldWithDefault(msg, 10, 0)
-  };
-
-  if (includeInstance) {
-    obj.$jspbMessageInstance = msg;
-  }
-  return obj;
-};
-}
-
-
-/**
- * Deserializes binary data (in protobuf wire format).
- * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.farcaster.BuySigB}
- */
-proto.farcaster.BuySigB.deserializeBinary = function(bytes) {
-  var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.farcaster.BuySigB;
-  return proto.farcaster.BuySigB.deserializeBinaryFromReader(msg, reader);
-};
-
-
-/**
- * Deserializes binary data (in protobuf wire format) from the
- * given reader into the given message object.
- * @param {!proto.farcaster.BuySigB} msg The message object to deserialize into.
- * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.farcaster.BuySigB}
- */
-proto.farcaster.BuySigB.deserializeBinaryFromReader = function(msg, reader) {
-  while (reader.nextField()) {
-    if (reader.isEndGroup()) {
-      break;
-    }
-    var field = reader.getFieldNumber();
-    switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setArbBlockHeight(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readUint64());
-      msg.setAccBlockHeight(value);
-      break;
-    case 3:
-      var value = /** @type {boolean} */ (reader.readBool());
-      msg.setBuyTxSeen(value);
-      break;
-    case 4:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setArbConfs(value);
-      break;
-    case 5:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setAccConfs(value);
-      break;
-    case 6:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setCancelBlocks(value);
-      break;
-    case 7:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setCancelConfs(value);
-      break;
-    case 8:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setRefundBlocks(value);
-      break;
-    case 9:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setPunishBlocks(value);
-      break;
-    case 10:
-      var value = /** @type {number} */ (reader.readUint32());
-      msg.setBuyMoneroBlocks(value);
-      break;
-    default:
-      reader.skipField();
-      break;
-    }
-  }
-  return msg;
-};
-
-
-/**
- * Serializes the message to binary data (in protobuf wire format).
- * @return {!Uint8Array}
- */
-proto.farcaster.BuySigB.prototype.serializeBinary = function() {
-  var writer = new jspb.BinaryWriter();
-  proto.farcaster.BuySigB.serializeBinaryToWriter(this, writer);
-  return writer.getResultBuffer();
-};
-
-
-/**
- * Serializes the given message to binary data (in protobuf wire
- * format), writing to the given BinaryWriter.
- * @param {!proto.farcaster.BuySigB} message
- * @param {!jspb.BinaryWriter} writer
- * @suppress {unusedLocalVariables} f is only used for nested messages
- */
-proto.farcaster.BuySigB.serializeBinaryToWriter = function(message, writer) {
-  var f = undefined;
-  f = message.getArbBlockHeight();
-  if (f !== 0) {
-    writer.writeUint64(
-      1,
-      f
-    );
-  }
-  f = message.getAccBlockHeight();
-  if (f !== 0) {
-    writer.writeUint64(
-      2,
-      f
-    );
-  }
-  f = message.getBuyTxSeen();
-  if (f) {
-    writer.writeBool(
-      3,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 4));
-  if (f != null) {
-    writer.writeUint32(
-      4,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 5));
-  if (f != null) {
-    writer.writeUint32(
-      5,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 6));
-  if (f != null) {
-    writer.writeInt64(
-      6,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 7));
-  if (f != null) {
-    writer.writeUint32(
-      7,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 8));
-  if (f != null) {
-    writer.writeInt64(
-      8,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 9));
-  if (f != null) {
-    writer.writeInt64(
-      9,
-      f
-    );
-  }
-  f = /** @type {number} */ (jspb.Message.getField(message, 10));
-  if (f != null) {
-    writer.writeUint32(
-      10,
-      f
-    );
-  }
-};
-
-
-/**
- * optional uint64 arb_block_height = 1;
+ * optional uint32 buy_blocks = 15;
  * @return {number}
  */
-proto.farcaster.BuySigB.prototype.getArbBlockHeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+proto.farcaster.State.prototype.getBuyBlocks = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 15, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.BuySigB.prototype.setArbBlockHeight = function(value) {
-  return jspb.Message.setProto3IntField(this, 1, value);
-};
-
-
-/**
- * optional uint64 acc_block_height = 2;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getAccBlockHeight = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setAccBlockHeight = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional bool buy_tx_seen = 3;
- * @return {boolean}
- */
-proto.farcaster.BuySigB.prototype.getBuyTxSeen = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
-};
-
-
-/**
- * @param {boolean} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setBuyTxSeen = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 3, value);
-};
-
-
-/**
- * optional uint32 arb_confs = 4;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getArbConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setArbConfs = function(value) {
-  return jspb.Message.setOneofField(this, 4, proto.farcaster.BuySigB.oneofGroups_[0], value);
+proto.farcaster.State.prototype.setBuyBlocks = function(value) {
+  return jspb.Message.setOneofField(this, 15, proto.farcaster.State.oneofGroups_[5], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.BuySigB.prototype.clearArbConfs = function() {
-  return jspb.Message.setOneofField(this, 4, proto.farcaster.BuySigB.oneofGroups_[0], undefined);
+proto.farcaster.State.prototype.clearBuyBlocks = function() {
+  return jspb.Message.setOneofField(this, 15, proto.farcaster.State.oneofGroups_[5], undefined);
 };
 
 
@@ -11799,35 +9306,35 @@ proto.farcaster.BuySigB.prototype.clearArbConfs = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.BuySigB.prototype.hasArbConfs = function() {
-  return jspb.Message.getField(this, 4) != null;
+proto.farcaster.State.prototype.hasBuyBlocks = function() {
+  return jspb.Message.getField(this, 15) != null;
 };
 
 
 /**
- * optional uint32 acc_confs = 5;
+ * optional uint32 buy_monero_blocks = 16;
  * @return {number}
  */
-proto.farcaster.BuySigB.prototype.getAccConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+proto.farcaster.State.prototype.getBuyMoneroBlocks = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 16, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.BuySigB.prototype.setAccConfs = function(value) {
-  return jspb.Message.setOneofField(this, 5, proto.farcaster.BuySigB.oneofGroups_[1], value);
+proto.farcaster.State.prototype.setBuyMoneroBlocks = function(value) {
+  return jspb.Message.setOneofField(this, 16, proto.farcaster.State.oneofGroups_[6], value);
 };
 
 
 /**
  * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
+ * @return {!proto.farcaster.State} returns this
  */
-proto.farcaster.BuySigB.prototype.clearAccConfs = function() {
-  return jspb.Message.setOneofField(this, 5, proto.farcaster.BuySigB.oneofGroups_[1], undefined);
+proto.farcaster.State.prototype.clearBuyMoneroBlocks = function() {
+  return jspb.Message.setOneofField(this, 16, proto.farcaster.State.oneofGroups_[6], undefined);
 };
 
 
@@ -11835,188 +9342,8 @@ proto.farcaster.BuySigB.prototype.clearAccConfs = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.farcaster.BuySigB.prototype.hasAccConfs = function() {
-  return jspb.Message.getField(this, 5) != null;
-};
-
-
-/**
- * optional int64 cancel_blocks = 6;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getCancelBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 6, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setCancelBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 6, proto.farcaster.BuySigB.oneofGroups_[2], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.clearCancelBlocks = function() {
-  return jspb.Message.setOneofField(this, 6, proto.farcaster.BuySigB.oneofGroups_[2], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.BuySigB.prototype.hasCancelBlocks = function() {
-  return jspb.Message.getField(this, 6) != null;
-};
-
-
-/**
- * optional uint32 cancel_confs = 7;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getCancelConfs = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setCancelConfs = function(value) {
-  return jspb.Message.setOneofField(this, 7, proto.farcaster.BuySigB.oneofGroups_[3], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.clearCancelConfs = function() {
-  return jspb.Message.setOneofField(this, 7, proto.farcaster.BuySigB.oneofGroups_[3], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.BuySigB.prototype.hasCancelConfs = function() {
-  return jspb.Message.getField(this, 7) != null;
-};
-
-
-/**
- * optional int64 refund_blocks = 8;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getRefundBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setRefundBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 8, proto.farcaster.BuySigB.oneofGroups_[4], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.clearRefundBlocks = function() {
-  return jspb.Message.setOneofField(this, 8, proto.farcaster.BuySigB.oneofGroups_[4], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.BuySigB.prototype.hasRefundBlocks = function() {
-  return jspb.Message.getField(this, 8) != null;
-};
-
-
-/**
- * optional int64 punish_blocks = 9;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getPunishBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 9, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setPunishBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 9, proto.farcaster.BuySigB.oneofGroups_[5], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.clearPunishBlocks = function() {
-  return jspb.Message.setOneofField(this, 9, proto.farcaster.BuySigB.oneofGroups_[5], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.BuySigB.prototype.hasPunishBlocks = function() {
-  return jspb.Message.getField(this, 9) != null;
-};
-
-
-/**
- * optional uint32 buy_monero_blocks = 10;
- * @return {number}
- */
-proto.farcaster.BuySigB.prototype.getBuyMoneroBlocks = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.setBuyMoneroBlocks = function(value) {
-  return jspb.Message.setOneofField(this, 10, proto.farcaster.BuySigB.oneofGroups_[6], value);
-};
-
-
-/**
- * Clears the field making it undefined.
- * @return {!proto.farcaster.BuySigB} returns this
- */
-proto.farcaster.BuySigB.prototype.clearBuyMoneroBlocks = function() {
-  return jspb.Message.setOneofField(this, 10, proto.farcaster.BuySigB.oneofGroups_[6], undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.farcaster.BuySigB.prototype.hasBuyMoneroBlocks = function() {
-  return jspb.Message.getField(this, 10) != null;
+proto.farcaster.State.prototype.hasBuyMoneroBlocks = function() {
+  return jspb.Message.getField(this, 16) != null;
 };
 
 
@@ -12343,7 +9670,8 @@ proto.farcaster.NeedsFundingRequest.prototype.toObject = function(opt_includeIns
 proto.farcaster.NeedsFundingRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    blockchain: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    blockchain: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    networkSelector: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -12388,6 +9716,10 @@ proto.farcaster.NeedsFundingRequest.deserializeBinaryFromReader = function(msg, 
       var value = /** @type {!proto.farcaster.Blockchain} */ (reader.readEnum());
       msg.setBlockchain(value);
       break;
+    case 3:
+      var value = /** @type {!proto.farcaster.NetworkSelector} */ (reader.readEnum());
+      msg.setNetworkSelector(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -12431,6 +9763,13 @@ proto.farcaster.NeedsFundingRequest.serializeBinaryToWriter = function(message, 
       f
     );
   }
+  f = message.getNetworkSelector();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -12467,6 +9806,24 @@ proto.farcaster.NeedsFundingRequest.prototype.getBlockchain = function() {
  */
 proto.farcaster.NeedsFundingRequest.prototype.setBlockchain = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional NetworkSelector network_selector = 3;
+ * @return {!proto.farcaster.NetworkSelector}
+ */
+proto.farcaster.NeedsFundingRequest.prototype.getNetworkSelector = function() {
+  return /** @type {!proto.farcaster.NetworkSelector} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.farcaster.NetworkSelector} value
+ * @return {!proto.farcaster.NeedsFundingRequest} returns this
+ */
+proto.farcaster.NeedsFundingRequest.prototype.setNetworkSelector = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -13203,17 +10560,17 @@ proto.farcaster.SweepAddressResponse.prototype.setMessage = function(value) {
 /**
  * @enum {number}
  */
-proto.farcaster.HealthCheckSelector = {
-  CHECK_ALL: 0,
-  CHECK_MAINNET: 1,
-  CHECK_TESTNET: 2,
-  CHECK_LOCAL: 3
+proto.farcaster.NetworkSelector = {
+  ALL_NETWORKS: 0,
+  MAINNET_NETWORKS: 1,
+  TESTNET_NETWORKS: 2,
+  LOCAL_NETWORKS: 3
 };
 
 /**
  * @enum {number}
  */
-proto.farcaster.OfferSelector = {
+proto.farcaster.DealSelector = {
   OPEN: 0,
   IN_PROGRESS: 1,
   ENDED: 2,
