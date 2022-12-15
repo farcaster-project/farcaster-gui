@@ -2,7 +2,7 @@
 
 import { TbSwitchHorizontal } from 'react-icons/tb'
 import { useEffect, useState } from 'react'
-import { TradePanel } from '../../components/panels'
+import { TradePanel } from '../../components/ui/Panel'
 import { otherSwapRole } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'

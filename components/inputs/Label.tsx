@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { inputRow } from '../input'
+import { inputRow } from './Input'
 
 export default function Label({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (

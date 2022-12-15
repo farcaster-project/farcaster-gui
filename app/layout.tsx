@@ -3,11 +3,11 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { SettingsProvider } from './settings-provider'
 import { Inter } from '@next/font/google'
-import SettingsLoader from './SettingsLoader'
 import { ConnectionProvider } from './connection-provider'
-import ConnectHeader from './ConnectHeader'
-import Sidebar from './Sidebar'
-import Profiles from './Profiles'
+import SettingsLoader from '../components/ui/SettingsLoader'
+import Sidebar from '../components/ui/Sidebar'
+import Profiles from '../components/ui/Profiles'
+import ConnectHeader from '../components/ui/ConnectHeader'
 
 const inter = Inter({ subsets: ['latin'] })
 

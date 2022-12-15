@@ -14,7 +14,7 @@ import {
 } from '../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { ResultCallbackHandler, useRefresh, useRpc } from './hooks'
-import { Button } from '../components/input'
+import { Button } from '../components/inputs/Button'
 
 export type RunningItem = {
   id: string

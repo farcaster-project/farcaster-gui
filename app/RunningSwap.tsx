@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { Block, Label } from '../components/labels'
+import { Block, Label } from '../components/ui/Label'
 import { AbortSwapRequest, ProgressRequest, ProgressResponse, Progress } from '../proto/farcaster_pb'
 import { useRefresh, useRpc } from './hooks'
 

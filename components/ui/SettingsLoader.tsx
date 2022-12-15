@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, useContext } from 'react'
-import SettingsContext from './settings-provider'
+import SettingsContext from '../../app/settings-provider'
 
 export default function SettingsLoader({ children }: { children: ReactNode }) {
   const { loading } = useContext(SettingsContext)

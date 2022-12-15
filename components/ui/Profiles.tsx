@@ -5,8 +5,8 @@ import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
 import { Fragment } from 'react'
 import { TbEdit, TbPlus, TbX } from 'react-icons/tb'
-import { netToString } from '../components/utils'
-import { useProfile } from './hooks'
+import { useProfile } from '../../app/hooks'
+import { netToString } from '../utils'
 
 export default function Profiles() {
   const [current, profileSet, profiles, delProfile] = useProfile()

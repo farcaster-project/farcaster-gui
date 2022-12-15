@@ -1,9 +1,8 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 import { Tab } from '@headlessui/react'
 import { cva } from 'class-variance-authority'
-import { isTemplateExpression } from 'typescript'
 
 const tab = cva(
   'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-slate-700 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400 focus:outline-none',

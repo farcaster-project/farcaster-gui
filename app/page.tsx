@@ -1,6 +1,6 @@
 'use client'
 
-import { Title } from '../components/ui'
+import { Title } from '../components/ui/Title'
 import RunningList from './RunningList'
 
 export default function Page() {

@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { Button } from '../components/input'
-import { DealPanel } from '../components/panels'
+import { Button } from '../components/inputs/Button'
+import { DealPanel } from '../components/ui/Panel'
 import { DealInfoRequest, DealInfoResponse, RevokeDealRequest, TradeRole } from '../proto/farcaster_pb'
 import { useRpc } from './hooks'
 

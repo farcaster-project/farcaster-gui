@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { Title } from '../../components/ui'
+import { Title } from '../../components/ui/Title'
 import { InfoRequest, InfoResponse } from '../../proto/farcaster_pb'
 import { useRefresh, useRpc } from '../hooks'
 

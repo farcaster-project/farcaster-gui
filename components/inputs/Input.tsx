@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority'
-import React, { ChangeEvent, ComponentProps, ReactNode, useId } from 'react'
+import React, { ChangeEvent, ComponentProps, useId } from 'react'
 
 // an input row is a div containing one label element and one input or textarea
 // displayed on the same line
@@ -56,54 +56,5 @@ export function Input({
       )}
       {type === 'text' && <textarea value={value} className={input({ type })} id={id} onChange={onChange} {...args} />}
     </div>
-  )
-}
-
-const select = cva(baseInput)
-
-export function Select({
-  label,
-  children,
-  ...args
-}: {
-  label: string
-  children: ReactNode
-} & ComponentProps<'select'>) {
-  const id = useId()
-  return (
-    <div className={inputRow({ type: 'input' })}>
-      <label className="text-gray-700 font-medium w-96" htmlFor={id}>
-        {label}
-      </label>
-      <select className={select()} id={id} {...args}>
-        {children}
-      </select>
-    </div>
-  )
-}
-
-const button = cva(['px-4', 'py-1', 'rounded', 'disabled:bg-gray-100', 'disabled:text-gray-300'], {
-  variants: {
-    active: {
-      true: ['bg-gray-500', 'text-gray-100'],
-      false: ['bg-gray-300 ', 'text-gray-800'],
-    },
-  },
-  defaultVariants: {
-    active: false,
-  },
-})
-
-export function Button({ active, ...args }: { active?: boolean } & ComponentProps<'button'>) {
-  return <button className={button({ active })} {...args} />
-}
-
-export function Submit(args: ComponentProps<'input'>) {
-  return (
-    <input
-      className="cursor-pointer px-4 py-1 rounded bg-gray-300 text-gray-800 hover:bg-gray-500 hover:text-gray-100 disabled:bg-gray-100 disabled:text-gray-300"
-      type="submit"
-      {...args}
-    />
   )
 }

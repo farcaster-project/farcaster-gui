@@ -1,6 +1,6 @@
-import { Blockchain, Network, SwapRole, TradeRole, DealInfoResponse } from '../proto/farcaster_pb'
-import { Block, Label } from './labels'
-import { chainToString, isMaker, netToString } from './utils'
+import { Blockchain, Network, SwapRole, TradeRole, DealInfoResponse } from '../../proto/farcaster_pb'
+import { chainToString, isMaker, netToString } from '../utils'
+import { Block, Label } from './Label'
 
 export type PanelParams = {
   arbitratingAmount: number

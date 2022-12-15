@@ -1,7 +1,7 @@
 'use client'
 
 import { cva } from 'class-variance-authority'
-import { useConnected } from './hooks'
+import { useConnected } from '../../app/hooks'
 
 const connectionLabel = cva(['rounded-full', 'py-1', 'px-4'], {
   variants: {
