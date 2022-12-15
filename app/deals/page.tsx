@@ -1,13 +1,24 @@
 'use client'
 
+import Tabs from '../../components/Tabs'
 import { MakeForm } from './MakeForm'
 import { TakeForm } from './TakeForm'
 
 export default function TakePage() {
   return (
-    <div className="flex flex-col space-y-16">
-      <TakeForm />
-      <MakeForm />
+    <div>
+      <Tabs
+        tabs={[
+          {
+            tabHeader: <span className="text-xl">Take a deal</span>,
+            tabContent: <TakeForm />,
+          },
+          {
+            tabHeader: <span className="text-xl">Make a deal</span>,
+            tabContent: <MakeForm />,
+          },
+        ]}
+      />
     </div>
   )
 }

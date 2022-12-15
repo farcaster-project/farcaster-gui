@@ -36,7 +36,6 @@ export function TakeForm() {
 
   return (
     <div>
-      <Title>Take an offer</Title>
       <form
         onSubmit={(e) => {
           // issue the request to take the offer

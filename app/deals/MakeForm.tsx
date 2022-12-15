@@ -73,7 +73,6 @@ export function MakeForm() {
 
   return (
     <>
-      <Title>Register an new offer</Title>
       <div className="my-4">
         <TradePanel
           arbitratingAmount={req.arbitratingAmount}
