@@ -72,7 +72,7 @@ export function TakeForm() {
             value={take.publicOffer}
             label="The public offer you want take"
             type="text"
-            placeholder="Offer:..."
+            placeholder="Deal:..."
             required
             onChange={(e) => takeSet((v) => ({ ...v, publicOffer: e.target.value.trim() }))}
           />

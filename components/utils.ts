@@ -2,7 +2,7 @@ import { Blockchain, Network, SwapRole, TradeRole } from "../proto/farcaster_pb"
 
 // Utility function to convert a Blockchain enum into a string (generated enums
 // are typed as ints, so this function is necessary)
-export function chainToString(b: Blockchain): String {
+export function chainToString(b: Blockchain): string {
   switch (b) {
     case Blockchain.BITCOIN:
       return 'Bitcoin'
@@ -13,7 +13,7 @@ export function chainToString(b: Blockchain): String {
 
 // Utility function to convert a Swap role enum into a string (generated enums
 // are typed as ints, so this function is necessary)
-export function swapRoleToString(s: SwapRole): String {
+export function swapRoleToString(s: SwapRole): string {
   switch (s) {
     case SwapRole.ALICE:
       return 'Alice'
@@ -24,7 +24,7 @@ export function swapRoleToString(s: SwapRole): String {
 
 // Utility function to convert a Network enum into a string (generated enums are
 // typed as ints, so this function is necessary)
-export function netToString(n: Network): String {
+export function netToString(n: Network): string {
   switch (n) {
     case Network.MAINNET:
       return 'Mainnet'
@@ -32,6 +32,18 @@ export function netToString(n: Network): String {
       return 'Testnet'
     case Network.LOCAL:
       return 'Regtest'
+  }
+}
+
+// Utility function to convert a string into a Network enum
+export function stringToNet(n: 'Mainnet'|'Testnet'|'Regtest'): Network {
+  switch (n) {
+    case 'Mainnet':
+      return Network.MAINNET
+    case 'Testnet':
+      return Network.TESTNET
+    case 'Regtest':
+      return Network.LOCAL
   }
 }
 

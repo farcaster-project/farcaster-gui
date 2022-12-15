@@ -3,11 +3,14 @@
 import { NIL, v4 as Uuid } from 'uuid'
 import { FormEvent, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Input, Select, Submit } from '../../components/input'
+import { Input, Submit } from '../../components/input'
 import { Subtitle, Title } from '../../components/ui'
 import { Network } from '../../proto/farcaster_pb'
 import { useProfile } from '../hooks'
 import { newProfile } from '../settings-provider'
+import Select from '../../components/inputs/Select'
+import { netToString, stringToNet } from '../../components/utils'
+import Label from '../../components/inputs/Label'
 
 export default function ProfilePage() {
   const [profile, profileSet] = useProfile()
@@ -30,6 +33,8 @@ export default function ProfilePage() {
     }
     profileSet(formProfile)
   }
+
+  const networks = [{ name: netToString(Network.MAINNET) }, { name: netToString(Network.TESTNET) }]
 
   return (
     <>
@@ -60,17 +65,15 @@ export default function ProfilePage() {
         </div>
         <div>
           <Subtitle>Blockchain</Subtitle>
-          <Select
-            label="Default network"
-            value={formProfile.network}
-            onChange={(e) => formProfileSet({ ...formProfile, network: parseInt(e.target.value) })}
-          >
-            <option value={Network.MAINNET} disabled>
-              mainnet
-            </option>
-            <option value={Network.TESTNET}>testnet</option>
-            <option value={Network.LOCAL}>local</option>
-          </Select>
+          <Label label={<>Network</>}>
+            <Select
+              selected={networks.filter((v) => v.name == netToString(formProfile.network))[0]}
+              elems={networks}
+              onChange={({ name }) =>
+                formProfileSet({ ...formProfile, network: stringToNet(name as 'Mainnet' | 'Testnet') })
+              }
+            />
+          </Label>
           <Input
             label="Bitcoin address"
             value={formProfile.btcAddr}
