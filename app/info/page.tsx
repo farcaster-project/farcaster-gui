@@ -2,8 +2,8 @@
 
 import { useCallback, useState } from 'react'
 import { Title } from '../../components/ui'
-import { InfoRequest, InfoResponse, Network } from '../../proto/farcaster_pb'
-import { useRefresh, useRpc, useSettings } from '../hooks'
+import { InfoRequest, InfoResponse } from '../../proto/farcaster_pb'
+import { useRefresh, useRpc } from '../hooks'
 
 export default function InfoPage() {
   const [info, infoSet] = useState<InfoResponse | null>(null)

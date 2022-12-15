@@ -3,11 +3,10 @@
 import { TbSwitchHorizontal } from 'react-icons/tb'
 import { useEffect, useState } from 'react'
 import { TradePanel } from '../../components/panels'
-import { Title } from '../../components/ui'
 import { otherSwapRole } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
-import { Button, Submit } from '../../components/input'
+import { Button, Submit } from '../../components/inputs/Button'
 
 interface Params {
   network: Network
