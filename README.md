@@ -29,4 +29,4 @@ This is tested with node.js version `16`, libprotoc `3.21`, and the code generat
 
 ## gRPC Interface
 
-Generated files related to `proto/farcaster.proto` are commited, if you want to change the service definition save your proto file and run `npm run gen`. (You need `protoc` and the code generator plugin)
+Generated files related to `proto/farcaster.proto` are committed, if you want to change the service definition save your proto file and run `npm run gen`. (You need `protoc` and the code generator plugin)
