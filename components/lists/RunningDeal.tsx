@@ -1,10 +1,10 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { Button } from '../components/inputs/Button'
-import { DealPanel } from '../components/ui/Panel'
-import { DealInfoRequest, DealInfoResponse, RevokeDealRequest, TradeRole } from '../proto/farcaster_pb'
-import { useRpc } from './hooks'
+import { useRpc } from '../../app/hooks'
+import { Button } from '../inputs/Button'
+import { DealPanel } from '../ui/Panel'
+import { DealInfoRequest, DealInfoResponse, RevokeDealRequest, TradeRole } from '../../proto/farcaster_pb'
 
 export default function RunningDeal({ deal }: { deal: string }) {
   const [dealInfo, dealSet] = useState<DealInfoResponse | null>(null)

@@ -1,9 +1,9 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { Block, Label } from '../components/ui/Label'
-import { AbortSwapRequest, ProgressRequest, ProgressResponse, Progress } from '../proto/farcaster_pb'
-import { useRefresh, useRpc } from './hooks'
+import { Block, Label } from '../ui/Label'
+import { AbortSwapRequest, ProgressRequest, ProgressResponse, Progress } from '../../proto/farcaster_pb'
+import { useRefresh, useRpc } from '../../app/hooks'
 
 export default function RunningSwap({ id }: { id: string }) {
   const [prog, progSet] = useState<ProgressResponse | null>(null)

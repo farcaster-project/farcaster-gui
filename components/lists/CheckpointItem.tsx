@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { CheckpointEntry, RestoreCheckpointRequest } from '../proto/farcaster_pb'
-import { useRpc } from './hooks'
+import { useRpc } from '../../app/hooks'
+import { CheckpointEntry, RestoreCheckpointRequest } from '../../proto/farcaster_pb'
 
 export default function CheckpointItem({ id, data }: { id: string; data?: CheckpointEntry.AsObject }) {
   const [restoring, restoringSet] = useState(false)

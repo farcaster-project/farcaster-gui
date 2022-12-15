@@ -1,7 +1,7 @@
 'use client'
 
+import RunningList from '../components/lists/RunningList'
 import { Title } from '../components/ui/Title'
-import RunningList from './RunningList'
 
 export default function Page() {
   return (

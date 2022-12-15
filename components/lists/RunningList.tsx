@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { FarcasterClient } from '../proto/FarcasterServiceClientPb'
+import { FarcasterClient } from '../../proto/FarcasterServiceClientPb'
 import {
   CheckpointEntry,
   CheckpointsRequest,
@@ -11,10 +11,10 @@ import {
   ListDealsRequest,
   ListDealsResponse,
   DealSelector,
-} from '../proto/farcaster_pb'
+} from '../../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
-import { ResultCallbackHandler, useRefresh, useRpc } from './hooks'
-import { Button } from '../components/inputs/Button'
+import { Button } from '../inputs/Button'
+import { ResultCallbackHandler, useRefresh, useRpc } from '../../app/hooks'
 
 export type RunningItem = {
   id: string
