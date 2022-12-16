@@ -39,7 +39,7 @@ export default function RunningDeal({ deal }: { deal: string }) {
 
   return (
     <>
-      {dealInfo && <DealPanel dealInfo={dealInfo} deal={deal} displayForRole={TradeRole.MAKER} />}
+      {dealInfo && <DealPanel dealInfo={dealInfo.getDealInfo()!} deal={deal} displayForRole={TradeRole.MAKER} />}
       <div>
         <ul className="flex flex-row-reverse mt-6">
           <li>

@@ -43,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="flex flex-col space-y-4 items-center">
                     <MenuItem href="/">Swaps</MenuItem>
                     <MenuItem href="/deals">Deals</MenuItem>
+                    <MenuItem href="/history">History</MenuItem>
                     <MenuItem href="/info">Node</MenuItem>
                   </div>
                   <div>

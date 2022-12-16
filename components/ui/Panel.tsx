@@ -1,4 +1,5 @@
-import { Blockchain, Network, SwapRole, TradeRole, DealInfoResponse } from '../../proto/farcaster_pb'
+import { ReactNode } from 'react'
+import { Blockchain, Network, SwapRole, TradeRole, DealInfo } from '../../proto/farcaster_pb'
 import { chainToString, isMaker, netToString } from '../utils'
 import { Block, Label } from './Label'
 
@@ -51,7 +52,7 @@ export function DealPanel({
   displayForRole,
   deal,
 }: {
-  dealInfo: DealInfoResponse
+  dealInfo: DealInfo
   displayForRole: TradeRole
   deal?: String
 }) {
@@ -61,15 +62,15 @@ export function DealPanel({
       <div className="break-all">
         <div className="mb-3 text-xl">
           <TradePanel
-            arbitratingAmount={dealInfo.getDealInfo()!.getArbitratingAmount()}
-            accordantAmount={dealInfo.getDealInfo()!.getAccordantAmount()}
-            arbitratingBlockchain={dealInfo.getDealInfo()!.getArbitratingBlockchain()}
-            accordantBlockchain={dealInfo.getDealInfo()!.getAccordantBlockchain()}
-            makerRole={dealInfo.getDealInfo()!.getMakerRole()}
-            network={dealInfo.getDealInfo()!.getNetwork()}
+            arbitratingAmount={dealInfo.getArbitratingAmount()}
+            accordantAmount={dealInfo.getAccordantAmount()}
+            arbitratingBlockchain={dealInfo.getArbitratingBlockchain()}
+            accordantBlockchain={dealInfo.getAccordantBlockchain()}
+            makerRole={dealInfo.getMakerRole()}
+            network={dealInfo.getNetwork()}
             displayForRole={displayForRole}
           />{' '}
-          in deal <Label>{dealInfo.getDealInfo()!.getUuid()}</Label>
+          in deal <Label>{dealInfo.getUuid()}</Label>
         </div>
         {deal && (
           <>
@@ -80,19 +81,25 @@ export function DealPanel({
       </div>
       <div className="mb-3">
         <div>{roleIsMaker ? 'Taker will connect to your peer at:' : 'You will connect to maker peer at:'}</div>
-        <Block intent="primary">
-          {dealInfo && `${dealInfo.getDealInfo()!.getNodeId()}@${dealInfo.getDealInfo()!.getPeerAddress()}`}
-        </Block>
+        <Block intent="primary">{dealInfo && `${dealInfo.getNodeId()}@${dealInfo.getPeerAddress()}`}</Block>
       </div>
       <div>
         <div className="mb-2">
-          Timelocks: cancel <Label>{dealInfo.getDealInfo()!.getCancelTimelock()} blocks</Label>
-          punish <Label>{dealInfo.getDealInfo()!.getPunishTimelock()} blocks</Label>
+          Timelocks: cancel <Label>{dealInfo.getCancelTimelock()} blocks</Label>
+          punish <Label>{dealInfo.getPunishTimelock()} blocks</Label>
         </div>
         <div>
-          Fee: <Label>{dealInfo.getDealInfo()!.getFeeStrategy()}</Label>
+          Fee: <Label>{dealInfo.getFeeStrategy()}</Label>
         </div>
       </div>
     </>
+  )
+}
+
+export function Panel({ children }: { children: ReactNode }) {
+  return (
+    <div className="rounded-xl bg-white p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400 mb-6">
+      {children}
+    </div>
   )
 }
