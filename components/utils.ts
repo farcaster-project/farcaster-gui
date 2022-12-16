@@ -1,4 +1,4 @@
-import { Blockchain, Network, SwapRole, TradeRole } from "../proto/farcaster_pb"
+import { Blockchain, Network, NetworkSelector, SwapRole, TradeRole } from "../proto/farcaster_pb"
 
 // Utility function to convert a Blockchain enum into a string (generated enums
 // are typed as ints, so this function is necessary)
@@ -64,5 +64,17 @@ export function isMaker(role: TradeRole): boolean {
       return true
     case TradeRole.TAKER:
       return false
+  }
+}
+
+// Convert a network into a network selector. The network selector 'ALL' is not covered here.
+export function netToSelector(net: Network): NetworkSelector {
+  switch (net) {
+    case Network.MAINNET:
+      return NetworkSelector.MAINNET_NETWORKS
+    case Network.TESTNET:
+      return NetworkSelector.TESTNET_NETWORKS
+    case Network.LOCAL:
+      return NetworkSelector.LOCAL_NETWORKS
   }
 }

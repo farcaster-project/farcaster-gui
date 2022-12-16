@@ -9,6 +9,7 @@ import Sidebar from '../components/ui/sidebar/Sidebar'
 import Profiles from '../components/ui/sidebar/Profiles'
 import ConnectStatus from '../components/ui/sidebar/ConnectStatus'
 import FcLogo from '../components/ui/sidebar/FcLogo'
+import SyncerStatus from '../components/ui/sidebar/SyncerStatus'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,7 +45,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <MenuItem href="/deals">Deals</MenuItem>
                     <MenuItem href="/info">Node</MenuItem>
                   </div>
-                  <ConnectStatus />
+                  <div>
+                    <SyncerStatus />
+                    <ConnectStatus />
+                  </div>
                 </Sidebar>
                 <div className="w-full ml-48">
                   <div className="container mx-auto">{children}</div>

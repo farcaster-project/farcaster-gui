@@ -3,12 +3,12 @@
 import { cva } from 'class-variance-authority'
 import { useConnected } from '../../../app/hooks'
 
-const connectionLabel = cva(['rounded-full', 'py-1', 'px-4'], {
+const connectionLabel = cva(['rounded-full', 'py-1', 'px-4', 'ring-1'], {
   variants: {
     status: {
-      'connecting...': ['bg-slate-700', 'text-slate-50'],
-      connected: ['bg-emerald-700', 'text-emerald-50'],
-      disconnected: ['bg-rose-700', 'text-rose-50'],
+      'connecting...': ['bg-slate-700', 'text-slate-50', 'ring-slate-600'],
+      connected: ['bg-green-700', 'text-green-50', 'ring-green-600'],
+      disconnected: ['bg-rose-700', 'text-rose-50', 'ring-rose-600'],
     },
   },
   defaultVariants: {
