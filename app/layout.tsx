@@ -8,6 +8,7 @@ import SettingsLoader from '../components/ui/SettingsLoader'
 import Sidebar from '../components/ui/Sidebar'
 import Profiles from '../components/ui/Profiles'
 import ConnectHeader from '../components/ui/ConnectHeader'
+import FcLogo from '../components/ui/FcLogo'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ConnectionProvider>
               <div className="relative flex bg-slate-100 min-h-screen">
                 <Sidebar>
-                  <Profiles />
+                  <div className="flex flex-col items-center">
+                    <FcLogo />
+                    <Profiles />
+                  </div>
                   <div className="flex flex-col space-y-4 items-center">
                     <MenuItem href="/">Swaps</MenuItem>
                     <MenuItem href="/deals">Deals</MenuItem>
