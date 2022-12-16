@@ -4,20 +4,11 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRpc } from '../../app/hooks'
 import { Button } from '../inputs/Button'
 import { DealPanel } from '../ui/Panel'
-import { DealInfoRequest, DealInfoResponse, RevokeDealRequest, TradeRole } from '../../proto/farcaster_pb'
+import { DealInfo, DealInfoRequest, DealInfoResponse, RevokeDealRequest, TradeRole } from '../../proto/farcaster_pb'
 
-export default function RunningDeal({ deal }: { deal: string }) {
-  const [dealInfo, dealSet] = useState<DealInfoResponse | null>(null)
+export default function RunningDeal({ id, data }: { id: string; data: DealInfo }) {
   const [revoking, revokingSet] = useState(false)
   const [fcd, res] = useRpc()
-
-  useEffect(() => {
-    fcd.dealInfo(
-      new DealInfoRequest().setDeal(deal),
-      null,
-      res(dealSet, () => dealSet(null))
-    )
-  }, [fcd, res, deal])
 
   const handleRevoke = useCallback(
     (deal: string) => {
@@ -39,11 +30,11 @@ export default function RunningDeal({ deal }: { deal: string }) {
 
   return (
     <>
-      {dealInfo && <DealPanel dealInfo={dealInfo.getDealInfo()!} deal={deal} displayForRole={TradeRole.MAKER} />}
+      {data && <DealPanel dealInfo={data} deal={data.getEncodedDeal()} displayForRole={TradeRole.MAKER} />}
       <div>
         <ul className="flex flex-row-reverse mt-6">
           <li>
-            <Button onClick={() => handleRevoke(deal)}>revoke</Button>
+            <Button onClick={() => handleRevoke(data.getUuid())}>revoke</Button>
           </li>
         </ul>
       </div>

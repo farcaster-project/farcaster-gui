@@ -6,20 +6,22 @@ import {
   CheckpointEntry,
   CheckpointsRequest,
   CheckpointsResponse,
-  InfoRequest,
-  InfoResponse,
   ListDealsRequest,
   ListDealsResponse,
   DealSelector,
+  CheckpointSelector,
+  DealInfo,
 } from '../../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
 import { Button } from '../inputs/Button'
-import { ResultCallbackHandler, useRefresh, useRpc } from '../../app/hooks'
+import { ResultCallbackHandler, useProfile, useRefresh, useRpc } from '../../app/hooks'
+import { Profile } from '../../app/settings-provider'
+import { netToSelector } from '../utils'
 
 export type RunningItem = {
   id: string
   type: 'swap' | 'deal' | 'checkpoint'
-  data?: CheckpointEntry.AsObject
+  data?: DealInfo | CheckpointEntry
 }
 
 export type QueryFilters = {
@@ -33,56 +35,49 @@ export type Filters = {
 }
 
 // Get the list of swaps, deals, and checkpoints and merge them into one
-// standardized array. Filter out checkpoints present in the list of running
-// swaps and only query the selected deals.
-async function getDataList(
-  filters: QueryFilters,
-  fcd: FarcasterClient,
-  res: ResultCallbackHandler
-): Promise<RunningItem[]> {
+// standardized array.
+async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCallbackHandler): Promise<RunningItem[]> {
   // build an array of promises that call all the data we need
   // hook the res handler in all calls to catch errors and save them in the global state
   // await all the array and get the results
-  const [info, deals, ckpts] = await Promise.all([
-    new Promise<InfoResponse>((resolve, reject) => {
-      fcd.info(
-        new InfoRequest(),
+  const [sRes, dRes, cRes] = await Promise.all([
+    new Promise<ListDealsResponse>((resolve, reject) => {
+      fcd.listDeals(
+        new ListDealsRequest()
+          .setDealSelector(DealSelector.IN_PROGRESS)
+          .setNetworkSelector(netToSelector(profile.network)),
         null,
         res(resolve, () => reject())
       )
     }),
     new Promise<ListDealsResponse>((resolve, reject) => {
       fcd.listDeals(
-        new ListDealsRequest().setDealSelector(filters.deals),
+        new ListDealsRequest().setDealSelector(DealSelector.OPEN).setNetworkSelector(netToSelector(profile.network)),
         null,
         res(resolve, () => reject())
       )
     }),
     new Promise<CheckpointsResponse>((resolve, reject) => {
       fcd.checkpoints(
-        new CheckpointsRequest(),
+        new CheckpointsRequest()
+          .setCheckpointSelector(CheckpointSelector.AVAILABLE_FOR_RESTORE)
+          .setNetworkSelector(netToSelector(profile.network)),
         null,
         res(resolve, () => reject())
       )
     }),
   ])
+  console.log([sRes, dRes, cRes])
 
-  const [swaps, checkpoints] = [info.getSwapsList(), ckpts.getCheckpointEntriesList()]
-  const typedSwaps: RunningItem[] = swaps.map((id) => ({ id: id, type: 'swap' }))
-  // fixme, pass the deal to avoid second call to decode
-  const typedDeals: RunningItem[] = deals.getDealsList().map((id) => ({ id: id.getEncodedDeal(), type: 'deal' }))
-  const typedCheckpoints: RunningItem[] = checkpoints
-    .filter((checkpoint) => !swaps.includes(checkpoint.getSwapId()))
-    .map((checkpoint) => ({
-      id: checkpoint.getSwapId(),
-      type: 'checkpoint',
-      data: checkpoint.toObject(),
-    }))
+  const [swaps, deals, checkpoints] = [sRes.getDealsList(), dRes.getDealsList(), cRes.getCheckpointEntriesList()]
+  const typedSwaps: RunningItem[] = swaps.map((deal) => ({ id: deal.getUuid(), type: 'swap', data: deal }))
+  const typedDeals: RunningItem[] = deals.map((deal) => ({ id: deal.getUuid(), type: 'deal', data: deal }))
+  const typedCheckpoints: RunningItem[] = checkpoints.map((checkpoint) => ({
+    id: checkpoint.getSwapId(),
+    type: 'checkpoint',
+    data: checkpoint,
+  }))
   return typedSwaps.concat(typedDeals).concat(typedCheckpoints)
-}
-
-const defaultQueryFilters: QueryFilters = {
-  deals: DealSelector.OPEN,
 }
 
 const defaultFilters: Filters = {
@@ -111,7 +106,8 @@ function NavList({ pages, current, pageSet }: { pages: number; current: number; 
 const itemPerPage = 10
 
 export default function RunningList() {
-  const [queryFilters, queryFiltersSet] = useState<QueryFilters>(defaultQueryFilters)
+  //const [queryFilters, queryFiltersSet] = useState<QueryFilters>(defaultQueryFilters)
+  const [profile] = useProfile()
   const [filters, filtersSet] = useState<Filters>(defaultFilters)
   const [list, listSet] = useState<RunningItem[]>([])
   const [currentPage, currentPageSet] = useState(0)
@@ -125,8 +121,11 @@ export default function RunningList() {
 
   useRefresh(
     useCallback(() => {
-      getDataList(queryFilters, fcd, res).then(listSet)
-    }, [queryFilters, fcd, res]),
+      getDataList(profile, fcd, res).then((res) => {
+        console.log(res)
+        listSet(res)
+      })
+    }, [profile, fcd, res]),
     5000
   )
 
@@ -149,34 +148,6 @@ export default function RunningList() {
           checked={filters.deals}
           onChange={(e) => filtersSet((v) => ({ ...v, deals: e.target.checked }))}
         />{' '}
-        open{' '}
-        <input
-          type="radio"
-          name="deal-selector"
-          checked={queryFilters.deals === DealSelector.OPEN}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.OPEN }))}
-        />
-        in progress{' '}
-        <input
-          type="radio"
-          name="deal-selector"
-          checked={queryFilters.deals === DealSelector.IN_PROGRESS}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.IN_PROGRESS }))}
-        />
-        ended{' '}
-        <input
-          type="radio"
-          name="deal-selector"
-          checked={queryFilters.deals === DealSelector.ENDED}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.ENDED }))}
-        />
-        all{' '}
-        <input
-          type="radio"
-          name="deal-selector"
-          checked={queryFilters.deals === DealSelector.ALL}
-          onChange={(e) => queryFiltersSet((v) => ({ ...v, deals: DealSelector.ALL }))}
-        />
         checkpoints{' '}
         <input
           type="checkbox"

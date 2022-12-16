@@ -2,15 +2,16 @@
 
 import CheckpointItem from './CheckpointItem'
 import { RunningItem } from './RunningList'
-import RunningDeal from './RunningDeal'
-import RunningSwap from './RunningSwap'
+import DealItem from './DealItem'
+import SwapItem from './SwapItem'
+import { CheckpointEntry, DealInfo } from '../../proto/farcaster_pb'
 
 export default function RunningListItem({ item }: { item: RunningItem }) {
   return (
     <div className="p-4 m-8 bg-gray-200 border-2 border-gray-500">
-      {item.type === 'deal' && <RunningDeal deal={item.id} />}
-      {item.type === 'swap' && <RunningSwap id={item.id} />}
-      {item.type === 'checkpoint' && <CheckpointItem id={item.id} data={item.data} />}
+      {item.type === 'deal' && <DealItem id={item.id} data={item.data as DealInfo} />}
+      {item.type === 'swap' && <SwapItem id={item.id} data={item.data as DealInfo} />}
+      {item.type === 'checkpoint' && <CheckpointItem id={item.id} data={item.data as CheckpointEntry} />}
     </div>
   )
 }
