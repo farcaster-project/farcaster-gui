@@ -15,8 +15,11 @@ const inter = Inter({ subsets: ['latin'] })
 function MenuItem({ href, children }: { href: string; children: ReactNode }) {
   return (
     <div className="">
-      <Link className="block h-24 w-24 bg-slate-300 rounded-xl" href={href}>
-        {children}
+      <Link
+        className="block h-24 w-24 bg-slate-300 text-slate-600 rounded-xl flex items-center justify-center hover:bg-slate-200 hover:ring ring-orange-600"
+        href={href}
+      >
+        <span className="font-bold text-xl">{children}</span>
       </Link>
     </div>
   )
