@@ -5,10 +5,10 @@ import { SettingsProvider } from './settings-provider'
 import { Inter } from '@next/font/google'
 import { ConnectionProvider } from './connection-provider'
 import SettingsLoader from '../components/ui/SettingsLoader'
-import Sidebar from '../components/ui/Sidebar'
-import Profiles from '../components/ui/Profiles'
-import ConnectHeader from '../components/ui/ConnectHeader'
-import FcLogo from '../components/ui/FcLogo'
+import Sidebar from '../components/ui/sidebar/Sidebar'
+import Profiles from '../components/ui/sidebar/Profiles'
+import ConnectStatus from '../components/ui/sidebar/ConnectStatus'
+import FcLogo from '../components/ui/sidebar/FcLogo'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <MenuItem href="/deals">Deals</MenuItem>
                     <MenuItem href="/info">Node</MenuItem>
                   </div>
-                  <ConnectHeader />
+                  <ConnectStatus />
                 </Sidebar>
                 <div className="w-full ml-48">
                   <div className="container mx-auto">{children}</div>
