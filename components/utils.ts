@@ -1,4 +1,24 @@
-import { Blockchain, Network, NetworkSelector, SwapRole, TradeRole } from "../proto/farcaster_pb"
+import { Blockchain, DealStatus, Network, NetworkSelector, SwapRole, TradeRole } from "../proto/farcaster_pb"
+
+export type Status = 'Open' | 'Progress' | 'Swapped' | 'Refunded' | 'Punished' | 'Aborted'
+
+// Utility function to convert a Deal status enum into a Status (string)
+export function dealStatusToStatus(s: DealStatus): Status {
+  switch (s) {
+    case DealStatus.DEAL_OPEN:
+      return 'Open'
+    case DealStatus.DEAL_IN_PROGRESS:
+      return 'Progress'
+    case DealStatus.DEAL_ENDED_SUCCESS_SWAP:
+      return 'Swapped'
+    case DealStatus.DEAL_ENDED_FAILURE_REFUND:
+      return 'Refunded'
+    case DealStatus.DEAL_ENDED_FAILURE_PUNISH:
+      return 'Punished'
+    case DealStatus.DEAL_ENDED_FAILURE_ABORT:
+      return 'Aborted'
+  }
+}
 
 // Utility function to convert a Blockchain enum into a string (generated enums
 // are typed as ints, so this function is necessary)
@@ -19,6 +39,16 @@ export function swapRoleToString(s: SwapRole): string {
       return 'Alice'
     case SwapRole.BOB:
       return 'Bob'
+  }
+}
+
+// Utility function to convert a Trade role enum into a string
+export function tradeRoleToString(s: TradeRole): string {
+  switch (s) {
+    case TradeRole.MAKER:
+      return 'Maker'
+    case TradeRole.TAKER:
+      return 'Taker'
   }
 }
 

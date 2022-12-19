@@ -1,10 +1,10 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useRpc } from '../../app/hooks'
 import { Button } from '../inputs/Button'
 import { DealPanel } from '../ui/Panel'
-import { DealInfo, DealInfoRequest, DealInfoResponse, RevokeDealRequest, TradeRole } from '../../proto/farcaster_pb'
+import { DealInfo, RevokeDealRequest } from '../../proto/farcaster_pb'
 
 export default function RunningDeal({ id, data }: { id: string; data: DealInfo }) {
   const [revoking, revokingSet] = useState(false)
@@ -34,7 +34,7 @@ export default function RunningDeal({ id, data }: { id: string; data: DealInfo }
         <DealPanel
           dealInfo={data.getDeserializedDeal()!}
           deal={data.getSerializedDeal()}
-          displayForRole={TradeRole.MAKER}
+          displayForRole={data.getLocalTradeRole()}
         />
       )}
       <div>

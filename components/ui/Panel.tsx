@@ -96,9 +96,9 @@ export function DealPanel({
   )
 }
 
-export function Panel({ children }: { children: ReactNode }) {
+export function Panel({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className="rounded-xl bg-white p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400 mb-6">
+    <div className={`rounded-xl p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400 mb-6 ${className}`}>
       {children}
     </div>
   )
