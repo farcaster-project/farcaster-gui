@@ -1,21 +1,32 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { DealPanel } from '../../components/ui/Panel'
 import { DealInfoRequest, DealInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import { Input } from '../../components/inputs/Input'
 import { Button, Submit } from '../../components/inputs/Button'
 import { useProfile, useRpc } from '../hooks'
 
-const takeReq = {
+export const takeReq = {
   bitcoinAddress: '',
   moneroAddress: '',
   deal: '',
 }
 
-export function TakeForm() {
+export function TakeForm({
+  take,
+  takeSet,
+}: {
+  take: { bitcoinAddress: string; moneroAddress: string; deal: string }
+  takeSet: Dispatch<
+    SetStateAction<{
+      bitcoinAddress: string
+      moneroAddress: string
+      deal: string
+    }>
+  >
+}) {
   const [profile] = useProfile()
-  const [take, takeSet] = useState(takeReq)
   const [deal, dealSet] = useState<DealInfoResponse | null>(null)
   const [takeRes, takeResSet] = useState<null | boolean>(null)
   const [fcd, res] = useRpc()
@@ -23,7 +34,7 @@ export function TakeForm() {
   useEffect(() => {
     takeSet((v) => ({ ...v, bitcoinAddress: profile.btcAddr }))
     takeSet((v) => ({ ...v, moneroAddress: profile.xmrAddr }))
-  }, [profile.btcAddr, profile.xmrAddr])
+  }, [profile.btcAddr, profile.xmrAddr, takeSet])
 
   // this effect decode the deal to be displayed to user
   useEffect(() => {
@@ -35,7 +46,7 @@ export function TakeForm() {
   }, [fcd, take.deal, res])
 
   return (
-    <div>
+    <div className="p-8">
       <form
         onSubmit={(e) => {
           // issue the request to take the deal
@@ -77,16 +88,18 @@ export function TakeForm() {
             onChange={(e) => takeSet((v) => ({ ...v, deal: e.target.value.trim() }))}
           />
         </div>
-        <div>{deal && <DealPanel dealInfo={deal.getDeserializedDeal()!} displayForRole={TradeRole.TAKER} />}</div>
-        <div>
-          <Button
+        <div className="my-16">
+          {deal && <DealPanel dealInfo={deal.getDeserializedDeal()!} localTradeRole={TradeRole.TAKER} />}
+        </div>
+        <div className="flex space-x-4 justify-end">
+          {/*<Button
             onClick={(e) => {
               e.preventDefault()
               takeSet(takeReq)
             }}
           >
             reset to defaults
-          </Button>
+          </Button>*/}
           <Button
             onClick={(e) => {
               e.preventDefault()
@@ -94,9 +107,9 @@ export function TakeForm() {
             }}
             disabled={deal === null}
           >
-            clear
+            Clear
           </Button>
-          <Submit value="take" disabled={deal === null} />
+          <Submit value="Take" disabled={deal === null} />
         </div>
       </form>
       {takeRes && <div>You took the deal</div>}

@@ -7,6 +7,7 @@ export const inputRow = cva(['my-4', 'flex'], {
   variants: {
     type: {
       input: ['items-center'],
+      number: ['items-center'],
       text: [],
     },
   },
@@ -16,13 +17,14 @@ export const inputRow = cva(['my-4', 'flex'], {
 })
 
 //const baseInput = ['col-span-2', 'p-2', 'border-4', 'bg-gray-100', 'border-gray-200']
-const baseInput = 'w-full cursor-default rounded-md bg-white py-2 px-3 text-left shadow-md'
+const baseInput = 'w-full cursor-default rounded-md bg-white py-2 px-3 text-left shadow-md font-mono'
 
 // either an input or a textarea
 const input = cva(baseInput, {
   variants: {
     type: {
       input: ['h-fit'],
+      number: ['h-fit'],
       text: ['h-32 resize-none'],
     },
   },
@@ -39,9 +41,9 @@ export function Input({
   ...args
 }: {
   label: string
-  value: string
+  value: string | number
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  type?: 'input' | 'text'
+  type?: 'input' | 'text' | 'number'
 } & ComponentProps<'input'> &
   ComponentProps<'textarea'>) {
   const inputType = type ?? 'input'
@@ -53,6 +55,9 @@ export function Input({
       </label>
       {inputType === 'input' && (
         <input className={input({ type })} type="text" id={id} value={value} onChange={onChange} {...args} />
+      )}
+      {inputType === 'number' && (
+        <input className={input({ type })} type="number" id={id} value={value} onChange={onChange} {...args} />
       )}
       {type === 'text' && <textarea value={value} className={input({ type })} id={id} onChange={onChange} {...args} />}
     </div>

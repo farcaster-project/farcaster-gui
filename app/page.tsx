@@ -6,7 +6,9 @@ import { Title } from '../components/ui/Title'
 export default function Page() {
   return (
     <>
-      <Title>List</Title>
+      <div className="my-8 mt-16">
+        <Title>My Swaps</Title>
+      </div>
       <div>
         <RunningList></RunningList>
       </div>

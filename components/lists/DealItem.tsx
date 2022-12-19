@@ -34,7 +34,7 @@ export default function RunningDeal({ id, data }: { id: string; data: DealInfo }
         <DealPanel
           dealInfo={data.getDeserializedDeal()!}
           deal={data.getSerializedDeal()}
-          displayForRole={data.getLocalTradeRole()}
+          localTradeRole={data.getLocalTradeRole()}
         />
       )}
       <div>

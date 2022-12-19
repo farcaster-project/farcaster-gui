@@ -7,6 +7,7 @@ import { otherSwapRole } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
 import { Button, Submit } from '../../components/inputs/Button'
+import { Input } from '../../components/inputs/Input'
 
 interface Params {
   network: Network
@@ -71,8 +72,8 @@ export function MakeForm() {
   }, [profile.btcAddr, profile.xmrAddr])
 
   return (
-    <>
-      <div className="my-4">
+    <div className="p-8">
+      <div className="text-3xl mb-16">
         <TradePanel
           arbitratingAmount={req.arbitratingAmount}
           accordantAmount={req.accordantAmount}
@@ -81,10 +82,12 @@ export function MakeForm() {
           makerRole={req.makerRole}
           network={profile.network}
           displayForRole={TradeRole.MAKER}
+          labelFor={
+            <Button onClick={() => switchRole()}>
+              <TbSwitchHorizontal />
+            </Button>
+          }
         />
-        <Button onClick={() => switchRole()}>
-          <TbSwitchHorizontal />
-        </Button>
       </div>
       <form
         onSubmit={(e) => {
@@ -94,7 +97,7 @@ export function MakeForm() {
         }}
         className="flex flex-col"
       >
-        <div>
+        {/*<div>
           <select
             name="arb-chain"
             id="arb-chain"
@@ -111,83 +114,81 @@ export function MakeForm() {
           >
             <option value={Blockchain.MONERO}>monero</option>
           </select>
-        </div>
+      </div>*/}
+
+        <Input
+          value={req.arbitratingAmount}
+          label="Arbitrating amount"
+          type="number"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, arbitratingAmount: parseInt(e.target.value) }))}
+        />
+        <Input
+          value={req.accordantAmount}
+          label="Accordant amount"
+          type="number"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, accordantAmount: parseInt(e.target.value) }))}
+        />
+
+        <Input
+          value={req.arbitratingAddr}
+          label="Arbitrating address"
+          type="input"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, arbitratingAddr: e.target.value }))}
+        />
+        <Input
+          value={req.accordantAddr}
+          label="Accordant address"
+          type="input"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, accordantAddr: e.target.value }))}
+        />
+
+        <Input
+          value={req.cancelTimelock}
+          label="Cancel timelock"
+          type="number"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, cancelTimelock: parseInt(e.target.value) }))}
+        />
+        <Input
+          value={req.punishTimelock}
+          label="Punish timelock"
+          type="number"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, punishTimelock: parseInt(e.target.value) }))}
+        />
+
+        <Input
+          value={req.feeStrategy}
+          label="Fee"
+          type="input"
+          required
+          onChange={(e) => reqSet((v) => ({ ...v, feeStrategy: e.target.value }))}
+        />
+
         <div>
-          <label htmlFor="arb-amount">Arbitrating amount</label>
-          <input
-            type="number"
-            id="arb-amount"
-            value={req.arbitratingAmount}
-            onChange={(e) => reqSet((v) => ({ ...v, arbitratingAmount: parseInt(e.target.value) }))}
-          />
-          <span>btc</span>
-          <label htmlFor="acc-amount">Accordant amount</label>
-          <input
-            type="number"
-            id="acc-amount"
-            value={req.accordantAmount}
-            onChange={(e) => reqSet((v) => ({ ...v, accordantAmount: parseInt(e.target.value) }))}
-          />
-          <span>xmr</span>
-        </div>
-        <div>
-          <label htmlFor="arb-addr">Arbitrating address</label>
-          <input
-            type="text"
-            id="arb-addr"
-            value={req.arbitratingAddr}
-            onChange={(e) => reqSet((v) => ({ ...v, arbitratingAddr: e.target.value }))}
-          />
-          <label htmlFor="acc-addr">Accordant address</label>
-          <input
-            type="text"
-            id="acc-addr"
-            value={req.accordantAddr}
-            onChange={(e) => reqSet((v) => ({ ...v, accordantAddr: e.target.value }))}
-          />
-        </div>
-        <div>
-          <input
-            type="number"
-            id="cancel-timelock"
-            value={req.cancelTimelock}
-            onChange={(e) => reqSet((v) => ({ ...v, cancelTimelock: parseInt(e.target.value) }))}
-          />
-          <input
-            type="number"
-            id="punish-timelock"
-            value={req.punishTimelock}
-            onChange={(e) => reqSet((v) => ({ ...v, punishTimelock: parseInt(e.target.value) }))}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            id="fee-strategy"
-            value={req.feeStrategy}
-            onChange={(e) => reqSet((v) => ({ ...v, feeStrategy: e.target.value }))}
-          />
-        </div>
-        <div>
-          <label htmlFor="public-ip">Public IP</label>
-          <input
-            type="text"
-            id="public-ip"
+          <Input
             value={req.publicIpAddr}
+            label="Public IP address"
+            type="input"
+            required
             onChange={(e) => reqSet((v) => ({ ...v, publicIpAddr: e.target.value }))}
           />
-          <label htmlFor="public-port">Bind port</label>
-          <input
-            type="text"
-            id="public-port"
+          <Input
             value={req.publicPort}
+            label="Public Port"
+            type="input"
+            required
             onChange={(e) => reqSet((v) => ({ ...v, publicPort: parseInt(e.target.value) }))}
           />
         </div>
-        <div>
-          <Submit value="make" />
+        <div className="flex space-x-4 justify-end">
+          <Submit value="Make" />
         </div>
       </form>
-    </>
+    </div>
   )
 }

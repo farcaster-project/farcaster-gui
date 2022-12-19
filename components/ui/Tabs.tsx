@@ -10,7 +10,7 @@ const tab = cva(
     variants: {
       selected: {
         true: ['bg-white shadow'],
-        false: ['text-slate-300 hover:bg-white/[0.12] hover:text-white'],
+        false: ['text-slate-500 hover:bg-white/[0.12] hover:text-white'],
       },
     },
   }

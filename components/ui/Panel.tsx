@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Blockchain, Network, SwapRole, TradeRole, DeserializedDeal } from '../../proto/farcaster_pb'
-import { chainToString, isMaker, netToString } from '../utils'
+import { btcBlockToTimespan, chainToAbrev, chainToString, isMaker, netToString, picoToXmr, satsToBtc } from '../utils'
 import { Block, Label } from './Label'
 
 export type PanelParams = {
@@ -11,6 +11,7 @@ export type PanelParams = {
   arbitratingBlockchain: Blockchain
   accordantBlockchain: Blockchain
   displayForRole: TradeRole
+  labelFor?: ReactNode
 }
 
 export function TradePanel(params: PanelParams) {
@@ -19,29 +20,41 @@ export function TradePanel(params: PanelParams) {
     case SwapRole.ALICE:
       return (
         <span>
-          {roleIsMaker ? 'You sell ' : 'You buy '}
+          {roleIsMaker ? 'Sell ' : 'Buy '}
           <Label>
-            {params.accordantAmount} {chainToString(params.accordantBlockchain)}
+            {picoToXmr(params.accordantAmount)} {chainToAbrev(params.accordantBlockchain).toUpperCase()}
           </Label>{' '}
-          for{' '}
+          ({chainToString(params.accordantBlockchain)}) {params.labelFor ? params.labelFor : 'for'}{' '}
           <Label>
-            {params.arbitratingAmount} {chainToString(params.arbitratingBlockchain)}
+            {satsToBtc(params.arbitratingAmount)} {chainToAbrev(params.arbitratingBlockchain).toUpperCase()}
           </Label>{' '}
-          on <Label>{netToString(params.network)}</Label>
+          ({chainToString(params.arbitratingBlockchain)})
+          <span className="pl-1 text-sm">
+            on{' '}
+            <Label intensity="light" rounded={false}>
+              {netToString(params.network)}
+            </Label>
+          </span>
         </span>
       )
     case SwapRole.BOB:
       return (
         <span>
-          {roleIsMaker ? 'You sell ' : 'You buy '}
+          {roleIsMaker ? 'Sell ' : 'Buy '}
           <Label>
-            {params.arbitratingAmount} {chainToString(params.arbitratingBlockchain)}
+            {satsToBtc(params.arbitratingAmount)} {chainToAbrev(params.arbitratingBlockchain).toUpperCase()}
           </Label>{' '}
-          for{' '}
+          ({chainToString(params.arbitratingBlockchain)}) {params.labelFor ? params.labelFor : 'for'}{' '}
           <Label>
-            {params.accordantAmount} {chainToString(params.accordantBlockchain)}
+            {picoToXmr(params.accordantAmount)} {chainToAbrev(params.accordantBlockchain).toUpperCase()}
           </Label>{' '}
-          on <Label>{netToString(params.network)}</Label>
+          ({chainToString(params.accordantBlockchain)}){' '}
+          <span className="pl-1 text-sm">
+            on{' '}
+            <Label intensity="light" rounded={false}>
+              {netToString(params.network)}
+            </Label>
+          </span>
         </span>
       )
   }
@@ -49,17 +62,20 @@ export function TradePanel(params: PanelParams) {
 
 export function DealPanel({
   dealInfo,
-  displayForRole,
+  localTradeRole,
   deal,
 }: {
   dealInfo: DeserializedDeal
-  displayForRole: TradeRole
+  localTradeRole: TradeRole
   deal?: String
 }) {
-  const roleIsMaker = isMaker(displayForRole)
+  const roleIsMaker = isMaker(localTradeRole)
   return (
     <>
       <div className="break-all">
+        <div className="text-sm font-mono text-slate-700 mb-6">
+          Deal <span className="bg-gray-300 px-2 py-1 rounded-sm">{dealInfo.getUuid()}</span>
+        </div>
         <div className="mb-3 text-xl">
           <TradePanel
             arbitratingAmount={dealInfo.getArbitratingAmount()}
@@ -68,9 +84,8 @@ export function DealPanel({
             accordantBlockchain={dealInfo.getAccordantBlockchain()}
             makerRole={dealInfo.getMakerRole()}
             network={dealInfo.getNetwork()}
-            displayForRole={displayForRole}
-          />{' '}
-          in deal <Label>{dealInfo.getUuid()}</Label>
+            displayForRole={localTradeRole}
+          />
         </div>
         {deal && (
           <>
@@ -79,17 +94,31 @@ export function DealPanel({
           </>
         )}
       </div>
-      <div className="mb-3">
-        <div>{roleIsMaker ? 'Taker will connect to your peer at:' : 'You will connect to maker peer at:'}</div>
-        <Block intent="primary">{dealInfo && `${dealInfo.getNodeId()}@${dealInfo.getPeerAddress()}`}</Block>
+      <div className="my-6">
+        <div className="text-slate-700 mb-1 text-sm">
+          {roleIsMaker ? 'Taker will connect to your peer at:' : 'Trade executed with counter-party peer at:'}
+        </div>
+        <Block intent="secondary">{dealInfo && `${dealInfo.getNodeId()}@${dealInfo.getPeerAddress()}`}</Block>
       </div>
       <div>
         <div className="mb-2">
-          Timelocks: cancel <Label>{dealInfo.getCancelTimelock()} blocks</Label>
-          punish <Label>{dealInfo.getPunishTimelock()} blocks</Label>
+          <span className="font-semibold text-slate-600">Timelocks</span>: the swap can be cancelled after{' '}
+          <Label intensity="light" rounded={false}>
+            {dealInfo.getCancelTimelock()} blocks ({btcBlockToTimespan(dealInfo.getCancelTimelock())})
+          </Label>{' '}
+          and {whoCanBePunished(dealInfo.getMakerRole(), localTradeRole)} can be punished{' '}
+          <Label intensity="light" rounded={false}>
+            {dealInfo.getPunishTimelock()} blocks ({btcBlockToTimespan(dealInfo.getPunishTimelock())})
+          </Label>{' '}
+          after the cancel if {whoCanBePunished(dealInfo.getMakerRole(), localTradeRole)} didn&apos;t refunded.
         </div>
         <div>
-          Fee: <Label>{dealInfo.getFeeStrategy()}</Label>
+          <span className="font-semibold text-slate-600">Fee</span>: transactions on{' '}
+          {chainToString(dealInfo.getArbitratingBlockchain())} will apply{' '}
+          <Label intensity="light" rounded={false}>
+            {dealInfo.getFeeStrategy()}
+          </Label>{' '}
+          of fee.
         </div>
       </div>
     </>
@@ -102,4 +131,14 @@ export function Panel({ children, className }: { children: ReactNode; className?
       {children}
     </div>
   )
+}
+
+function whoCanBePunished(makerSwapRole: SwapRole, localTradeRole: TradeRole): ReactNode {
+  const iAmMaker = isMaker(localTradeRole)
+  switch (makerSwapRole) {
+    case SwapRole.ALICE:
+      return iAmMaker ? 'counter-pary' : 'I'
+    case SwapRole.BOB:
+      return iAmMaker ? 'I' : 'counter-pary'
+  }
 }

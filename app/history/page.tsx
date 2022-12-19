@@ -17,7 +17,7 @@ const itemPannel = cva([''], {
       Swapped: ['bg-green-200'],
       Refunded: ['bg-gray-200'],
       Punished: ['bg-red-200'],
-      Aborted: ['bg-gray-300'],
+      Aborted: ['bg-gray-200'],
     },
   },
 })
@@ -38,19 +38,25 @@ export default function PageHistory() {
   }, [fcd, res, profile.network])
 
   return (
-    <div>
-      <Title>History</Title>
+    <div className="mb-16">
+      <div className="my-8 mt-16">
+        <Title>History{deals && <span className="text-sm pl-3">({deals.getDealsList().length} deals)</span>}</Title>
+      </div>
+      {!deals && <Loader />}
       {deals &&
         deals.getDealsList().map((dealInfo) => (
           <Panel
             className={itemPannel({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}
             key={dealInfo.getDeserializedDeal()?.getUuid()}
           >
-            <h2 className="text-xl mb-4">Deal result: {dealStatusToStatus(dealInfo.getDealStatus())}</h2>
-            <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} displayForRole={dealInfo.getLocalTradeRole()} />
+            <div className="p-8">
+              <h2 className="text-xl font-semibold mb-4">
+                {`Deal ${dealStatusToStatus(dealInfo.getDealStatus())}`.toUpperCase()}
+              </h2>
+              <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} localTradeRole={dealInfo.getLocalTradeRole()} />
+            </div>
           </Panel>
         ))}
-      {!deals && <Loader />}
     </div>
   )
 }

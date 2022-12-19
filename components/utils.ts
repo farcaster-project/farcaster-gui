@@ -31,6 +31,16 @@ export function chainToString(b: Blockchain): string {
   }
 }
 
+// Utility function to convert a Blockchain enum into its asset abrev
+export function chainToAbrev(b: Blockchain): string {
+  switch (b) {
+    case Blockchain.BITCOIN:
+      return 'Btc'
+    case Blockchain.MONERO:
+      return 'Xmr'
+  }
+}
+
 // Utility function to convert a Swap role enum into a string (generated enums
 // are typed as ints, so this function is necessary)
 export function swapRoleToString(s: SwapRole): string {
@@ -107,4 +117,49 @@ export function netToSelector(net: Network): NetworkSelector {
     case Network.LOCAL:
       return NetworkSelector.LOCAL_NETWORKS
   }
+}
+
+const minutesPerBtcBlockAvg = 10
+
+// Convert a number of bitcoin blocks into a human readable average time span
+export function btcBlockToTimespan(blocks: number): string {
+  let mins = blocks * minutesPerBtcBlockAvg
+  let hours = 0
+  let days = 0
+  let res = '~'
+
+  if (mins >= 60) {
+    hours = Math.floor(mins / 60)
+    mins = mins % 60
+  }
+
+  if (hours >= 24) {
+    days = Math.floor(hours / 24)
+    hours = hours % 24
+  }
+
+  if (days > 0) res += ` ${days}  ${days == 1 ? 'day' : 'days'}`
+  if (hours > 0) res += ` ${hours} ${hours == 1 ? 'hour' : 'hours'}`
+  if (mins > 0) res += ` ${mins} minutes` // always > 1 if not 0
+  return res
+}
+
+// Convert a number of sats into a float number of btc
+export function satsToBtc(sats: number): number {
+  return sats / 100000000 
+}
+
+// Convert a number of btc into a number of satoshis
+export function btcToSats(btc: number): number {
+  return btc * 100000000;
+}
+
+// Convert a number of piconero into a float number of xmr
+export function picoToXmr(pico: number): number {
+  return pico / 1000000000000;
+}
+
+// Convert a number of xmr into a number of piconero
+export function xmrToPico(xmr: number): number {
+  return xmr * 1000000000000;
 }
