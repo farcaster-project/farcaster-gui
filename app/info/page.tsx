@@ -11,7 +11,8 @@ export default function InfoPage() {
 
   useRefresh(
     useCallback(() => {
-      fcd.info(new InfoRequest(), null, res(infoSet))
+      const query = fcd.info(new InfoRequest(), null, res(infoSet))
+      return () => query.cancel()
     }, [fcd, res]),
     1000
   )

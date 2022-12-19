@@ -123,6 +123,8 @@ export default function RunningList() {
       getDataList(profile, fcd, res).then((res) => {
         listSet(res)
       })
+      // empty cleanup fn for now
+      return () => {}
     }, [profile, fcd, res]),
     5000
   )

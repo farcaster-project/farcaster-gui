@@ -1,26 +1,44 @@
 'use client'
 
+import { cva } from 'class-variance-authority'
+import { useCallback } from 'react'
 import { useState } from 'react'
 import { useProfile, useRefresh, useRpc } from '../../../app/hooks'
-import { HealthCheckRequest, HealthCheckResponse, NetworkSelector } from '../../../proto/farcaster_pb'
+import { HealthCheckRequest, HealthCheckResponse } from '../../../proto/farcaster_pb'
 import { netToSelector } from '../../utils'
 
-function isHealthy(status: string): boolean {
+type HealthStatus = 'healthy' | 'not-healthy' | 'pending'
+
+function isHealthy(status: string | undefined): HealthStatus {
   switch (status) {
     case 'Healthy':
-      return true
+      return 'healthy'
+    case undefined:
+      return 'pending'
     default:
-      return false
+      return 'not-healthy'
   }
 }
 
-function SyncerRow({ name, healty }: { name: string; healty: boolean }) {
+const statusBullet = cva(['w-4', 'h-4', 'rounded-full', 'ring-1'], {
+  variants: {
+    health: {
+      healthy: ['bg-green-700', 'ring-green-600'],
+      'not-healthy': ['bg-amber-700', 'ring-amber-600'],
+      pending: ['bg-gray-700 ', 'ring-gray-600'],
+    },
+  },
+  defaultVariants: {
+    health: 'pending',
+  },
+})
+
+function SyncerRow({ name, health }: { name: string; health: HealthStatus }) {
   return (
     <div className="flex items-center justify-between">
       <div className="text-zinc-900">{name}</div>
       <div className="">
-        {healty && <div className="w-4 h-4 bg-green-700 rounded-full ring-green-600 ring-1"></div>}
-        {!healty && <div className="w-4 h-4 bg-amber-700 rounded-full ring-amber-600 ring-1"></div>}
+        <div className={statusBullet({ health: health })}></div>
       </div>
     </div>
   )
@@ -31,22 +49,24 @@ export default function SyncerStatus() {
   const [health, healthSet] = useState<HealthCheckResponse | null>(null)
   const [fcd, res] = useRpc()
 
-  useRefresh(() => {
-    //fcd.healthCheck(
-    //  new HealthCheckRequest().setSelector(netToSelector(profile.network)),
-    //  null,
-    //  res((resp) => {
-    //    console.log(resp)
-    //    healthSet(resp)
-    //  })
-    //)
-  }, 10000)
+  useRefresh(
+    useCallback(() => {
+      const query = fcd.healthCheck(
+        new HealthCheckRequest().setSelector(netToSelector(profile.network)),
+        null,
+        res(healthSet)
+      )
+      return () => query.cancel()
+    }, [fcd, profile.network, res]),
+    30000
+  )
 
+  // SAFETY: we know the result is a ReducedHealthReport because selector is set to profile.network
   return (
     <div className="flex flex-col bg-slate-500 rounded-md p-2 mb-3">
       <div className="text-sm font-medium text-slate-800">Syncers health:</div>
-      <SyncerRow name="Bitcoin" healty={isHealthy('Healthy')} />
-      <SyncerRow name="Monero" healty={isHealthy('ConfigUnavailable: Invalid configuration. Missing or malformed')} />
+      <SyncerRow name="Bitcoin" health={isHealthy(health?.getReducedHealthReport()!.getBitcoinHealth())} />
+      <SyncerRow name="Monero" health={isHealthy(health?.getReducedHealthReport()!.getMoneroHealth())} />
     </div>
   )
 }

@@ -6,13 +6,16 @@ import SettingsContext, { getCurrentProfile, Profile, Settings } from "./setting
 
 // Custom hook to fire a callback at a certain rate.
 // Note: The callback probably needs to be wrapped into a useCallback
-export function useRefresh(callback: () => void, rate: number) {
+export function useRefresh(callback: () => () => void, rate: number) {
   useEffect(() => {
-    callback()
+    let cleanup = callback()
     const handle = setInterval(() => {
-      callback()
+      cleanup = callback()
     }, rate)
-    return () => clearInterval(handle)
+    return () => {
+      cleanup()
+      clearInterval(handle)
+    }
   }, [callback, rate])
 }
 

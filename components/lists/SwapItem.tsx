@@ -12,11 +12,12 @@ export default function RunningSwap({ id, data }: { id: string; data: DealInfo }
 
   useRefresh(
     useCallback(() => {
-      fcd.progress(
+      const query = fcd.progress(
         new ProgressRequest().setSwapId(id),
         null,
         res(progSet, () => progSet(null))
       )
+      return () => query.cancel()
     }, [fcd, res, id]),
     3000
   )
