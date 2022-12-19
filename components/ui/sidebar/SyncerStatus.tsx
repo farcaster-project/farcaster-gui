@@ -58,7 +58,7 @@ export default function SyncerStatus() {
       )
       return () => query.cancel()
     }, [fcd, profile.network, res]),
-    30000
+    120000
   )
 
   // SAFETY: we know the result is a ReducedHealthReport because selector is set to profile.network
