@@ -67,7 +67,6 @@ async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCa
       )
     }),
   ])
-  console.log([sRes, dRes, cRes])
 
   const [swaps, deals, checkpoints] = [sRes.getDealsList(), dRes.getDealsList(), cRes.getCheckpointEntriesList()]
   const typedSwaps: RunningItem[] = swaps.map((deal) => ({ id: deal.getUuid(), type: 'swap', data: deal }))
@@ -122,7 +121,6 @@ export default function RunningList() {
   useRefresh(
     useCallback(() => {
       getDataList(profile, fcd, res).then((res) => {
-        console.log(res)
         listSet(res)
       })
     }, [profile, fcd, res]),
