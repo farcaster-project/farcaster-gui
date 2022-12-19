@@ -5,7 +5,7 @@ import { DealPanel, Panel } from '../../components/ui/Panel'
 import { Loader } from '../../components/ui/SettingsLoader'
 import { Title } from '../../components/ui/Title'
 import { netToSelector } from '../../components/utils'
-import { DealSelector, ListDealsRequest, ListDealsResponse, TradeRole } from '../../proto/farcaster_pb'
+import { DealSelector, DealStatus, ListDealsRequest, ListDealsResponse, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
 
 export default function PageHistory() {
@@ -27,11 +27,14 @@ export default function PageHistory() {
     <div>
       <Title>History</Title>
       {deals &&
-        deals.getDealsList().map((dealInfo) => (
-          <Panel key={dealInfo.getUuid()}>
-            <DealPanel dealInfo={dealInfo} displayForRole={TradeRole.MAKER} />
-          </Panel>
-        ))}
+        deals
+          .getDealsList()
+          .filter((dealInfo) => dealInfo.getDealStatus() !== DealStatus.DEAL_OPEN)
+          .map((dealInfo) => (
+            <Panel key={dealInfo.getDeserializedDeal()?.getUuid()}>
+              <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} displayForRole={TradeRole.MAKER} />
+            </Panel>
+          ))}
       {!deals && <Loader />}
     </div>
   )

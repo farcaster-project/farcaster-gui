@@ -69,8 +69,16 @@ async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCa
   ])
 
   const [swaps, deals, checkpoints] = [sRes.getDealsList(), dRes.getDealsList(), cRes.getCheckpointEntriesList()]
-  const typedSwaps: RunningItem[] = swaps.map((deal) => ({ id: deal.getUuid(), type: 'swap', data: deal }))
-  const typedDeals: RunningItem[] = deals.map((deal) => ({ id: deal.getUuid(), type: 'deal', data: deal }))
+  const typedSwaps: RunningItem[] = swaps.map((deal) => ({
+    id: deal.getDeserializedDeal()!.getUuid(),
+    type: 'swap',
+    data: deal,
+  }))
+  const typedDeals: RunningItem[] = deals.map((deal) => ({
+    id: deal.getDeserializedDeal()!.getUuid(),
+    type: 'deal',
+    data: deal,
+  }))
   const typedCheckpoints: RunningItem[] = checkpoints.map((checkpoint) => ({
     id: checkpoint.getSwapId(),
     type: 'checkpoint',

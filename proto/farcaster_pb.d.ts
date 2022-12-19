@@ -294,10 +294,13 @@ export class DealInfoResponse extends jspb.Message {
   getId(): number;
   setId(value: number): DealInfoResponse;
 
-  getDealInfo(): DealInfo | undefined;
-  setDealInfo(value?: DealInfo): DealInfoResponse;
-  hasDealInfo(): boolean;
-  clearDealInfo(): DealInfoResponse;
+  getDeserializedDeal(): DeserializedDeal | undefined;
+  setDeserializedDeal(value?: DeserializedDeal): DealInfoResponse;
+  hasDeserializedDeal(): boolean;
+  clearDeserializedDeal(): DealInfoResponse;
+
+  getDeal(): string;
+  setDeal(value: string): DealInfoResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DealInfoResponse.AsObject;
@@ -310,49 +313,25 @@ export class DealInfoResponse extends jspb.Message {
 export namespace DealInfoResponse {
   export type AsObject = {
     id: number,
-    dealInfo?: DealInfo.AsObject,
+    deserializedDeal?: DeserializedDeal.AsObject,
+    deal: string,
   }
 }
 
 export class DealInfo extends jspb.Message {
-  getArbitratingAmount(): number;
-  setArbitratingAmount(value: number): DealInfo;
+  getDeserializedDeal(): DeserializedDeal | undefined;
+  setDeserializedDeal(value?: DeserializedDeal): DealInfo;
+  hasDeserializedDeal(): boolean;
+  clearDeserializedDeal(): DealInfo;
 
-  getAccordantAmount(): number;
-  setAccordantAmount(value: number): DealInfo;
+  getSerializedDeal(): string;
+  setSerializedDeal(value: string): DealInfo;
 
-  getCancelTimelock(): number;
-  setCancelTimelock(value: number): DealInfo;
+  getLocalTradeRole(): TradeRole;
+  setLocalTradeRole(value: TradeRole): DealInfo;
 
-  getPunishTimelock(): number;
-  setPunishTimelock(value: number): DealInfo;
-
-  getFeeStrategy(): string;
-  setFeeStrategy(value: string): DealInfo;
-
-  getMakerRole(): SwapRole;
-  setMakerRole(value: SwapRole): DealInfo;
-
-  getUuid(): string;
-  setUuid(value: string): DealInfo;
-
-  getNetwork(): Network;
-  setNetwork(value: Network): DealInfo;
-
-  getArbitratingBlockchain(): Blockchain;
-  setArbitratingBlockchain(value: Blockchain): DealInfo;
-
-  getAccordantBlockchain(): Blockchain;
-  setAccordantBlockchain(value: Blockchain): DealInfo;
-
-  getNodeId(): string;
-  setNodeId(value: string): DealInfo;
-
-  getPeerAddress(): string;
-  setPeerAddress(value: string): DealInfo;
-
-  getEncodedDeal(): string;
-  setEncodedDeal(value: string): DealInfo;
+  getDealStatus(): DealStatus;
+  setDealStatus(value: DealStatus): DealInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DealInfo.AsObject;
@@ -363,6 +342,60 @@ export class DealInfo extends jspb.Message {
 }
 
 export namespace DealInfo {
+  export type AsObject = {
+    deserializedDeal?: DeserializedDeal.AsObject,
+    serializedDeal: string,
+    localTradeRole: TradeRole,
+    dealStatus: DealStatus,
+  }
+}
+
+export class DeserializedDeal extends jspb.Message {
+  getArbitratingAmount(): number;
+  setArbitratingAmount(value: number): DeserializedDeal;
+
+  getAccordantAmount(): number;
+  setAccordantAmount(value: number): DeserializedDeal;
+
+  getCancelTimelock(): number;
+  setCancelTimelock(value: number): DeserializedDeal;
+
+  getPunishTimelock(): number;
+  setPunishTimelock(value: number): DeserializedDeal;
+
+  getFeeStrategy(): string;
+  setFeeStrategy(value: string): DeserializedDeal;
+
+  getMakerRole(): SwapRole;
+  setMakerRole(value: SwapRole): DeserializedDeal;
+
+  getUuid(): string;
+  setUuid(value: string): DeserializedDeal;
+
+  getNetwork(): Network;
+  setNetwork(value: Network): DeserializedDeal;
+
+  getArbitratingBlockchain(): Blockchain;
+  setArbitratingBlockchain(value: Blockchain): DeserializedDeal;
+
+  getAccordantBlockchain(): Blockchain;
+  setAccordantBlockchain(value: Blockchain): DeserializedDeal;
+
+  getNodeId(): string;
+  setNodeId(value: string): DeserializedDeal;
+
+  getPeerAddress(): string;
+  setPeerAddress(value: string): DeserializedDeal;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DeserializedDeal.AsObject;
+  static toObject(includeInstance: boolean, msg: DeserializedDeal): DeserializedDeal.AsObject;
+  static serializeBinaryToWriter(message: DeserializedDeal, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DeserializedDeal;
+  static deserializeBinaryFromReader(message: DeserializedDeal, reader: jspb.BinaryReader): DeserializedDeal;
+}
+
+export namespace DeserializedDeal {
   export type AsObject = {
     arbitratingAmount: number,
     accordantAmount: number,
@@ -376,7 +409,6 @@ export namespace DealInfo {
     accordantBlockchain: Blockchain,
     nodeId: string,
     peerAddress: string,
-    encodedDeal: string,
   }
 }
 
@@ -747,10 +779,13 @@ export class MakeResponse extends jspb.Message {
   getId(): number;
   setId(value: number): MakeResponse;
 
-  getDeal(): DealInfo | undefined;
-  setDeal(value?: DealInfo): MakeResponse;
-  hasDeal(): boolean;
-  clearDeal(): MakeResponse;
+  getDeserializedDeal(): DeserializedDeal | undefined;
+  setDeserializedDeal(value?: DeserializedDeal): MakeResponse;
+  hasDeserializedDeal(): boolean;
+  clearDeserializedDeal(): MakeResponse;
+
+  getDeal(): string;
+  setDeal(value: string): MakeResponse;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MakeResponse.AsObject;
@@ -763,7 +798,8 @@ export class MakeResponse extends jspb.Message {
 export namespace MakeResponse {
   export type AsObject = {
     id: number,
-    deal?: DealInfo.AsObject,
+    deserializedDeal?: DeserializedDeal.AsObject,
+    deal: string,
   }
 }
 
@@ -1312,6 +1348,14 @@ export enum NetworkSelector {
   MAINNET_NETWORKS = 1,
   TESTNET_NETWORKS = 2,
   LOCAL_NETWORKS = 3,
+}
+export enum DealStatus { 
+  DEAL_OPEN = 0,
+  DEAL_IN_PROGRESS = 1,
+  DEAL_ENDED_SUCCESS_SWAP = 2,
+  DEAL_ENDED_FAILURE_REFUND = 3,
+  DEAL_ENDED_FAILURE_PUNISH = 4,
+  DEAL_ENDED_FAILURE_ABORT = 5,
 }
 export enum DealSelector { 
   OPEN = 0,

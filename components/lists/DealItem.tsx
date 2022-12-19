@@ -30,11 +30,17 @@ export default function RunningDeal({ id, data }: { id: string; data: DealInfo }
 
   return (
     <>
-      {data && <DealPanel dealInfo={data} deal={data.getEncodedDeal()} displayForRole={TradeRole.MAKER} />}
+      {data && (
+        <DealPanel
+          dealInfo={data.getDeserializedDeal()!}
+          deal={data.getSerializedDeal()}
+          displayForRole={TradeRole.MAKER}
+        />
+      )}
       <div>
         <ul className="flex flex-row-reverse mt-6">
           <li>
-            <Button onClick={() => handleRevoke(data.getUuid())}>revoke</Button>
+            <Button onClick={() => handleRevoke(data.getSerializedDeal())}>revoke</Button>
           </li>
         </ul>
       </div>

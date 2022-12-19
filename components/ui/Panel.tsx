@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Blockchain, Network, SwapRole, TradeRole, DealInfo } from '../../proto/farcaster_pb'
+import { Blockchain, Network, SwapRole, TradeRole, DeserializedDeal } from '../../proto/farcaster_pb'
 import { chainToString, isMaker, netToString } from '../utils'
 import { Block, Label } from './Label'
 
@@ -52,7 +52,7 @@ export function DealPanel({
   displayForRole,
   deal,
 }: {
-  dealInfo: DealInfo
+  dealInfo: DeserializedDeal
   displayForRole: TradeRole
   deal?: String
 }) {

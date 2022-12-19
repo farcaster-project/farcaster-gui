@@ -77,7 +77,7 @@ export function TakeForm() {
             onChange={(e) => takeSet((v) => ({ ...v, deal: e.target.value.trim() }))}
           />
         </div>
-        <div>{deal && <DealPanel dealInfo={deal.getDealInfo()!} displayForRole={TradeRole.TAKER} />}</div>
+        <div>{deal && <DealPanel dealInfo={deal.getDeserializedDeal()!} displayForRole={TradeRole.TAKER} />}</div>
         <div>
           <Button
             onClick={(e) => {
