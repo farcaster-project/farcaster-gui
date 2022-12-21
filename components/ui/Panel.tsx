@@ -1,6 +1,15 @@
 import { ReactNode } from 'react'
 import { Blockchain, Network, SwapRole, TradeRole, DeserializedDeal } from '../../proto/farcaster_pb'
-import { btcBlockToTimespan, chainToAbrev, chainToString, isMaker, netToString, picoToXmr, satsToBtc } from '../utils'
+import {
+  btcBlockToTimespan,
+  chainToAbrev,
+  chainToString,
+  isMaker,
+  netToString,
+  picoToXmr,
+  price,
+  satsToBtc,
+} from '../utils'
 import { Block, Label } from './Label'
 
 export type PanelParams = {
@@ -60,6 +69,37 @@ export function TradePanel(params: PanelParams) {
   }
 }
 
+export function PricePanel({
+  arbitratingAmount,
+  accordantAmount,
+  makerRole,
+  arbitratingBlockchain,
+  accordantBlockchain,
+}: {
+  arbitratingAmount: number
+  accordantAmount: number
+  makerRole: SwapRole
+  arbitratingBlockchain: Blockchain
+  accordantBlockchain: Blockchain
+}) {
+  switch (makerRole) {
+    case SwapRole.ALICE:
+      return (
+        <span>
+          {price(picoToXmr(accordantAmount), satsToBtc(arbitratingAmount))}{' '}
+          {chainToAbrev(accordantBlockchain).toUpperCase()}/{chainToAbrev(arbitratingBlockchain).toUpperCase()}
+        </span>
+      )
+    case SwapRole.BOB:
+      return (
+        <span>
+          {price(satsToBtc(arbitratingAmount), picoToXmr(accordantAmount))}{' '}
+          {chainToAbrev(arbitratingBlockchain).toUpperCase()}/{chainToAbrev(accordantBlockchain).toUpperCase()}
+        </span>
+      )
+  }
+}
+
 export function DealPanel({
   dealInfo,
   localTradeRole,
@@ -76,16 +116,32 @@ export function DealPanel({
         <div className="text-sm font-mono text-slate-700 mb-6">
           Deal <span className="bg-gray-300 px-2 py-1 rounded-sm">{dealInfo.getUuid()}</span>
         </div>
-        <div className="mb-3 text-xl">
-          <TradePanel
-            arbitratingAmount={dealInfo.getArbitratingAmount()}
-            accordantAmount={dealInfo.getAccordantAmount()}
-            arbitratingBlockchain={dealInfo.getArbitratingBlockchain()}
-            accordantBlockchain={dealInfo.getAccordantBlockchain()}
-            makerRole={dealInfo.getMakerRole()}
-            network={dealInfo.getNetwork()}
-            displayForRole={localTradeRole}
-          />
+        <div className="mb-3">
+          <div className="text-xl mb-3">
+            <TradePanel
+              arbitratingAmount={dealInfo.getArbitratingAmount()}
+              accordantAmount={dealInfo.getAccordantAmount()}
+              arbitratingBlockchain={dealInfo.getArbitratingBlockchain()}
+              accordantBlockchain={dealInfo.getAccordantBlockchain()}
+              makerRole={dealInfo.getMakerRole()}
+              network={dealInfo.getNetwork()}
+              displayForRole={localTradeRole}
+            />
+          </div>
+          <div className="flex space-x-2 text-slate-700">
+            <div>At a price of</div>
+            <div>
+              <Label>
+                <PricePanel
+                  arbitratingAmount={dealInfo.getArbitratingAmount()}
+                  accordantAmount={dealInfo.getAccordantAmount()}
+                  arbitratingBlockchain={dealInfo.getArbitratingBlockchain()}
+                  accordantBlockchain={dealInfo.getAccordantBlockchain()}
+                  makerRole={dealInfo.getMakerRole()}
+                />
+              </Label>
+            </div>
+          </div>
         </div>
         {deal && (
           <>

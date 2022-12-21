@@ -177,3 +177,9 @@ export function xmrStrToPico(str: string): number {
   const amt = parseFloat(str)
   return isNaN(amt) ? xmrToPico(0) : xmrToPico(amt)
 }
+
+// Helper for price display
+export function price(a: number, b: number): string {
+  if (b === 0) return '-'
+  return `${a / b}`
+}

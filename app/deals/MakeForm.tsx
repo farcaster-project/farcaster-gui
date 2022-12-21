@@ -3,14 +3,14 @@
 import { TbSwitchHorizontal } from 'react-icons/tb'
 import { BsInfoSquare } from 'react-icons/bs'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
-import { FeePanel, TimelockPanel, TradePanel } from '../../components/ui/Panel'
+import { FeePanel, PricePanel, TimelockPanel, TradePanel } from '../../components/ui/Panel'
 import { btcStrToSats, chainToString, otherSwapRole, xmrStrToPico } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
 import { Button, Submit } from '../../components/inputs/Button'
 import { Input } from '../../components/inputs/Input'
 import { Subtitle } from '../../components/ui/Title'
-import { Block } from '../../components/ui/Label'
+import { Block, Label } from '../../components/ui/Label'
 
 interface Params {
   accordantBlockchain: Blockchain
@@ -85,21 +85,37 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
 
   return (
     <div className="p-8">
-      <div className="text-2xl mb-16">
-        <TradePanel
-          arbitratingAmount={btcStrToSats(make.arbitratingAmount)}
-          accordantAmount={xmrStrToPico(make.accordantAmount)}
-          arbitratingBlockchain={make.arbitratingBlockchain}
-          accordantBlockchain={make.accordantBlockchain}
-          makerRole={make.makerRole}
-          network={profile.network}
-          displayForRole={TradeRole.MAKER}
-          labelFor={
-            <Button onClick={() => switchRole()}>
-              <TbSwitchHorizontal />
-            </Button>
-          }
-        />
+      <div className="mb-16">
+        <div className="text-2xl mb-3">
+          <TradePanel
+            arbitratingAmount={btcStrToSats(make.arbitratingAmount)}
+            accordantAmount={xmrStrToPico(make.accordantAmount)}
+            arbitratingBlockchain={make.arbitratingBlockchain}
+            accordantBlockchain={make.accordantBlockchain}
+            makerRole={make.makerRole}
+            network={profile.network}
+            displayForRole={TradeRole.MAKER}
+            labelFor={
+              <Button onClick={() => switchRole()}>
+                <TbSwitchHorizontal />
+              </Button>
+            }
+          />
+        </div>
+        <div className="flex space-x-2 text-slate-700">
+          <div>At a price of</div>
+          <div>
+            <Label>
+              <PricePanel
+                arbitratingAmount={btcStrToSats(make.arbitratingAmount)}
+                accordantAmount={xmrStrToPico(make.accordantAmount)}
+                arbitratingBlockchain={make.arbitratingBlockchain}
+                accordantBlockchain={make.accordantBlockchain}
+                makerRole={make.makerRole}
+              />
+            </Label>
+          </div>
+        </div>
       </div>
       <form
         onSubmit={(e) => {
