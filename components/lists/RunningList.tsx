@@ -13,25 +13,17 @@ import {
   DealInfo,
 } from '../../proto/farcaster_pb'
 import RunningListItem from './RunningListItem'
-import { Button } from '../inputs/Button'
 import { ResultCallbackHandler, useProfile, useRefresh, useRpc } from '../../app/hooks'
 import { Profile } from '../../app/settings-provider'
 import { netToSelector } from '../utils'
+import { Filters } from '../ui/swaps/Filters'
+import { NavPageMenu } from './NavPageMenu'
+import { Panel } from '../ui/Panel'
 
 export type RunningItem = {
   id: string
   type: 'swap' | 'deal' | 'checkpoint'
   data?: DealInfo | CheckpointEntry
-}
-
-export type QueryFilters = {
-  deals: DealSelector
-}
-
-export type Filters = {
-  swaps: boolean
-  deals: boolean
-  checkpoints: boolean
 }
 
 // Get the list of swaps, deals, and checkpoints and merge them into one
@@ -89,35 +81,8 @@ async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCa
   return typedSwaps.concat(typedDeals).concat(typedCheckpoints)
 }
 
-const defaultFilters: Filters = {
-  swaps: true,
-  deals: true,
-  checkpoints: true,
-}
-
-function NavList({ pages, current, pageSet }: { pages: number; current: number; pageSet: (page: number) => void }) {
-  return (
-    <div className="flex space-x-2 items-center">
-      <p>Page:</p>
-      <ul className="flex space-x-2 items-center">
-        {Array.from(Array(pages).keys()).map((_, page) => (
-          <li key={page}>
-            <Button active={current === page} onClick={() => pageSet(page)}>
-              {page + 1}
-            </Button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-const itemPerPage = 10
-
-export default function RunningList() {
-  //const [queryFilters, queryFiltersSet] = useState<QueryFilters>(defaultQueryFilters)
+export default function RunningList({ filters, itemPerPage = 10 }: { filters: Filters; itemPerPage?: number }) {
   const [profile] = useProfile()
-  const [filters, filtersSet] = useState<Filters>(defaultFilters)
   const [list, listSet] = useState<RunningItem[]>([])
   const [currentPage, currentPageSet] = useState(0)
   const [fcd, res] = useRpc()
@@ -145,39 +110,25 @@ export default function RunningList() {
 
   return (
     <>
-      <div>
-        filters: swaps{' '}
-        <input
-          type="checkbox"
-          checked={filters.swaps}
-          onChange={(e) => filtersSet((v) => ({ ...v, swaps: e.target.checked }))}
-        />{' '}
-        deals:{' '}
-        <input
-          type="checkbox"
-          checked={filters.deals}
-          onChange={(e) => filtersSet((v) => ({ ...v, deals: e.target.checked }))}
-        />{' '}
-        checkpoints{' '}
-        <input
-          type="checkbox"
-          checked={filters.checkpoints}
-          onChange={(e) => filtersSet((v) => ({ ...v, checkpoints: e.target.checked }))}
-        />
-      </div>
-      {filteredList.length === 0 && <p>No items in the list</p>}
+      {filteredList.length === 0 && (
+        <Panel className="bg-white">
+          <div className="p-8">
+            <p className="text-lg text-slate-800 font-medium">No items found!</p>
+            <p className="text-sm text-slate-700">
+              You are probably not running any swaps at the moment, otherwise check your filters.
+            </p>
+          </div>
+        </Panel>
+      )}
       {filteredList.length > 0 && (
         <>
-          <div>
-            <div>
-              {list.length === 0 && <p>No item in the list</p>}
-              {filteredList
-                .slice(currentPage * itemPerPage, Math.min(currentPage * itemPerPage + itemPerPage, list.length))
-                .map((item) => (
-                  <RunningListItem key={item.id} item={item} />
-                ))}
-            </div>
-            <NavList pages={nbPages} current={currentPage} pageSet={currentPageSet} />
+          {filteredList
+            .slice(currentPage * itemPerPage, Math.min(currentPage * itemPerPage + itemPerPage, list.length))
+            .map((item) => (
+              <RunningListItem key={item.id} item={item} />
+            ))}
+          <div className="mt-16">
+            <NavPageMenu pages={nbPages} current={currentPage} pageSet={currentPageSet} />
           </div>
         </>
       )}

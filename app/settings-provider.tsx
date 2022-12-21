@@ -85,14 +85,14 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && localStorage) {
-      const serializedSettings = localStorage.getItem('settings')
+      const serializedSettings = localStorage.getItem('fc_settings_v1')
       if (serializedSettings) {
         // restore settings
         settingsSet(JSON.parse(serializedSettings) as Settings)
       } else {
         // no settings saved, use defaults (already done within useState) and
         // save them in local storage
-        localStorage.setItem('settings', JSON.stringify(defaultSettings))
+        localStorage.setItem('fc_settings_v1', JSON.stringify(defaultSettings))
       }
       loadingSet(false)
     }
@@ -100,7 +100,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
 
   const saveSettings = (settings: Settings) => {
     // persist new settings on local storage and update state
-    localStorage.setItem('settings', JSON.stringify(settings))
+    localStorage.setItem('fc_settings_v1', JSON.stringify(settings))
     loadingSet(true)
     settingsSet(settings)
     // used to force re-render :(
