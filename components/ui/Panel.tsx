@@ -104,18 +104,22 @@ export function DealPanel({
   dealInfo,
   localTradeRole,
   deal,
+  displayHeader = true,
 }: {
   dealInfo: DeserializedDeal
   localTradeRole: TradeRole
   deal?: String
+  displayHeader?: boolean
 }) {
   const roleIsMaker = isMaker(localTradeRole)
   return (
     <>
       <div className="break-all">
-        <div className="text-sm font-mono text-slate-700 mb-6">
-          Deal <span className="bg-gray-300 px-2 py-1 rounded-sm">{dealInfo.getUuid()}</span>
-        </div>
+        {displayHeader && (
+          <div className="text-sm font-mono text-slate-700 mb-6">
+            Deal <span className="bg-gray-300 px-2 py-1 rounded-sm">{dealInfo.getUuid()}</span>
+          </div>
+        )}
         <div className="mb-3">
           <div className="text-xl mb-3">
             <TradePanel

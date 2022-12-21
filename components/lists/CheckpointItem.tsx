@@ -3,6 +3,8 @@
 import { useCallback, useState } from 'react'
 import { useRpc } from '../../app/hooks'
 import { CheckpointEntry, RestoreCheckpointRequest } from '../../proto/farcaster_pb'
+import { Button } from '../inputs/Button'
+import { DealPanel } from '../ui/Panel'
 
 export default function CheckpointItem({ id, data }: { id: string; data: CheckpointEntry }) {
   const [restoring, restoringSet] = useState(false)
@@ -10,7 +12,6 @@ export default function CheckpointItem({ id, data }: { id: string; data: Checkpo
 
   const handleRestore = useCallback(
     (id: string) => {
-      console.log('restore', id)
       fcd.restoreCheckpoint(
         new RestoreCheckpointRequest().setSwapId(id),
         null,
@@ -26,21 +27,29 @@ export default function CheckpointItem({ id, data }: { id: string; data: Checkpo
   )
 
   if (restoring) {
-    return <div>Restoring checkpoint {id}...</div>
+    return (
+      <div className="text-sm font-mono text-slate-700 mb-6">
+        Restoring checkpoint <span className="bg-gray-300 px-2 py-1 rounded-sm">{id}</span>
+      </div>
+    )
   }
 
   return (
     <>
       <div className="break-all">
-        <div className="mb-2 text-xl bold">checkpoint:</div>
-        <div className="text-gray-300 bg-gray-700 p-2 mb-6 rounded">{id}</div>
+        <div className="text-sm font-mono text-slate-700 mb-6">
+          Checkpoint <span className="bg-gray-300 px-2 py-1 rounded-sm">{data.getSwapId()}</span>
+        </div>
+        <DealPanel
+          dealInfo={data.getDeal()!.getDeserializedDeal()!}
+          localTradeRole={data.getTradeRole()}
+          displayHeader={false}
+        />
       </div>
       <div>
         <ul className="flex flex-row-reverse mt-6">
           <li>
-            <button className="p-3 bg-gray-600" onClick={() => handleRestore(id)}>
-              restore
-            </button>
+            <Button onClick={() => handleRestore(id)}>Restore this checkpoint</Button>
           </li>
         </ul>
       </div>
