@@ -2,9 +2,9 @@
 
 import { TbSwitchHorizontal } from 'react-icons/tb'
 import { BsInfoSquare } from 'react-icons/bs'
-import { useCallback, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import { FeePanel, TimelockPanel, TradePanel } from '../../components/ui/Panel'
-import { btcStrToSats, btcToSats, chainToString, otherSwapRole, xmrStrToPico } from '../../components/utils'
+import { btcStrToSats, chainToString, otherSwapRole, xmrStrToPico } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
 import { Button, Submit } from '../../components/inputs/Button'
@@ -13,7 +13,6 @@ import { Subtitle } from '../../components/ui/Title'
 import { Block } from '../../components/ui/Label'
 
 interface Params {
-  network: Network
   accordantBlockchain: Blockchain
   arbitratingBlockchain: Blockchain
   accordantAmount: string
@@ -28,7 +27,7 @@ interface Params {
   publicPort: number
 }
 
-const reqDefault = {
+export const makeDefault: Params = {
   accordantBlockchain: Blockchain.MONERO,
   arbitratingBlockchain: Blockchain.BITCOIN,
   accordantAmount: '0',
@@ -43,7 +42,7 @@ const reqDefault = {
   publicPort: 7067,
 }
 
-const createMakeRequest = (p: Params): MakeRequest => {
+const createMakeRequest = (p: Params & { network: Network }): MakeRequest => {
   return new MakeRequest()
     .setNetwork(p.network)
     .setAccordantBlockchain(p.accordantBlockchain)
@@ -60,23 +59,22 @@ const createMakeRequest = (p: Params): MakeRequest => {
     .setPublicPort(p.publicPort)
 }
 
-export function MakeForm() {
-  const [req, reqSet] = useState(reqDefault)
+export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<SetStateAction<Params>> }) {
   const [profile] = useProfile()
   const [fcd, res] = useRpc()
 
   const switchRole = () => {
-    reqSet((v) => ({ ...v, makerRole: otherSwapRole(req.makerRole) }))
+    makeSet((v) => ({ ...v, makerRole: otherSwapRole(make.makerRole) }))
   }
 
   useEffect(() => {
-    reqSet((v) => ({ ...v, arbitratingAddr: profile.btcAddr }))
-    reqSet((v) => ({ ...v, accordantAddr: profile.xmrAddr }))
-  }, [profile.btcAddr, profile.xmrAddr])
+    makeSet((v) => ({ ...v, arbitratingAddr: profile.btcAddr }))
+    makeSet((v) => ({ ...v, accordantAddr: profile.xmrAddr }))
+  }, [makeSet, profile.btcAddr, profile.xmrAddr])
 
   const isValid = useCallback(() => {
-    return xmrStrToPico(req.accordantAmount) !== 0 && btcStrToSats(req.arbitratingAmount) !== 0
-  }, [req.accordantAmount, req.arbitratingAmount])
+    return xmrStrToPico(make.accordantAmount) !== 0 && btcStrToSats(make.arbitratingAmount) !== 0
+  }, [make.accordantAmount, make.arbitratingAmount])
 
   const isStringAmountValid = useCallback((value: string): boolean => {
     if (value === '0' || value === '0.' || value === '') {
@@ -89,11 +87,11 @@ export function MakeForm() {
     <div className="p-8">
       <div className="text-2xl mb-16">
         <TradePanel
-          arbitratingAmount={btcStrToSats(req.arbitratingAmount)}
-          accordantAmount={xmrStrToPico(req.accordantAmount)}
-          arbitratingBlockchain={req.arbitratingBlockchain}
-          accordantBlockchain={req.accordantBlockchain}
-          makerRole={req.makerRole}
+          arbitratingAmount={btcStrToSats(make.arbitratingAmount)}
+          accordantAmount={xmrStrToPico(make.accordantAmount)}
+          arbitratingBlockchain={make.arbitratingBlockchain}
+          accordantBlockchain={make.accordantBlockchain}
+          makerRole={make.makerRole}
           network={profile.network}
           displayForRole={TradeRole.MAKER}
           labelFor={
@@ -106,35 +104,36 @@ export function MakeForm() {
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          const makeReq = createMakeRequest({ ...req, network: profile.network })
+          const makeReq = createMakeRequest({ ...make, network: profile.network })
+          // fixme: handle res better
           fcd.make(makeReq, null, res())
         }}
         className="flex flex-col"
       >
         <div className="mb-8">
           <Input
-            value={req.arbitratingAmount}
-            label={`${chainToString(req.arbitratingBlockchain)} amount`}
+            value={make.arbitratingAmount}
+            label={`${chainToString(make.arbitratingBlockchain)} amount`}
             type="input"
             required
             onChange={(e) =>
-              reqSet((v) => (isStringAmountValid(e.target.value) ? { ...v, arbitratingAmount: e.target.value } : v))
+              makeSet((v) => (isStringAmountValid(e.target.value) ? { ...v, arbitratingAmount: e.target.value } : v))
             }
           />
           <Input
-            value={req.accordantAmount}
-            label={`${chainToString(req.accordantBlockchain)} amount`}
-            type="number"
+            value={make.accordantAmount}
+            label={`${chainToString(make.accordantBlockchain)} amount`}
+            type="input"
             required
             onChange={(e) =>
-              reqSet((v) => (isStringAmountValid(e.target.value) ? { ...v, accordantAmount: e.target.value } : v))
+              makeSet((v) => (isStringAmountValid(e.target.value) ? { ...v, accordantAmount: e.target.value } : v))
             }
           />
         </div>
         <div className="mb-16">
           <Subtitle>Trade configuration</Subtitle>
           <Input
-            value={req.cancelTimelock}
+            value={make.cancelTimelock}
             label={
               <>
                 Cancel timelock <span className="text-sm">(in block)</span>
@@ -142,10 +141,10 @@ export function MakeForm() {
             }
             type="number"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, cancelTimelock: parseInt(e.target.value) }))}
+            onChange={(e) => makeSet((v) => ({ ...v, cancelTimelock: parseInt(e.target.value) }))}
           />
           <Input
-            value={req.punishTimelock}
+            value={make.punishTimelock}
             label={
               <>
                 Punish timelock <span className="text-sm">(in block)</span>
@@ -153,37 +152,37 @@ export function MakeForm() {
             }
             type="number"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, punishTimelock: parseInt(e.target.value) }))}
+            onChange={(e) => makeSet((v) => ({ ...v, punishTimelock: parseInt(e.target.value) }))}
           />
           <div className="pl-96">
             <TimelockPanel
-              cancelTimelock={req.cancelTimelock}
-              punishTimelock={req.punishTimelock}
+              cancelTimelock={make.cancelTimelock}
+              punishTimelock={make.punishTimelock}
               localTradeRole={TradeRole.MAKER}
-              makerRole={req.makerRole}
+              makerRole={make.makerRole}
             />
           </div>
 
           <Input
-            value={req.feeStrategy}
-            label={`${chainToString(req.arbitratingBlockchain)} transaction fee`}
+            value={make.feeStrategy}
+            label={`${chainToString(make.arbitratingBlockchain)} transaction fee`}
             type="input"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, feeStrategy: e.target.value }))}
+            onChange={(e) => makeSet((v) => ({ ...v, feeStrategy: e.target.value }))}
           />
           <div className="pl-96">
-            <FeePanel arbitratingBlockchain={req.arbitratingBlockchain} feeStrategy={req.feeStrategy} />
+            <FeePanel arbitratingBlockchain={make.arbitratingBlockchain} feeStrategy={make.feeStrategy} />
           </div>
         </div>
 
         <div className="mb-16">
           <Subtitle>Peer connection configuration</Subtitle>
           <Input
-            value={req.publicIpAddr}
+            value={make.publicIpAddr}
             label="Public IP address"
             type="input"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, publicIpAddr: e.target.value }))}
+            onChange={(e) => makeSet((v) => ({ ...v, publicIpAddr: e.target.value }))}
           />
           <div className="pl-96">
             <div className="flex space-x-2 items-center text-slate-700 mb-1 text-sm">
@@ -194,33 +193,33 @@ export function MakeForm() {
             </div>
           </div>
           <Input
-            value={req.publicPort}
+            value={make.publicPort}
             label="Public port"
             type="input"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, publicPort: parseInt(e.target.value) }))}
+            onChange={(e) => makeSet((v) => ({ ...v, publicPort: parseInt(e.target.value) }))}
           />
           <div className="pl-96">
             <div className="text-slate-700 mb-1 text-sm">Taker will connect to your peer at:</div>
-            <Block intent="secondary">{`${req.publicIpAddr}:${req.publicPort}`}</Block>
+            <Block intent="secondary">{`${make.publicIpAddr}:${make.publicPort}`}</Block>
           </div>
         </div>
 
         <div className="mb-16">
           <Subtitle>Your addresses</Subtitle>
           <Input
-            value={req.arbitratingAddr}
+            value={make.arbitratingAddr}
             label="Your Bitcoin address for this deal"
             type="input"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, arbitratingAddr: e.target.value }))}
+            onChange={(e) => makeSet((v) => ({ ...v, arbitratingAddr: e.target.value }))}
           />
           <Input
-            value={req.accordantAddr}
+            value={make.accordantAddr}
             label="Your Monero address for this deal"
             type="input"
             required
-            onChange={(e) => reqSet((v) => ({ ...v, accordantAddr: e.target.value }))}
+            onChange={(e) => makeSet((v) => ({ ...v, accordantAddr: e.target.value }))}
           />
         </div>
 

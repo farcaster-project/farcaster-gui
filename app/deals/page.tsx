@@ -3,11 +3,12 @@
 import { useState } from 'react'
 import Tabs from '../../components/ui/Tabs'
 import { Title } from '../../components/ui/Title'
-import { MakeForm } from './MakeForm'
+import { makeDefault, MakeForm } from './MakeForm'
 import { TakeForm, takeReq } from './TakeForm'
 
 export default function TakePage() {
   const [take, takeSet] = useState(takeReq)
+  const [make, makeSet] = useState(makeDefault)
 
   return (
     <div className="mb-16">
@@ -22,7 +23,7 @@ export default function TakePage() {
           },
           {
             tabHeader: <span className="text-xl">Make</span>,
-            tabContent: <MakeForm />,
+            tabContent: <MakeForm make={make} makeSet={makeSet} />,
           },
         ]}
       />
