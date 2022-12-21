@@ -49,19 +49,25 @@ function ProgressSateTransition({ transition }: { transition: StateTransition })
 export function SwapProgress({ progress }: { progress: Progress[] }) {
   return (
     <>
-      {progress.map((progress) => {
+      {progress.map((progress, idx) => {
+        let content = <></>
         switch (progress.getProgressCase()) {
           case Progress.ProgressCase.MESSAGE:
-            return <ProgressMessage message={progress.getMessage()} />
+            content = <ProgressMessage message={progress.getMessage()} />
+            break
           case Progress.ProgressCase.FAILURE:
-            return <ProgressMessage message={progress.getFailure()} />
+            content = <ProgressMessage message={progress.getFailure()} />
+            break
           case Progress.ProgressCase.SUCCESS:
-            return <ProgressMessage message={progress.getSuccess()} />
+            content = <ProgressMessage message={progress.getSuccess()} />
+            break
           case Progress.ProgressCase.STATE_UPDATE:
-            return <ProgressState state={progress.getStateUpdate()!} />
+            content = <ProgressState state={progress.getStateUpdate()!} />
+            break
           case Progress.ProgressCase.STATE_TRANSITION:
-            return <ProgressSateTransition transition={progress.getStateTransition()!} />
+            content = <ProgressSateTransition transition={progress.getStateTransition()!} />
         }
+        return <div key={idx}>{content}</div>
       })}
     </>
   )
