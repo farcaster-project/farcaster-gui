@@ -44,7 +44,7 @@ async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCa
     new Promise<ListDealsResponse>((resolve, reject) => {
       fcd.listDeals(
         new ListDealsRequest()
-          .setDealSelector(DealSelector.IN_PROGRESS)
+          .setDealSelector(DealSelector.IN_PROGRESS_DEALS)
           .setNetworkSelector(netToSelector(profile.network)),
         null,
         res(resolve, () => reject())
@@ -52,7 +52,9 @@ async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCa
     }),
     new Promise<ListDealsResponse>((resolve, reject) => {
       fcd.listDeals(
-        new ListDealsRequest().setDealSelector(DealSelector.OPEN).setNetworkSelector(netToSelector(profile.network)),
+        new ListDealsRequest()
+          .setDealSelector(DealSelector.OPEN_DEALS)
+          .setNetworkSelector(netToSelector(profile.network)),
         null,
         res(resolve, () => reject())
       )

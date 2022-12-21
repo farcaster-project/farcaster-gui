@@ -1352,16 +1352,17 @@ export enum NetworkSelector {
 export enum DealStatus { 
   DEAL_OPEN = 0,
   DEAL_IN_PROGRESS = 1,
-  DEAL_ENDED_SUCCESS_SWAP = 2,
-  DEAL_ENDED_FAILURE_REFUND = 3,
-  DEAL_ENDED_FAILURE_PUNISH = 4,
-  DEAL_ENDED_FAILURE_ABORT = 5,
+  DEAL_REVOKED = 2,
+  DEAL_ENDED_SUCCESS_SWAP = 3,
+  DEAL_ENDED_FAILURE_REFUND = 4,
+  DEAL_ENDED_FAILURE_PUNISH = 5,
+  DEAL_ENDED_FAILURE_ABORT = 6,
 }
 export enum DealSelector { 
-  OPEN = 0,
-  IN_PROGRESS = 1,
-  ENDED = 2,
-  ALL = 3,
+  OPEN_DEALS = 0,
+  IN_PROGRESS_DEALS = 1,
+  ENDED_DEALS = 2,
+  ALL_DEALS = 3,
 }
 export enum CheckpointSelector { 
   ALL_CHECKPOINTS = 0,

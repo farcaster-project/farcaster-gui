@@ -1,6 +1,6 @@
 import { Blockchain, DealStatus, Network, NetworkSelector, SwapRole, TradeRole } from "../proto/farcaster_pb"
 
-export type Status = 'Open' | 'Progress' | 'Swapped' | 'Refunded' | 'Punished' | 'Aborted'
+export type Status = 'Open' | 'Revoked' | 'Progress' | 'Swapped' | 'Refunded' | 'Punished' | 'Aborted'
 
 // Utility function to convert a Deal status enum into a Status (string)
 export function dealStatusToStatus(s: DealStatus): Status {
@@ -9,6 +9,8 @@ export function dealStatusToStatus(s: DealStatus): Status {
       return 'Open'
     case DealStatus.DEAL_IN_PROGRESS:
       return 'Progress'
+    case DealStatus.DEAL_REVOKED:
+      return 'Revoked'
     case DealStatus.DEAL_ENDED_SUCCESS_SWAP:
       return 'Swapped'
     case DealStatus.DEAL_ENDED_FAILURE_REFUND:

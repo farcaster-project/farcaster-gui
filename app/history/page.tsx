@@ -14,6 +14,7 @@ const itemPannel = cva([''], {
     status: {
       Open: ['bg-white'],
       Progress: ['bg-white'],
+      Revoked: ['bg-rose-200'],
       Swapped: ['bg-green-200'],
       Refunded: ['bg-gray-200'],
       Punished: ['bg-red-200'],
@@ -29,7 +30,9 @@ export default function PageHistory() {
 
   useEffect(() => {
     fcd.listDeals(
-      new ListDealsRequest().setDealSelector(DealSelector.ENDED).setNetworkSelector(netToSelector(profile.network)),
+      new ListDealsRequest()
+        .setDealSelector(DealSelector.ENDED_DEALS)
+        .setNetworkSelector(netToSelector(profile.network)),
       null,
       res((resp) => {
         dealsSet(resp)
