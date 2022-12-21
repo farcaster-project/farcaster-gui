@@ -102,25 +102,65 @@ export function DealPanel({
       </div>
       <div>
         <div className="mb-2">
-          <span className="font-semibold text-slate-600">Timelocks</span>: the swap can be cancelled after{' '}
-          <Label intensity="light" rounded={false}>
-            {dealInfo.getCancelTimelock()} blocks ({btcBlockToTimespan(dealInfo.getCancelTimelock())})
-          </Label>{' '}
-          and {whoCanBePunished(dealInfo.getMakerRole(), localTradeRole)} can be punished{' '}
-          <Label intensity="light" rounded={false}>
-            {dealInfo.getPunishTimelock()} blocks ({btcBlockToTimespan(dealInfo.getPunishTimelock())})
-          </Label>{' '}
-          after the cancel if {whoCanBePunished(dealInfo.getMakerRole(), localTradeRole)} didn&apos;t refunded.
+          <TimelockPanel
+            cancelTimelock={dealInfo.getCancelTimelock()}
+            punishTimelock={dealInfo.getPunishTimelock()}
+            localTradeRole={localTradeRole}
+            makerRole={dealInfo.getMakerRole()}
+          />
         </div>
         <div>
-          <span className="font-semibold text-slate-600">Fee</span>: transactions on{' '}
-          {chainToString(dealInfo.getArbitratingBlockchain())} will apply{' '}
-          <Label intensity="light" rounded={false}>
-            {dealInfo.getFeeStrategy()}
-          </Label>{' '}
-          of fee.
+          <FeePanel
+            arbitratingBlockchain={dealInfo.getArbitratingBlockchain()}
+            feeStrategy={dealInfo.getFeeStrategy()}
+          />
         </div>
       </div>
+    </>
+  )
+}
+
+export function TimelockPanel({
+  cancelTimelock,
+  punishTimelock,
+  localTradeRole,
+  makerRole,
+}: {
+  cancelTimelock: number
+  punishTimelock: number
+  localTradeRole: TradeRole
+  makerRole: SwapRole
+}) {
+  return (
+    <>
+      <span className="font-semibold text-slate-600">Timelocks</span>: the swap can be cancelled after{' '}
+      <Label intensity="light" rounded={false}>
+        {cancelTimelock} blocks ({btcBlockToTimespan(cancelTimelock)})
+      </Label>{' '}
+      and {whoCanBePunished(makerRole, localTradeRole)} can be punished{' '}
+      <Label intensity="light" rounded={false}>
+        {punishTimelock} blocks ({btcBlockToTimespan(punishTimelock)})
+      </Label>{' '}
+      after the cancel if {whoCanBePunished(makerRole, localTradeRole)} didn&apos;t refunded.
+    </>
+  )
+}
+
+export function FeePanel({
+  arbitratingBlockchain,
+  feeStrategy,
+}: {
+  arbitratingBlockchain: Blockchain
+  feeStrategy: string
+}) {
+  return (
+    <>
+      <span className="font-semibold text-slate-600">Fee</span>: transactions on {chainToString(arbitratingBlockchain)}{' '}
+      will apply{' '}
+      <Label intensity="light" rounded={false}>
+        {feeStrategy}
+      </Label>{' '}
+      of fee.
     </>
   )
 }

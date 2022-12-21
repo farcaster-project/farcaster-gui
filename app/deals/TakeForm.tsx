@@ -81,7 +81,7 @@ export function TakeForm({
         <div>
           <Input
             value={take.deal}
-            label="The public deal you want take"
+            label="The public deal you want to take"
             type="text"
             placeholder="Deal:..."
             required
@@ -92,14 +92,6 @@ export function TakeForm({
           {deal && <DealPanel dealInfo={deal.getDeserializedDeal()!} localTradeRole={TradeRole.TAKER} />}
         </div>
         <div className="flex space-x-4 justify-end">
-          {/*<Button
-            onClick={(e) => {
-              e.preventDefault()
-              takeSet(takeReq)
-            }}
-          >
-            reset to defaults
-          </Button>*/}
           <Button
             onClick={(e) => {
               e.preventDefault()
@@ -109,7 +101,7 @@ export function TakeForm({
           >
             Clear
           </Button>
-          <Submit value="Take" disabled={deal === null} />
+          <Submit value="Take the deal" disabled={deal === null} />
         </div>
       </form>
       {takeRes && <div>You took the deal</div>}

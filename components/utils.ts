@@ -156,6 +156,12 @@ export function btcToSats(btc: number): number {
   return btc * 100000000;
 }
 
+// Convert a string of btc into a number of satoshis
+export function btcStrToSats(str: string): number {
+  const amt = parseFloat(str)
+  return isNaN(amt) ? btcToSats(0) : btcToSats(amt)
+}
+
 // Convert a number of piconero into a float number of xmr
 export function picoToXmr(pico: number): number {
   return pico / 1000000000000;
@@ -164,4 +170,10 @@ export function picoToXmr(pico: number): number {
 // Convert a number of xmr into a number of piconero
 export function xmrToPico(xmr: number): number {
   return xmr * 1000000000000;
+}
+
+// Convert a string of xmr into a number of piconero
+export function xmrStrToPico(str: string): number {
+  const amt = parseFloat(str)
+  return isNaN(amt) ? xmrToPico(0) : xmrToPico(amt)
 }
