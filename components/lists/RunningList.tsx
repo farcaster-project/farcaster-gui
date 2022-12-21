@@ -78,7 +78,10 @@ async function getDataList(profile: Profile, fcd: FarcasterClient, res: ResultCa
     type: 'checkpoint',
     data: checkpoint,
   }))
-  return typedSwaps.concat(typedDeals).concat(typedCheckpoints)
+  return typedSwaps
+    .concat(typedDeals)
+    .concat(typedCheckpoints)
+    .sort((a, b) => a.id.localeCompare(b.id))
 }
 
 export default function RunningList({ filters, itemPerPage = 10 }: { filters: Filters; itemPerPage?: number }) {

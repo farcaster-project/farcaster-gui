@@ -117,7 +117,10 @@ export function DealPanel({
       <div className="break-all">
         {displayHeader && (
           <div className="text-sm font-mono text-slate-700 mb-6">
-            Deal <span className="bg-gray-300 px-2 py-1 rounded-sm">{dealInfo.getUuid()}</span>
+            Deal{' '}
+            <Label intensity="light" rounded={false}>
+              {dealInfo.getUuid()}
+            </Label>
           </div>
         )}
         <div className="mb-3">

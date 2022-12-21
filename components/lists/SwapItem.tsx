@@ -1,9 +1,12 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import { Block, Label } from '../ui/Label'
+import { Label } from '../ui/Label'
 import { AbortSwapRequest, ProgressRequest, ProgressResponse, Progress, DealInfo } from '../../proto/farcaster_pb'
 import { useRefresh, useRpc } from '../../app/hooks'
+import { Button } from '../inputs/Button'
+import { DealPanel } from '../ui/Panel'
+import { SwapProgress } from '../ui/swaps/SwapProgress'
 
 export default function RunningSwap({ id, data }: { id: string; data: DealInfo }) {
   const [prog, progSet] = useState<ProgressResponse | null>(null)
@@ -39,49 +42,41 @@ export default function RunningSwap({ id, data }: { id: string; data: DealInfo }
   )
 
   if (aborting) {
-    return <div>Aborting swap {id}...</div>
+    return (
+      <div className="text-sm font-mono text-slate-700 mb-6">
+        Aborting swap{' '}
+        <Label intensity="light" rounded={false}>
+          {id}
+        </Label>
+      </div>
+    )
   }
 
   return (
     <>
       <div className="break-all">
-        <div className="mb-4 text-xl bold">
-          Swap <Label>{id}</Label>
+        <div className="text-sm font-mono text-slate-700 mb-6">
+          Swap{' '}
+          <Label intensity="light" rounded={false}>
+            {id}
+          </Label>
+        </div>
+        <div>
+          <DealPanel
+            dealInfo={data.getDeserializedDeal()!}
+            localTradeRole={data.getLocalTradeRole()}
+            displayHeader={false}
+          />
         </div>
       </div>
-      {prog && (
-        <>
-          <Block intent="secondary">
-            {prog.getProgressList().map((i) => {
-              let message = ''
-              switch (i.getProgressCase()) {
-                case Progress.ProgressCase.PROGRESS_NOT_SET:
-                  message = 'No progress yet'
-                case Progress.ProgressCase.MESSAGE:
-                  message = i.getMessage()
-                case Progress.ProgressCase.STATE_UPDATE:
-                  message = i.getStateUpdate()?.getState().toString() ?? 'unknown state'
-                case Progress.ProgressCase.STATE_TRANSITION:
-                  message = i.getStateTransition()?.getOldState()?.getState().toString() ?? 'unknown old state'
-                case Progress.ProgressCase.FAILURE:
-                  message = i.getFailure()
-                case Progress.ProgressCase.SUCCESS:
-                  message = i.getSuccess()
-              }
-              return <p key={JSON.stringify(i)}>{message}</p>
-            })}
-          </Block>
-          <div>
-            <ul className="flex flex-row-reverse mt-6">
-              <li>
-                <button className="p-3 bg-gray-600" onClick={() => handleAbort(id)}>
-                  abort
-                </button>
-              </li>
-            </ul>
-          </div>
-        </>
-      )}
+      <div className="py-8">{prog && <SwapProgress progress={prog.getProgressList()} />}</div>
+      <div>
+        <ul className="flex flex-row-reverse mt-6">
+          <li>
+            <Button onClick={() => handleAbort(id)}>Abort this swap</Button>
+          </li>
+        </ul>
+      </div>
     </>
   )
 }

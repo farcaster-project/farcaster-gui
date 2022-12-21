@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react'
 import { useRpc } from '../../app/hooks'
 import { CheckpointEntry, RestoreCheckpointRequest } from '../../proto/farcaster_pb'
 import { Button } from '../inputs/Button'
+import { Label } from '../ui/Label'
 import { DealPanel } from '../ui/Panel'
 
 export default function CheckpointItem({ id, data }: { id: string; data: CheckpointEntry }) {
@@ -29,7 +30,10 @@ export default function CheckpointItem({ id, data }: { id: string; data: Checkpo
   if (restoring) {
     return (
       <div className="text-sm font-mono text-slate-700 mb-6">
-        Restoring checkpoint <span className="bg-gray-300 px-2 py-1 rounded-sm">{id}</span>
+        Restoring checkpoint{' '}
+        <Label intensity="light" rounded={false}>
+          {id}
+        </Label>
       </div>
     )
   }
@@ -38,7 +42,10 @@ export default function CheckpointItem({ id, data }: { id: string; data: Checkpo
     <>
       <div className="break-all">
         <div className="text-sm font-mono text-slate-700 mb-6">
-          Checkpoint <span className="bg-gray-300 px-2 py-1 rounded-sm">{data.getSwapId()}</span>
+          Checkpoint{' '}
+          <Label intensity="light" rounded={false}>
+            {data.getSwapId()}
+          </Label>
         </div>
         <DealPanel
           dealInfo={data.getDeal()!.getDeserializedDeal()!}
