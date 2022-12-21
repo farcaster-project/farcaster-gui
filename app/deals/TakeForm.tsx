@@ -6,6 +6,7 @@ import { DealInfoRequest, DealInfoResponse, TakeRequest, TradeRole } from '../..
 import { Input } from '../../components/inputs/Input'
 import { Button, Submit } from '../../components/inputs/Button'
 import { useProfile, useRpc } from '../hooks'
+import { ConfirmModal, Toast } from '../../components/ui/Modal'
 
 export const takeReq = {
   bitcoinAddress: '',
@@ -28,7 +29,6 @@ export function TakeForm({
 }) {
   const [profile] = useProfile()
   const [deal, dealSet] = useState<DealInfoResponse | null>(null)
-  const [takeRes, takeResSet] = useState<null | boolean>(null)
   const [fcd, res] = useRpc()
 
   useEffect(() => {
@@ -49,21 +49,34 @@ export function TakeForm({
     <div className="p-8">
       <form
         onSubmit={(e) => {
-          // issue the request to take the deal
           e.preventDefault()
-          if (confirm('Are you sure you want to take this deal?')) {
-            fcd.take(
-              new TakeRequest()
-                .setBitcoinAddress(take.bitcoinAddress)
-                .setMoneroAddress(take.moneroAddress)
-                .setDeal(take.deal),
-              null,
-              res(
-                () => takeResSet(true),
-                () => takeResSet(false)
+          ConfirmModal.fire({
+            title: 'Are you sure you want to take this deal?',
+            text: 'You can still abort the swap if no funding has been done.',
+            icon: 'question',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              fcd.take(
+                new TakeRequest()
+                  .setBitcoinAddress(take.bitcoinAddress)
+                  .setMoneroAddress(take.moneroAddress)
+                  .setDeal(take.deal),
+                null,
+                res(
+                  () =>
+                    Toast.fire({
+                      icon: 'success',
+                      title: 'You took the deal!',
+                    }),
+                  () =>
+                    Toast.fire({
+                      icon: 'error',
+                      title: 'Deal not took!',
+                    })
+                )
               )
-            )
-          }
+            }
+          })
         }}
       >
         <div>
@@ -97,15 +110,13 @@ export function TakeForm({
               e.preventDefault()
               takeSet((v) => ({ ...v, deal: '' }))
             }}
-            disabled={deal === null}
+            disabled={take.deal === ''}
           >
             Clear
           </Button>
           <Submit value="Take the deal" disabled={deal === null} />
         </div>
       </form>
-      {takeRes && <div>You took the deal</div>}
-      {takeRes === false && <div>Problem while taking the deal</div>}
     </div>
   )
 }

@@ -11,6 +11,7 @@ import { Button, Submit } from '../../components/inputs/Button'
 import { Input } from '../../components/inputs/Input'
 import { Subtitle } from '../../components/ui/Title'
 import { Block, Label } from '../../components/ui/Label'
+import { Toast } from '../../components/ui/Modal'
 
 interface Params {
   accordantBlockchain: Blockchain
@@ -121,8 +122,22 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
         onSubmit={(e) => {
           e.preventDefault()
           const makeReq = createMakeRequest({ ...make, network: profile.network })
-          // fixme: handle res better
-          fcd.make(makeReq, null, res())
+          fcd.make(
+            makeReq,
+            null,
+            res(
+              () =>
+                Toast.fire({
+                  icon: 'success',
+                  title: 'Your deal has been registered, share it with takers!',
+                }),
+              () =>
+                Toast.fire({
+                  icon: 'error',
+                  title: 'A problem occured while registering your deal!',
+                })
+            )
+          )
         }}
         className="flex flex-col"
       >
