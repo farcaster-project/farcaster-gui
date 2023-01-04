@@ -1,15 +1,18 @@
 'use client'
 
 import { cva } from 'class-variance-authority'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useState } from 'react'
-import { useProfile, useRefresh, useRpc } from '../../../app/hooks'
+import { useConnected, useProfile, useRefresh, useRpc } from '../../../app/hooks'
 import { HealthCheckRequest, HealthCheckResponse } from '../../../proto/farcaster_pb'
 import { netToSelector } from '../../utils'
 
 type HealthStatus = 'healthy' | 'not-healthy' | 'pending'
 
-function isHealthy(status: string | undefined): HealthStatus {
+function isHealthy(connected: boolean | null, status: string | undefined): HealthStatus {
+  // when not connected we return the syncer pending status
+  if (!connected) return 'pending'
+  // check status and return HealthStatus
   switch (status) {
     case 'Healthy':
       return 'healthy'
@@ -45,6 +48,7 @@ function SyncerRow({ name, health }: { name: string; health: HealthStatus }) {
 }
 
 export default function SyncerStatus() {
+  const [connected] = useConnected()
   const [profile] = useProfile()
   const [health, healthSet] = useState<HealthCheckResponse | null>(null)
   const [fcd, res] = useRpc()
@@ -61,12 +65,17 @@ export default function SyncerStatus() {
     120000
   )
 
+  // if we loose connection we reset syncer status
+  useEffect(() => {
+    if (!connected) healthSet(null)
+  }, [connected])
+
   // SAFETY: we know the result is a ReducedHealthReport because selector is set to profile.network
   return (
     <div className="flex flex-col bg-slate-500 rounded-md p-2 mb-3">
       <div className="text-sm font-medium text-slate-800">Syncers health:</div>
-      <SyncerRow name="Bitcoin" health={isHealthy(health?.getReducedHealthReport()!.getBitcoinHealth())} />
-      <SyncerRow name="Monero" health={isHealthy(health?.getReducedHealthReport()!.getMoneroHealth())} />
+      <SyncerRow name="Bitcoin" health={isHealthy(connected, health?.getReducedHealthReport()!.getBitcoinHealth())} />
+      <SyncerRow name="Monero" health={isHealthy(connected, health?.getReducedHealthReport()!.getMoneroHealth())} />
     </div>
   )
 }
