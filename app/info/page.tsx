@@ -1,11 +1,20 @@
 'use client'
 
-import { useCallback, useState } from 'react'
-import { Panel } from '../../components/ui/Panel'
+import moment from 'moment'
+import { ReactNode, useCallback, useState } from 'react'
+import { Block } from '../../components/ui/Label'
 import { Loader } from '../../components/ui/SettingsLoader'
 import { Title } from '../../components/ui/Title'
 import { InfoRequest, InfoResponse } from '../../proto/farcaster_pb'
 import { useRefresh, useRpc } from '../hooks'
+
+function SectionTitle({ children }: { children: ReactNode }) {
+  return <h3 className="text-3xl font-bold text-slate-700 mt-14 mb-3">{children}</h3>
+}
+
+function SectionDesc({ children }: { children: ReactNode }) {
+  return <p className="text-sm text-slate-900 mb-3 mb-6">{children}</p>
+}
 
 export default function InfoPage() {
   const [info, infoSet] = useState<InfoResponse | null>(null)
@@ -22,16 +31,23 @@ export default function InfoPage() {
   return (
     <div className="mb-16">
       <div className="my-8 mt-16">
-        <Title>My Node</Title>
+        <Title>
+          My Node
+          {info && (
+            <span className="text-sm pl-3">
+              started {moment(new Date(info.getSince() * 1000)).fromNow()}, running since{' '}
+              {moment(new Date(info.getSince() * 1000)).calendar()}
+            </span>
+          )}
+        </Title>
       </div>
       {!info && <Loader />}
       {info && (
-        <Panel className="bg-white">
-          <div className="p-8">
-            <div>Uptime: {info.getUptime()}</div>
-            <div>Started at: {info.getSince() && new Date(info.getSince() * 1000).toISOString()}</div>
-            <div>
-              <h2>Running swaps:</h2>
+        <>
+          <SectionTitle>Swaps</SectionTitle>
+          <SectionDesc>List of currently running swaps on this node.</SectionDesc>
+          <Block intent="secondary">
+            <div className="p-8">
               <ul>
                 {info.getSwapsList().length === 0 && <li>No running swap</li>}
                 {info.getSwapsList().map((swap) => (
@@ -39,8 +55,12 @@ export default function InfoPage() {
                 ))}
               </ul>
             </div>
-            <div>
-              <h2>Connected peers:</h2>
+          </Block>
+
+          <SectionTitle>Connected peers</SectionTitle>
+          <SectionDesc>List of counter-party peers connected with this node.</SectionDesc>
+          <Block intent="secondary">
+            <div className="p-8">
               <ul>
                 {info.getPeersList().length === 0 && <li>No connected peer</li>}
                 {info.getPeersList().map((peer) => (
@@ -48,8 +68,12 @@ export default function InfoPage() {
                 ))}
               </ul>
             </div>
-            <div>
-              <h2>Listening peers:</h2>
+          </Block>
+
+          <SectionTitle>Listening peers</SectionTitle>
+          <SectionDesc>List of listening peers, ready to accept connections, launched by this node.</SectionDesc>
+          <Block intent="secondary">
+            <div className="p-8">
               <ul>
                 {info.getListensList().length === 0 && <li>No Listening peer</li>}
                 {info.getListensList().map((peer) => (
@@ -57,8 +81,8 @@ export default function InfoPage() {
                 ))}
               </ul>
             </div>
-          </div>
-        </Panel>
+          </Block>
+        </>
       )}
     </div>
   )
