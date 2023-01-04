@@ -6,7 +6,8 @@ import { DealInfoRequest, DealInfoResponse, TakeRequest, TradeRole } from '../..
 import { Input } from '../../components/inputs/Input'
 import { Button, Submit } from '../../components/inputs/Button'
 import { useProfile, useRpc } from '../hooks'
-import { ConfirmModal, Toast } from '../../components/ui/Modal'
+import { ConfirmModal } from '../../components/ui/Modal'
+import { toast } from 'react-toastify'
 
 export const takeReq = {
   bitcoinAddress: '',
@@ -63,15 +64,10 @@ export function TakeForm({
                   .setDeal(take.deal),
                 null,
                 res(
-                  () =>
-                    Toast.fire({
-                      icon: 'success',
-                      title: 'You took the deal!',
-                    }),
-                  () =>
-                    Toast.fire({
-                      icon: 'error',
-                      title: 'Deal not took!',
+                  () => toast.success('You took the deal!'),
+                  (rpcErr) =>
+                    toast.error(rpcErr.message, {
+                      autoClose: false,
                     })
                 )
               )
