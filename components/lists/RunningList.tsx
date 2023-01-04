@@ -130,7 +130,7 @@ export default function RunningList({ filters, itemPerPage = 10 }: { filters: Fi
       {filteredList.length > 0 && (
         <>
           {filteredList
-            .slice(currentPage * itemPerPage, Math.min(currentPage * itemPerPage + itemPerPage, list.length))
+            .slice(currentPage * itemPerPage, Math.min(currentPage * itemPerPage + itemPerPage, filteredList.length))
             .map((item) => (
               <RunningListItem key={item.id} item={item} />
             ))}

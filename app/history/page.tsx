@@ -11,6 +11,7 @@ import { cva } from 'class-variance-authority'
 import { dealStatusToStatus, netToSelector } from '../../components/utils'
 import { useEffect, useMemo, useState } from 'react'
 import { useProfile, useRpc } from '../hooks'
+import { NavPageMenu } from '../../components/lists/NavPageMenu'
 
 const itemPannel = cva(['outline', 'outline-4', 'outline-offset-4'], {
   variants: {
@@ -45,6 +46,7 @@ export default function PageHistory() {
   const [fcd, res] = useRpc()
   const [deals, dealsSet] = useState<ListDealsResponse | null>(null)
   const [search, searchSet] = useState<string>('')
+  const [currentPage, currentPageSet] = useState(0)
 
   useEffect(() => {
     fcd.listDeals(
@@ -70,6 +72,12 @@ export default function PageHistory() {
         .sort((a, b) => a.getDeserializedDeal()!.getUuid().localeCompare(b.getDeserializedDeal()!.getUuid())),
     [deals, search]
   )
+  const itemPerPage = 10
+  const nbPages = filteredDeals ? Math.ceil(filteredDeals.length / itemPerPage) : 0
+
+  useEffect(() => {
+    currentPageSet(Math.min(currentPage, Math.max(0, nbPages - 1)))
+  }, [currentPage, nbPages])
 
   return (
     <div className="mb-16">
@@ -79,7 +87,7 @@ export default function PageHistory() {
           {filteredDeals && <span className="text-sm pl-3">({filteredDeals.length} deals)</span>}
         </Title>
       </div>
-      <div className="mb-16">
+      <div className="mb-8">
         <Panel className="bg-white">
           <div className="flex items-center space-x-6 p-4">
             <div className="text-slate-600 text-sm">Search in history</div>
@@ -97,6 +105,11 @@ export default function PageHistory() {
           </div>
         </Panel>
       </div>
+      {nbPages > 0 && (
+        <div className="mt-8 mb-16 mx-2">
+          <NavPageMenu pages={nbPages} current={currentPage} pageSet={currentPageSet} />
+        </div>
+      )}
       {!filteredDeals && <Loader />}
       {filteredDeals?.length === 0 && (
         <Panel className="bg-white">
@@ -107,35 +120,37 @@ export default function PageHistory() {
         </Panel>
       )}
       {filteredDeals &&
-        filteredDeals.map((dealInfo) => (
-          <Panel
-            className={itemPannel({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}
-            key={dealInfo.getDeserializedDeal()?.getUuid()}
-          >
-            <div className="p-8">
-              <h2 className={itemTitle({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}>
-                {`Deal ${dealStatusToStatus(dealInfo.getDealStatus())}`.toUpperCase()}
-                {dealStatusToStatus(dealInfo.getDealStatus()) === 'Punished' && (
-                  <div className="flex font-semibold text-lg items-center space-x-2">
-                    <div>
-                      <RiAlarmWarningLine />
+        filteredDeals
+          .slice(currentPage * itemPerPage, Math.min(currentPage * itemPerPage + itemPerPage, filteredDeals.length))
+          .map((dealInfo) => (
+            <Panel
+              className={itemPannel({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}
+              key={dealInfo.getDeserializedDeal()?.getUuid()}
+            >
+              <div className="p-8">
+                <h2 className={itemTitle({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}>
+                  {`Deal ${dealStatusToStatus(dealInfo.getDealStatus())}`.toUpperCase()}
+                  {dealStatusToStatus(dealInfo.getDealStatus()) === 'Punished' && (
+                    <div className="flex font-semibold text-lg items-center space-x-2">
+                      <div>
+                        <RiAlarmWarningLine />
+                      </div>
+                      <p>You have been punished during this swap, you lost your money!</p>
                     </div>
-                    <p>You have been punished during this swap, you lost your money!</p>
-                  </div>
-                )}
-                {dealStatusToStatus(dealInfo.getDealStatus()) === 'Refunded' && (
-                  <div className="flex font-semibold text-lg items-center space-x-2">
-                    <div>
-                      <IoReturnUpBackSharp />
+                  )}
+                  {dealStatusToStatus(dealInfo.getDealStatus()) === 'Refunded' && (
+                    <div className="flex font-semibold text-lg items-center space-x-2">
+                      <div>
+                        <IoReturnUpBackSharp />
+                      </div>
+                      <p>This deal has been refunded, if you locked some money check your address!</p>
                     </div>
-                    <p>This deal has been refunded, if you locked some money check your address!</p>
-                  </div>
-                )}
-              </h2>
-              <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} localTradeRole={dealInfo.getLocalTradeRole()} />
-            </div>
-          </Panel>
-        ))}
+                  )}
+                </h2>
+                <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} localTradeRole={dealInfo.getLocalTradeRole()} />
+              </div>
+            </Panel>
+          ))}
     </div>
   )
 }
