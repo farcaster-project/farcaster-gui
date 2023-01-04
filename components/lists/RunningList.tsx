@@ -90,10 +90,14 @@ export default function RunningList({ filters, itemPerPage = 10 }: { filters: Fi
   const [currentPage, currentPageSet] = useState(0)
   const [fcd, res] = useRpc()
 
+  const search = (item: RunningItem, search: string): boolean =>
+    item.id.toLocaleLowerCase().includes(search.toLowerCase())
+
   const filteredList = list
     .filter((i) => (i.type === 'deal' ? filters.deals : true))
     .filter((i) => (i.type === 'swap' ? filters.swaps : true))
     .filter((i) => (i.type === 'checkpoint' ? filters.checkpoints : true))
+    .filter((i) => search(i, filters.search))
   const nbPages = Math.ceil(filteredList.length / itemPerPage)
 
   useRefresh(
