@@ -8,7 +8,7 @@ import { btcStrToSats, chainToString, getPlaceholder, otherSwapRole, xmrStrToPic
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
 import { Button, Submit } from '../../components/inputs/Button'
-import { Input } from '../../components/inputs/Input'
+import { Input, Required } from '../../components/inputs/Input'
 import { Subtitle } from '../../components/ui/Title'
 import { Block, Label } from '../../components/ui/Label'
 import { toast } from 'react-toastify'
@@ -139,7 +139,11 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
         <div className="mb-8">
           <Input
             value={make.arbitratingAmount}
-            label={`${chainToString(make.arbitratingBlockchain)} amount`}
+            label={
+              <>
+                {`${chainToString(make.arbitratingBlockchain)} amount`} <Required />
+              </>
+            }
             type="input"
             required
             onChange={(e) =>
@@ -148,7 +152,11 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
           />
           <Input
             value={make.accordantAmount}
-            label={`${chainToString(make.accordantBlockchain)} amount`}
+            label={
+              <>
+                {`${chainToString(make.accordantBlockchain)} amount`} <Required />
+              </>
+            }
             type="input"
             required
             onChange={(e) =>
@@ -162,7 +170,7 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
             value={make.cancelTimelock}
             label={
               <>
-                Cancel timelock <span className="text-sm">(in block)</span>
+                Cancel timelock <span className="text-sm">(in block)</span> <Required />
               </>
             }
             type="number"
@@ -173,7 +181,7 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
             value={make.punishTimelock}
             label={
               <>
-                Punish timelock <span className="text-sm">(in block)</span>
+                Punish timelock <span className="text-sm">(in block)</span> <Required />
               </>
             }
             type="number"
@@ -191,7 +199,11 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
 
           <Input
             value={make.feeStrategy}
-            label={`${chainToString(make.arbitratingBlockchain)} transaction fee`}
+            label={
+              <>
+                {`${chainToString(make.arbitratingBlockchain)} transaction fee`} <Required />
+              </>
+            }
             type="input"
             required
             onChange={(e) => makeSet((v) => ({ ...v, feeStrategy: e.target.value }))}
@@ -205,7 +217,11 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
           <Subtitle>Peer connection configuration</Subtitle>
           <Input
             value={make.publicIpAddr}
-            label="Public IP address"
+            label={
+              <>
+                Public IP address <Required />
+              </>
+            }
             type="input"
             required
             onChange={(e) => makeSet((v) => ({ ...v, publicIpAddr: e.target.value }))}
@@ -220,7 +236,11 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
           </div>
           <Input
             value={make.publicPort}
-            label="Public port"
+            label={
+              <>
+                Public port <Required />
+              </>
+            }
             type="input"
             required
             onChange={(e) => makeSet((v) => ({ ...v, publicPort: parseInt(e.target.value) }))}
@@ -235,19 +255,27 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
           <Subtitle>Your addresses</Subtitle>
           <Input
             value={make.arbitratingAddr}
-            label="Your Bitcoin address for this deal"
+            label={
+              <>
+                Your Bitcoin address for this deal <Required />
+              </>
+            }
             type="input"
             placeholder={getPlaceholder(profile.network, Blockchain.BITCOIN)}
-            required
             onChange={(e) => makeSet((v) => ({ ...v, arbitratingAddr: e.target.value }))}
+            required
           />
           <Input
             value={make.accordantAddr}
-            label="Your Monero address for this deal"
+            label={
+              <>
+                Your Monero address for this deal <Required />
+              </>
+            }
             type="input"
             placeholder={getPlaceholder(profile.network, Blockchain.MONERO)}
-            required
             onChange={(e) => makeSet((v) => ({ ...v, accordantAddr: e.target.value }))}
+            required
           />
         </div>
 

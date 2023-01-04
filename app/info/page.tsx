@@ -2,6 +2,7 @@
 
 import moment from 'moment'
 import { ReactNode, useCallback, useState } from 'react'
+import { BsInfoSquare } from 'react-icons/bs'
 import { Block } from '../../components/ui/Label'
 import { Loader } from '../../components/ui/SettingsLoader'
 import { Title } from '../../components/ui/Title'
@@ -40,6 +41,12 @@ export default function InfoPage() {
             </span>
           )}
         </Title>
+        <div className="flex mt-4 space-x-2 items-center text-slate-700 mb-1 text-sm">
+          <div>
+            <BsInfoSquare />
+          </div>
+          <div>Node data on all networks.</div>
+        </div>
       </div>
       {!info && <Loader />}
       {info && (

@@ -9,7 +9,7 @@ import { RiAlarmWarningLine } from 'react-icons/ri'
 import { Title } from '../../components/ui/Title'
 import { cva } from 'class-variance-authority'
 import { dealStatusToStatus, netToSelector } from '../../components/utils'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useProfile, useRpc } from '../hooks'
 
 const itemPannel = cva(['outline', 'outline-4', 'outline-offset-4'], {
@@ -62,16 +62,21 @@ export default function PageHistory() {
     dealStatusToStatus(deal.getDealStatus()).toLowerCase().includes(search.toLowerCase()) ||
     deal.getDeserializedDeal()!.getUuid().toLocaleLowerCase().includes(search.toLowerCase())
 
+  const filteredDeals = useMemo(
+    () =>
+      deals
+        ?.getDealsList()
+        .filter((deal) => searchDeal(deal, search))
+        .sort((a, b) => a.getDeserializedDeal()!.getUuid().localeCompare(b.getDeserializedDeal()!.getUuid())),
+    [deals, search]
+  )
+
   return (
     <div className="mb-16">
       <div className="my-8 mt-16">
         <Title>
           History
-          {deals && (
-            <span className="text-sm pl-3">
-              ({deals.getDealsList().filter((deal) => searchDeal(deal, search)).length} deals)
-            </span>
-          )}
+          {filteredDeals && <span className="text-sm pl-3">({filteredDeals.length} deals)</span>}
         </Title>
       </div>
       <div className="mb-16">
@@ -92,41 +97,45 @@ export default function PageHistory() {
           </div>
         </Panel>
       </div>
-      {!deals && <Loader />}
-      {deals &&
-        deals
-          .getDealsList()
-          .filter((deal) => searchDeal(deal, search))
-          .sort((a, b) => a.getDeserializedDeal()!.getUuid().localeCompare(b.getDeserializedDeal()!.getUuid()))
-          .map((dealInfo) => (
-            <Panel
-              className={itemPannel({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}
-              key={dealInfo.getDeserializedDeal()?.getUuid()}
-            >
-              <div className="p-8">
-                <h2 className={itemTitle({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}>
-                  {`Deal ${dealStatusToStatus(dealInfo.getDealStatus())}`.toUpperCase()}
-                  {dealStatusToStatus(dealInfo.getDealStatus()) === 'Punished' && (
-                    <div className="flex font-semibold text-lg items-center space-x-2">
-                      <div>
-                        <RiAlarmWarningLine />
-                      </div>
-                      <p>You have been punished during this swap, you lost your money!</p>
+      {!filteredDeals && <Loader />}
+      {filteredDeals?.length === 0 && (
+        <Panel className="bg-white">
+          <div className="p-8">
+            <p className="text-lg text-slate-800 font-medium">No items found!</p>
+            <p className="text-sm text-slate-700">No deals found in history, otherwise check your filters.</p>
+          </div>
+        </Panel>
+      )}
+      {filteredDeals &&
+        filteredDeals.map((dealInfo) => (
+          <Panel
+            className={itemPannel({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}
+            key={dealInfo.getDeserializedDeal()?.getUuid()}
+          >
+            <div className="p-8">
+              <h2 className={itemTitle({ status: dealStatusToStatus(dealInfo.getDealStatus()) })}>
+                {`Deal ${dealStatusToStatus(dealInfo.getDealStatus())}`.toUpperCase()}
+                {dealStatusToStatus(dealInfo.getDealStatus()) === 'Punished' && (
+                  <div className="flex font-semibold text-lg items-center space-x-2">
+                    <div>
+                      <RiAlarmWarningLine />
                     </div>
-                  )}
-                  {dealStatusToStatus(dealInfo.getDealStatus()) === 'Refunded' && (
-                    <div className="flex font-semibold text-lg items-center space-x-2">
-                      <div>
-                        <IoReturnUpBackSharp />
-                      </div>
-                      <p>This deal has been refunded, if you locked some money check your address!</p>
+                    <p>You have been punished during this swap, you lost your money!</p>
+                  </div>
+                )}
+                {dealStatusToStatus(dealInfo.getDealStatus()) === 'Refunded' && (
+                  <div className="flex font-semibold text-lg items-center space-x-2">
+                    <div>
+                      <IoReturnUpBackSharp />
                     </div>
-                  )}
-                </h2>
-                <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} localTradeRole={dealInfo.getLocalTradeRole()} />
-              </div>
-            </Panel>
-          ))}
+                    <p>This deal has been refunded, if you locked some money check your address!</p>
+                  </div>
+                )}
+              </h2>
+              <DealPanel dealInfo={dealInfo.getDeserializedDeal()!} localTradeRole={dealInfo.getLocalTradeRole()} />
+            </div>
+          </Panel>
+        ))}
     </div>
   )
 }

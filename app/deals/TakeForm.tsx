@@ -3,12 +3,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { DealPanel } from '../../components/ui/Panel'
 import { Blockchain, DealInfoRequest, DealInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
-import { Input } from '../../components/inputs/Input'
+import { Input, Required } from '../../components/inputs/Input'
 import { Button, Submit } from '../../components/inputs/Button'
 import { useProfile, useRpc } from '../hooks'
 import { ConfirmModal } from '../../components/ui/Modal'
 import { toast } from 'react-toastify'
 import { getPlaceholder } from '../../components/utils'
+import { RiAlarmWarningFill } from 'react-icons/ri'
 
 export const takeReq = {
   bitcoinAddress: '',
@@ -47,6 +48,15 @@ export function TakeForm({
     }
   }, [fcd, take.deal, res])
 
+  const allowToTake = () => {
+    return (
+      deal !== null &&
+      profile.network === deal.getDeserializedDeal()!.getNetwork() &&
+      take.bitcoinAddress !== '' &&
+      take.moneroAddress !== ''
+    )
+  }
+
   return (
     <div className="p-8">
       <form
@@ -79,28 +89,52 @@ export function TakeForm({
         <div>
           <Input
             value={take.bitcoinAddress}
-            label="Your Bitcoin address for this swap"
+            label={
+              <>
+                Your Bitcoin address for this swap <Required />
+              </>
+            }
             placeholder={getPlaceholder(profile.network, Blockchain.BITCOIN)}
             onChange={(e) => takeSet((v) => ({ ...v, bitcoinAddress: e.target.value }))}
+            required
           />
           <Input
             value={take.moneroAddress}
-            label="Your Monero address for this swap"
+            label={
+              <>
+                Your Monero address for this swap <Required />
+              </>
+            }
             placeholder={getPlaceholder(profile.network, Blockchain.MONERO)}
             onChange={(e) => takeSet((v) => ({ ...v, moneroAddress: e.target.value }))}
+            required
           />
         </div>
         <div>
           <Input
             value={take.deal}
-            label="The public deal you want to take"
+            label={
+              <>
+                The deal you want to take <Required />
+              </>
+            }
             type="text"
             placeholder="Deal:..."
-            required
             onChange={(e) => takeSet((v) => ({ ...v, deal: e.target.value.trim() }))}
+            required
           />
         </div>
         <div className="my-16">
+          {deal && profile.network !== deal.getDeserializedDeal()!.getNetwork() && (
+            <div className="my-8 p-4 flex items-end space-x-2 rounded-lg bg-red-100 text-semibold text-red-500">
+              <div className="text-xl">
+                <RiAlarmWarningFill />
+              </div>
+              <div className="text-sm">
+                This deal do not match the current profile network! Switch to another profile to take this deal.
+              </div>
+            </div>
+          )}
           {deal && <DealPanel dealInfo={deal.getDeserializedDeal()!} localTradeRole={TradeRole.TAKER} />}
         </div>
         <div className="flex space-x-4 justify-end">
@@ -113,7 +147,7 @@ export function TakeForm({
           >
             Clear
           </Button>
-          <Submit value="Take the deal" disabled={deal === null} />
+          <Submit value="Take the deal" disabled={!allowToTake()} />
         </div>
       </form>
     </div>
