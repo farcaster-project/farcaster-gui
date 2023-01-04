@@ -4,7 +4,7 @@ import { TbSwitchHorizontal } from 'react-icons/tb'
 import { BsInfoSquare } from 'react-icons/bs'
 import { Dispatch, SetStateAction, useCallback, useEffect } from 'react'
 import { FeePanel, PricePanel, TimelockPanel, TradePanel } from '../../components/ui/Panel'
-import { btcStrToSats, chainToString, otherSwapRole, xmrStrToPico } from '../../components/utils'
+import { btcStrToSats, chainToString, getPlaceholder, otherSwapRole, xmrStrToPico } from '../../components/utils'
 import { Blockchain, MakeRequest, Network, SwapRole, TradeRole } from '../../proto/farcaster_pb'
 import { useProfile, useRpc } from '../hooks'
 import { Button, Submit } from '../../components/inputs/Button'
@@ -237,6 +237,7 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
             value={make.arbitratingAddr}
             label="Your Bitcoin address for this deal"
             type="input"
+            placeholder={getPlaceholder(profile.network, Blockchain.BITCOIN)}
             required
             onChange={(e) => makeSet((v) => ({ ...v, arbitratingAddr: e.target.value }))}
           />
@@ -244,6 +245,7 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
             value={make.accordantAddr}
             label="Your Monero address for this deal"
             type="input"
+            placeholder={getPlaceholder(profile.network, Blockchain.MONERO)}
             required
             onChange={(e) => makeSet((v) => ({ ...v, accordantAddr: e.target.value }))}
           />

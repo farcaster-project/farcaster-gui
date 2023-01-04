@@ -183,3 +183,24 @@ export function price(a: number, b: number): string {
   if (b === 0) return '-'
   return `${a / b}`
 }
+
+export function getPlaceholder(net: Network, chain: Blockchain): string {
+  switch (net) {
+    case Network.MAINNET:
+      switch (chain) {
+        case Blockchain.BITCOIN:
+          return 'bc1...'
+        case Blockchain.MONERO:
+          return '4...'
+      }
+    case Network.TESTNET:
+      switch (chain) {
+        case Blockchain.BITCOIN:
+          return 'tb1...'
+        case Blockchain.MONERO:
+          return '5...'
+      }
+    case Network.LOCAL:
+      return ''
+  }
+}

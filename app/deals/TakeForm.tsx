@@ -2,12 +2,13 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { DealPanel } from '../../components/ui/Panel'
-import { DealInfoRequest, DealInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
+import { Blockchain, DealInfoRequest, DealInfoResponse, TakeRequest, TradeRole } from '../../proto/farcaster_pb'
 import { Input } from '../../components/inputs/Input'
 import { Button, Submit } from '../../components/inputs/Button'
 import { useProfile, useRpc } from '../hooks'
 import { ConfirmModal } from '../../components/ui/Modal'
 import { toast } from 'react-toastify'
+import { getPlaceholder } from '../../components/utils'
 
 export const takeReq = {
   bitcoinAddress: '',
@@ -79,11 +80,13 @@ export function TakeForm({
           <Input
             value={take.bitcoinAddress}
             label="Your Bitcoin address for this swap"
+            placeholder={getPlaceholder(profile.network, Blockchain.BITCOIN)}
             onChange={(e) => takeSet((v) => ({ ...v, bitcoinAddress: e.target.value }))}
           />
           <Input
             value={take.moneroAddress}
             label="Your Monero address for this swap"
+            placeholder={getPlaceholder(profile.network, Blockchain.MONERO)}
             onChange={(e) => takeSet((v) => ({ ...v, moneroAddress: e.target.value }))}
           />
         </div>
