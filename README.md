@@ -15,7 +15,7 @@ bind_ip = "127.0.0.1"
 
 ## Getting Started
 
-First install the deps with `npm install`, and then run the development server:
+First install the deps with `npm install` and generate gRPC client files with `npm run gen` (see instructions below), and then run the development server:
 
 ```bash
 npm run dev

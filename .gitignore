@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# proto generated files
+proto/farcaster_pb.d.ts
+proto/farcaster_pb.js
+proto/FarcasterServiceClientPb.ts
