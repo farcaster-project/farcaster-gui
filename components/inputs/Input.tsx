@@ -67,3 +67,7 @@ export function Input({
     </div>
   )
 }
+
+export function Required() {
+  return <span className="text-red-500 font-bold text-sm">*</span>
+}
