@@ -129,14 +129,14 @@ export default function RunningList({ filters, itemPerPage = 10 }: { filters: Fi
       )}
       {filteredList.length > 0 && (
         <>
+          <div className="mt-8 mb-16 mx-2">
+            <NavPageMenu pages={nbPages} current={currentPage} pageSet={currentPageSet} />
+          </div>
           {filteredList
             .slice(currentPage * itemPerPage, Math.min(currentPage * itemPerPage + itemPerPage, filteredList.length))
             .map((item) => (
               <RunningListItem key={item.id} item={item} />
             ))}
-          <div className="mt-16">
-            <NavPageMenu pages={nbPages} current={currentPage} pageSet={currentPageSet} />
-          </div>
         </>
       )}
     </>

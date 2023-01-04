@@ -20,7 +20,7 @@ export default function Page() {
             <Filters filters={filters} filtersSet={filtersSet} />
           </div>
         </Panel>
-        <div className="mt-16">
+        <div className="mt-8">
           <RunningList filters={filters}></RunningList>
         </div>
       </div>
