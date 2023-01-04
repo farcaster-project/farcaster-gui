@@ -91,7 +91,7 @@ export default function RunningList({ filters, itemPerPage = 10 }: { filters: Fi
   const [fcd, res] = useRpc()
 
   const search = (item: RunningItem, search: string): boolean =>
-    item.id.toLocaleLowerCase().includes(search.toLowerCase())
+    item.id.toLocaleLowerCase().includes(search.toLowerCase().trim())
 
   const filteredList = list
     .filter((i) => (i.type === 'deal' ? filters.deals : true))

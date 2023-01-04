@@ -61,8 +61,8 @@ export default function PageHistory() {
   }, [fcd, res, profile.network])
 
   const searchDeal = (deal: DealInfo, search: string): boolean =>
-    dealStatusToStatus(deal.getDealStatus()).toLowerCase().includes(search.toLowerCase()) ||
-    deal.getDeserializedDeal()!.getUuid().toLocaleLowerCase().includes(search.toLowerCase())
+    dealStatusToStatus(deal.getDealStatus()).toLowerCase().includes(search.toLowerCase().trim()) ||
+    deal.getDeserializedDeal()!.getUuid().toLocaleLowerCase().includes(search.toLowerCase().trim())
 
   const filteredDeals = useMemo(
     () =>
