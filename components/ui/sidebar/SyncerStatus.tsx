@@ -3,8 +3,9 @@
 import { cva } from 'class-variance-authority'
 import { useCallback, useEffect } from 'react'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { useConnected, useProfile, useRefresh, useRpc } from '../../../app/hooks'
-import { HealthCheckRequest, HealthCheckResponse } from '../../../proto/farcaster_pb'
+import { HealthCheckRequest, ReducedHealthReport } from '../../../proto/farcaster_pb'
 import { netToSelector } from '../../utils'
 
 type HealthStatus = 'healthy' | 'not-healthy' | 'pending'
@@ -20,6 +21,18 @@ function isHealthy(connected: boolean | null, status: string | undefined): Healt
       return 'pending'
     default:
       return 'not-healthy'
+  }
+}
+
+function healthChange(syncer: string, prev: HealthStatus, next: HealthStatus) {
+  if (prev !== next) {
+    switch (next) {
+      case 'healthy':
+        toast.info(`Your ${syncer} syncer is ${next}!`)
+        break
+      case 'not-healthy':
+        toast.error(`Your ${syncer} syncer has been diagnosed not healthy!`)
+    }
   }
 }
 
@@ -50,7 +63,8 @@ function SyncerRow({ name, health }: { name: string; health: HealthStatus }) {
 export default function SyncerStatus() {
   const [connected] = useConnected()
   const [profile] = useProfile()
-  const [health, healthSet] = useState<HealthCheckResponse | null>(null)
+  const [prev, prevSet] = useState<ReducedHealthReport | null>(null)
+  const [health, healthSet] = useState<ReducedHealthReport | null>(null)
   const [fcd, res] = useRpc()
 
   useRefresh(
@@ -58,24 +72,43 @@ export default function SyncerStatus() {
       const query = fcd.healthCheck(
         new HealthCheckRequest().setSelector(netToSelector(profile.network)),
         null,
-        res(healthSet)
+        res((resp) => {
+          healthSet((prev) => {
+            prevSet(prev)
+            // SAFETY: we know the result is a ReducedHealthReport because selector is set to profile.network
+            return resp.getReducedHealthReport()!
+          })
+        })
       )
       return () => query.cancel()
     }, [fcd, profile.network, res]),
     120000
   )
 
+  // notify user uppon syncer health change
+  useEffect(() => {
+    healthChange(
+      'Bitcoin',
+      isHealthy(connected, prev?.getBitcoinHealth()),
+      isHealthy(connected, health?.getBitcoinHealth())
+    )
+    healthChange(
+      'Monero',
+      isHealthy(connected, prev?.getMoneroHealth()),
+      isHealthy(connected, health?.getMoneroHealth())
+    )
+  }, [connected, health, prev])
+
   // if we loose connection we reset syncer status
   useEffect(() => {
     if (!connected) healthSet(null)
   }, [connected])
 
-  // SAFETY: we know the result is a ReducedHealthReport because selector is set to profile.network
   return (
     <div className="flex flex-col bg-slate-500 rounded-md p-2 mb-3">
       <div className="text-sm font-medium text-slate-800">Syncers health:</div>
-      <SyncerRow name="Bitcoin" health={isHealthy(connected, health?.getReducedHealthReport()!.getBitcoinHealth())} />
-      <SyncerRow name="Monero" health={isHealthy(connected, health?.getReducedHealthReport()!.getMoneroHealth())} />
+      <SyncerRow name="Bitcoin" health={isHealthy(connected, health?.getBitcoinHealth())} />
+      <SyncerRow name="Monero" health={isHealthy(connected, health?.getMoneroHealth())} />
     </div>
   )
 }

@@ -10,6 +10,7 @@ import Profiles from '../components/ui/sidebar/Profiles'
 import ConnectStatus from '../components/ui/sidebar/ConnectStatus'
 import FcLogo from '../components/ui/sidebar/FcLogo'
 import SyncerStatus from '../components/ui/sidebar/SyncerStatus'
+import ToastConfig from './toasts'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="container mx-auto">{children}</div>
                 </div>
               </div>
+              <ToastConfig />
             </ConnectionProvider>
           </SettingsLoader>
         </SettingsProvider>
