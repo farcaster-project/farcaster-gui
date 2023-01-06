@@ -34,3 +34,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This is tested with node.js version `16`, libprotoc `3.21`, and the code generator plugin [`protoc-gen-grpc-web`](https://github.com/grpc/grpc-web#code-generator-plugin).
 
 Generated files related to `proto/farcaster.proto` aren't committed, you need to run `npm run gen` to generate them. (You need `protoc` and the code generator plugin [`protoc-gen-grpc-web`](https://github.com/grpc/grpc-web#code-generator-plugin))
+
+## Build and Run the production App
+
+You can build and run a production version of the app either with a Docker image or on your host.
+
+To build and run the Docker image:
+
+```bash
+docker build -t farcaster-gui .
+docker run -p 3000:3000 farcaster-gui
+```
+
+:whale2: The Docker image runs the production application in an Alpine Node v16 environement.
+
+To build the production app and run it on your host:
+
+```bash
+npm run build && npm run start
+# or
+yarn build && yarn start
+```
