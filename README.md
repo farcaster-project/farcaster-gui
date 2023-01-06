@@ -10,7 +10,7 @@ This is the Farcaster Node web application GUI. It allows to interact with your 
 
 You can install the node with
 
-```
+```bash
 cargo install farcaster_node
 ```
 
@@ -23,9 +23,15 @@ bind_port = 50051
 bind_ip = "127.0.0.1"
 ```
 
+Then run the app with
+
+```bash
+docker run --rm -p 3000:3000 ghcr.io/farcaster-project/faracster-gui/app:latest
+```
+
 ## Getting Started
 
-First install the deps with `npm install` and generate gRPC client files with `npm run gen` (see instructions below), and then run the development server:
+First install the deps with `npm install` and generate gRPC client files with `npm run gen` (see instructions below), and then run the development server
 
 ```bash
 npm run dev
@@ -43,7 +49,7 @@ Generated files related to `proto/farcaster.proto` aren't committed, you need to
 
 You can build and run a production version of the app either with a Docker image or on your host.
 
-To build and run the Docker image:
+To build and run the Docker image
 
 ```bash
 docker build -t farcaster-gui .
@@ -52,7 +58,7 @@ docker run -p 3000:3000 farcaster-gui
 
 :whale2: The Docker image runs the production application in an Buster Slim Node.js 16 environement.
 
-To build the production app and run it on your host:
+To build the production app and run it on your host
 
 ```bash
 npm run build && npm run start
