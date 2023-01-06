@@ -2,13 +2,15 @@
 
 import { useCallback, useState } from 'react'
 import { Label } from '../ui/Label'
-import { AbortSwapRequest, ProgressRequest, ProgressResponse, Progress, DealInfo } from '../../proto/farcaster_pb'
+import { AbortSwapRequest, ProgressRequest, ProgressResponse, DealInfo } from '../../proto/farcaster_pb'
 import { useRefresh, useRpc } from '../../app/hooks'
 import { Button } from '../inputs/Button'
 import { DealPanel } from '../ui/Panel'
 import { SwapProgress } from '../ui/swaps/SwapProgress'
+import { FundingItem } from './RunningList'
+import { FundingInfo } from '../ui/swaps/FundingInfo'
 
-export default function RunningSwap({ id, data }: { id: string; data: DealInfo }) {
+export default function RunningSwap({ id, data, funding }: { id: string; data: DealInfo; funding?: FundingItem }) {
   const [prog, progSet] = useState<ProgressResponse | null>(null)
   const [aborting, abortingSet] = useState(false)
   const [fcd, res] = useRpc()
@@ -22,7 +24,7 @@ export default function RunningSwap({ id, data }: { id: string; data: DealInfo }
       )
       return () => query.cancel()
     }, [fcd, res, id]),
-    3000
+    7000
   )
 
   const handleAbort = useCallback(
@@ -61,6 +63,11 @@ export default function RunningSwap({ id, data }: { id: string; data: DealInfo }
             {id}
           </Label>
         </div>
+        {funding && (
+          <div>
+            <FundingInfo info={funding} />
+          </div>
+        )}
         <div>
           <DealPanel
             dealInfo={data.getDeserializedDeal()!}
