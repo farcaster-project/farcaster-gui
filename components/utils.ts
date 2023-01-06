@@ -208,8 +208,8 @@ export function getPlaceholder(net: Network, chain: Blockchain): string {
 export function formatAmount(unit: number, chain: Blockchain): string {
   switch (chain) {
     case Blockchain.BITCOIN:
-      return `${satsToBtc(unit)} btc`
+      return `${satsToBtc(unit)}`
     case Blockchain.MONERO:
-      return `${picoToXmr(unit)} xmr`
+      return `${picoToXmr(unit)}`
   }
 }
