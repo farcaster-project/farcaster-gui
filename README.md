@@ -1,3 +1,5 @@
+[![Build](https://img.shields.io/github/actions/workflow/status/farcaster-project/farcaster-gui/package.yml?branch=main)](https://github.com/farcaster-project/farcaster-gui/blob/main/.github/workflows/package.yml)
+[![Static Analysis](https://img.shields.io/github/actions/workflow/status/farcaster-project/farcaster-gui/analysis.yml?branch=main&label=format)](https://github.com/farcaster-project/farcaster-gui/blob/main/.github/workflows/analysis.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Farcaster GUI
