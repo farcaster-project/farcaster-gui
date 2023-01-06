@@ -1,0 +1,26 @@
+name: Static Analysis
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - '**.md'
+  pull_request:
+    branches: [main]
+    paths:
+      - Dockerfile
+      - '**.md'
+
+jobs:
+  mdfmt:
+    name: Dprint format
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run dprint
+        run: |
+          curl -fsSL https://dprint.dev/install.sh | sh
+          /home/runner/.dprint/bin/dprint check
