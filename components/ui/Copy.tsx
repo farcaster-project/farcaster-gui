@@ -1,7 +1,17 @@
 import { ReactNode, useRef } from 'react'
 import { toast } from 'react-toastify'
 
-export function Copy({ data, extra, btn }: { data: ReactNode; extra?: ReactNode; btn: ReactNode }) {
+export function Copy({
+  data,
+  extra,
+  btn,
+  className,
+}: {
+  data: ReactNode
+  extra?: ReactNode
+  btn: ReactNode
+  className?: string
+}) {
   const code = useRef<HTMLElement | null>(null)
 
   const copy = async () => {
@@ -12,9 +22,9 @@ export function Copy({ data, extra, btn }: { data: ReactNode; extra?: ReactNode;
   }
 
   return (
-    <div className="flex items-center relative space-x-2">
+    <div className={`${className} flex items-center relative space-x-2`}>
       <code ref={code}>{data}</code>
-      <div>{extra}</div>
+      {extra && <div>{extra}</div>}
       <button className="absolue top-0 right-0" onClick={copy}>
         {btn}
       </button>
