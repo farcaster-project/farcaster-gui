@@ -2,7 +2,9 @@
 
 # Farcaster GUI
 
-This is the Farcaster Node web application GUI. It allows to interact with your Farcaster Node through the gRPC daemon service.
+This is the Farcaster Node web application GUI. It allows to interact with your Farcaster Node through the gRPC daemon service. This GUI is built around the Next.js framework, i.e. this is a simple React based web application bundeled as a Docker image.
+
+:mag: You can run this app on your machine or on a server. The server running the app has no access to the node you connect to in the app, only your browser will (and needs access to) your Farcaster Node.
 
 You can install the node with
 
@@ -46,7 +48,7 @@ docker build -t farcaster-gui .
 docker run -p 3000:3000 farcaster-gui
 ```
 
-:whale2: The Docker image runs the production application in an Alpine Node v16 environement.
+:whale2: The Docker image runs the production application in an Alpine Node.js 16 environement.
 
 To build the production app and run it on your host:
 
@@ -55,3 +57,7 @@ npm run build && npm run start
 # or
 yarn build && yarn start
 ```
+
+## Licensing
+
+The code in this project is licensed under the [MIT License](LICENSE).
