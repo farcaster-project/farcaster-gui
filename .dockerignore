@@ -5,3 +5,6 @@ npm-debug.log
 README.md
 .next
 .git
+proto/farcaster_pb.d.ts
+proto/farcaster_pb.js
+proto/FarcasterServiceClientPb.ts
