@@ -48,7 +48,7 @@ docker build -t farcaster-gui .
 docker run -p 3000:3000 farcaster-gui
 ```
 
-:whale2: The Docker image runs the production application in an Alpine Node.js 16 environement.
+:whale2: The Docker image runs the production application in an Buster Slim Node.js 16 environement.
 
 To build the production app and run it on your host:
 

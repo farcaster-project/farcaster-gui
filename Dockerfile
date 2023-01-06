@@ -1,7 +1,5 @@
 # Install dependencies only when needed
-FROM node:16-alpine AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+FROM node:16-buster-slim AS deps
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -13,20 +11,31 @@ RUN if [ -f yarn.lock ]; then yarn --frozen-lockfile && yarn add sharp; \
     fi
 
 # Rebuild the source code only when needed
-FROM node:16-alpine AS builder
+FROM node:16-buster AS builder
+# Install protobuf dependencires
+RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protoc-21.12-linux-x86_64.zip && \
+    unzip protoc-21.12-linux-x86_64.zip -d protoc && \
+    mv protoc/bin/protoc /usr/local/bin/protoc && \
+    chmod +x /usr/local/bin/protoc
+RUN wget https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64 && \
+    mv protoc-gen-grpc-web-1.4.2-linux-x86_64 /usr/local/bin/protoc-gen-grpc-web && \
+    chmod +x /usr/local/bin/protoc-gen-grpc-web
+RUN wget https://github.com/protocolbuffers/protobuf-javascript/releases/download/v3.21.2/protobuf-javascript-3.21.2-linux-x86_64.zip && \
+    unzip protobuf-javascript-3.21.2-linux-x86_64.zip -d proto-js && \
+    mv proto-js/bin/protoc-gen-js /usr/local/bin/protoc-gen-js
+# Copy the app to build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Generate proto based files
+RUN yarn gen
 RUN yarn build
 
-# If using npm comment out above and use below instead
-# RUN npm run build
-
 # Production image, copy all the files and run next
-FROM node:16-alpine AS runner
+FROM node:16-buster-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
