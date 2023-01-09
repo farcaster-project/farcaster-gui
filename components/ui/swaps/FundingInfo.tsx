@@ -14,7 +14,7 @@ function BtnCopy() {
 
 export function FundingInfo({ info }: { info: FundingItem }) {
   return (
-    <div className="p-4 mt-6 mb-12 bg-orange-100 text-orange-900 rounded-lg">
+    <div className="p-4 bg-orange-100 text-orange-900 rounded-lg">
       <div className="font-bold text-xl text-orange-800 mb-2 flex space-x-2 items-center">
         <div>
           <GiCash />

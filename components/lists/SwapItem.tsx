@@ -6,11 +6,12 @@ import { AbortSwapRequest, ProgressRequest, ProgressResponse, DealInfo } from '.
 import { useRefresh, useRpc } from '../../app/hooks'
 import { Button } from '../inputs/Button'
 import { DealPanel } from '../ui/Panel'
-import { SwapProgress } from '../ui/swaps/SwapProgress'
 import { FundingItem } from './RunningList'
 import { FundingInfo } from '../ui/swaps/FundingInfo'
 import { BiCopy } from 'react-icons/bi'
 import { Copy } from '../ui/Copy'
+import { ProgressDisplay } from '../ui/swaps/progress/Progress'
+import { getLocalSwapRole } from '../utils'
 
 export default function RunningSwap({ id, data, funding }: { id: string; data: DealInfo; funding?: FundingItem }) {
   const [prog, progSet] = useState<ProgressResponse | null>(null)
@@ -58,37 +59,37 @@ export default function RunningSwap({ id, data, funding }: { id: string; data: D
 
   return (
     <>
-      <div className="break-all">
-        <div className="flex space-x-2 text-sm leading-loose font-mono text-slate-700 mb-6">
-          <span>Swap</span>
-          <Copy
-            className="group"
-            data={
-              <Label intensity="light" rounded={false}>
-                {id}
-              </Label>
-            }
-            btn={
-              <div className="p-1 hidden group-hover:block text-sm border text-gray-300 border-gray-300 hover:text-gray-600 hover:border-gray-600 rounded">
-                <BiCopy />
-              </div>
-            }
-          />
-        </div>
-        {funding && (
-          <div>
-            <FundingInfo info={funding} />
-          </div>
-        )}
-        <div>
-          <DealPanel
-            dealInfo={data.getDeserializedDeal()!}
-            localTradeRole={data.getLocalTradeRole()}
-            displayHeader={false}
-          />
-        </div>
+      <div className="flex space-x-2 text-sm leading-loose font-mono text-slate-700 mb-6 break-all">
+        <span>Swap</span>
+        <Copy
+          className="group"
+          data={
+            <Label intensity="light" rounded={false}>
+              {id}
+            </Label>
+          }
+          btn={
+            <div className="p-1 hidden group-hover:block text-sm border text-gray-300 border-gray-300 hover:text-gray-600 hover:border-gray-600 rounded">
+              <BiCopy />
+            </div>
+          }
+        />
       </div>
-      <div className="py-8">{prog && <SwapProgress progress={prog.getProgressList()} />}</div>
+      {funding && <FundingInfo info={funding} />}
+      {prog && (
+        <ProgressDisplay
+          progress={prog.getProgressList()}
+          tradeRole={data.getLocalTradeRole()}
+          swapRole={getLocalSwapRole(data.getDeserializedDeal()!, data.getLocalTradeRole())}
+        />
+      )}
+      <div>
+        <DealPanel
+          dealInfo={data.getDeserializedDeal()!}
+          localTradeRole={data.getLocalTradeRole()}
+          displayHeader={false}
+        />
+      </div>
       <div>
         <ul className="flex flex-row-reverse mt-6">
           <li>

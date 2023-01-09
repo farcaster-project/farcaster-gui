@@ -1,4 +1,4 @@
-import { Blockchain, DealStatus, Network, NetworkSelector, SwapRole, TradeRole } from "../proto/farcaster_pb"
+import { Blockchain, DealStatus, DeserializedDeal, Network, NetworkSelector, SwapRole, TradeRole } from "../proto/farcaster_pb"
 
 export type Status = 'Open' | 'Revoked' | 'Progress' | 'Swapped' | 'Refunded' | 'Punished' | 'Aborted'
 
@@ -106,6 +106,16 @@ export function isMaker(role: TradeRole): boolean {
       return true
     case TradeRole.TAKER:
       return false
+  }
+}
+
+// Return the local swap role based on the local trade role and the deal
+export function getLocalSwapRole(deal: DeserializedDeal, tradeRole: TradeRole): SwapRole {
+  switch (deal.getMakerRole()) {
+    case SwapRole.ALICE:
+      return tradeRole === TradeRole.MAKER ? SwapRole.ALICE : SwapRole.BOB
+    case SwapRole.BOB:
+      return tradeRole === TradeRole.MAKER ? SwapRole.BOB : SwapRole.ALICE
   }
 }
 
