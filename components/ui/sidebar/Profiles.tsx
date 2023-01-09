@@ -71,7 +71,7 @@ export default function Profiles() {
               </Menu.Item>
             ))}
           <Menu.Item disabled>
-            <div className="border border-gray-300 my-2 rounded-full" />
+            <div className="border border-gray-800 my-2 rounded-full" />
           </Menu.Item>
           <Menu.Item as={Fragment}>
             {({ active }) => (
