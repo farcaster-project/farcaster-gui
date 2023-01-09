@@ -52,7 +52,7 @@ export function SwapLogs({ progress }: { progress: Progress[] }) {
       <Disclosure.Button>
         <div className="text-xs text-slate-800">Display swap logs</div>
       </Disclosure.Button>
-      <Disclosure.Panel className="p-4 mt-2 mb-8 bg-gray-200 rounded-lg text-xs text-left">
+      <Disclosure.Panel className="p-4 mt-2 mb-8 bg-gray-200 rounded-md text-xs text-left">
         {progress.map((progress, idx) => {
           let content = <></>
           switch (progress.getProgressCase()) {

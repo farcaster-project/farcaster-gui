@@ -36,12 +36,12 @@ function healthChange(syncer: string, prev: HealthStatus, next: HealthStatus) {
   }
 }
 
-const statusBullet = cva(['w-4', 'h-4', 'rounded-full', 'ring-1'], {
+const statusBullet = cva(['w-3', 'h-3', 'rounded-full', 'shadow'], {
   variants: {
     health: {
-      healthy: ['bg-green-700', 'ring-green-600'],
-      'not-healthy': ['bg-amber-700', 'ring-amber-600'],
-      pending: ['bg-gray-700 ', 'ring-gray-600'],
+      healthy: ['bg-green-600'],
+      'not-healthy': ['bg-amber-600'],
+      pending: ['bg-gray-600 '],
     },
   },
   defaultVariants: {
@@ -52,7 +52,7 @@ const statusBullet = cva(['w-4', 'h-4', 'rounded-full', 'ring-1'], {
 function SyncerRow({ name, health }: { name: string; health: HealthStatus }) {
   return (
     <div className="flex items-center justify-between">
-      <div className="text-zinc-900">{name}</div>
+      <div className="text-gray-300 font-semibold text-sm">{name}</div>
       <div className="">
         <div className={statusBullet({ health: health })}></div>
       </div>
@@ -105,8 +105,8 @@ export default function SyncerStatus() {
   }, [connected])
 
   return (
-    <div className="flex flex-col bg-slate-500 rounded-md p-2 mb-3">
-      <div className="text-sm font-medium text-slate-800">Syncers health:</div>
+    <div className="flex flex-col bg-gray-900 rounded-md p-2 mb-3 shadow">
+      <div className="text-xs font-medium text-gray-400 mb-1">Syncers health:</div>
       <SyncerRow name="Bitcoin" health={isHealthy(connected, health?.getBitcoinHealth())} />
       <SyncerRow name="Monero" health={isHealthy(connected, health?.getMoneroHealth())} />
     </div>

@@ -5,7 +5,7 @@ export default function MenuItem({ href, children }: { href: string; children: R
   return (
     <div className="">
       <Link
-        className="block h-24 w-24 bg-slate-300 text-slate-600 rounded-xl flex items-center justify-center hover:bg-slate-200 hover:ring ring-slate-500"
+        className="transition-all ease-in-out block h-20 w-[164px] bg-gray-900 text-gray-200 rounded-md flex items-center justify-center hover:bg-gray-700 hover:ring ring-gray-500 shadow"
         href={href}
       >
         <span className="font-bold text-xl">{children}</span>

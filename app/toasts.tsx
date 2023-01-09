@@ -16,7 +16,7 @@ export default function ToastConfig() {
       pauseOnFocusLoss
       draggable
       pauseOnHover
-      theme="light"
+      theme="dark"
     />
   )
 }

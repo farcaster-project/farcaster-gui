@@ -86,8 +86,8 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
 
   return (
     <div className="p-8">
-      <div className="mb-16">
-        <div className="text-2xl mb-3">
+      <div className="mb-16 text-center">
+        <div className="text-3xl mb-3">
           <TradePanel
             arbitratingAmount={btcStrToSats(make.arbitratingAmount)}
             accordantAmount={xmrStrToPico(make.accordantAmount)}
@@ -97,13 +97,16 @@ export function MakeForm({ make, makeSet }: { make: Params; makeSet: Dispatch<Se
             network={profile.network}
             displayForRole={TradeRole.MAKER}
             labelFor={
-              <Button onClick={() => switchRole()}>
-                <TbSwitchHorizontal />
-              </Button>
+              <>
+                <Button onClick={() => switchRole()}>
+                  <TbSwitchHorizontal />
+                </Button>{' '}
+                for
+              </>
             }
           />
         </div>
-        <div className="flex space-x-2 text-slate-700">
+        <div className="flex space-x-2 text-slate-700 justify-center">
           <div>At a price of</div>
           <div>
             <Label>

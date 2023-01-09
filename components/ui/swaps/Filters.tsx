@@ -100,7 +100,7 @@ export function Filters({ filters, filtersSet }: { filters: Filters; filtersSet:
           <div className="text-slate-600 text-sm">Search</div>
           <div className="grow">
             <input
-              className="w-full h-8 text-xl font-mono font-semibold text-slate-800 focus:outline-none border-b-2 border-slate-200"
+              className="w-full h-8 text-xl font-mono font-semibold text-slate-800 focus:outline-none border-b-2 border-slate-200 focus:border-orange-600"
               name="history-search"
               value={filters.search}
               onChange={(e) => filtersSet((f) => ({ ...f, search: e.target.value }))}

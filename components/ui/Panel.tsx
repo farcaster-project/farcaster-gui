@@ -230,7 +230,9 @@ export function FeePanel({
 
 export function Panel({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <div className={`rounded-xl p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400 mb-6 ${className}`}>
+    <div
+      className={`shadow rounded-md p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-slate-400 mb-6 ${className}`}
+    >
       {children}
     </div>
   )

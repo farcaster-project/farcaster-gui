@@ -22,10 +22,17 @@ export function FundingList({ chain }: { chain: Blockchain }) {
   }, [chain, fcd, profile.network, res])
 
   return (
-    <>
-      <div>
-        {!addressList && <Loader />}
-        {addressList && (
+    <div>
+      {!addressList && (
+        <div className="flex items-center justify-center p-36">
+          <Loader />
+        </div>
+      )}
+      {addressList && (
+        <>
+          <p className="pt-8 pb-4 text-slate-800 font-semibold text-lg">
+            {addressList.length} address{addressList.length > 1 && <>es</>} found.
+          </p>
           <ul className="divide-y-2 divide-solid">
             {addressList.map((addressPair) => (
               <li key={addressPair.getSwapId()}>
@@ -44,8 +51,8 @@ export function FundingList({ chain }: { chain: Blockchain }) {
               </li>
             ))}
           </ul>
-        )}
-      </div>
-    </>
+        </>
+      )}
+    </div>
   )
 }

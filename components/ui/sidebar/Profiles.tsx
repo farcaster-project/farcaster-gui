@@ -17,22 +17,20 @@ export default function Profiles() {
   return (
     <div className="relative">
       <Menu>
-        <Menu.Button className="w-full">
-          <div className="shadow border border-slate-400 bg-slate-300 rounded-xl p-4 text-left">
-            <div className="font-medium text-gray-800">{current.name}</div>
-            <div className="text-sm text-gray-700">{netToString(current.network)}</div>
+        <Menu.Button className="w-[164px]">
+          <div className="shadow-xl bg-gray-900 rounded-md p-4 text-left">
+            <div className="font-medium text-gray-200 mb-2 leading-tight">{current.name}</div>
+            <div className="text-sm text-gray-400">{netToString(current.network)}</div>
           </div>
         </Menu.Button>
-        <Menu.Items className="absolute mt-1 w-fit bg-slate-200 border border-slate-300 shadow-md p-2 rounded-md">
+        <Menu.Items className="absolute mt-1 w-fit bg-gray-900 border-2 border-gray-900 shadow-xl drop-shadow-xl p-2 rounded-md">
           {profiles
             .sort((a, b) => a.name.localeCompare(b.name))
             .map((profileItem) => (
               <Menu.Item key={profileItem.uuid} as={Fragment}>
                 {({ active }) => (
                   <div
-                    className={`flex items-center justify-between w-64 rounded-md space-x-2 ${
-                      active && 'bg-slate-300'
-                    }`}
+                    className={`flex items-center justify-between w-64 rounded-md space-x-2 ${active && 'bg-gray-700'}`}
                   >
                     <div
                       className={`grow p-2 ${!isOnProfilePage && 'cursor-pointer'}`}
@@ -42,8 +40,8 @@ export default function Profiles() {
                         }
                       }}
                     >
-                      <div className="font-medium text-gray-800">{profileItem.name}</div>
-                      <div className="text-sm text-gray-700">{netToString(profileItem.network)}</div>
+                      <div className="font-medium text-gray-200">{profileItem.name}</div>
+                      <div className="text-sm text-gray-400">{netToString(profileItem.network)}</div>
                     </div>
 
                     <div className="flex pr-2 items-center">
@@ -54,7 +52,7 @@ export default function Profiles() {
                         }}
                         className="block py-4 px-1 text-xl"
                       >
-                        <TbEdit className="stroke-gray-500 hover:stroke-gray-900" />
+                        <TbEdit className="stroke-gray-500 hover:stroke-gray-100" />
                       </Link>
 
                       {profiles.length > 1 && (
@@ -64,7 +62,7 @@ export default function Profiles() {
                             if (confirm('Do you want to delete this profile?')) delProfile(profileItem)
                           }}
                         >
-                          <TbX className="stroke-gray-500 cursor-pointer hover:stroke-gray-900" />
+                          <TbX className="stroke-gray-500 cursor-pointer hover:stroke-gray-100" />
                         </div>
                       )}
                     </div>
@@ -73,14 +71,14 @@ export default function Profiles() {
               </Menu.Item>
             ))}
           <Menu.Item disabled>
-            <div className="border border-slate-300 my-2 rounded-full" />
+            <div className="border border-gray-300 my-2 rounded-full" />
           </Menu.Item>
           <Menu.Item as={Fragment}>
             {({ active }) => (
               <Link href="/profile?new">
                 <div
-                  className={`flex items-center justify-between w-64 rounded-md space-x-2 p-2 ${
-                    active && 'bg-slate-300'
+                  className={`flex items-center justify-between w-64 rounded-md space-x-2 p-2 text-gray-200 ${
+                    active && 'bg-gray-700'
                   }`}
                 >
                   <TbPlus /> <div className="grow text-sm">New profile</div>

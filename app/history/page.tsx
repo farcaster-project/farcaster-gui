@@ -13,15 +13,15 @@ import { useEffect, useMemo, useState } from 'react'
 import { useProfile, useRpc } from '../hooks'
 import { NavPageMenu } from '../../components/lists/NavPageMenu'
 
-const itemPannel = cva(['outline', 'outline-4', 'outline-offset-4'], {
+const itemPannel = cva(['outline', 'outline-2', 'outline-offset-1'], {
   variants: {
     status: {
       Open: ['bg-white', 'outline-slate-50'],
       Progress: ['bg-white', 'outline-slate-50'],
       Revoked: ['bg-zinc-50', 'outline-zinc-300'],
-      Swapped: ['bg-teal-50', 'outline-teal-300'],
-      Refunded: ['bg-amber-50', 'outline-amber-400'],
-      Punished: ['bg-rose-50', 'outline-rose-500'],
+      Swapped: ['bg-emerald-50', 'outline-emerald-700'],
+      Refunded: ['bg-amber-50', 'outline-amber-600'],
+      Punished: ['bg-rose-50', 'outline-rose-700'],
       Aborted: ['bg-zinc-50', 'outline-zinc-300'],
     },
   },
@@ -33,9 +33,9 @@ const itemTitle = cva(['text-2xl', 'font-semibold', 'mb-6'], {
       Open: ['text-slate-600'],
       Progress: ['text-slate-600'],
       Revoked: ['text-zinc-600'],
-      Swapped: ['text-teal-600'],
-      Refunded: ['text-amber-500'],
-      Punished: ['text-rose-600'],
+      Swapped: ['text-emerald-800'],
+      Refunded: ['text-amber-700'],
+      Punished: ['text-rose-800'],
       Aborted: ['text-zinc-600'],
     },
   },
@@ -93,7 +93,7 @@ export default function PageHistory() {
             <div className="text-slate-600 text-sm">Search in history</div>
             <div className="grow">
               <input
-                className="w-full h-8 text-xl font-mono font-semibold text-slate-800 focus:outline-none border-b-2 border-slate-200"
+                className="w-full h-8 text-xl font-mono font-semibold text-slate-800 focus:outline-none border-b-2 border-slate-200 focus:border-orange-600"
                 name="history-search"
                 value={search}
                 onChange={(e) => searchSet(e.target.value)}

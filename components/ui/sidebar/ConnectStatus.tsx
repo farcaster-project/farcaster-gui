@@ -7,12 +7,12 @@ import { useConnected } from '../../../app/hooks'
 
 export type ConnectionStatus = 'connecting...' | 'connected' | 'disconnected'
 
-const connectionLabel = cva(['rounded-full', 'py-1', 'px-4', 'ring-1'], {
+const connectionLabel = cva(['rounded-md', 'py-1', 'px-4', 'shadow'], {
   variants: {
     status: {
-      'connecting...': ['bg-slate-700', 'text-slate-50', 'ring-slate-600'],
-      connected: ['bg-green-700', 'text-green-50', 'ring-green-600'],
-      disconnected: ['bg-rose-700', 'text-rose-50', 'ring-rose-600'],
+      'connecting...': ['bg-gray-600', 'text-slate-50'],
+      connected: ['bg-green-600', 'text-green-50'],
+      disconnected: ['bg-rose-700', 'text-rose-50'],
     },
   },
   defaultVariants: {

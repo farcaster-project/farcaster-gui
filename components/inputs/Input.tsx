@@ -16,8 +16,8 @@ export const inputRow = cva(['my-4', 'flex'], {
   },
 })
 
-//const baseInput = ['col-span-2', 'p-2', 'border-4', 'bg-gray-100', 'border-gray-200']
-const baseInput = 'w-full cursor-default rounded-md bg-white py-2 px-3 text-left shadow-md font-mono'
+const baseInput =
+  'w-full cursor-default rounded-sm bg-white py-2 px-3 border border-gray-50 text-left shadow font-mono focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-2 focus-visible:outline-orange-600'
 
 // either an input or a textarea
 const input = cva(baseInput, {

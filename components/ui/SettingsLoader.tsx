@@ -29,7 +29,7 @@ export default function SettingsLoader({ children }: { children: ReactNode }) {
   const { loading } = useContext(SettingsContext)
   if (loading) {
     return (
-      <div className="flex flex-col justify-center items-center text-center w-screen h-screen bg-slate-900 text-slate-300 text-2xl">
+      <div className="flex flex-col justify-center items-center text-center w-screen h-screen bg-gray-900 text-slate-300 text-2xl">
         <Loader />
         <span>Loading settings...</span>
       </div>

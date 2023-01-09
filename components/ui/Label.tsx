@@ -36,12 +36,24 @@ const block = cva(['p-2', 'rounded', 'font-mono'], {
       primary: ['bg-gray-700', 'text-gray-300'],
       secondary: ['bg-gray-500', 'text-gray-200'],
     },
+    shadow: {
+      true: ['shadow'],
+    },
   },
   defaultVariants: {
     intent: 'secondary',
+    shadow: false,
   },
 })
 
-export function Block({ intent, children }: { intent: 'primary' | 'secondary'; children: ReactNode }) {
-  return <div className={block({ intent })}>{children}</div>
+export function Block({
+  intent,
+  shadow,
+  children,
+}: {
+  intent: 'primary' | 'secondary'
+  shadow?: boolean
+  children: ReactNode
+}) {
+  return <div className={block({ intent, shadow })}>{children}</div>
 }

@@ -81,7 +81,7 @@ export function ProgressDisplay({
 }) {
   const displayState = process(progress)
   return (
-    <div className="px-12 pt-12 pb-4 bg-gray-100 rounded-lg mt-4 mb-12">
+    <div className="px-12 pt-12 pb-4 bg-gray-100 rounded-md mt-4 mb-12">
       <div className="flex items-center space-x-6 text-slate-800 font-semibold mb-4">
         <div className="w-24 text-center">
           {tradeRole === TradeRole.TAKER && <>Connecting to maker</>}

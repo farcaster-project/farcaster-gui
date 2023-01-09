@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 export function Title({ children }: { children: ReactNode }) {
-  return <h1 className="text-6xl font-bold">{children}</h1>
+  return <h1 className="text-6xl font-bold text-slate-800">{children}</h1>
 }
 
 export function Subtitle({ children }: { children: ReactNode }) {

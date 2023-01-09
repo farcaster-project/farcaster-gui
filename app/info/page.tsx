@@ -53,7 +53,7 @@ export default function InfoPage() {
         <>
           <SectionTitle>Swaps</SectionTitle>
           <SectionDesc>List of currently running swaps on this node.</SectionDesc>
-          <Block intent="secondary">
+          <Block intent="secondary" shadow>
             <div className="p-8">
               <ul>
                 {info.getSwapsList().length === 0 && <li>No running swap</li>}
@@ -66,7 +66,7 @@ export default function InfoPage() {
 
           <SectionTitle>Connected peers</SectionTitle>
           <SectionDesc>List of counter-party peers connected with this node.</SectionDesc>
-          <Block intent="secondary">
+          <Block intent="secondary" shadow>
             <div className="p-8">
               <ul>
                 {info.getPeersList().length === 0 && <li>No connected peer</li>}
@@ -79,7 +79,7 @@ export default function InfoPage() {
 
           <SectionTitle>Listening peers</SectionTitle>
           <SectionDesc>List of listening peers, ready to accept connections, launched by this node.</SectionDesc>
-          <Block intent="secondary">
+          <Block intent="secondary" shadow>
             <div className="p-8">
               <ul>
                 {info.getListensList().length === 0 && <li>No Listening peer</li>}
