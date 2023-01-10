@@ -26,7 +26,7 @@ export function FundingInfo({ info }: { info: FundingItem }) {
         <span className="font-mono py-2 px-3 bg-orange-200 rounded">
           <Copy
             data={formatAmount(info.data.getAmount(), info.blockchain)}
-            extra={` ${chainToAbrev(info.blockchain).toLowerCase()}`}
+            extra={<div>{` ${chainToAbrev(info.blockchain).toLowerCase()}`}</div>}
             btn={<BtnCopy />}
           />
         </span>

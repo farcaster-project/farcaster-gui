@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import { BiCopy } from 'react-icons/bi'
 import { Blockchain, Network, SwapRole, TradeRole, DeserializedDeal } from '../../proto/farcaster_pb'
 import {
   btcBlockToTimespan,
@@ -10,6 +11,7 @@ import {
   price,
   satsToBtc,
 } from '../utils'
+import { Copy } from './Copy'
 import { Block, Label } from './Label'
 
 export type PanelParams = {
@@ -116,11 +118,21 @@ export function DealPanel({
     <>
       <div className="break-all">
         {displayHeader && (
-          <div className="text-sm font-mono text-slate-700 mb-6">
-            Deal{' '}
-            <Label intensity="light" rounded={false}>
-              {dealInfo.getUuid()}
-            </Label>
+          <div className="flex space-x-2 text-sm leading-loose font-mono text-slate-700 mb-6 break-all">
+            <span>Deal</span>
+            <Copy
+              className="group"
+              data={
+                <Label intensity="light" rounded={false}>
+                  {dealInfo.getUuid()}
+                </Label>
+              }
+              btn={
+                <div className="p-1 hidden group-hover:block text-sm border text-gray-300 border-gray-300 hover:text-gray-600 hover:border-gray-600 rounded">
+                  <BiCopy />
+                </div>
+              }
+            />
           </div>
         )}
         <div className="mb-3">

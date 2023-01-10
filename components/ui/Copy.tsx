@@ -24,8 +24,14 @@ export function Copy({
   return (
     <div className={`${className} flex items-center relative space-x-2`}>
       <code ref={code}>{data}</code>
-      {extra && <div>{extra}</div>}
-      <button className="absolue top-0 right-0" onClick={copy}>
+      {extra}
+      <button
+        className="absolue top-0 right-0"
+        onClick={(e) => {
+          e.preventDefault()
+          copy()
+        }}
+      >
         {btn}
       </button>
     </div>

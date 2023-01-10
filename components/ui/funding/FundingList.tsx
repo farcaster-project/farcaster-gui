@@ -6,6 +6,8 @@ import { AddressSwapIdPair, Blockchain, FundingAddressesRequest } from '../../..
 import { netToSelector } from '../../utils'
 import { Loader } from '../../ui/SettingsLoader'
 import { Button } from '../../inputs/Button'
+import { BiCopy } from 'react-icons/bi'
+import { Copy } from '../Copy'
 
 export function FundingList({ chain }: { chain: Blockchain }) {
   const [profile] = useProfile()
@@ -37,10 +39,27 @@ export function FundingList({ chain }: { chain: Blockchain }) {
             {addressList.map((addressPair) => (
               <li key={addressPair.getSwapId()}>
                 <div className="py-8 flex flex-col">
-                  <div className="p-2 text-sm font-mono text-slate-700">{addressPair.getSwapId()}</div>
+                  <Copy
+                    className="group"
+                    data={<div className="p-2 text-sm font-mono text-slate-700">{addressPair.getSwapId()}</div>}
+                    btn={
+                      <div className="p-1 hidden group-hover:block text-sm border text-gray-300 border-gray-300 hover:text-gray-600 hover:border-gray-600 rounded">
+                        <BiCopy />
+                      </div>
+                    }
+                  />
                   <div className="flex space-x-24 justify-between items-center">
                     <div className="py-2 px-3 rounded bg-slate-100 text-gray-900 font-semibold grow">
-                      {addressPair.getAddress()}
+                      <Copy
+                        className="group"
+                        data={addressPair.getAddress()}
+                        extra={<div className="grow min-w-2"></div>}
+                        btn={
+                          <div className="p-1 hidden group-hover:block text-sm border text-gray-300 border-gray-300 hover:text-gray-600 hover:border-gray-600 rounded">
+                            <BiCopy />
+                          </div>
+                        }
+                      />
                     </div>
                     <div className="flex space-x-3">
                       <Button disabled={true}>Get balance</Button>
