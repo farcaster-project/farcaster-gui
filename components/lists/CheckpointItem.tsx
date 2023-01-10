@@ -2,12 +2,14 @@
 
 import { useCallback, useState } from 'react'
 import { BiCopy } from 'react-icons/bi'
+import { toast } from 'react-toastify'
 import { useRpc } from '../../app/hooks'
 import { CheckpointEntry, RestoreCheckpointRequest } from '../../proto/farcaster_pb'
 import { Button } from '../inputs/Button'
 import { Copy } from '../ui/Copy'
 import { Label } from '../ui/Label'
 import { DealPanel } from '../ui/Panel'
+import { Loader } from '../ui/SettingsLoader'
 
 export default function CheckpointItem({ id, data }: { id: string; data: CheckpointEntry }) {
   const [restoring, restoringSet] = useState(false)
@@ -19,9 +21,12 @@ export default function CheckpointItem({ id, data }: { id: string; data: Checkpo
         new RestoreCheckpointRequest().setSwapId(id),
         null,
         res(
-          () => restoringSet(true),
+          () => {
+            restoringSet(true)
+            toast.success(`Restoring checkpoint ${id}`)
+          },
           (e) => {
-            alert(`failed to restore checkpoint ${id}: ${e.message}`)
+            toast.error(`Failed to restore checkpoint ${id}: ${e.message}`)
           }
         )
       )
@@ -31,8 +36,9 @@ export default function CheckpointItem({ id, data }: { id: string; data: Checkpo
 
   if (restoring) {
     return (
-      <div className="text-sm font-mono text-slate-700 mb-6">
-        Restoring checkpoint{' '}
+      <div className="flex space-x-2 items-center text-sm font-mono text-slate-700">
+        <Loader className="mr-4" />
+        <span className="font-semibold">Restoring checkpoint</span>
         <Label intensity="light" rounded={false}>
           {id}
         </Label>

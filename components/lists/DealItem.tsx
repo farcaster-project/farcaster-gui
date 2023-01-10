@@ -5,19 +5,25 @@ import { useRpc } from '../../app/hooks'
 import { Button } from '../inputs/Button'
 import { DealPanel } from '../ui/Panel'
 import { DealInfo, RevokeDealRequest } from '../../proto/farcaster_pb'
+import { Label } from '../ui/Label'
+import { Loader } from '../ui/SettingsLoader'
+import { toast } from 'react-toastify'
 
 export default function RunningDeal({ id, data }: { id: string; data: DealInfo }) {
   const [revoking, revokingSet] = useState(false)
   const [fcd, res] = useRpc()
 
   const handleRevoke = useCallback(
-    (deal: string) => {
+    (deal: string, id: string) => {
       fcd.revokeDeal(
         new RevokeDealRequest().setDeal(deal),
         null,
         res(
-          () => revokingSet(true),
-          (e) => alert(`failed to revoke deal ${deal}: ${e.message}`)
+          () => {
+            revokingSet(true)
+            toast.success(`Revoking deal ${id}`)
+          },
+          (e) => toast.error(`Failed to revoke deal ${id}: ${e.message}`)
         )
       )
     },
@@ -25,7 +31,15 @@ export default function RunningDeal({ id, data }: { id: string; data: DealInfo }
   )
 
   if (revoking) {
-    return <div>Revoking deal...</div>
+    return (
+      <div className="flex space-x-2 items-center text-sm font-mono text-slate-700">
+        <Loader className="mr-4" />
+        <span className="font-semibold">Revoking deal</span>
+        <Label intensity="light" rounded={false}>
+          {id}
+        </Label>
+      </div>
+    )
   }
 
   return (
@@ -40,7 +54,7 @@ export default function RunningDeal({ id, data }: { id: string; data: DealInfo }
       <div>
         <ul className="flex flex-row-reverse mt-6">
           <li>
-            <Button onClick={() => handleRevoke(data.getSerializedDeal())}>Revoke this deal</Button>
+            <Button onClick={() => handleRevoke(data.getSerializedDeal(), id)}>Revoke this deal</Button>
           </li>
         </ul>
       </div>

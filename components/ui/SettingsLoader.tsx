@@ -3,9 +3,9 @@
 import { ReactNode, useContext } from 'react'
 import SettingsContext from '../../app/settings-provider'
 
-export function Loader() {
+export function Loader({ className = 'm-6' }: { className?: string }) {
   return (
-    <div className="m-6" role="status">
+    <div className={className} role="status">
       <svg
         className="inline mr-2 w-10 h-10 text-slate-300 animate-spin fill-slate-600"
         viewBox="0 0 100 101"

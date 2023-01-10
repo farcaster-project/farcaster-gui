@@ -12,6 +12,8 @@ import { BiCopy } from 'react-icons/bi'
 import { Copy } from '../ui/Copy'
 import { ProgressDisplay } from '../ui/swaps/progress/Progress'
 import { getLocalSwapRole } from '../utils'
+import { Loader } from '../ui/SettingsLoader'
+import { toast } from 'react-toastify'
 
 export default function RunningSwap({ id, data, funding }: { id: string; data: DealInfo; funding?: FundingItem }) {
   const [prog, progSet] = useState<ProgressResponse | null>(null)
@@ -36,9 +38,12 @@ export default function RunningSwap({ id, data, funding }: { id: string; data: D
         new AbortSwapRequest().setSwapId(id),
         null,
         res(
-          () => abortingSet(true),
+          () => {
+            abortingSet(true)
+            toast.success(`Aborting swap ${id}`)
+          },
           (e) => {
-            alert(`failed to abort swap ${id}: ${e.message}`)
+            toast.error(`Failed to abort swap ${id}: ${e.message}`)
           }
         )
       )
@@ -48,8 +53,9 @@ export default function RunningSwap({ id, data, funding }: { id: string; data: D
 
   if (aborting) {
     return (
-      <div className="text-sm font-mono text-slate-700 mb-6">
-        Aborting swap{' '}
+      <div className="flex space-x-2 items-center text-sm font-mono text-slate-700">
+        <Loader className="mr-4" />
+        <span className="font-semibold">Aborting swap</span>
         <Label intensity="light" rounded={false}>
           {id}
         </Label>
