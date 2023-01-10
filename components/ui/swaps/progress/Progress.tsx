@@ -31,32 +31,40 @@ function process(progress: Progress[]): ProgressState {
         case Progress.ProgressCase.STATE_TRANSITION:
           const transition = prog.getStateTransition()
           const newState = transition?.getNewState()
+          let newRes = { ...res }
           if (newState) {
+            const oldState = transition?.getOldState()
+            if (oldState) {
+              if (new RegExp('Start (Alice|Bob)*').test(oldState.getState())) {
+                newRes = { ...newRes, connect: true }
+              }
+            }
             if (new RegExp('(Alice|Bob) Init*').test(newState.getState())) {
-              return { ...res, secrets: 'doing' }
+              newRes = { ...newRes, secrets: 'doing' }
             }
             if (new RegExp('Alice Core Arbitrating Setup').test(newState.getState())) {
-              return { ...res, secrets: true, lockArb: 'doing' }
+              newRes = { ...newRes, secrets: true, lockArb: 'doing' }
             }
             if (new RegExp('Alice Arbitrating Lock Final').test(newState.getState())) {
-              return { ...res, lockArb: true, lockAcc: 'doing' }
+              newRes = { ...newRes, lockArb: true, lockAcc: 'doing' }
             }
             if (new RegExp('Alice Buy Procedure Signature').test(newState.getState())) {
-              return { ...res, lockAcc: true, buy: 'doing' }
+              newRes = { ...newRes, lockAcc: true, buy: 'doing' }
             }
             if (new RegExp('Bob Fee Estimated').test(newState.getState())) {
-              return { ...res, secrets: true, fundArb: 'doing' }
+              newRes = { ...newRes, secrets: true, fundArb: 'doing' }
             }
             if (new RegExp('Bob Funded').test(newState.getState())) {
-              return { ...res, fundArb: true, lockArb: 'doing' }
+              newRes = { ...newRes, fundArb: true, lockArb: 'doing' }
             }
             if (new RegExp('Bob Accordant Lock Final').test(newState.getState())) {
-              return { ...res, lockAcc: true, buy: 'doing' }
+              newRes = { ...newRes, lockAcc: true, buy: 'doing' }
             }
             if (new RegExp('Bob Accordant Lock').test(newState.getState())) {
-              return { ...res, lockArb: true, lockAcc: 'doing' }
+              newRes = { ...newRes, lockArb: true, lockAcc: 'doing' }
             }
           }
+          return newRes
       }
       return res
     },
