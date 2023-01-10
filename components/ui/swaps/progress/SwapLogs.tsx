@@ -46,13 +46,10 @@ function ProgressSateTransition({ transition }: { transition: StateTransition })
   )
 }
 
-export function SwapLogs({ progress }: { progress: Progress[] }) {
-  return (
-    <Disclosure>
-      <Disclosure.Button>
-        <div className="text-xs text-slate-800">Display swap logs</div>
-      </Disclosure.Button>
-      <Disclosure.Panel className="p-4 mt-2 mb-8 bg-gray-200 rounded-md text-xs text-left">
+export function SwapLogs({ progress, show = false }: { progress: Progress[]; show?: boolean }) {
+  if (show) {
+    return (
+      <div className="p-4 mt-2 mb-8 bg-gray-200 rounded-md text-xs text-left">
         {progress.map((progress, idx) => {
           let content = <></>
           switch (progress.getProgressCase()) {
@@ -73,7 +70,8 @@ export function SwapLogs({ progress }: { progress: Progress[] }) {
           }
           return <div key={idx}>{content}</div>
         })}
-      </Disclosure.Panel>
-    </Disclosure>
-  )
+      </div>
+    )
+  }
+  return <></>
 }
