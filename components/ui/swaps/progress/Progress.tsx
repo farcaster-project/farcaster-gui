@@ -89,13 +89,16 @@ function applyStatusChanges(p: ProgressState, s: State, oldState?: State): Progr
   // enter buy step and finalized acc lock status on node's decision
   // buySeen=true
   if (s.getBuySeen()) {
-    res = { ...res, accLocked: s.getAccLocked(), buy: 'doing' }
+    res = { ...res, lockAcc: s.getAccLocked(), buy: 'doing' }
   }
 
   // enter refund step and finalized acc lock status on node's decision
   // canceled=true
+  if (new RegExp('Alice Cancel').test(s.getState())) {
+    res = { ...res, lockAcc: s.getAccLocked(), cancel: 'doing' }
+  }
   if (s.getCanceled()) {
-    res = { ...res, accLocked: s.getAccLocked(), canceled: true, refund: 'doing' }
+    res = { ...res, lockAcc: s.getAccLocked(), cancel: true, refund: 'doing' }
   }
 
   return res
@@ -197,7 +200,7 @@ function confs(conf?: number): string {
 // Pluralize number of block string
 function blocks(block?: number): string {
   if (block === undefined) return ''
-  if (block === 0) {
+  if (block <= 0) {
     return 'now'
   } else if (block > 1) {
     return `in ${block} blocks`
@@ -263,6 +266,12 @@ export function ProgressDisplay({
         <div className="w-24 text-center">Locking Monero</div>
         <div className="grow"></div>
         <div className="w-24 text-center">{displayState.cancel ? <>Canceling</> : <>Swapping</>}</div>
+        {displayState.refund && (
+          <>
+            <div className="grow"></div>
+            <div className="w-24 text-center">Refunding</div>
+          </>
+        )}
       </div>
       <div className="flex items-center">
         <div className="flex justify-center w-24">
@@ -292,6 +301,14 @@ export function ProgressDisplay({
         <div className="flex justify-center w-24">
           <StatusBadge status={displayState.cancel ? displayState.cancel : displayState.buy} />
         </div>
+        {displayState.refund && (
+          <>
+            <div className="grow h-1 bg-gray-200 rounded"></div>
+            <div className="flex justify-center w-24">
+              <StatusBadge status={displayState.refund} />
+            </div>
+          </>
+        )}
       </div>
       <div className="flex items-center text-xs text-slate-600 mt-3">
         <div className="w-24 text-center"></div>
@@ -330,6 +347,12 @@ export function ProgressDisplay({
           )}
           {displayState.canceled && <>Punishing {blocks(displayState.punishIn)}</>}
         </div>
+        {displayState.refund && (
+          <>
+            <div className="grow"></div>
+            <div className="w-24 text-center"></div>
+          </>
+        )}
       </div>
       <div className="font-mono mt-12">
         <div className="flex justify-between text-xs text-slate-800">
