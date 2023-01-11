@@ -110,7 +110,11 @@ export default function PageHistory() {
           <NavPageMenu pages={nbPages} current={currentPage} pageSet={currentPageSet} />
         </div>
       )}
-      {!filteredDeals && <Loader />}
+      {!filteredDeals && (
+        <div className="flex items-center justify-center p-36">
+          <Loader />
+        </div>
+      )}
       {filteredDeals?.length === 0 && (
         <Panel className="bg-white">
           <div className="p-8">

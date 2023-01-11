@@ -48,7 +48,11 @@ export default function InfoPage() {
           <div>Node data on all networks.</div>
         </div>
       </div>
-      {!info && <Loader />}
+      {!info && (
+        <div className="flex items-center justify-center p-36">
+          <Loader />
+        </div>
+      )}
       {info && (
         <>
           <SectionTitle>Swaps</SectionTitle>
