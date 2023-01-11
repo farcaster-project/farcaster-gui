@@ -1,144 +1,186 @@
 'use client'
 
 import { useState } from 'react'
-import { Progress, SwapRole, TradeRole } from '../../../../proto/farcaster_pb'
+import { Progress, State, SwapRole, TradeRole } from '../../../../proto/farcaster_pb'
 import { Status, StatusBadge } from './Status'
 import { SwapLogs } from './SwapLogs'
 
+// This is the progress aggregated state used to display the swap progress to
+// the user. This state is created from a list of Progress messages retrieved
+// from the node throught the gRPC interface.
 export interface ProgressState {
-  connect: Status
-  secrets: Status
-  fundArb?: Status
-  lockArb: Status
-  lockAcc: Status
-  buy: Status
-  cancel?: Status
-  refund?: Status
+  // status displayed in timeline to indicate user where we at
+  connect: Status // first step, connect with counter-party
+  secrets: Status // initialization phase with counter-pary, commit/reveal protocol
+  fundArb: Status // if Bob arbitrating funds needs to be send before locking them
+  lockArb: Status // locking arbitrating funds
+  lockAcc: Status // locking accordant funds
+  buy: Status // buying/swapping phase
+  cancel?: Status // only shown if swap started the failure path
+  refund?: Status // refund, when both party get their funds back
+  punish?: Status // punish, when Bob lost his funds because no refund where made
+  // chains infos
   arbHeight?: number
   accHeight?: number
+  // node's decisions based on swap parameters
   arbLocked?: boolean
-  arbConfs?: number
   accLocked?: boolean
-  accConfs?: number
   canceled?: boolean
+  aliceCanBuy?: boolean
+  buySeen?: boolean
+  refundSeen?: boolean
+  overfunded?: boolean
+  // numbers to display, e.g. block numbers
+  arbConfs?: number
+  accConfs?: number
   cancelIn?: number
+  buyIn?: number
   sweepIn?: number
   punishIn?: number
 }
 
-function process(progress: Progress[]): ProgressState {
+// Takes a progress state and a node state, return an updated progress state for
+// timeline statuses
+//
+// This function must detect when statuses must be changed into:
+//   todo, doing, true (done success), or false (done failure)
+function applyStatusChanges(p: ProgressState, s: State, oldState?: State): ProgressState {
+  let res = { ...p }
+  if (oldState) {
+    // when restoring a swap mark connect status as successful
+    if (new RegExp('Start (Alice|Bob)*').test(oldState.getState())) {
+      res = { ...res, connect: true }
+    }
+  }
+
+  // start secrets step
+  if (new RegExp('(Alice|Bob) Init*').test(s.getState())) {
+    res = { ...res, secrets: 'doing' }
+  }
+
+  // stop secrets step, start fundArb step for Bob; start lockArb step for Alice
+  if (new RegExp('Bob Fee Estimated').test(s.getState())) {
+    res = { ...res, secrets: true, fundArb: 'doing' }
+  }
+  // IF BOB: stop fundArb step and start lockArb step
+  if (new RegExp('Bob Funded').test(s.getState())) {
+    res = { ...res, fundArb: true, lockArb: 'doing' }
+  }
+  if (new RegExp('Alice Core Arbitrating Setup').test(s.getState())) {
+    res = { ...res, secrets: true, lockArb: 'doing' }
+  }
+
+  // IF ALICE: can only buy after she received
+  if (new RegExp('Alice Buy Procedure Signature').test(s.getState())) {
+    res = { ...res, aliceCanBuy: true }
+  }
+
+  // transition from lockArb into lockAcc: requires node's decision
+  // arbLocked=true
+  if (s.getArbLocked()) {
+    res = { ...res, lockArb: true, lockAcc: 'doing' }
+  }
+
+  // transition from lockAcc into buy: requires node's decision accLocked=true
+  if (s.getAccLocked()) {
+    res = { ...res, lockAcc: true, buy: 'doing' }
+  }
+
+  // enter buy step and finalized acc lock status on node's decision
+  // buySeen=true
+  if (s.getBuySeen()) {
+    res = { ...res, accLocked: s.getAccLocked(), buy: 'doing' }
+  }
+
+  // enter refund step and finalized acc lock status on node's decision
+  // canceled=true
+  if (s.getCanceled()) {
+    res = { ...res, accLocked: s.getAccLocked(), canceled: true, refund: 'doing' }
+  }
+
+  return res
+}
+
+// Takes a progress state and a node state, return an updated progress state for
+// all chain info
+function applyChainInfo(p: ProgressState, s: State): ProgressState {
+  return { ...p, arbHeight: s.getArbBlockHeight(), accHeight: s.getAccBlockHeight() }
+}
+
+// Takes a progress state and a node state, return an updated progress state for
+// node's decisions
+function applyDecisions(p: ProgressState, s: State): ProgressState {
+  return {
+    ...p,
+    arbLocked: s.getArbLocked(),
+    accLocked: s.getAccLocked(),
+    canceled: s.getCanceled(),
+    buySeen: s.getBuySeen(),
+    refundSeen: s.getRefundSeen(),
+    overfunded: s.getOverfunded(),
+  }
+}
+
+// Takes a progress state and a node state, return an updated progress state for
+// numbers such as confirmation counters or futur event timers
+function applyNumbers(p: ProgressState, s: State): ProgressState {
+  return {
+    ...p,
+    arbConfs: s.getArbConfs(),
+    accConfs: s.getAccConfs(),
+    cancelIn: s.getCancelBlocks(),
+    buyIn: s.getBuyBlocks(),
+    sweepIn: s.getBuyMoneroBlocks(),
+    punishIn: s.getPunishBlocks(),
+  }
+}
+
+// Aggregate the Progress message list returned by the node to create the
+// ProgressState used by the display widget
+function aggregate(progress: Progress[]): ProgressState {
   return progress.reduce<ProgressState>(
-    (res, prog) => {
+    (agg, prog) => {
       switch (prog.getProgressCase()) {
         case Progress.ProgressCase.MESSAGE:
+          // Non-restore swap start for takers & makers
           if (new RegExp('Proposing to take swap*').test(prog.getMessage())) {
-            return { ...res, connect: true }
+            return { ...agg, connect: true }
           }
           if (new RegExp('Accepting swap*').test(prog.getMessage())) {
-            return { ...res, connect: true }
+            return { ...agg, connect: true }
           }
         case Progress.ProgressCase.FAILURE:
-          return res
+          // failures are handled in state updates
+          return agg
         case Progress.ProgressCase.SUCCESS:
-          return res
+          // success are handled in state updates
+          return agg
         case Progress.ProgressCase.STATE_UPDATE:
-          const state = prog.getStateUpdate()
-          if (state) {
-            let newRes: ProgressState = {
-              ...res,
-              arbHeight: state.getArbBlockHeight(),
-              accHeight: state.getAccBlockHeight(),
-              arbLocked: state.getArbLocked(),
-              arbConfs: state.getArbConfs(),
-              accLocked: state.getAccLocked(),
-              accConfs: state.getAccConfs(),
-              canceled: state.getCanceled(),
-              cancelIn: state.getCancelBlocks(),
-              punishIn: state.getPunishBlocks(),
-            }
-            if (state.getArbLocked()) {
-              newRes = { ...newRes, lockArb: true }
-            }
-            return newRes
-          }
+          // apply state update on aggregated progress state
+          const state = prog.getStateUpdate()!
+          let stateRes = applyChainInfo(agg, state)
+          stateRes = applyDecisions(stateRes, state)
+          stateRes = applyNumbers(stateRes, state)
+          stateRes = applyStatusChanges(stateRes, state)
+          return stateRes
         case Progress.ProgressCase.STATE_TRANSITION:
-          const transition = prog.getStateTransition()
-          const newState = transition?.getNewState()
-          let newRes: ProgressState = { ...res }
-          if (newState) {
-            const oldState = transition?.getOldState()
-            if (oldState) {
-              if (new RegExp('Start (Alice|Bob)*').test(oldState.getState())) {
-                newRes = { ...newRes, connect: true }
-              }
-            }
-            if (new RegExp('(Alice|Bob) Init*').test(newState.getState())) {
-              newRes = { ...newRes, secrets: 'doing' }
-            }
-            if (new RegExp('Alice Core Arbitrating Setup').test(newState.getState())) {
-              newRes = { ...newRes, secrets: true, lockArb: 'doing' }
-            }
-            if (new RegExp('Alice Arbitrating Lock Final').test(newState.getState())) {
-              newRes = { ...newRes, lockArb: true, lockAcc: 'doing' }
-            }
-            if (new RegExp('Alice Buy Procedure Signature').test(newState.getState())) {
-              newRes = { ...newRes, lockAcc: true, buy: 'doing' }
-            }
-            if (new RegExp('Alice Cancel').test(newState.getState())) {
-              newRes = {
-                ...newRes,
-                lockAcc: false,
-                cancel: newState.getCanceled() ? true : 'doing',
-                punishIn: newState.getPunishBlocks(),
-              }
-            }
-            if (new RegExp('Bob Fee Estimated').test(newState.getState())) {
-              newRes = { ...newRes, secrets: true, fundArb: 'doing' }
-            }
-            if (new RegExp('Bob Funded').test(newState.getState())) {
-              newRes = { ...newRes, fundArb: true, lockArb: 'doing' }
-            }
-            if (new RegExp('Bob Refund Procedure').test(newState.getState())) {
-              if (newState.getArbLocked()) {
-                newRes = { ...newRes, lockArb: true }
-              }
-            }
-            if (new RegExp('Bob Accordant Lock Final').test(newState.getState())) {
-              newRes = { ...newRes, lockAcc: true, buy: 'doing' }
-            }
-            if (new RegExp('Bob Accordant Lock$').test(newState.getState())) {
-              newRes = { ...newRes, lockArb: true, lockAcc: 'doing' }
-            }
-            if (new RegExp('Bob Buy Seen').test(newState.getState())) {
-              newRes = { ...newRes, sweepIn: newState.getBuyMoneroBlocks() }
-            }
-            if (new RegExp('Bob Cancel Final').test(newState.getState())) {
-              newRes = {
-                ...newRes,
-                lockAcc: false,
-                cancel: newState.getCanceled() ? true : 'doing',
-                punishIn: newState.getPunishBlocks(),
-              }
-            }
-            newRes = {
-              ...newRes,
-              arbHeight: newState.getArbBlockHeight(),
-              accHeight: newState.getAccBlockHeight(),
-              arbLocked: newState.getArbLocked(),
-              arbConfs: newState.getArbConfs(),
-              accLocked: newState.getAccLocked(),
-              accConfs: newState.getAccConfs(),
-              canceled: newState.getCanceled(),
-              cancelIn: newState.getCancelBlocks(),
-            }
-          }
-          return newRes
+          // apply state transition from old state to new state on aggregated progress state
+          const transition = prog.getStateTransition()!
+          const oldState = transition.getNewState()!
+          const newState = transition.getNewState()!
+          let transitionRes = applyChainInfo(agg, newState)
+          transitionRes = applyDecisions(transitionRes, newState)
+          transitionRes = applyNumbers(transitionRes, newState)
+          transitionRes = applyStatusChanges(transitionRes, newState, oldState)
+          return transitionRes
       }
-      return res
+      return agg
     },
+    // starting state, this compose the base timeline of a swap
     {
       connect: 'doing',
       secrets: 'todo',
+      fundArb: 'todo', // only display when we are Bob
       lockArb: 'todo',
       lockAcc: 'todo',
       buy: 'todo',
@@ -146,6 +188,26 @@ function process(progress: Progress[]): ProgressState {
   )
 }
 
+// Pluralize number of confirmation string
+function confs(conf?: number): string {
+  if (conf === undefined) return ''
+  return conf > 1 ? `${conf} confirmations` : `${conf} confirmation`
+}
+
+// Pluralize number of block string
+function blocks(block?: number): string {
+  if (block === undefined) return ''
+  if (block === 0) {
+    return 'now'
+  } else if (block > 1) {
+    return `in ${block} blocks`
+  } else {
+    return `in ${block} block`
+  }
+}
+
+// Display basic information about the chain state returned by the aggregated
+// Progress message list
 export function ChainInfoDisplay({ state }: { state: ProgressState }) {
   return (
     <div className="flex divide-x divide-gray-400">
@@ -165,17 +227,20 @@ export function ChainInfoDisplay({ state }: { state: ProgressState }) {
   )
 }
 
+// The display widget displaying all progress data to user. The user has access
+// to the summarized timeline with contextual information and the complete log
+// stack for detailed information.
 export function ProgressDisplay({
   progress,
   tradeRole,
   swapRole,
 }: {
   progress: Progress[]
-  tradeRole?: TradeRole
-  swapRole?: SwapRole
+  tradeRole: TradeRole
+  swapRole: SwapRole
 }) {
   const [showLogs, showLogsSet] = useState(false)
-  const displayState = process(progress)
+  const displayState = aggregate(progress)
 
   return (
     <div className="px-12 pt-12 pb-4 bg-gray-100 rounded-md mt-4 mb-12">
@@ -242,7 +307,7 @@ export function ProgressDisplay({
         <div className="w-24 text-center">
           {displayState.lockArb !== 'todo' && (
             <>
-              {displayState.arbLocked ? 'Locked' : 'Locking'}, {displayState.arbConfs} confirmations
+              {displayState.arbLocked ? 'Locked' : 'Locking'}, {confs(displayState.arbConfs)}
             </>
           )}
         </div>
@@ -251,16 +316,19 @@ export function ProgressDisplay({
           {displayState.lockAcc !== 'todo' && displayState.cancel === undefined && (
             <div className="-ml-6 w-36">
               <div>
-                {displayState.accLocked ? 'Locked' : 'Locking'}, {displayState.accConfs} confirmations
+                {displayState.accLocked ? 'Locked' : 'Locking'}, {confs(displayState.accConfs)}
               </div>
-              {!displayState.accLocked && <div>Canceling in {displayState.cancelIn} blocks</div>}
+              {!displayState.accLocked && <div>Cancel will happen {blocks(displayState.cancelIn)}</div>}
             </div>
           )}
         </div>
         <div className="grow"></div>
         <div className="w-24 text-center">
-          {displayState.sweepIn && <>Sweeping Monero in {displayState.sweepIn} blocks</>}
-          {displayState.cancel && <>Punishing in {displayState.punishIn} blocks</>}
+          {swapRole === SwapRole.BOB && displayState.accLocked && <>Sweeping Monero {blocks(displayState.sweepIn)}</>}
+          {swapRole === SwapRole.ALICE && displayState.arbLocked && displayState.aliceCanBuy && (
+            <>Buying Bitcoin {blocks(displayState.buyIn)}</>
+          )}
+          {displayState.canceled && <>Punishing {blocks(displayState.punishIn)}</>}
         </div>
       </div>
       <div className="font-mono mt-12">

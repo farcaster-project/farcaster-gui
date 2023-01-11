@@ -8,12 +8,13 @@ function ProgressMessage({ message }: { message: string }) {
 function ProgressState({ state }: { state: State }) {
   return (
     <Disclosure>
-      <Disclosure.Button className="py-2">
+      <Disclosure.Button className="py-1">
         <div className="text-sm font-medium text-slate-800">{state.getState()}</div>
       </Disclosure.Button>
       <Disclosure.Panel className="text-slate-600">
         <p>Bitcoin height: {state.getArbBlockHeight()}</p>
         <p>Monero height: {state.getAccBlockHeight()}</p>
+        <div className="py-2"></div>
         <p>Bitcoin locked: {state.getArbLocked() ? 'yes' : 'no'}</p>
         <p>Monero locked: {state.getAccLocked() ? 'yes' : 'no'}</p>
         <p>Canceled: {state.getCanceled() ? 'yes' : 'no'}</p>
@@ -24,10 +25,10 @@ function ProgressState({ state }: { state: State }) {
         <p>Bitcoin lock confirmations: {state.getArbConfs()}</p>
         <p>Monero lock confirmations: {state.getAccConfs()}</p>
         <p>Cancel confirmations: {state.getCancelConfs()}</p>
+        <p>Blocks until safe bitcoin buy: {state.getBuyBlocks()}</p>
+        <p>Blocks until safe monero buy: {state.getBuyMoneroBlocks()}</p>
         <p>Blocks until cancel possible: {state.getCancelBlocks()}</p>
         <p>Blocks until punish possible: {state.getPunishBlocks()}</p>
-        <p>Blocks until safe buy: {state.getBuyBlocks()}</p>
-        <p>Blocks until safe monero buy sweep: {state.getBuyMoneroBlocks()}</p>
       </Disclosure.Panel>
     </Disclosure>
   )
@@ -36,8 +37,9 @@ function ProgressState({ state }: { state: State }) {
 function ProgressSateTransition({ transition }: { transition: StateTransition }) {
   return (
     <>
-      <p>
-        Transition from {transition.getOldState()?.getState()} to {transition.getNewState()?.getState()}
+      <p className="py-1">
+        Transition from <span className="font-bold">{transition.getOldState()?.getState()}</span> to{' '}
+        <span className="font-bold">{transition.getNewState()?.getState()}</span>
       </p>
       <div>
         <ProgressState state={transition.getNewState()!} />
