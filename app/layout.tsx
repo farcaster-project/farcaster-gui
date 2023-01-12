@@ -16,7 +16,9 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
-      <head></head>
+      <head>
+        <title>GUI - Farcaster</title>
+      </head>
       <body className={inter.className}>
         <SettingsProvider>
           <SettingsLoader>
