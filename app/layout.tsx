@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <FcLogo />
                     <Profiles />
                   </div>
-                  <div className="flex flex-col space-y-4 items-center">
+                  <div className="flex flex-col space-y-2 items-stretch">
                     <MenuItem href="/">Swaps</MenuItem>
                     <MenuItem href="/deals">Deals</MenuItem>
                     <MenuItem href="/funding">Addresses</MenuItem>
@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <ConnectStatus />
                   </div>
                 </Sidebar>
-                <div className="w-full ml-48">
+                <div className="w-full ml-[15%] px-8">
                   <div className="container mx-auto">{children}</div>
                 </div>
               </div>

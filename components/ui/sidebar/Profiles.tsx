@@ -15,9 +15,9 @@ export default function Profiles() {
   const isOnProfilePage = segment === 'profile'
 
   return (
-    <div className="relative">
+    <div className="w-full relative">
       <Menu>
-        <Menu.Button className="w-[164px]">
+        <Menu.Button className="w-full">
           <div className="shadow-xl bg-gray-900 rounded-md p-4 text-left">
             <div className="font-medium text-gray-200 mb-2 leading-tight">{current.name}</div>
             <div className="text-sm text-gray-400">{netToString(current.network)}</div>
