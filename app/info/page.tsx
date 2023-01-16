@@ -56,7 +56,7 @@ export default function InfoPage() {
       {info && (
         <>
           <SectionTitle>Swaps</SectionTitle>
-          <SectionDesc>List of currently running swaps on this node.</SectionDesc>
+          <SectionDesc>List of swaps currently running on this node.</SectionDesc>
           <Block intent="secondary" shadow>
             <div className="p-8">
               <ul>
@@ -69,7 +69,7 @@ export default function InfoPage() {
           </Block>
 
           <SectionTitle>Connected peers</SectionTitle>
-          <SectionDesc>List of counter-party peers connected with this node.</SectionDesc>
+          <SectionDesc>List of counter-party peers connected to this node.</SectionDesc>
           <Block intent="secondary" shadow>
             <div className="p-8">
               <ul>
@@ -82,7 +82,9 @@ export default function InfoPage() {
           </Block>
 
           <SectionTitle>Listening peers</SectionTitle>
-          <SectionDesc>List of listening peers, ready to accept connections, launched by this node.</SectionDesc>
+          <SectionDesc>
+            List of listening peers that were launched by this node and are ready to accept connections, .
+          </SectionDesc>
           <Block intent="secondary" shadow>
             <div className="p-8">
               <ul>

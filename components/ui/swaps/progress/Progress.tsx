@@ -11,7 +11,7 @@ import { SwapLogs } from './SwapLogs'
 export interface ProgressState {
   // status displayed in timeline to indicate user where we at
   connect: Status // first step, connect with counter-party
-  secrets: Status // initialization phase with counter-pary, commit/reveal protocol
+  secrets: Status // initialization phase with counter-party, commit/reveal protocol
   fundArb: Status // if Bob arbitrating funds needs to be send before locking them
   lockArb: Status // locking arbitrating funds
   lockAcc: Status // locking accordant funds

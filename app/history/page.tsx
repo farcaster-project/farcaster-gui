@@ -119,7 +119,9 @@ export default function PageHistory() {
         <Panel className="bg-white">
           <div className="p-8">
             <p className="text-lg text-slate-800 font-medium">No items found!</p>
-            <p className="text-sm text-slate-700">No deals found in history, otherwise check your filters.</p>
+            <p className="text-sm text-slate-700">
+              No deals found in history. If this seems incorrect, check your filters.
+            </p>
           </div>
         </Panel>
       )}
@@ -139,7 +141,7 @@ export default function PageHistory() {
                       <div>
                         <RiAlarmWarningLine />
                       </div>
-                      <p>You have been punished during this swap, you lost your money!</p>
+                      <p>You have been punished during this swap. You lost your money!</p>
                     </div>
                   )}
                   {dealStatusToStatus(dealInfo.getDealStatus()) === 'Refunded' && (
@@ -147,7 +149,7 @@ export default function PageHistory() {
                       <div>
                         <IoReturnUpBackSharp />
                       </div>
-                      <p>This deal has been refunded, if you locked some money check your address!</p>
+                      <p>This deal has been refunded. If you locked some money, check your address!</p>
                     </div>
                   )}
                 </h2>
