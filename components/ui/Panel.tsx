@@ -216,7 +216,7 @@ export function TimelockPanel({
       <Label intensity="light" rounded={false}>
         {punishTimelock} blocks ({btcBlockToTimespan(punishTimelock)})
       </Label>{' '}
-      after the cancel if {whoCanBePunished(makerRole, localTradeRole)} didn&apos;t refunded.
+      after the cancel if {whoCanBePunished(makerRole, localTradeRole)} didn&apos;t refund yet.
     </>
   )
 }
@@ -254,8 +254,8 @@ function whoCanBePunished(makerSwapRole: SwapRole, localTradeRole: TradeRole): R
   const iAmMaker = isMaker(localTradeRole)
   switch (makerSwapRole) {
     case SwapRole.ALICE:
-      return iAmMaker ? 'counter-pary' : 'I'
+      return iAmMaker ? 'counter-party' : 'I'
     case SwapRole.BOB:
-      return iAmMaker ? 'I' : 'counter-pary'
+      return iAmMaker ? 'I' : 'counter-party'
   }
 }
